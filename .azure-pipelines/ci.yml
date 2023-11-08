@@ -41,18 +41,6 @@ stages:
 - stage: statics
   displayName: Static Files
   jobs:
-  - job: StaticFiles
-    steps:
-    - task: NodeTool@0
-      displayName: Installing Node.js
-      inputs:
-        versionSpec: 14
-
-    - script: |
-        npm install
-        npm run build:prod
-      displayName: Build Static Files
-
     - script: pip install -r requirements.txt
       displayName: Install Requirements
 
