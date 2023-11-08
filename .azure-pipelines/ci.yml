@@ -19,7 +19,7 @@ stages:
   jobs:
   - template: templates/python-bandit.yml@azure-pipelines-templates
     parameters:
-      srcDir: irelandie_*
+      srcDir: cib_*
 
   - job: Lint
     steps:
