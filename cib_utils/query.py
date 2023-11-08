@@ -21,5 +21,6 @@ def order_by_pk_position(
 
     cases = (When(pk=value, then=i) for i, value in enumerate(pks))
     return queryset.annotate(
-        pk_pos_order=Case(*cases, default=len(pks), output_field=IntegerField())
+        pk_pos_order=Case(
+            *cases, default=len(pks), output_field=IntegerField())
     ).order_by("pk_pos_order")

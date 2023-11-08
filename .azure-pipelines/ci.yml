@@ -25,7 +25,7 @@ stages:
     steps:
     - script: |
         python -m pip install flake8
-        flake8 . --exclude migrations
+        flake8 . --exclude migrations settings
       displayName: PEP8 Checks
 
   - job: Test

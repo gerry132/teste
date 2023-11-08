@@ -37,7 +37,8 @@ class PagesAPIEndpoint(PagesAPIViewSet):
             context.update({"locale": self.get_object().locale})
         # Get the locale from GET parameter
         elif (request := self.request) and "locale" in request.GET:
-            locale = get_locale_from_language_code_or_default(request.GET.get("locale"))
+            locale = get_locale_from_language_code_or_default(
+                request.GET.get("locale"))
             context.update({"locale": locale})
 
         return context

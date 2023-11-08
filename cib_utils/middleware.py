@@ -17,4 +17,5 @@ class ReplaceViewsMiddleware(MiddlewareMixin):
                 if hasattr(replacement, "as_view")
                 else replacement
             )
-            return require_admin_access(view)(request, *view_args, **view_kwargs)
+            return require_admin_access(view)(
+                request, *view_args, **view_kwargs)

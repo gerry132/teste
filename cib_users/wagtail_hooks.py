@@ -24,7 +24,7 @@ def global_admin_js():
     )
 
 
-# Register shortcut to access django-defender's blocked list view within django admin
+# Register shortcut to access django-defender's
 class DjangoAdminMenuItem(MenuItem):
     def is_shown(self, request):
         return request.user.is_superuser
