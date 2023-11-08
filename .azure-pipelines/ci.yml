@@ -41,6 +41,8 @@ stages:
 - stage: statics
   displayName: Static Files
   jobs:
+  - job: StaticFiles
+    steps:
     - script: pip install -r requirements.txt
       displayName: Install Requirements
 
