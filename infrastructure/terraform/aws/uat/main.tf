@@ -733,9 +733,9 @@ resource "aws_lb_target_group" "default_admin" {
 
 
 resource "aws_acm_certificate" "cib_content" {
-  domain_name                 = "uat.cib.testing.gov.ie"
+  domain_name                 = "cib.testing.gov.ie"
   subject_alternative_names = [
-     "www.uat.cib.testing.gov.ie"
+     "cib.testing.gov.ie"
   ]
   validation_method           = "DNS"
 
@@ -745,7 +745,7 @@ resource "aws_acm_certificate" "cib_content" {
 }
 
 resource "aws_acm_certificate" "cib_content_admin" {
-  domain_name                 = "content.uat.cib.testing.gov.ie"
+  domain_name                 = "content.cib.testing.gov.ie"
   validation_method           = "DNS"
 
   lifecycle {
