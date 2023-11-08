@@ -17,8 +17,8 @@ class SearchTermDocument(Document):
         auto_refresh = False
 
     class Django:
-        model = SearchTerm  # The model associated with this Document        
-        fields = [  # The fields of the model you want to be indexed 
+        model = SearchTerm  # The model associated with this Document
+        fields = [  # The fields of the model you want to be indexed
             'search_term',
             'count'
         ]

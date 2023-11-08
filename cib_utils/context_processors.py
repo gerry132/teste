@@ -13,7 +13,7 @@ def local_languages(request):
         lang_code = wagtail_locale.language_code
         if lang_code == 'ch':
             lang_code = 'zh-hans'
-        languages.append([lang_code, 
+        languages.append([lang_code,
                           get_language_info(lang_code)["name_local"]])
 
     return {
