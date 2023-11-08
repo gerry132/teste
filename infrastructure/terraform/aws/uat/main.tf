@@ -26,8 +26,8 @@ locals {
   elb_account_arn               = data.aws_elb_service_account.elb.arn
   environment_name              = "uat"
   app_aws_username              = "UAT_APP_USER"
-  project_domain                = "content.uat.cib.testing.gov.ie"
-  domain_cib                    = "uat.cib.testing.gov.ie"
+  project_domain                = "content.cib.testing.gov.ie"
+  domain_cib                    = "cib.testing.gov.ie"
   project_name                  = "cib"
   region                        = "eu-west-1"
   # DB
@@ -735,7 +735,7 @@ resource "aws_lb_target_group" "default_admin" {
 resource "aws_acm_certificate" "cib_content" {
   domain_name                 = "cib.testing.gov.ie"
   subject_alternative_names = [
-     "cib.testing.gov.ie"
+     "www.cib.testing.gov.ie"
   ]
   validation_method           = "DNS"
 
