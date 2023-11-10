@@ -229,7 +229,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "cib_home")
+    os.path.join(PROJECT_DIR, "cib_home")
 ]
 
 
