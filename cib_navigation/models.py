@@ -1,3 +1,4 @@
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
@@ -17,7 +18,6 @@ from wagtail.search import index
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from taggit.managers import TaggableManager
-
 
 
 class PrimaryNavigationTag(TaggedItemBase):
