@@ -1,0 +1,15 @@
+context:
+  footer:
+    logo: true
+    social_links:
+      youtube_user: some-profile
+      linkedin_profile: some-profile
+      facebook_app_id: some-profile
+      twitter_handle: some-profile
+      instagram_user: some-profile
+
+
+tags:
+  include_block:
+    footer:
+      template_name: 'patterns/molecules/navigation/blocks/footer_column.html'

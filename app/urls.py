@@ -68,17 +68,6 @@ urlpatterns += [
     ),
 ]
 
-# Pattern Lib
-if dj_settings.PATTERN_LIBRARY_ENABLED is True:
-    from irelandie_project_styleguide.views import example_form
-
-    urlpatterns += [
-        path(
-            "pattern-library/pattern/patterns/pages/forms/example_form.html",
-            example_form,
-        ),
-        path("pattern-library/", include("pattern_library.urls")),
-    ]
 
 handler404 = 'cib_utils.views.page_not_found'
 handler500 = 'cib_utils.views.server_error'

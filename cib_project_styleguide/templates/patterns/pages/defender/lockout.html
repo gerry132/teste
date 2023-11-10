@@ -1,0 +1,33 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% trans 'Your account has been locked' %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html {
+        background-color: #eee;
+        font-family: sans-serif;
+        color: rgba(0, 0, 0, 0.8);
+      }
+      body {
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+        <h1>{% trans 'Account locked: too many login attempts.' %}</h1>
+        {% if cooloff_time_minutes == 0 %}
+            <p>{% trans 'Contact an admin to unlock your account.' %}</p>
+        {% else %}
+            <p>{% blocktrans %}Please try again in '{{ cooloff_time_minutes|floatformat }}' minute'{{ cooloff_time_minutes|pluralize }}'.{% endblocktrans %}</p>
+        {% endif %}
+    </main>
+  </body>
+</html>
