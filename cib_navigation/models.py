@@ -11,6 +11,7 @@ from .blocks import (
     LinkBlockWithURL
 )
 
+
 from wagtail.models import DraftStateMixin, RevisionMixin
 from django.contrib.contenttypes.fields import GenericRelation
 from wagtail.admin.panels import PublishingPanel
