@@ -94,7 +94,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "cib_project_styleguide.apps.ProjectStyleguideConfig",
     "wagtail.contrib.simple_translation",
-    "debug_toolbar"
 ]
 
 if DEBUG_TOOLBAR is True:
