@@ -37,12 +37,6 @@ urlpatterns = [
     path("api/v2/", api_router.urls),
 ]
 
-#if dj_settings.DEBUG_TOOLBAR is True:
-#    import debug_toolbar
-
-#    urlpatterns += [
-#        path('__debug__/', include(debug_toolbar.urls)),
-#    ]
 
 if dj_settings.USE_S3 is True:
     urlpatterns += staticfiles_urlpatterns()
