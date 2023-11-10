@@ -9,7 +9,6 @@ from cib_navigation.models import (
 
 register = template.Library()
 
-
 @lru_cache(maxsize=None)
 def default_language():
     return Locale.objects.get(language_code="en")
@@ -32,16 +31,13 @@ def get_nav_for_locale(cls, locale):
     return navigation
 
 
-
 @register.simple_tag
 def primarynav(context, page, override=None):
     request = context["request"]
     locale = Locale.objects.get(language_code=request.LANGUAGE_CODE)
-    root_found = False
 
     navigation = get_nav_for_locale(PrimaryNavigation, locale)
     return {
         "primarynav": navigation,
         "request": request,
     }
-

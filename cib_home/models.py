@@ -6,6 +6,7 @@ from wagtail.images import get_image_model_string
 
 IMAGE_MODEL = get_image_model_string()
 
+
 class HomePage(BasePage):
     max_count = 1
     template = "patterns/pages/home/home_page.html"

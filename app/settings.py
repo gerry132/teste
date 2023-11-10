@@ -114,7 +114,7 @@ MIDDLEWARE = [
     # Wagtail extra
     "django.middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-"debug_toolbar.middleware.DebugToolbarMiddleware"
+    # "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
 if DEBUG_TOOLBAR is True:
