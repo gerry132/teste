@@ -33,4 +33,3 @@ class BaseBlockLinkContext(blocks.StructBlock):
             context["link_title"] = None
 
         return context
-

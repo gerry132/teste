@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
 
 from wagtail.admin.panels import (
@@ -8,7 +6,7 @@ from wagtail.admin.panels import (
     MultiFieldPanel,
 )
 
-from wagtail.search import index
+
 from wagtail.models import Page
 from cib_utils.cache import get_default_cache_control_decorator
 

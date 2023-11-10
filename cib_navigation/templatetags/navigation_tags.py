@@ -9,6 +9,7 @@ from cib_navigation.models import (
 
 register = template.Library()
 
+
 @lru_cache(maxsize=None)
 def default_language():
     return Locale.objects.get(language_code="en")
