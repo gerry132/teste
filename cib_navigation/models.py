@@ -97,6 +97,7 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
         blank=True,
         help_text="Main site navigation",
         verbose_name=_("Links"),
+        use_json_field=True
     )
     _revisions = GenericRelation("wagtailcore.Revision", related_query_name="primarynavigation")
 
