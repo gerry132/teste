@@ -20,7 +20,7 @@ from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from taggit.managers import TaggableManager
 from wagtail.images import get_image_model_string
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 
 IMAGE_MODEL = get_image_model_string()
@@ -35,7 +35,7 @@ ALT_IMAGE = ALT_HELP_TEXT % 'image'
 
 
 @register_setting(icon="list-ul")
-class SiteSettings(BaseSetting, ClusterableModel):
+class SiteSettings(BaseSiteSetting, ClusterableModel):
     # The settings here are currently unused.
     favicon = models.ForeignKey(
         IMAGE_MODEL,
