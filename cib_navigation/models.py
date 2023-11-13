@@ -26,7 +26,6 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 IMAGE_MODEL = get_image_model_string()
 
 
-
 ALT_HELP_TEXT = """A short one-sentence literal description
                     of the %s is
                     required to make the page accessible to the
