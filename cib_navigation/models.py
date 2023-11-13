@@ -19,6 +19,60 @@ from wagtail.search import index
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from taggit.managers import TaggableManager
+from wagtail.images import get_image_model_string
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+
+
+IMAGE_MODEL = get_image_model_string()
+
+
+
+ALT_HELP_TEXT = """A short one-sentence literal description
+                    of the %s is
+                    required to make the page accessible to the
+                    visually impaired. Details: https://axesslab.com/alt-texts/"""
+
+ALT_IMAGE = ALT_HELP_TEXT % 'image'
+
+
+@register_setting(icon="list-ul")
+class SiteSettings(BaseSetting, ClusterableModel):
+    # The settings here are currently unused.
+    favicon = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    site_logo = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    mobile_logo = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    site_logo_alt = models.CharField(
+        max_length=255,
+        blank=False,
+        verbose_name=_("Logo Alt text"),
+        help_text=_(ALT_IMAGE),
+    )
+
+    panels = [
+        MultiFieldPanel([
+            FieldPanel("favicon"),
+            FieldPanel("site_logo"),
+            FieldPanel("site_logo_alt"),
+        ], heading="Site Logo"),
+    ]
 
 
 class PrimaryNavigationTag(TaggedItemBase):

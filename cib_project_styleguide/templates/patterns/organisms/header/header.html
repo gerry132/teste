@@ -1,70 +1,41 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n  %}
-<h1>{{static}}</h1>
-<nav class="navbar navbar-default" role="navigation" aria-labelledby="RebootSrMainMenuNav" id="main-navbar">
 
-    <div class="container">
+<nav class="navbar navbar-default g2g-sites">
+    <div class="container container-null-padding">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#RebootMainMenu" aria-expanded="false">
-                <span class="sr-only">{{ text_toggle_main_navigation|capfirst }}</span>
-                <img src="{% static '_reboot/_reboot_app/img/Icon_Hamburger.png' %}" alt="{{ aria_image|capfirst }}: {{ text_toggle_main_navigation|capfirst }}" />
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a hred="/" class="navbar-brand">
-                <img src="{% if nav_image %}
-                        {{ nav_image }}
-                    {% else %}
-                    {% static '_reboot/_reboot_app/img/Image_Logo.png' %}
-                {% endif %}"
-                    alt="{{ label_project_logo|capfirst }}" />
+            <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="/">
+                Title
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="RebootMainMenu">
-            <h2 class="sr-only" id="RebootSrMainMenuNav" style="color: #FFF;">
-                {{ text_main_navigation|capfirst }}
-                {{ navbar_items }}
-            </h2>
-            <ul class="nav navbar-nav navbar-right">
-                <li>vexed</li>
-                <li class="dropdown" style="border-left: 1px solid white">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ label_languages|capfirst }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for language_ in LANGUAGES %}
-                            <li>
-                                <a href="{{ language_.url }}">
-                                    {{ language_.display_name|capfirst }}
-                                    {% if language_.current is True %}<span class="sr-only">({{ label_current|lower }})</span>{% endif %}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
-                </li>
-                {% if request.resolver_match.url_name not in hide_search and use_navbar_mk_ii == false %}
-                    <li class="hidden-sm hidden-xs" reboot-search-drawer-trigger>
-                        <span class="pointer" role="button" aria-label="{{ text_toggle_search_menu|capfirst }}" tabindex="0">
-                            <img src="{% static '_reboot/_reboot_app/img/Icon_Search.png' %}" alt="{{ aria_image|capfirst }}: {{ label_search_button|capfirst }}" aria-hidden="true" />
-                        </span>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Menu<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="index-a" href=""> YAAH </a></li>
+                            <li><a class="index-a" href=""> YAAH </a></li>
+                            <li><a class="index-a" href=""> YAAH </a></li>
+                        </ul>
                     </li>
-                    <li class="hidden-lg hidden-md">
-                        <div class="col-md-12 col-sm-12 col-xs-12 padding-bottom-sm">
-                            {% include '_reboot/common/widgets/search_form.html' %}
-                        </div>
+                    <li class="dropdown">
+                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Language<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="index-a" href=""> YAAH </a></li>
+                            <li><a class="index-a" href=""> YAAH </a></li>
+                            <li><a class="index-a" href=""> YAAH </a></li>        
+                        </ul>
                     </li>
-                {% elif use_navbar_mk_ii %}
-                <li id="custom-search-icon" class="hidden-sm hidden-xs" reboot-search-drawer-trigger>
-                    <span class="pointer" role="button" aria-label="{{ text_toggle_search_menu|capfirst }}" tabindex="0">
-                        <img src="{% static '_reboot/_reboot_app/img/icon-search-2018.png' %}" alt="{{ aria_image|capfirst }}: {{ label_search_button|capfirst }}" aria-hidden="true" />
-                    </span>
-                </li>
-                <li class="hidden-lg hidden-md">
-                    <div class="col-md-12 col-sm-12 col-xs-12 padding-bottom-sm">
-                        {% include '_reboot/common/widgets/search_form_nav.html' %}
-                    </div>
-                </li>
-                {% endif %}
-            </ul>
+                </ul>
         </div>
     </div>
-</nav>
-{% get_current_language as language_code %}
+</nav>{% get_current_language as language_code %}
