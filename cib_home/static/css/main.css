@@ -21,7 +21,7 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 .navbar-default.g2g-sites { padding: 5px 0px; background-color: #FFFFFF; border-radius: 0px; border-width: 0px; }
 .navbar-default.g2g-sites .navbar-nav > li > a,
 .navbar-default.g2g-sites .navbar-nav > li > a:hover,
-.navbar-default.g2g-sites .navbar-nav > li > a:focus { color: #000000; background-color: #004D44; font-size: 18px; }
+.navbar-default.g2g-sites .navbar-nav > li > a:focus { color: #000000; background-color: #FFFFFF; font-size: 18px; }
 .navbar-default.g2g-sites .navbar-nav > li > a:hover { text-decoration: underline; }
 .navbar-default.g2g-sites .navbar-brand { color: #FFF; font-weight: bold; }
 
@@ -217,5 +217,10 @@ a {
 /* new templates */
 
 .navbar-nav {
+    padding-top: 20px;
     float: right;
+}
+
+.navbar-menu--items {
+    border-right: 3px solid #0094C9;
 }

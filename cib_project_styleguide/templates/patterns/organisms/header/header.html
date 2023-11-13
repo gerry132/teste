@@ -1,4 +1,5 @@
-{% load static wagtailcore_tags wagtailimages_tags i18n  %}
+{% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
+{% primarynav as nav %}
 
 <nav class="navbar navbar-default g2g-sites">
     <div class="container container-null-padding">
@@ -14,15 +15,16 @@
             </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% image nav.site_settings.site_logo original class="header__logo" alt=custom_header_settings.site_settings.site_logo_alt %}
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li class="dropdown navbar-menu--items">
                         <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Menu<span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="index-a" href=""> YAAH </a></li>
-                            <li><a class="index-a" href=""> YAAH </a></li>
-                            <li><a class="index-a" href=""> YAAH </a></li>
+                        <ul id="nav-items" class="dropdown-menu">
+                            {% for link in nav.primarynav %}
+                                <li><a class="index-a" href="">{{ link.value.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -30,9 +32,8 @@
                             Language<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="index-a" href=""> YAAH </a></li>
-                            <li><a class="index-a" href=""> YAAH </a></li>
-                            <li><a class="index-a" href=""> YAAH </a></li>        
+                            <li><a class="index-a" href="">English</a></li>
+                            <li><a class="index-a" href="">Irish</a></li>   
                         </ul>
                     </li>
                 </ul>
