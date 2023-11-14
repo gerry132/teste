@@ -21,12 +21,16 @@ def get_nav_for_locale(cls, locale):
 
     try:
         navigation = cls.objects.get(locale=locale).navigation
+        print(navigation)
+        print(1)
     except cls.DoesNotExist:
         pass
 
     if not navigation:
         try:
             navigation = cls.objects.get(locale=default_language()).navigation
+            print(navigation)
+            print(2)
         except cls.DoesNotExist:
             pass
 
