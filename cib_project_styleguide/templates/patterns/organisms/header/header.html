@@ -1,6 +1,7 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
 {% primarynav as nav %}
 
+{{ nav.primarynav }}
 <nav class="navbar navbar-default g2g-sites">
     <div class="container container-null-padding">
         <div class="navbar-header">
@@ -23,6 +24,7 @@
                         </a>
                         <ul id="nav-items" class="dropdown-menu">
                             {% for link in nav.primarynav %}
+
                                 <li><a class="index-a" href="">{{ link.value.title }}</a></li>
                             {% endfor %}
                         </ul>
