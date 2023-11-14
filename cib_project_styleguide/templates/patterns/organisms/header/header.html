@@ -24,8 +24,11 @@
                         </a>
                         <ul id="nav-items" class="dropdown-menu">
                             {% for link in nav.primarynav %}
-
-                                <li><a class="index-a" href="">{{ link.value.title }}</a></li>
+                                {% if link.value.title %}
+                                    <li><a class="index-a" href="">{{ link.page.title }}</a></li>
+                                {% else %}
+                                    <li><a class="index-a" href="">{{ link.value.page }}</a></li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </li>
