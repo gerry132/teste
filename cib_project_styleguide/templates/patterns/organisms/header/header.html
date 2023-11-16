@@ -1,0 +1,47 @@
+{% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
+{% primarynav as nav %}
+
+
+<nav class="navbar navbar-default g2g-sites">
+    <div class="container container-null-padding">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="/">
+                Title
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% image nav.site_settings.site_logo original class="header__logo" alt=custom_header_settings.site_settings.site_logo_alt %}
+                <ul class="nav navbar-nav">
+                    <li class="dropdown navbar-menu--items">
+                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Menu<span class="caret"></span>
+                        </a>
+                        <ul id="nav-items" class="dropdown-menu">
+                            {% for link in nav.primarynav %}
+                                {% if link.value.title %}
+                                    <li><a class="index-a" href="">{{ link.page.title }}</a></li>
+                                {% else %}
+                                    <li><a class="index-a" href="">{{ link.value.page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Language<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="index-a" href="">English</a></li>
+                            <li><a class="index-a" href="">Irish</a></li>   
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+    </div>
+</nav>{% get_current_language as language_code %}

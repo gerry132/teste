@@ -29,13 +29,14 @@ DEBUG_TOOLBAR = os.environ.get("DEBUG_TOOLBAR", "0") in TRUE
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'os.environ["SECRET_KEY"]'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 debug_on = os.environ.get("DEBUG")
 
 if debug_on == '0':
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -53,6 +54,8 @@ INSTALLED_APPS = [
     "cib_users",
     "cib_search",
     "cib_utils",
+    "cib_home",
+    "cib_navigation",
     #
     "wagtail_localize",
     "wagtail.locales",
@@ -90,6 +93,7 @@ INSTALLED_APPS = [
     "pattern_library",
     "rest_framework",
     "corsheaders",
+    "cib_project_styleguide.apps.ProjectStyleguideConfig",
     "wagtail.contrib.simple_translation",
 ]
 
@@ -110,6 +114,7 @@ MIDDLEWARE = [
     # Wagtail extra
     "django.middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
 if DEBUG_TOOLBAR is True:
@@ -192,16 +197,12 @@ else:
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 VALIDATOR_ROOT = "django.contrib.auth.password_validation"
-CUSTOM_VALIDATOR_ROOT = "custompasswordvalidators"
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": f"{VALIDATOR_ROOT}.UserAttributeSimilarityValidator"},
     {"NAME": f"{VALIDATOR_ROOT}.MinimumLengthValidator"},
     {"NAME": f"{VALIDATOR_ROOT}.CommonPasswordValidator"},
     {"NAME": f"{VALIDATOR_ROOT}.NumericPasswordValidator"},
-    {"NAME": f"{CUSTOM_VALIDATOR_ROOT}.case_mix.CaseMixValidator"},
-    {"NAME": f"{CUSTOM_VALIDATOR_ROOT}.symbols.SymbolValidator"},
-    {"NAME": f"{CUSTOM_VALIDATOR_ROOT}.entirely_letters.EntirelyLettersValidator"},
 ]
 
 # Internationalization
@@ -221,19 +222,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
-
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static_compiled/"),
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
-STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, "cib_home")
+]
 
+
+STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
 MEDIA_URL = "/media/"
 
@@ -291,7 +292,7 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True
 if CORS_ALLOW_ALL_ORIGINS is False:
     CORS_ALLOWED_ORIGINS = os.environ["CORS_ALLOWED_ORIGINS"].split(",")
-
+DEBUG_TOOLBAR = True
 if DEBUG_TOOLBAR is True:
     INTERNAL_IPS = [
         "127.0.0.1",
@@ -360,7 +361,7 @@ if USE_S3 is True:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-WAGTAIL_SITE_NAME = "Ireland.ie"
+WAGTAIL_SITE_NAME = "cib.ie"
 
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:8000")
 
@@ -421,7 +422,7 @@ DEFAULT_PER_PAGE = 10
 # WAGTAIL_EXPERIMENTAL_FEATURES = ['slim-sidebar']
 
 
-# Ireland.ie app
+# cib app
 
 AUTH_USER_MODEL = "cib_users.User"
 
@@ -466,7 +467,7 @@ LOGGING = {
         }
     },
     "loggers": {
-        "irelandie": {
+        "cib": {
             "handlers": ["console"],
             "level": "INFO",
             "propagate": False,
