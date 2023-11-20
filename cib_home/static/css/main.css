@@ -153,11 +153,11 @@ ul.g2g-sites-sidebar-menu-nested { padding: 0px; padding-left: 20px; margin: 0px
 }
 
 @media (max-width: 767px){
-    .navbar-toggle { border-radius: 0px; border-width: 0px; }
+    .navbar-toggle { border-radius: 0px; border-width: 0px; padding-top: 25px; font-size: 18px; }
     .navbar-default.g2g-sites .navbar-toggle:focus, .navbar-default .navbar-toggle:hover,
-    .navbar-default.g2g-sites .navbar-toggle:focus, .navbar-default .navbar-toggle:focus { background-color: #004D44; }
+    .navbar-default.g2g-sites .navbar-toggle:focus, .navbar-default .navbar-toggle:focus { background-color: #FFFFFF; }
     .navbar-default.g2g-sites .navbar-toggle .icon-bar { background-color: #FFFFFF; }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a { color: #FFFFFF; }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a { color: #000000; }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover { color: #FFFFFF; text-decoration: underline; }
 }
 
