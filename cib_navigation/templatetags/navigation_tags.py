@@ -5,9 +5,8 @@ from functools import lru_cache
 
 from cib_navigation.models import (
     PrimaryNavigation,
-    SiteSettings
+    SiteSettings, FooterNavigation
 )
-
 
 register = template.Library()
 
@@ -56,7 +55,6 @@ def get_nav_for_locale(cls, locale):
 
 @register.simple_tag(takes_context=True)
 def primarynav(context):
-
     request = context["request"]
     locale = Locale.objects.get(language_code=request.LANGUAGE_CODE)
     site_settings = SiteSettings.for_request(request)
@@ -65,4 +63,33 @@ def primarynav(context):
         "primarynav": navigation,
         "request": request,
         "site_settings": site_settings
+    }
+
+
+# FOOTER NAVIGATION
+# ----------------------------------------------------------------------
+# The data for the footer navigation is managed in the FooterNavigation
+# snippets model.
+
+
+@register.simple_tag(takes_context=True)
+def footernav(context):
+    request = context["request"]
+    locale = Locale.objects.get(language_code=request.LANGUAGE_CODE)
+    footer_navigation = None
+
+    try:
+        footer_navigation = FooterNavigation.objects.get(locale=locale)
+    except FooterNavigation.DoesNotExist:
+        pass
+
+    if not footer_navigation:
+        try:
+            footer_navigation = FooterNavigation.objects.get(locale=default_language())
+        except FooterNavigation.DoesNotExist:
+            pass
+
+    return {
+        "footernav": footer_navigation,
+        "request": request,
     }

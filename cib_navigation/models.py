@@ -2,15 +2,15 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail import blocks
 from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin, PreviewableMixin
 
 from wagtail.snippets.models import register_snippet
 
 from .blocks import (
-    LinkBlockWithURL
+    LinkBlockWithURL, LinkColumnWithHeader
 )
-
 
 from wagtail.models import DraftStateMixin, RevisionMixin
 from django.contrib.contenttypes.fields import GenericRelation
@@ -22,9 +22,7 @@ from taggit.managers import TaggableManager
 from wagtail.images import get_image_model_string
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
-
 IMAGE_MODEL = get_image_model_string()
-
 
 ALT_HELP_TEXT = """A short one-sentence literal description
                     of the %s is
@@ -132,4 +130,96 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
     class Meta:
         verbose_name = _("Primary Navigation")
         verbose_name_plural = _("Primary Navigation")
+        unique_together = ("translation_key", "locale")
+
+
+class FooterNavigationTag(TaggedItemBase):
+    content_object = ParentalKey('cib_navigation.FooterNavigation', on_delete=models.CASCADE,
+                                 related_name='tagged_items')
+
+
+@register_snippet
+class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel,
+                       TranslatableMixin):
+    # Snippets model is used so the navigation can be localised with TranslatableMixin.
+    tags = TaggableManager(through=FooterNavigationTag, blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    lang = models.CharField(
+        max_length=255,
+        unique=True,
+        help_text="Internal name for this navigation, it's not displayed to a site user.",
+        verbose_name=_("Language"),
+    )
+    logo = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    logo_alt = models.CharField(
+        max_length=255,
+        blank=False,
+        verbose_name=_("Logo Alt text"),
+        help_text=_(ALT_IMAGE),
+    )
+    navigation = StreamField(
+        [("two_colum_list", LinkColumnWithHeader()),
+         ("single_colum_list", LinkColumnWithHeader()),
+         ("single_column_address", blocks.StructBlock(
+                        [("heading", blocks.CharBlock()), ("address", blocks.RichTextBlock())],
+                        icon="link",
+                    ))],
+        block_counts={
+            'two_colum_list': {'max_num': 1},
+            'single_colum_list': {'max_num': 1},
+            'single_column_address': {'max_num': 1},
+        },
+        blank=True,
+        max_num=2,
+        help_text="Multiple columns of footer links with optional header.",
+        verbose_name=_("Columns"),
+    )
+    links = StreamField(
+        [("link", LinkBlockWithURL())],
+        blank=True,
+        help_text=_("Single list of elements at the base of the page."),
+    )
+
+    _revisions = GenericRelation("wagtailcore.Revision", related_query_name="footernavigation")
+
+    panels = [
+        FieldPanel("title"),
+        MultiFieldPanel(
+            [
+                FieldPanel("lang"),
+                FieldPanel("logo"),
+                FieldPanel("logo_alt"),
+                FieldPanel("navigation"),
+                FieldPanel("links"),
+            ],
+            heading=_("Footer Navigation"),
+        ),
+        FieldPanel('tags'),
+        PublishingPanel(),
+    ]
+
+    search_fields = [
+        index.FilterField('locale_id'),
+        index.SearchField("title", partial_match=True),
+    ]
+
+    def get_preview_template(self, request, mode_name):
+        return "patterns/snippets/customfootersnippet.html"
+
+    @property
+    def revisions(self):
+        return self._revisions
+
+    def __str__(self):
+        return self.lang
+
+    class Meta:
+        verbose_name = _("Footer Navigation")
+        verbose_name_plural = _("Footer Navigation")
         unique_together = ("translation_key", "locale")

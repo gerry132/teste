@@ -42,3 +42,13 @@ class LinkWithURLANDSubLinks(BaseBlockLinkContext):
         required=False,
         blank=True,
     )
+
+
+class LinkColumnWithHeader(blocks.StructBlock):
+    heading = blocks.CharBlock(
+        required=False, help_text=_("Leave blank if no header required.")
+    )
+    links = blocks.ListBlock(LinkBlockWithURL())
+
+    class Meta:
+        template = ("patterns/molecules/navigation/blocks/footer_column.html",)
