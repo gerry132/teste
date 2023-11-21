@@ -14,9 +14,7 @@
               {% for links in link.value.links %}
               <li class="govie-footer__list-item">
                 {% if links.title %}
-                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.title }} </a>
-                {% elif links.url %}
-                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.url }} </a>
+                  <a class="govie-footer__link" href="{% if links.page %}{{ links.page.url }}{% else %}{{ links.url }}{% endif %}"> {{ links.title }} </a>
                 {% else %}
                   <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.page.title }} </a>
                 {% endif %}
@@ -31,9 +29,7 @@
           {% for links in link.value.links %}
           <li class="govie-footer__list-item">
             {% if links.title %}
-                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.title }} </a>
-                {% elif links.url %}
-                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.url }} </a>
+                  <a class="govie-footer__link" href="{% if links.page %}{{ links.page.url }}{% else %}{{ links.url }}{% endif %}"> {{ links.title }} </a>
                 {% else %}
                   <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.page.title }} </a>
             {% endif %}
@@ -45,14 +41,16 @@
       {% elif link.block_type == 'single_column_address' %}
       <div class="govie-footer__section govie-grid-column-one-third">
         <h2 class="govie-footer__heading govie-heading-m">{{ link.value.heading }}</h2>
-        {{ link.value.address|richtext }}
+        <div style="line-height: 2;">
+          {{ link.value.address|richtext }}
+        </div>
 
       </div>
 
     {% endif %}
     {% endfor %}
       </div>
-
+{% if nav.footernav.links or nav.footernav.logo %}
     <div class="govie-footer__meta">
       <div class="govie-footer__meta-item govie-footer__meta-item--grow">
 
@@ -60,9 +58,7 @@
           {% for link in nav.footernav.links %}
           <li class="govie-footer__inline-list-item">
             {% if link.value.title %}
-                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.title }} </a>
-                {% elif links.url %}
-                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.url }} </a>
+                  <a class="govie-footer__link" href="{% if link.value.page %}{{ link.value.page.url }}{% else %}{{ link.value.url }}{% endif %}"> {{ link.value.title }} </a>
                 {% else %}
                   <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.page.title }} </a>
             {% endif %}
@@ -72,9 +68,10 @@
         </div>
       <div class="govie-footer__meta-item">
         <a class="govie-footer__link govie-footer__copyright-logo" href="#">
-           {% image nav.footernav.logo width-190 height-75 class="header__logo header__mobile" alt=nav.footernav.logo_alt %}
+           {% image nav.footernav.logo width-190 height-65 class="header__logo header__mobile" alt=nav.footernav.logo_alt %}
         </a>
       </div>
     </div>
+    {% endif %}
   </div>
 </footer>
