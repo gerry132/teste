@@ -42,9 +42,16 @@
         </ul>
 
       </div>
-    </div>
+      {% elif link.block_type == 'single_column_address' %}
+      <div class="govie-footer__section govie-grid-column-one-third">
+        <h2 class="govie-footer__heading govie-heading-m">{{ link.value.heading }}</h2>
+        {{ link.value.address|richtext }}
+
+      </div>
+
     {% endif %}
     {% endfor %}
+      </div>
 
     <div class="govie-footer__meta">
       <div class="govie-footer__meta-item govie-footer__meta-item--grow">

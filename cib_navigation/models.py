@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail import blocks
 from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin, PreviewableMixin
 
@@ -164,10 +165,15 @@ class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.I
     )
     navigation = StreamField(
         [("two_colum_list", LinkColumnWithHeader()),
-         ("single_colum_list", LinkColumnWithHeader())],
+         ("single_colum_list", LinkColumnWithHeader()),
+         ("single_column_address", blocks.StructBlock(
+                        [("heading", blocks.CharBlock()), ("address", blocks.RichTextBlock())],
+                        icon="link",
+                    ))],
         block_counts={
             'two_colum_list': {'max_num': 1},
             'single_colum_list': {'max_num': 1},
+            'single_column_address': {'max_num': 1},
         },
         blank=True,
         max_num=2,
