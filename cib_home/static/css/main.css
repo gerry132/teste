@@ -227,6 +227,7 @@ a {
 
 
 
+
 :root {
   --govie-text-colour: #0b0c0c;
   --govie-focus-colour: #fd0;
@@ -476,3 +477,15 @@ a {
 .govie-footer__list-item:last-child {
   margin-bottom: 0;
 }
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }  
+
