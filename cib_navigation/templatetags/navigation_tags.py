@@ -13,7 +13,7 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def translated_page(context, page):
-
+    # translate page
     request = context['request']
 
     language_code = translation.get_language_from_request(request, True)
