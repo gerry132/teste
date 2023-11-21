@@ -237,6 +237,7 @@ a {
 }
 
 
+
 .govie-heading-m {
   color: var(--govie-text-colour);
   font-family: Lato, arial, sans-serif;
@@ -483,9 +484,17 @@ a {
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
-  }
-  .down {
+}
+
+.down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-  }  
+}  
 
+
+.mega_menu__icon{
+    stroke: #000000;
+    color: #000000;
+    height: 12px;
+    width: 12px;
+}

@@ -39,8 +39,6 @@ def get_nav_for_locale(cls, locale):
 
     try:
         navigation = cls.objects.get(locale=locale).navigation
-        print(navigation)
-        print(1)
     except cls.DoesNotExist:
         pass
 
