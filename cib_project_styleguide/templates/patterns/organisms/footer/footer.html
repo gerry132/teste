@@ -1,97 +1,73 @@
 {% load static wagtailcore_tags wagtailimages_tags navigation_tags i18n %}
 
 {% get_current_language as language_code %}
-{% block betatag %}
-    {% if custom_footer.beta_element %}
-            {% include "patterns/snippets/betasnippet.html" with object=custom_footer.beta_element %}
-    {% endif %}
-{% endblock %}
+{% footernav as nav %}
 
-<footer class="footer">
-    <div class="wrapper wrapper--large">
-        <div class="footer__header">
-            {% if custom_footer.link_page %}
-                    <a href="{{custom_footer.link_page.url}}" aria-label="Ireland.ie">
-            {% elif custom_footer.link_url %}
-                    <a href="{{custom_footer.link_url}}" aria-label="Ireland.ie">
-            {% else %}
-                    <a href="/{{ language_code }}/" aria-label="Ireland.ie">
-            {% endif %}
-            {% if custom_footer.logo %}
-                    {% if custom_footer.logo_alt %}
-                        {% if custom_footer.mobile_logo and custom_footer.logo %}
-                            {% image custom_footer.logo original class="footer__logo desktop__logo" alt=custom_footer.logo_alt %}
-                            {% image custom_footer.mobile_logo original class="footer__logo mobile__logo" alt=custom_footer.logo_alt %}
-                        {% else %}
-                            {% image custom_footer.logo original class="footer__logo" alt=custom_footer.logo_alt %}
-                    {% endif %}
+<footer class="govie-footer" role="contentinfo">
+  <div class="govie-width-container">
+    <div class="govie-footer__navigation">
+      {% for link in nav.footernav.navigation %}
+      {% if link.block_type == 'two_colum_list' %}
+      <div class="govie-footer__section govie-grid-column-two-thirds">
+        <h2 class="govie-footer__heading govie-heading-m">{{ link.value.heading }}</h2>
+            <ul class="govie-footer__list govie-footer__list--columns-2">
+              {% for links in link.value.links %}
+              <li class="govie-footer__list-item">
+                {% if links.title %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.title }} </a>
+                {% elif links.url %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.url }} </a>
                 {% else %}
-                    {% if custom_footer.mobile_logo and custom_footer.logo %}
-                        {% image custom_footer.logo original class="footer__logo desktop__logo" alt=custom_footer.logo.alt_default %}
-                        {% image custom_footer.mobile_logo original class="footer__logo mobile__logo" alt=custom_footer.logo.alt_default %}
-                    {% else %}
-                        {% image custom_footer.logo original class="footer__logo" alt=custom_footer.logo.alt_default %}
-                    {% endif %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.page.title }} </a>
                 {% endif %}
-            {% else %}
-                {% include "patterns/atoms/icons/icon.html" with name="irelandie-logo" classname="footer__logo footer__logo--svg" %}
+              </li>
+              {% endfor %}
+            </ul>
+      </div>
+      {% elif link.block_type == 'single_colum_list' %}
+      <div class="govie-footer__section govie-grid-column-one-third">
+        <h2 class="govie-footer__heading govie-heading-m">{{ link.value.heading }}</h2>
+        <ul class="govie-footer__list ">
+          {% for links in link.value.links %}
+          <li class="govie-footer__list-item">
+            {% if links.title %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.title }} </a>
+                {% elif links.url %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.url }} </a>
+                {% else %}
+                  <a class="govie-footer__link" href="{{links.page.url}}"> {{ links.page.title }} </a>
             {% endif %}
-            </a>
+          </li>
+          {% endfor %}
+        </ul>
 
-            {% if custom_footer.youtube_user or custom_footer.linkedin_profile or custom_footer.facebook_app_id or custom_footer.twitter_handle or custom_footer.instagram_user or custom_footer.weibo_user %}
-            <div class="footer__social-links">
-                <p class="footer__heading">{% trans 'Follow us' %}</p>
-
-                {% if custom_footer.youtube_user %}
-                    <a href="https://youtube.com/user/{{ custom_footer.youtube_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Youtube' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="youtube" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-
-                {% if custom_footer.linkedin_profile %}
-                    <a href="{{ custom_footer.linkedin_profile }}" class="footer__social-link" aria-label="{% trans 'Connect on Linkedin' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="linkedin" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-
-                {% if custom_footer.facebook_app_id %}
-                    <a href="https://www.facebook.com/{{ custom_footer.facebook_app_id }}" class="footer__social-link" aria-label="{% trans 'Find us on Facebook' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="facebook" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-
-                {% if custom_footer.twitter_handle %}
-                    <a href="https://twitter.com/{{ custom_footer.twitter_handle }}" class="footer__social-link" aria-label="{% trans 'Follow us on Twitter' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="twitter" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-
-                {% if custom_footer.instagram_user %}
-                    <a href="https://instagram.com/{{ custom_footer.instagram_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Instagram' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="instagram" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-
-                {% if custom_footer.weibo_user %}
-                    <a href="https://www.weibo.com/{{ custom_footer.weibo_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Weibo' %}">
-                        {% include "patterns/atoms/icons/icon.html" with name="weibo" classname="footer__social-icon" %}
-                    </a>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
-        <div class="footer__nav-container">
-            <div>
-                {% customfooternav custom_footer.navigation %}
-            </div>
-
-            <nav class="grid grid--narrow" aria-label="{{ page_title }} Footer Navigation">
-                {% include_block custom_footer.links with nav_type='footerlinks-nav' %}
-            </nav>
-        </div>
-
-        <div class="footer__credit">
-            <p>© {% trans 'Copyright' %} {% now "Y" %} - Ireland.ie | {% trans 'All rights reserved' %}</p>
-        </div>
+      </div>
     </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="govie-footer__meta">
+      <div class="govie-footer__meta-item govie-footer__meta-item--grow">
+
+        <ul class="govie-footer__inline-list">
+          {% for link in nav.footernav.links %}
+          <li class="govie-footer__inline-list-item">
+            {% if link.value.title %}
+                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.title }} </a>
+                {% elif links.url %}
+                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.url }} </a>
+                {% else %}
+                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.page.title }} </a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        </div>
+      <div class="govie-footer__meta-item">
+        <a class="govie-footer__link govie-footer__copyright-logo" href="#">
+           {% image nav.footernav.logo width-190 height-75 class="header__logo header__mobile" alt=nav.footernav.logo_alt %}
+        </a>
+      </div>
+    </div>
+  </div>
 </footer>
