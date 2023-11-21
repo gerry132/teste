@@ -221,13 +221,15 @@ a {
     float: right;
 }
 
-.navbar-menu--items {
-    border-right: 3px solid #0094C9;
+.navbar-menu--items__lang {
     border-left: 3px solid #0094C9;
 }
 
 
-
+.navbar-menu--items {
+    border-left: 3px solid #0094C9;
+    padding-left: 15px;
+}
 
 :root {
   --govie-text-colour: #0b0c0c;
