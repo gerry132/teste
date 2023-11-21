@@ -232,8 +232,8 @@ a {
   --govie-text-colour: #0b0c0c;
   --govie-focus-colour: #fd0;
   --govie-focus-text-colour: #0b0c0c;
-  --govie-header-footer-border-colour: #a39161;
-  --govie-footer-surface-colour: #f6f4ef;
+  --govie-header-footer-border-colour: #B1B4B6;
+  --govie-footer-surface-colour: #F5F5F5;
 }
 
 
@@ -331,7 +331,6 @@ a {
   line-height: 1.14286;
   padding-top: 25px;
   padding-bottom: 15px;
-  border-top: 1px solid var(--govie-header-footer-border-colour);
   color: var(--govie-text-colour);
   background: var(--govie-footer-surface-colour);
 }
