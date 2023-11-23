@@ -497,38 +497,42 @@ input:focus { outline: #00c5ff solid 2px !important; }
     width: 12px;
 }
 /* call out cards*/
+.custom-container {
+  width: 1312px;
+  height: 261px;
+  position: relative; /* or 'absolute' depending on your needs */
+  margin-bottom: 50px;
+}
+
 .info-box {
-  height: 326;
+  height: 100%; /* Make info-box fill the container height */
+  margin-bottom: 20px; /* Remove margin between boxes */
+}
+
+/* Assuming you want each info-box to have equal width */
+.info-box {
   width: 497;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #ffffff;
-  margin-bottom: 30px;
-  border-radius: 4px;
-  text-align: left;
+  height: 326;
   border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
 }
 
 .info-header {
+  margin-top: 40px;
+  margin-bottom: 40px;
   display: flex;
   align-items: left;
 }
 
 .info-box .info-icon {
+  margin-right: 10px;
   height: 55px;
-  width: 55.15;
+  width: 55.15px;
 }
 
-.info-box .info-icon i {
-  font-size: 50px;
-  color: #5bc0de;
-}
 
 .info-box h3 {
-  margin-top: 40px;
-  margin-bottom: 40px;
   color: #000000;
 }
 
@@ -538,9 +542,9 @@ input:focus { outline: #00c5ff solid 2px !important; }
 }
 
 .info-box a {
-  color: #5bc0de;
-  text-decoration: none;
-  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  text-decoration: underline;
 }
 
 .info-box a:hover{
@@ -551,6 +555,7 @@ input:focus { outline: #00c5ff solid 2px !important; }
 @media (max-width: 991px) {
   .info-box {
     height: auto;
+    width: auto;
   }
 }
 
