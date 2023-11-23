@@ -487,7 +487,7 @@ input:focus { outline: #00c5ff solid 2px !important; }
 .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-}  
+}
 
 
 .mega_menu__icon{
@@ -496,3 +496,67 @@ input:focus { outline: #00c5ff solid 2px !important; }
     height: 12px;
     width: 12px;
 }
+/* call out cards*/
+.info-box {
+  height: 326;
+  width: 497;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.info-header {
+  display: flex;
+  align-items: left;
+}
+
+.info-box .info-icon {
+  height: 55px;
+  width: 55.15;
+}
+
+.info-box .info-icon i {
+  font-size: 50px;
+  color: #5bc0de;
+}
+
+.info-box h3 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: #000000;
+}
+
+.info-box p {
+  color: #000000;
+  margin: 40px 20px;
+}
+
+.info-box a {
+  color: #5bc0de;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.info-box a:hover{
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .info-box {
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .info-box {
+    margin-bottom: 10px;
+  }
+}
+/* End of call out cards*/

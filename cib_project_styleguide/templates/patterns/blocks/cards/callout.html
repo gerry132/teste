@@ -1,0 +1,19 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+<div class="container">
+    <div class="row">
+{% for card in self.calloutcards %}
+    <div class="col-md-4">
+        <div class="info-box">
+            <div class="info-header">
+                <div class="info-icon"><i class="glyphicon glyphicon-stats"></i></div>
+                <h3>{{card.title}}</h3>
+            </div>
+            <p> {{card.text}} </p>
+            <a href="{% pageurl card.button_page %}" class="btn btn-primary">Access {{card.title}}</a>
+        </div>
+    </div>
+{% endfor %}
+    </div>
+</div>
+
