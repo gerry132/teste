@@ -524,18 +524,6 @@ input:focus { outline: #00c5ff solid 2px !important; }
   border-left: 7px solid transparent;
 }
 
-.border-blue {
-  border-left-color: #007bff;
-}
-
-.border-green {
-  border-left-color: #28a745;
-}
-
-.border-orange {
-  border-left-color: #fd7e14;
-}
-
 .info-header {
   margin:40px 20px;
   display: flex;
@@ -556,12 +544,11 @@ input:focus { outline: #00c5ff solid 2px !important; }
 .info-box p {
   color: #000000;
   margin: 40px 20px;
-  white-space: normal; /* Wrap text to new line */
-  word-wrap: break-word; /* Break long words */
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .info-box a {
-  /* color: #5bc0de; */
   text-decoration: none;
   position: relative;
   padding-right: 20px;
