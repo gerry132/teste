@@ -1,8 +1,7 @@
+from django import forms
+from django.forms import widgets
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-
-from django.forms import widgets
-from django import forms
 
 
 class ColorChooserBlock(blocks.FieldBlock):
