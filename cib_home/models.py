@@ -5,7 +5,8 @@ from wagtail.images import get_image_model_string
 
 from cib_utils.models import BasePage
 
-from .blocks import CallOutBlock
+from .blocks import CallOutBlock, InfoPanelBlock
+
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -24,6 +25,7 @@ class HomePage(BasePage):
     body = StreamField(
         [
             ("CalloutCards", CallOutBlock()),
+            ("InfoPanelCards", InfoPanelBlock()),
         ],
         use_json_field=True,
         null=True,
