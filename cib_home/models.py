@@ -1,14 +1,11 @@
-from cib_utils.models import BasePage
 from django.db import models
-
-from colorfield.fields import ColorField
-
-from wagtail.images import get_image_model_string
-from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import StreamField
+from wagtail.images import get_image_model_string
+
+from cib_utils.models import BasePage
 
 from .blocks import CallOutBlock
-
 
 IMAGE_MODEL = get_image_model_string()
 
