@@ -12,9 +12,9 @@
                 </div>
                 <p> {{card.text}}</p>
                 {% if card.button_page %}
-                    <a href="{% pageurl card.button_page %} class="info-link"">{{card.button_text}}</a>
+                    <a href="{% pageurl card.button_page %} class="info-link"">{{card.button_text}}  <i class="fa fa-arrow-right"></i></a>
                 {% elif card.button_url %}
-                    <a href="{{  card.button_url }} class="info-link"">{{card.button_text}}</a>
+                    <a href="{{  card.button_url }} class="info-link"">{{card.button_text}}  <i class="fa fa-arrow-right"></i></a>
                 {% endif %}
                 </div>
             </div>
