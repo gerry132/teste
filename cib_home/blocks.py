@@ -1,6 +1,5 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.admin.edit_handlers import FieldPanel
 
 from django.forms import widgets
 from django import forms
@@ -8,7 +7,10 @@ from django import forms
 
 class ColorChooserBlock(blocks.FieldBlock):
     def __init__(self, required=True, help_text=None, **kwargs):
-        self.field = forms.CharField(required=required, help_text=help_text, widget=widgets.TextInput(attrs={'type': 'color'}))
+        self.field = forms.CharField(
+            required=required,
+            help_text=help_text,
+            widget=widgets.TextInput(attrs={'type': 'color'}))
         super().__init__(**kwargs)
 
     class Meta:
