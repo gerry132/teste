@@ -19,7 +19,11 @@
                 <h3>{{card.title}}</h3>
             </div>
             <p> {{card.text}} </p>
-            <a href="{% pageurl card.button_page %} class="info-link"">Access {{card.title}}</a>
+            {% if card.button_page %}
+                <a href="{% pageurl card.button_page %} class="info-link"">{{card.button_text}}</a>
+            {% elif card.button_url %}
+                <a href="{{  card.button_url }} class="info-link"">{{card.button_text}}</a>
+            {% endif %}
         </div>
     </div>
 {% endfor %}
