@@ -499,28 +499,45 @@ input:focus { outline: #00c5ff solid 2px !important; }
 /* call out cards*/
 .custom-container {
   width: 1312px;
-  height: 261px;
-  position: relative; /* or 'absolute' depending on your needs */
+  height: 326px;
+  position: relative;
   margin-bottom: 50px;
 }
 
-.info-box {
-  height: 100%; /* Make info-box fill the container height */
-  margin-bottom: 20px; /* Remove margin between boxes */
+.col-md-4-custom {
+  height: 100%;
 }
 
-/* Assuming you want each info-box to have equal width */
+.row-custom {
+  height: 100%;
+}
 .info-box {
-  width: 497;
-  height: 326;
+  height: 100%;
+  /* margin-bottom: 40px; */
+}
+
+.info-box {
+  height: 100%;
+  width: 497 ;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-left: 7px solid transparent;
+}
 
+.border-blue {
+  border-left-color: #007bff;
+}
+
+.border-green {
+  border-left-color: #28a745;
+}
+
+.border-orange {
+  border-left-color: #fd7e14;
 }
 
 .info-header {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin:40px 20px;
   display: flex;
   align-items: left;
 }
@@ -539,29 +556,57 @@ input:focus { outline: #00c5ff solid 2px !important; }
 .info-box p {
   color: #000000;
   margin: 40px 20px;
+  white-space: normal; /* Wrap text to new line */
+  word-wrap: break-word; /* Break long words */
 }
 
 .info-box a {
-  margin-left: 10px;
-  margin-bottom: 20px;
+  /* color: #5bc0de; */
+  text-decoration: none;
+  position: relative;
+  padding-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 40px;
   text-decoration: underline;
 }
 
+.info-box a::after {
+  content: '→'; /* Unicode arrow character, or use an image with 'url(path/to/image.png)' */
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* color: #5bc0de;  */
+}
 .info-box a:hover{
   text-decoration: underline;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 991px) {
-  .info-box {
+  .custom-container{
     height: auto;
     width: auto;
+    margin: 20px;
+  }
+  .info-box {
+    margin-bottom: 10px;
+    height: 326px;
+    width: auto;
+    margin: 20px;
   }
 }
 
 @media (max-width: 767px) {
+  .custom-container{
+    height: auto;
+    width: auto;
+    margin: 20px;
+  }
   .info-box {
     margin-bottom: 10px;
+    height: 400px;
+    width: auto;
+    margin: 20px;
   }
 }
 /* End of call out cards*/

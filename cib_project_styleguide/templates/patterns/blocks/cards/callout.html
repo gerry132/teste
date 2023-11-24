@@ -1,17 +1,25 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
 <div class="container custom-container">
-    <div class="row">
+    <div class="row row-custom">
 {% for card in self.calloutcards %}
     {% image card.icon fill-55x55 as img %}
-    <div class="col-md-4">
-        <div class="info-box">
+    <div class="col-md-4 col-md-4-custom">
+
+        {% if forloop.counter == 1 %}
+            <div class="info-box border-blue">
+        {% elif forloop.counter == 2 %}
+            <div class="info-box border-green">
+        {% else %}
+            <div class="info-box border-orange">
+        {% endif %}
+
             <div class="info-header">
                 <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
                 <h3>{{card.title}}</h3>
             </div>
             <p> {{card.text}} </p>
-            <a href="{% pageurl card.button_page %}">Access {{card.title}}</a>
+            <a href="{% pageurl card.button_page %} class="info-link"">Access {{card.title}}</a>
         </div>
     </div>
 {% endfor %}

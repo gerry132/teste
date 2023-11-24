@@ -7,7 +7,8 @@ class CallOutBlock(blocks.StructBlock):
     calloutcards = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ("icon", ImageChooserBlock(required=False)),
+                ("icon", ImageChooserBlock(required=False,
+                                           help_text="The Icon size should be 55x55 pixels")),
                 ("title", blocks.CharBlock(required=True)),
                 ("text", blocks.TextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
