@@ -1,5 +1,19 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.admin.edit_handlers import FieldPanel
+
+from django.forms import widgets
+from django import forms
+
+
+class ColorChooserBlock(blocks.FieldBlock):
+    def __init__(self, required=True, help_text=None, **kwargs):
+        self.field = forms.CharField(required=required, help_text=help_text, widget=widgets.TextInput(attrs={'type': 'color'}))
+        super().__init__(**kwargs)
+
+    class Meta:
+        icon = "color_lens"
+        template = "patterns/blocks/cards/color_chooser_block.html"
 
 
 class CallOutBlock(blocks.StructBlock):
@@ -15,6 +29,7 @@ class CallOutBlock(blocks.StructBlock):
                                                         help_text="This button has higher priority than button_url")),
                 ("button_url", blocks.URLBlock(required=False,)),
                 ("button_text", blocks.CharBlock(required=True)),
+                ("left_border_color", ColorChooserBlock(required=True))
             ]
         )
     )
