@@ -514,19 +514,18 @@ input:focus { outline: #00c5ff solid 2px !important; }
 }
 .info-box {
   height: 100%;
-  /* margin-bottom: 40px; */
 }
 
 .info-box {
   height: 100%;
   width: 497 ;
+  padding: 40px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-left: 7px solid transparent;
 }
 
 .info-header {
-  margin:40px 20px;
   display: flex;
   align-items: left;
 }
@@ -544,7 +543,7 @@ input:focus { outline: #00c5ff solid 2px !important; }
 
 .info-box p {
   color: #000000;
-  margin: 40px 20px;
+  margin: 40px 0;
   white-space: normal;
   word-wrap: break-word;
 }
@@ -553,7 +552,6 @@ input:focus { outline: #00c5ff solid 2px !important; }
   text-decoration: none;
   position: absolute;
   bottom: 40px;
-  margin-left: 20px;
   text-decoration: underline;
   color: #0056b3;
 }
@@ -580,6 +578,12 @@ input:focus { outline: #00c5ff solid 2px !important; }
     width: auto;
     margin: 20px;
   }
+  .info-box p {
+    color: #000000;
+    margin: 10px 0;
+    white-space: normal;
+    word-wrap: break-word;
+  }
 }
 
 @media (max-width: 767px) {
@@ -590,9 +594,16 @@ input:focus { outline: #00c5ff solid 2px !important; }
   }
   .info-box {
     margin-bottom: 10px;
-    height: 400px;
+    height: 326px;
     width: auto;
     margin: 20px;
+  }
+  .info-box p {
+    color: #000000;
+    margin: 10px 0;
+    white-space: normal;
+    word-wrap: break-word;
+    bottom: auto;
   }
 }
 /* End of call out cards*/
@@ -669,12 +680,33 @@ input:focus { outline: #00c5ff solid 2px !important; }
   }
   .info-box-1 {
     margin-bottom: 10px;
+    padding: 25px;
     height: 400px;
     width: auto;
-    margin: 20px;
+    margin: 10px;
   }
   .col-md-3 {
     margin-bottom: 20px;
+  }
+  .info-box-1 a {
+    font-size: auto;
+    position: absolute;
+    bottom: 30px;
+    left: 50%; /* Start at the center */
+    transform: translateX(-50%);
+  }
+
+  .info-box-1 h3 {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .info-box-1 p {
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #000000;
+
   }
 }
 
