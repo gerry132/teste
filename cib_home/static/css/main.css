@@ -551,9 +551,9 @@ input:focus { outline: #00c5ff solid 2px !important; }
 
 .info-box a {
   text-decoration: none;
-  position: relative;
+  position: absolute;
+  bottom: 40px;
   margin-left: 20px;
-  margin-bottom: 40px;
   text-decoration: underline;
   color: #0056b3;
 }
@@ -646,6 +646,8 @@ input:focus { outline: #00c5ff solid 2px !important; }
 
 .info-box-1 a {
   font-size: 0.95em;
+  position: absolute;
+  bottom: 0px;
   text-decoration: none;
   position: relative;
   color: #0056b3;
