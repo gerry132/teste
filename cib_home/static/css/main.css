@@ -490,7 +490,7 @@ Bootstrap override
 
 
 @media (max-width: 992px){
-  .navbar-toggle { 
+  .navbar-toggle {
     border-radius: 0px; border-width: 0px; padding-top: 25px; font-size: 18px; }
     .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
       border-color: #FFFFFF !important;
@@ -498,7 +498,7 @@ Bootstrap override
     }
     .icon-bar {
       background-color: #000000 !important;
-    }  
+    }
 }
 
 
@@ -633,12 +633,10 @@ textarea { resize: none; }
 /* End of call out cards*/
 /* Info panels */
 .container-custom-2 {
-  margin-top: 40px;
-  margin: 0 auto;
+  margin: 40px auto;
   width: 1312px;
   height: 404px;
   position: relative;
-  margin-bottom: 50px;
 }
 
 .info-box-1 {
@@ -736,36 +734,3 @@ textarea { resize: none; }
 
 
 /* Info Panels */
-
-
-.search-nav-text {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 27px;
-  line-height: 30px;
-}
-
-.input-group-btn {
-  padding-top: 60px;
-}
-
-@media (max-width: 524px) {
-  .input-group-btn {
-    padding-top: 90px;
-  }
-}
-
-.ul--no-style { list-style-type: none; padding: 0; }
-
-.popular_links--search {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 20px;
-  text-decoration: underline;
-  padding-bottom: 15px;
-}
-
-.index-a--popular {color: #000000 !important;}
