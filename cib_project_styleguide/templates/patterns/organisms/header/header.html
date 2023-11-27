@@ -2,51 +2,78 @@
 {% primarynav as nav %}
 
 
-<nav class="navbar navbar-default g2g-sites">
-    <div class="container container-null-padding">
+<nav class="navbar navbar-default x" role="navigation" aria-labelledby="RebootSrMainMenuNav" id="main-navbar">
+
+    <div class="container">
         <div class="navbar-header">
-            {% image nav.site_settings.site_logo original class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                Menu
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#RebootMainMenu" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
-                
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="/">
-                Title
+            <a {% if logo_url %}href="{{logo_url}}" {% else %}href="{% endif %}" class="navbar-brand">
+                {% image nav.site_settings.site_logo original height-50 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-           <ul class="nav navbar-nav">
-                    <li class="dropdown navbar-menu--items">
-                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Menu
-                        </a>
-                        <ul id="nav-items" class="dropdown-menu">
-                            {% for link in nav.primarynav %}
-                                {% translated_page link.value.page as trans %}
-                                {% if link.value.title %}
-                                    <li><a class="index-a" href="{% pageurl trans %}">{{ trans.title }}</a></li>
-                                {% else %}
-                                    <li><a class="index-a" href="{% pageurl trans %}">{{ trans }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="index-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
-                        </a>
-                        
-                        <ul class="dropdown-menu">
-                            <li><a class="index-a" href="{% pageurl page %}">{{page.locale}}</a></li>
+        <div class="collapse navbar-collapse" id="RebootMainMenu">
+            <h2 class="sr-only" id="RebootSrMainMenuNav" style="color: #FFF;">
+                {{ text_main_navigation|capfirst }}
+                {{ navbar_items }}
+            </h2>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown navbar-menu--items" style="border-left: 1px solid white">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Menu
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for link in nav.primarynav %}
+                        {% translated_page link.value.page as trans %}
+                        {% if link.value.title %}
+                            <li><a class="index-a" href="{% pageurl trans %}">{{ trans.title }}</a></li>
+                        {% else %}
+                            <li><a class="index-a" href="{% pageurl trans %}">{{ trans }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                    <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
+                </li>
+                <li class="dropdown navbar-menu--items__lang">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="index-a" href="{% pageurl page %}">{{page.locale}}</a></li>
                             {% if page.get_translations.live %}
                                 {% for trans in page.get_translations.live %}
                                     <li><a class="index-a" href="{% pageurl trans %}">{{trans.locale}}</a></li>
                                 {% endfor %}
                             {% endif %}
-                        </ul>
-                    </li>
-                </ul>
+                    </ul>
+                    <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
+                </li>
+                <li id="custom-search-icon" class="hidden-sm hidden-xs" reboot-search-drawer-trigger="">
+                    <span class="pointer" role="button" aria-label="Toggle search menu" tabindex="0">
+                        <img src="{% static 'img/Icon_Search.png' %}" alt="Image: Search button" aria-hidden="true">
+                    </span>
+                </li>
+                <li class="hidden-lg hidden-md">
+                    <div class="col-md-12 col-sm-12 col-xs-12 padding-bottom-sm">
+                        {% include 'patterns/organisms/header/search_form_nav.html' %}
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-</nav>{% get_current_language as language_code %}
+</nav>
+
+<div class="container-fluid" id="reboot-search-drawer-custom-nav" style="background-color: #E4DED0" reboot-search-drawer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                {% include 'patterns/organisms/header/search_form_nav.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% get_current_language as language_code %}
