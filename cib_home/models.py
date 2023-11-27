@@ -1,8 +1,12 @@
-from cib_utils.models import BasePage
 from django.db import models
-
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import StreamField
 from wagtail.images import get_image_model_string
-# Create your models here.
+
+from cib_utils.models import BasePage
+
+from .blocks import CallOutBlock, InfoPanelBlock
+
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -17,3 +21,16 @@ class HomePage(BasePage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+
+    body = StreamField(
+        [
+            ("CalloutCards", CallOutBlock()),
+            ("InfoPanelCards", InfoPanelBlock()),
+        ],
+        use_json_field=True,
+        null=True,
+        blank=True
+    )
+    content_panels = BasePage.content_panels + [
+        FieldPanel("body")
+    ]
