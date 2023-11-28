@@ -1,14 +1,9 @@
-{% extends "patterns/base_page.html" %}
+{% extends "patterns/hero_page.html" %}
 {% load wagtailcore_tags wagtailimages_tags static %}
 
 {% block main %}
+
+{% include_block page.secondary_call_to_action %}
+    {% include_block page.top_story %}
     {% include "patterns/molecules/freeform-components/home_components.html" %}
 {% endblock %}
-
-{% block content %}
-    {% for block in page.body%}
-        {% include_block block%}
-    {% endfor %}
-{% endblock %}
-
-

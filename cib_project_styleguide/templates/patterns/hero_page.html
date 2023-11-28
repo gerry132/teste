@@ -1,0 +1,15 @@
+{% extends "patterns/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static navigation_tags %}
+
+{% block content %}
+
+    <div class="wrapper wrapper--large wrapper--hero">
+        {% include "patterns/atoms/image/hero_image.html" with hero_image=page.hero_image %}
+
+        {% include "patterns/molecules/hero/hero.html" with page=page %}
+        {% include "patterns/molecules/navigation/breadcrumbs.html" with page=page %}
+    </div>
+    {% block main %}
+    {% endblock %}
+
+{% endblock %}
