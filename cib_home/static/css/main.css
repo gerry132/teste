@@ -485,20 +485,20 @@ Bootstrap override
 /*===========================================================================*/
 /* BOOTSTRAP CONTAINER EXTENSION */
 @media (min-width: 992px){
-  .container { width: 975px; }
+    .container { width: 975px; }
 }
 
 
 @media (max-width: 992px){
-.navbar-toggle {
-  border-radius: 0px; border-width: 0px; padding-top: 25px; font-size: 18px; }
-  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    border-color: #FFFFFF !important;
-    background-color: #FFFFFF !important;
-  }
-  .icon-bar {
-    background-color: #000000 !important;
-  }
+  .navbar-toggle {
+    border-radius: 0px; border-width: 0px; padding-top: 25px; font-size: 18px; }
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+      border-color: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+    }
+    .icon-bar {
+      background-color: #000000 !important;
+    }
 }
 
 
@@ -519,7 +519,6 @@ Bootstrap override
 /* BOOTSTRAP FORM EXTENSION */
 .form-control { border-radius: 0px; border: 1px solid #9A9791; }
 textarea { resize: none; }
-
 
 /* General homepage container */
 .home-container {
