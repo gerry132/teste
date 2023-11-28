@@ -181,7 +181,6 @@ Bootstrap override
   font-family: Lato, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
   font-size: 18px;
   line-height: 1.11111;
   display: block;
@@ -190,7 +189,7 @@ Bootstrap override
 }
 @media (min-width: 40.0625em) {
   .govie-heading-m {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.25;
   }
 }
@@ -366,6 +365,7 @@ Bootstrap override
   margin-bottom: 30px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--govie-header-footer-border-colour);
+  font-weight: 700!important;
 }
 @media (max-width: 40.0525em) {
   .govie-footer__heading {
