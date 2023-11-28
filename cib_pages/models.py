@@ -1,25 +1,17 @@
-from django.db import models
+
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.images import get_image_model_string
 
 from cib_utils.models import BasePage
 
-from .blocks import CallOutBlock, InfoPanelBlock
+from cib_home.blocks import CallOutBlock, InfoPanelBlock
 
 IMAGE_MODEL = get_image_model_string()
 
 
-class HomePage(BasePage):
-    max_count = 1
-    template = "patterns/pages/home/home_page.html"
-    favicon = models.ForeignKey(
-        IMAGE_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
+class FreeFormPage(BasePage):
+    template = "patterns/pages/free_form_page.html"
 
     body = StreamField(
         [
