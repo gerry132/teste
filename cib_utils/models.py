@@ -61,6 +61,10 @@ class BasePage(Page):
 
 
 class HeroPage(BasePage):
+    """
+    Abstract class to enable
+    hero images on specified pages.
+    """
     hero_image = models.ForeignKey(
         IMAGE_MODEL,
         null=True,
@@ -90,9 +94,11 @@ class HeroPage(BasePage):
         FieldRowPanel([
             FieldPanel("hero_image", classname="col6"),
         ], "Hero Media"),
-        FieldPanel("alt_text")]
+        FieldPanel("alt_text"),
+        FieldPanel('hero_double_feature')]
 
-    content_panels = Page.content_panels
+    content_panels = Page.content_panels + [
+    ]
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Content'),

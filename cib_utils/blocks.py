@@ -138,9 +138,24 @@ class BaseFeatureBlock(blocks.StructBlock):
         help_text="Text to display as feature heading",
         max_length=250
     )
-    rich_text = RichTextBlock()
-    links_list = blocks.ListBlock(
-        LinkBlockWithURL(),
-        max=5
+
+    main_feature = blocks.StreamBlock(
+        [
+            ("rich_text", RichTextBlock()),
+            ("links_list", blocks.ListBlock(
+                LinkBlockWithURL(max=5),
+            )
+            ),
+        ]
     )
-    button = LinkButtonBlock(max=1)
+    button = blocks.StreamBlock(
+        [("button", LinkButtonBlock(max=1))],
+        max_num=1,
+        required=False
+    )
+
+    colour_palette = blocks.ChoiceBlock(
+        choices=(          
+            ("green & black", "Green and Black"),
+            ("blue & white", "Blue & White"),)
+    )
