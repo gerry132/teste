@@ -59,7 +59,7 @@ locals {
   non_gov_network_cird_blocks   = {
     gerry_dev = {
       description = "Gerry Mcbride - OGCIO"
-      cidr_blocks = ["52.49.120.79/32", "37.228.234.219/32", "95.44.14.48/32"]
+      cidr_blocks = ["52.49.120.79/32", "37.228.234.5/32", "95.44.14.48/32"]
     },
     deekshana_dev = {
       description = "Deekshana - Sidero"
