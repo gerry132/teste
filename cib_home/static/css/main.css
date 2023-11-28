@@ -520,7 +520,6 @@ Bootstrap override
 .form-control { border-radius: 0px; border: 1px solid #9A9791; }
 textarea { resize: none; }
 
-/* call out cards*/
 
 /* General homepage container */
 .home-container {
@@ -535,6 +534,7 @@ textarea { resize: none; }
 .col-md-4-custom {
   height: 100%;
   margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .row-custom {
