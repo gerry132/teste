@@ -5,7 +5,7 @@ from wagtail.images import get_image_model_string
 
 from cib_utils.models import BasePage
 
-from .blocks import CallOutBlock, InfoPanelBlock
+from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -25,6 +25,7 @@ class HomePage(BasePage):
         [
             ("CalloutCards", CallOutBlock()),
             ("InfoPanelCards", InfoPanelBlock()),
+            ("JobVacanciesAndNewsCard", JobsVacanciesBlock()),
         ],
         use_json_field=True,
         null=True,
