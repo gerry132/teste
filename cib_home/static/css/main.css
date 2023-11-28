@@ -490,7 +490,7 @@ Bootstrap override
 
 
 @media (max-width: 992px){
-  .navbar-toggle { 
+  .navbar-toggle {
     border-radius: 0px; border-width: 0px; padding-top: 25px; font-size: 18px; }
     .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
       border-color: #FFFFFF !important;
@@ -498,7 +498,7 @@ Bootstrap override
     }
     .icon-bar {
       background-color: #000000 !important;
-    }  
+    }
 }
 
 
@@ -520,17 +520,20 @@ Bootstrap override
 .form-control { border-radius: 0px; border: 1px solid #9A9791; }
 textarea { resize: none; }
 
-/* call out cards*/
-
-.custom-container {
+/* General homepage container */
+.home-container {
   width: 1312px;
   height: 326px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
+/* End of general homepage container */
+/* call out cards*/
 
 .col-md-4-custom {
   height: 100%;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .row-custom {
@@ -589,38 +592,17 @@ textarea { resize: none; }
   text-decoration: underline;
 }
 
-
 @media (max-width: 991px) {
-  .custom-container{
+  .home-container{
     height: auto;
     width: auto;
-    margin: 20px;
+    margin: 0;
   }
-  .info-box {
-    margin-bottom: 10px;
-    height: 326px;
-    width: auto;
-    margin: 20px;
-  }
-  .info-box p {
-    color: #000000;
-    margin: 10px 0;
-    white-space: normal;
-    word-wrap: break-word;
-  }
-}
 
-@media (max-width: 767px) {
-  .custom-container{
-    height: auto;
-    width: auto;
-    margin: 20px;
-  }
   .info-box {
-    margin-bottom: 10px;
     height: 326px;
     width: auto;
-    margin: 20px;
+    margin: 0px 10px;
   }
   .info-box p {
     color: #000000;
@@ -631,15 +613,8 @@ textarea { resize: none; }
   }
 }
 /* End of call out cards*/
+
 /* Info panels */
-.container-custom-2 {
-  margin-top: 40px;
-  margin: 0 auto;
-  width: 1312px;
-  height: 404px;
-  position: relative;
-  margin-bottom: 50px;
-}
 
 .info-box-1 {
   background-color: #f5f5f5;
@@ -671,8 +646,7 @@ textarea { resize: none; }
 }
 
 .info-box-1 p {
-  /* height: 134px;
-  width: 222px; */
+
   margin-top: 40px;
   margin-bottom: 40px;
   color: #000000;
@@ -697,17 +671,13 @@ textarea { resize: none; }
 
 /* Media query for responsiveness */
 @media (max-width: 991px) {
-  .container-custom-2{
-    height: auto;
-    width: auto;
-    margin: 20px;
-  }
+
   .info-box-1 {
-    margin-bottom: 10px;
     padding: 25px;
     height: 400px;
     width: auto;
     margin: 10px;
+    margin-top: 0;
   }
   .col-md-3 {
     margin-bottom: 20px;
@@ -733,7 +703,82 @@ textarea { resize: none; }
 
   }
 }
+/* End ofInfo Panels */
 
+/* Job Vacancies */
+.callout {
+  height: 282px;
+  width: 630px;
+  position: relative;
+  padding: 40px 20px;
+  padding-right: 40px;
+  border-radius: 4px;
+  color: white;
+
+}
+.callout-left {
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.callout-right {
+  border-radius: 10px;
+  margin-left: 15px;
+}
+
+.callout .info-icon {
+  margin-right: 10px;
+  height: 55px;
+  width: 55.15px;
+  opacity: 60%;
+}
+
+.callout h3 {
+  color: #000000;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.callout p {
+  color: #000000;
+  margin: 40px auto;
+}
+
+.callout-link {
+  text-decoration: none;
+  color: #000000 !important;
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+
+}
+
+.callout-link i {
+  margin-left: 5px;
+}
+
+@media (max-width: 991px) {
+
+  .callout {
+    margin: 20px;
+    margin-top: 0;
+    height: auto;
+    width: auto;
+  }
+  .callout-left {
+    border-radius: 10px;
+    margin: auto 20px;
+  }
+
+  .callout-right {
+    border-radius: 10px;
+    margin: 20px 20px;
+  }
+}
+
+/* End of Job Vacancies */
 
 /* Info Panels */
 

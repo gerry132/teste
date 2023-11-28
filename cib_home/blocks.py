@@ -2,9 +2,6 @@ from django import forms
 from django.forms import widgets
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from django.utils.translation import gettext_lazy as _
-
-from cib_navigation.models import ALT_IMAGE
 
 
 class ColorChooserBlock(blocks.FieldBlock):
@@ -63,6 +60,38 @@ class InfoPanelBlock(blocks.StructBlock):
         template = "patterns/blocks/cards/infopanel.html"
         icon = "placeholder"
         label = "Info Panel"
+
+
+class JobsVacanciesBlock(blocks.StructBlock):
+    cards = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("icon", ImageChooserBlock(required=False,
+                                           help_text="The Icon size should be 60x60 pixels")),
+                ("title", blocks.CharBlock(required=True)),
+                ("text", blocks.RichTextBlock(required=True)),
+                ("button_page", blocks.PageChooserBlock(required=False,
+                                                        help_text="This button has higher priority than button_url")),
+                ("button_url", blocks.URLBlock(required=False, )),
+                ("button_text", blocks.CharBlock(required=True)),
+                ("Job_vacancies_Background_color", ColorChooserBlock(
+                    required=True,
+                    help_text="Set the Job vacancies background color"
+                )),
+
+                ("news_button_text", blocks.CharBlock(required=True,
+                                                      help_text="News card button text")),
+                ("news_Background_color", ColorChooserBlock(required=True,
+                                                            help_text="Set the News background color"))
+
+            ]
+        )
+    )
+
+    class Meta:  # noqa
+        template = "patterns/blocks/cards/jobvacancies.html"
+        icon = "placeholder"
+        label = "Job Vacancies"
 
 
 class BoardMembersCardBlock(blocks.StructBlock):
