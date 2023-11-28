@@ -97,6 +97,13 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
         verbose_name=_("Links"),
         use_json_field=True
     )
+    popular_links = StreamField(
+        [("popular_link", LinkBlockWithURL())],
+        blank=True,
+        help_text="Popular links for search",
+        verbose_name=_("Popular Links"),
+        use_json_field=True
+    )
     _revisions = GenericRelation("wagtailcore.Revision", related_query_name="primarynavigation")
 
     panels = [
@@ -105,6 +112,7 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
             [
                 FieldPanel("lang"),
                 FieldPanel("navigation"),
+                FieldPanel("popular_links"),
             ],
             heading=_("Primary Navigation"),
         ),

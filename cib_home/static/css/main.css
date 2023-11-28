@@ -737,3 +737,35 @@ textarea { resize: none; }
 
 /* Info Panels */
 
+
+.search-nav-text {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 30px;
+}
+
+.input-group-btn {
+  padding-top: 60px;
+}
+
+@media (max-width: 524px) {
+  .input-group-btn {
+    padding-top: 90px;
+  }
+}
+
+.ul--no-style { list-style-type: none; padding: 0; }
+
+.popular_links--search {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  text-decoration: underline;
+  padding-bottom: 15px;
+}
+
+.index-a--popular {color: #000000 !important;}

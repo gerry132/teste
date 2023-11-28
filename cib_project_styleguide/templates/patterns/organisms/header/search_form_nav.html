@@ -1,9 +1,11 @@
-{% load static %}
+{% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
 
 <form action="" method="GET" role="search">
+
     <div class="input-group input-group-nav-custom" {% if instance.content.title == "Search results" %} style="width:90%;"
-        {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
-        <input type="text" name="q" value="{{ request.GET.q }}" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
+    {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
+    <h3 class="search-nav-text">Search Citizens Information Board</h2>    
+    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
         {% if publisher is not None %}
         <input type="hidden" id="id_search_scope" name="organisation" value="{{ publisher.content.slug }}" class="form-control input-lg no-radius" >
         <button class="btn btn-default btn-md btn-state-green " search-btn-details-{{language}}  onClick="SearchScopeDetermine(this)">{{ label_search_this_dept|capfirst}}</button>
@@ -48,3 +50,16 @@
         {% endif %}
     </div>
 </form>
+<div class="input-group input-group-nav-custom">
+    <h3 class="search-nav-text">Most Popular</h3>
+    <ul class="ul--no-style">
+    {% for link in nav.popular_links %}
+    {% translated_page link.value.page as trans %}
+    {% if link.value.title %}
+        <li class="popular_links--search"><a class="index--popular" href="{% pageurl trans %}">{{ trans.title }}</a></li>
+    {% else %}
+        <li class="popular_links--search"><a class="index-a--popular" href="{% pageurl trans %}">{{ trans }}</a></li>
+    {% endif %}
+    {% endfor %}
+</ul>
+</div>
