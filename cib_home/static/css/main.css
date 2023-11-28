@@ -222,7 +222,7 @@ Bootstrap override
   }
 }
 .govie-width-container {
-  max-width: 960px;
+  max-width: 1280px;
   margin-right: 15px;
   margin-left: 15px;
 }
@@ -814,3 +814,61 @@ textarea { resize: none; }
 }
 
 .index-a--popular {color: #000000 !important;}
+
+.board_member_card_flex {
+    display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+}
+
+.card {
+    display: block;
+    overflow: hidden;
+    max-width: 300px;
+}
+
+    .card__image-container {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+
+    }
+    .card__image {
+        position: relative;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .card__content {
+        padding: 20px;
+    }
+
+    .card__title {
+         color: var(--CIB_Dark_blue, #005F81);
+        font-family: 'Lato', sans-serif !important;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px;
+        margin-top: 0;
+    }
+    .card__summary {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        color: #000;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        margin-top: 10px;
+    }
+
+
+.wrapper--large {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }

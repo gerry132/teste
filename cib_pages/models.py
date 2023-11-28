@@ -5,7 +5,7 @@ from wagtail.images import get_image_model_string
 
 from cib_utils.models import BasePage
 
-from cib_home.blocks import CallOutBlock, InfoPanelBlock
+from cib_home.blocks import CallOutBlock, InfoPanelBlock, BoardMembersCardBlock
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -17,6 +17,7 @@ class FreeFormPage(BasePage):
         [
             ("CalloutCards", CallOutBlock()),
             ("InfoPanelCards", InfoPanelBlock()),
+            ("BoardMembersCards", BoardMembersCardBlock()),
         ],
         use_json_field=True,
         null=True,
