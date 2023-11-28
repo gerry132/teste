@@ -2,6 +2,9 @@ from django import forms
 from django.forms import widgets
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from django.utils.translation import gettext_lazy as _
+
+from cib_navigation.models import ALT_IMAGE
 
 
 class ColorChooserBlock(blocks.FieldBlock):
@@ -18,7 +21,6 @@ class ColorChooserBlock(blocks.FieldBlock):
 
 
 class CallOutBlock(blocks.StructBlock):
-
     calloutcards = blocks.ListBlock(
         blocks.StructBlock(
             [
@@ -28,7 +30,7 @@ class CallOutBlock(blocks.StructBlock):
                 ("text", blocks.RichTextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
                                                         help_text="This button has higher priority than button_url")),
-                ("button_url", blocks.URLBlock(required=False,)),
+                ("button_url", blocks.URLBlock(required=False, )),
                 ("button_text", blocks.CharBlock(required=True)),
                 ("left_border_color", ColorChooserBlock(required=True))
             ]
@@ -42,7 +44,6 @@ class CallOutBlock(blocks.StructBlock):
 
 
 class InfoPanelBlock(blocks.StructBlock):
-
     infocards = blocks.ListBlock(
         blocks.StructBlock(
             [
@@ -52,7 +53,7 @@ class InfoPanelBlock(blocks.StructBlock):
                 ("text", blocks.RichTextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
                                                         help_text="This button has higher priority than button_url")),
-                ("button_url", blocks.URLBlock(required=False,)),
+                ("button_url", blocks.URLBlock(required=False, )),
                 ("button_text", blocks.CharBlock(required=True)),
             ]
         )
@@ -62,3 +63,21 @@ class InfoPanelBlock(blocks.StructBlock):
         template = "patterns/blocks/cards/infopanel.html"
         icon = "placeholder"
         label = "Info Panel"
+
+
+class BoardMembersCardBlock(blocks.StructBlock):
+    boardmemberscards = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("image", ImageChooserBlock(required=True)),
+                ("image_alt", blocks.CharBlock(required=True, help_text=_(ALT_IMAGE))),
+                ("title", blocks.CharBlock(required=True)),
+                ("Description", blocks.RichTextBlock(required=False)),
+            ]
+        )
+    )
+
+    class Meta:
+        icon = "image"
+        label = "Board Member Card Block"
+        template = "patterns/blocks/cards/board_member_card.html"

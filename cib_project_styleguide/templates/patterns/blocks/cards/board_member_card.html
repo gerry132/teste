@@ -1,0 +1,32 @@
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
+<div class="wrapper--large">
+<div class="board_member_card_flex">
+    {% for card in value.boardmemberscards %}
+    <div class="card">
+        <div class="card__image-container">
+             {% if card.image %}
+                {% if card.image_alt %}
+                    {% image card.image fill-300x200 alt=card.image_alt class="card__image" %}
+                {% else %}
+                    {% image card.image fill-300x200 alt=card.image.alt_default class="card__image" %}
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="card__content">
+            <h3 class="card__title">
+                {{ card.title }}
+            </h3>
+
+            <p class="card__summary">
+                {{ card.Description }}
+            </p>
+
+            <span class="card__link">
+                {{ value.link_text }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
