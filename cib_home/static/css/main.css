@@ -589,28 +589,7 @@ textarea { resize: none; }
   text-decoration: underline;
 }
 
-
-/* @media (max-width: 991px) {
-  .custom-container{
-    height: auto;
-    width: auto;
-    margin: 20px;
-  }
-  .info-box {
-    margin-bottom: 10px;
-    height: 326px;
-    width: auto;
-    margin: 20px;
-  }
-  .info-box p {
-    color: #000000;
-    margin: 10px 0;
-    white-space: normal;
-    word-wrap: break-word;
-  }
-} */
-
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .custom-container{
     height: auto;
     width: auto;
@@ -631,6 +610,7 @@ textarea { resize: none; }
   }
 }
 /* End of call out cards*/
+
 /* Info panels */
 .container-custom-2 {
   margin: 40px auto;
@@ -669,8 +649,7 @@ textarea { resize: none; }
 }
 
 .info-box-1 p {
-  /* height: 134px;
-  width: 222px; */
+
   margin-top: 40px;
   margin-bottom: 40px;
   color: #000000;
