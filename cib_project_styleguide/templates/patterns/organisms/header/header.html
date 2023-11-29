@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a {% if logo_url %}href="{{logo_url}}" {% else %}href="{% endif %}" class="navbar-brand">
-                {% image nav.site_settings.site_logo original height-50 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
+                {% image nav.site_settings.site_logo original class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
             </a>
         </div>
         <div class="collapse navbar-collapse" id="RebootMainMenu">
@@ -22,7 +22,7 @@
                 {{ navbar_items }}
             </h2>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown navbar-menu--items" style="border-left: 1px solid white">
+                <li class="dropdown navbar-menu--items">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Menu
                     </a>

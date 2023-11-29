@@ -4,61 +4,27 @@
 
     <div class="input-group input-group-nav-custom" {% if instance.content.title == "Search results" %} style="width:90%;"
     {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
-    <h3 class="search-nav-text">Search Citizens Information Board</h2>    
-    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
-        {% if publisher is not None %}
-        <input type="hidden" id="id_search_scope" name="organisation" value="{{ publisher.content.slug }}" class="form-control input-lg no-radius" >
-        <button class="btn btn-default btn-md btn-state-green " search-btn-details-{{language}}  onClick="SearchScopeDetermine(this)">{{ label_search_this_dept|capfirst}}</button>
-        <button class="btn btn-default btn-md btn-state-green " name="all_scope" search-btn-all-govie-nav-new-{{language}} onClick="SearchScopeDetermine(this)"
-        >{{ label_search_in_govie|capfirst }}</button>
-        {% elif kwargs_length >= 2  %}
-            {% if 'department-' in request.resolver_match.kwargs.slug or 'roinn-' in request.resolver_match.kwargs.slug or 'organisation' in path or 'eagraiocht' in path %}
-            <input type="hidden" id="id_search_scope" name="organisation" value="{{ request.resolver_match.kwargs.slug }}" class="form-control input-lg no-radius" >
-            <button class="btn btn-default btn-md btn-state-green " search-btn-details-{{language}}  onClick="SearchScopeDetermine(this)">{{ label_search_this_dept|capfirst}}</button>
-            <button class="btn btn-default btn-md btn-state-green " name="all_scope" search-btn-all-govie-nav-new-{{language}} onClick="SearchScopeDetermine(this)"
-            >{{ label_search_in_govie|capfirst }}</button>
-            {% endif %}
-        {% elif "search" in path and kwargs_length == 1 %}
-            {% if 'organisation' not in request.GET.keys %}
-            <span class="input-group-btn">
-                <button class="btn btn-default btn-state-gold btn-lg no-radius" alt="{{ aria_button|capfirst }}: {{ label_search|capfirst }}">
-                    <img src="{% static 'img/Icon_Search.png' %}" alt="{{ aria_image|capfirst }}: {{ label_search_button|capfirst }}" />
-                </button>
-            </span>
-            {% else %}
-            <input type="hidden" id="id_search_scope" name="organisation" value="{{ request.GET.organisation }}" class="form-control input-lg no-radius" >
-            <button class="btn btn-default btn-md btn-state-green " search-btn-details-{{language}} onClick="SearchScopeDetermine(this); "
-                alt="{{ aria_button|capfirst }}: {{ label_search_in_department|capfirst }}">{{ label_search_this_dept|capfirst}}</button>
-            <button class="btn btn-default btn-md btn-state-green " name="all_scope" search-btn-all-govie-nav-new-{{language}}
-                alt="{{ aria_button|capfirst }}: {{ label_search_in_govie|capfirst }}" onClick="SearchScopeDetermine(this); "
-            >{{ label_search_in_govie|capfirst }}</button>
-            {% endif %}
-        {% elif "cuardaigh" in path and kwargs_length == 1 %}
-        <input type="hidden" id="id_search_scope" name="organisation" value="{{ request.GET.organisation }}" class="form-control input-lg no-radius" >
-        <button class="btn btn-default btn-md btn-state-green " search-btn-details-{{language}} onClick="SearchScopeDetermine(this); "
-            alt="{{ aria_button|capfirst }}: {{ label_search_in_department|capfirst }}">{{ label_search_this_dept|capfirst}}</button>
-        <button class="btn btn-default btn-md btn-state-green " name="all_scope" search-btn-all-govie-nav-new-{{language}}
-            alt="{{ aria_button|capfirst }}: {{ label_search_in_govie|capfirst }}" onClick="SearchScopeDetermine(this); "
-        >{{ label_search_in_govie|capfirst }}</button>
-        {% else %}
-
+    <h3 class="search-nav-text margin-bottom-md">Search Citizens Information Board</h2>    
+    <input type="text" name="q" value="{{ request.GET.q }}" id="search-drop" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
         <span class="input-group-btn">
-            <button class="btn btn-default btn-state-green btn-lg no-radius" alt="{{ aria_button|capfirst }}: {{ label_search|capfirst }}">
+            <button style="
+            height: 50px;
+        " class="btn btn-default btn-state-green btn-lg no-radius" alt="{{ aria_button|capfirst }}: {{ label_search|capfirst }}">
                 <img src="{% static '/img/Icon_Search.png' %}" alt="{{ aria_image|capfirst }}: {{ label_search_button|capfirst }}" />
             </button>
         </span>
-        {% endif %}
+
     </div>
 </form>
 <div class="input-group input-group-nav-custom">
-    <h3 class="search-nav-text">Most Popular</h3>
+    <h3 class="search-nav-text margin-bottom-md">Most Popular</h3>
     <ul class="ul--no-style">
     {% for link in nav.popular_links %}
     {% translated_page link.value.page as trans %}
     {% if link.value.title %}
-        <li class="popular_links--search"><a class="index--popular" href="{% pageurl trans %}">{{ trans.title }}</a></li>
+        <li class="popular_links--search margin-bottom-sm"><a class="index--popular" href="{% pageurl trans %}">{{ trans.title }}</a></li>
     {% else %}
-        <li class="popular_links--search"><a class="index-a--popular" href="{% pageurl trans %}">{{ trans }}</a></li>
+        <li class="popular_links--search margin-bottom-sm"><a class="index-a--popular" href="{% pageurl trans %}">{{ trans }}</a></li>
     {% endif %}
     {% endfor %}
 </ul>
