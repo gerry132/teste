@@ -690,13 +690,11 @@ textarea { resize: none; }
 /* End ofInfo Panels */
 
 /* Job Vacancies */
-.job-container{
-  height: 400px;
-}
+
 .callout {
   height: 282px;
   width: 630px;
-  /* max-width: 630px; */
+  max-width: 630px;
   position: relative;
   padding: 30px 40px 40px 20px;
   border-radius: 4px;
