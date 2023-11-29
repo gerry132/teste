@@ -667,25 +667,6 @@ textarea { resize: none; }
     width: 100%;
   }
 
-  .info-box-1 a {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .info-box-1 h3 {
-    color: #000000;
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-  .info-box-1 p {
-
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: #000000;
-
-  }
 }
 /* End ofInfo Panels */
 
