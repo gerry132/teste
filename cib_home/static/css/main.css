@@ -548,7 +548,7 @@ textarea { resize: none; }
 /* Info panels */
 
 .info-box-1 {
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   border-radius: 4px;
   padding: 40px;
   text-align: center;
@@ -572,7 +572,11 @@ textarea { resize: none; }
 
 .info-box-1 h3 {
   color: #000000;
+  font-family: 'Lato';
   font-weight: bold;
+  font-weight: 700px;
+  font-size: 24px;
+  line-height: 25px;
   margin-bottom: 0;
 }
 
@@ -581,11 +585,18 @@ textarea { resize: none; }
   margin-top: 40px;
   margin-bottom: 40px;
   color: #000000;
+  font-family: 'Lato';
+  font-weight: 400px;
+  font-size: 19px;
+  line-height: 25px;
 
 }
 
 .info-box-1 a {
-  font-size: 0.95em;
+  font-family: 'Lato';
+  font-weight: 400px;
+  font-size: 16px;
+  line-height: 20px;
   position: absolute;
   bottom: 0px;
   text-decoration: none;
@@ -617,7 +628,7 @@ textarea { resize: none; }
     font-size: auto;
     position: absolute;
     bottom: 30px;
-    left: 50%; /* Start at the center */
+    left: 50%;
     transform: translateX(-50%);
   }
 
@@ -645,7 +656,6 @@ textarea { resize: none; }
   padding-right: 40px;
   border-radius: 4px;
   color: white;
-
 }
 .callout-left {
   border-radius: 10px;
@@ -670,11 +680,19 @@ textarea { resize: none; }
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
+  font-family: 'Lato';
+  font-weight: 700px;
+  font-size: 32px;
+  line-height: 35px;
 }
 
 .callout p {
   color: #000000;
   margin: 40px auto;
+  font-family: 'Lato';
+  font-weight: 400px;
+  font-size: 19px;
+  line-height: 25px;
 }
 
 .callout-link {
