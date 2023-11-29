@@ -454,6 +454,7 @@ textarea { resize: none; }
 /* General homepage container */
 .home-container {
   width: 1312px;
+  max-width: 1312px;
   height: 326px;
   position: relative;
   margin-bottom: 40px;
@@ -476,7 +477,7 @@ textarea { resize: none; }
 
 .info-box {
   height: 100%;
-  width: 497 ;
+  max-width: 497px;
   padding: 40px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -523,7 +524,7 @@ textarea { resize: none; }
   text-decoration: underline;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1300px) {
   .home-container{
     height: auto;
     width: auto;
@@ -548,10 +549,14 @@ textarea { resize: none; }
 /* Info panels */
 
 .info-box-1 {
+  max-width: 304px;
+  width: 304px;
+  max-height: auto;
   background-color: #F5F5F5;
   border-radius: 4px;
   padding: 40px;
   text-align: center;
+  position: relative;
   height: 100%;
   margin-bottom: 30px;
 }
@@ -573,8 +578,7 @@ textarea { resize: none; }
 .info-box-1 h3 {
   color: #000000;
   font-family: 'Lato';
-  font-weight: bold;
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 24px;
   line-height: 25px;
   margin-bottom: 0;
@@ -586,7 +590,7 @@ textarea { resize: none; }
   margin-bottom: 40px;
   color: #000000;
   font-family: 'Lato';
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 19px;
   line-height: 25px;
 
@@ -594,7 +598,7 @@ textarea { resize: none; }
 
 .info-box-1 a {
   font-family: 'Lato';
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   position: absolute;
@@ -606,26 +610,29 @@ textarea { resize: none; }
 .info-box-1 a .fa,
 .info-box-1 a .fa-arrow-right {
   color: inherit;
+  margin-left: 5px;
 }
 .info-box-1 a:hover {
   text-decoration: underline;
 }
 
 /* Media query for responsiveness */
-@media (max-width: 991px) {
+@media (max-width: 1300px) {
 
   .info-box-1 {
     padding: 25px;
     height: 400px;
-    width: auto;
+    max-width: 304px;
     margin: 10px;
     margin-top: 0;
+    position: relative;
   }
+
   .col-md-3 {
     margin-bottom: 20px;
+    width: 50%;
   }
   .info-box-1 a {
-    font-size: auto;
     position: absolute;
     bottom: 30px;
     left: 50%;
@@ -651,6 +658,7 @@ textarea { resize: none; }
 .callout {
   height: 282px;
   width: 630px;
+  max-width: 630px;
   position: relative;
   padding: 40px 20px;
   padding-right: 40px;
@@ -677,11 +685,10 @@ textarea { resize: none; }
 
 .callout h3 {
   color: #000000;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-top: 20px;
+  margin-bottom: 10px; */
   font-family: 'Lato';
-  font-weight: 700px;
+  font-weight: 400px;
   font-size: 32px;
   line-height: 35px;
 }
@@ -708,7 +715,7 @@ textarea { resize: none; }
   margin-left: 5px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1300px) {
 
   .callout {
     margin: 20px;
