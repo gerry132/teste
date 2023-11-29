@@ -2,7 +2,6 @@ from django import forms
 from django.forms import widgets
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from django.utils.translation import gettext_lazy as _
 
 from cib_navigation.models import ALT_HELP_TEXT
 
@@ -97,4 +96,3 @@ class JobsVacanciesBlock(blocks.StructBlock):
         template = "patterns/blocks/cards/jobvacancies.html"
         icon = "placeholder"
         label = "Job Vacancies"
-
