@@ -649,6 +649,7 @@ textarea { resize: none; }
     color: #000000;
 
   }
+}
 /* Media query for responsiveness */
 @media (max-width: 768px) {
 
@@ -689,13 +690,15 @@ textarea { resize: none; }
 /* End ofInfo Panels */
 
 /* Job Vacancies */
+.job-container{
+  height: 400px;
+}
 .callout {
-  /* height: 282px; */
+  height: 282px;
   width: 630px;
   /* max-width: 630px; */
   position: relative;
-  padding: 40px 20px;
-  padding-right: 40px;
+  padding: 30px 40px 40px 20px;
   border-radius: 4px;
   color: white;
 }
@@ -719,8 +722,8 @@ textarea { resize: none; }
 
 .callout h3 {
   color: #000000;
-  /* margin-top: 20px;
-  margin-bottom: 10px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-family: 'Lato';
   font-weight: 400px;
   font-size: 32px;
