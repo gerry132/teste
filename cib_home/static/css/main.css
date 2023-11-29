@@ -247,7 +247,7 @@ Bootstrap override
   }
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1025px) {
   .govie-width-container {
     margin-right: auto;
     margin-left: auto;

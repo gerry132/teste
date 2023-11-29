@@ -34,4 +34,3 @@ class HomePage(BasePage):
     content_panels = BasePage.content_panels + [
         FieldPanel("body")
     ]
-
