@@ -1,4 +1,9 @@
 {% load wagtailcore_tags wagtailimages_tags i18n %}
 
 <div alt="{{page.alt_text}}" class="hero hero--background-image background-image{% if classes %} {{ classes }}{% endif %}">
+    <div class="row wrapper hero-container padding-top-lg">
+    {% for feature in page.hero_double_feature %}
+        <div class="col-md-6">{{ feature }}</div>    
+    {% endfor %}
+    </div>
 </div>
