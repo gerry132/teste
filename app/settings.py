@@ -49,12 +49,14 @@ INSTALLED_APPS = [
     #
     "app",
     "health_check",
+    "cib_board",
     "cib_documents",
     "cib_images",
     "cib_users",
     "cib_search",
     "cib_utils",
     "cib_home",
+    "cib_pages",
     "cib_navigation",
     #
     "wagtail_localize",

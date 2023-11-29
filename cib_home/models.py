@@ -10,8 +10,7 @@ from wagtail.admin.panels import (
 
 from cib_utils.models import HeroPage
 
-from .blocks import CallOutBlock, InfoPanelBlock
-
+from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -31,6 +30,7 @@ class HomePage(HeroPage):
         [
             ("CalloutCards", CallOutBlock()),
             ("InfoPanelCards", InfoPanelBlock()),
+            ("JobVacanciesAndNewsCard", JobsVacanciesBlock()),
         ],
         use_json_field=True,
         null=True,

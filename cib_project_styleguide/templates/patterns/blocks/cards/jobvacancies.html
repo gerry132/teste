@@ -1,0 +1,30 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+<div class="container home-container">
+    <div class="row">
+    {% for card in self.cards %}
+    {% image card.icon fill-55x55 as img %}
+            <div class="col-md-6 callout callout-left" style="background-color: {{card.Job_vacancies_Background_color}};">
+                <div class="info-header">
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
+                    <h3>{{card.title}}</h3>
+                </div>
+                <p>{{card.text}}</p>
+                {% if card.button_page %}
+                    <a href="{% pageurl card.button_page %}" class="callout-link">{{card.button_text}}  <i class="fas fa-arrow-right"></i></a>
+                {% elif card.button_url %}
+                    <a href="{{ card.button_url }}" class="callout-link">{{ card.button_text }}  <i class="fas fa-arrow-right"></i></a>
+                {% endif %}
+
+            </div>
+            <div class="col-md-6 callout callout-right" style="background-color: {{card.news_Background_color}};">
+                <div class="callout-icon">
+
+                </div>
+                <h3>Latest News</h3>
+                <p>CIB Welcome President Michael D Higgins and Sabina Higgins at the National Ploughing Championships.</p>
+                <a href="#" class="callout-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+    {% endfor %}
+    </div>
+  </div>
