@@ -3,7 +3,7 @@
 <div class="container home-container ">
     <div class="row custom-row">
         {% for card in self.infocards %}
-         <div class="col-md-3">
+         <div class="col-md-3 resp-md-3">
 
             {% image card.icon fill-60x60 as img %}
             <div class="info-box-1">
@@ -14,9 +14,9 @@
                 <p>{{card.text}}</p>
 
                 {% if card.button_page %}
-                    <a href="{% pageurl card.button_page %} class="info-link"">{{card.button_text}} <i class="fa fa-arrow-right"></i></a>
+                    <a href="{% pageurl card.button_page %} class="info-link"">{{card.button_text}}  <i class="fa fa-arrow-right"></i></a>
                 {% elif card.button_url %}
-                    <a href="{{  card.button_url }} class="info-link"">{{card.button_text}} <i class="fa fa-arrow-right"></i></a>
+                    <a href="{{  card.button_url }} class="info-link"">{{card.button_text}}  <i class="fa fa-arrow-right"></i></a>
                 {% endif %}
             </div>
 
