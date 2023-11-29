@@ -5,7 +5,7 @@ from wagtail.images import get_image_model_string
 
 from cib_utils.models import BasePage
 
-from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock
+from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock, BoardMembersCardBlock
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -30,6 +30,24 @@ class HomePage(BasePage):
         use_json_field=True,
         null=True,
         blank=True
+    )
+    content_panels = BasePage.content_panels + [
+        FieldPanel("body")
+    ]
+
+
+class BoardPage(BasePage):
+    template = "patterns/pages/board_page.html"
+
+    body = StreamField(
+        [
+            ("BoardMembersCards", BoardMembersCardBlock()),
+        ],
+        use_json_field=True,
+        null=True,
+        blank=True,
+        min_num=0,
+        max_num=1,
     )
     content_panels = BasePage.content_panels + [
         FieldPanel("body")
