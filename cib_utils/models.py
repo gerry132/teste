@@ -12,6 +12,7 @@ from wagtail.admin.panels import (
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.images import get_image_model_string
+from cib_home.blocks import CallOutBlock
 from cib_utils.blocks import BaseFeatureBlock
 
 from cib_utils.cache import get_default_cache_control_decorator
@@ -86,6 +87,14 @@ class HeroPage(BasePage):
         max_num=2
     )
 
+    callout_feature = StreamField(
+        [
+            ("callout_cards", CallOutBlock())
+        ],
+        blank=True,
+        max_num=3
+    )
+
     class Meta:
         abstract = True
 
@@ -95,7 +104,8 @@ class HeroPage(BasePage):
             FieldPanel("hero_image", classname="col6"),
         ], "Hero Media"),
         FieldPanel("alt_text"),
-        FieldPanel('hero_double_feature')]
+        FieldPanel('hero_double_feature'),
+        FieldPanel('callout_feature')]
 
     content_panels = Page.content_panels + [
     ]
