@@ -67,6 +67,7 @@ input:focus { outline: #00c5ff solid 2px !important; }
 
 .index-a {
     text-decoration: none !important;
+    z-index: 1;
 }
 
 @media (min-width: 992px) {
@@ -362,13 +363,16 @@ Bootstrap override
 
 /*===========================================================================*/
 /* BOOTSTRAP NAVBAR EXTENSION */
-#main-navbar .navbar-collapse { border-width: 0px; }
+#main-navbar .navbar-collapse { border-width: 0px;}
 #main-navbar {height: 90px; padding: 5px 0px; background-color: #FFFFFF; border-radius: 0px; border-width: 0px; margin-bottom: 0px; }
 #main-navbar ul.dropdown-menu { border-radius: 0px; width: 213px;}
 #main-navbar.navbar-default .navbar-nav > li > a,
-#main-navbar.navbar-default .navbar-nav > li > a:hover { color: #000000; background-color: #FFFFFF; font-size: 18px; line-height: 45px !important;}
-
+#main-navbar.navbar-default .navbar-nav > li > a:hover { color: #000000; background-color: #FFFFFF; font-size: 18px; line-height: 44px !important;}
+.navbar-right {
+  background-color: #FFFFFF;
+}
 #main-navbar{
+  z-index: 1;
   font-family: 'Lato';
   font-style: normal;
   font-style: normal;
@@ -391,7 +395,7 @@ Bootstrap override
 @media (max-width: 767px){
     .container>.navbar-header { margin-left: 0px; }
     #main-navbar .navbar-brand { margin-left: 10px; }
-    #main-navbar.navbar-default .navbar-nav .dropdown-menu > li > a { color: #000000; }
+    #main-navbar.navbar-default .navbar-nav .dropdown-menu > li > a {background-color: #FFFFFF; color: #000000; }
     #main-navbar.navbar-default .navbar-nav .dropdown-menu > li > a:hover { color: #E6E6E6; }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -405,7 +409,7 @@ Bootstrap override
     .navbar-nav > li > a { padding-top: 10px; padding-bottom: 10px; }
     .collapse.in { display: block !important; }
     .navbar-nav .open .dropdown-menu {
-       position: static; float: none; width: auto; margin-top: 0; background-color: transparent; border: 0; -webkit-box-shadow: none; box-shadow: none; }
+       position: static; float: none; width: auto; margin-top: 0; background-color: #FFFFFF; border: 0; -webkit-box-shadow: none; box-shadow: none; }
     #main-navbar.navbar-default .navbar-nav .dropdown-menu > li > a { color: #000000; background-color: #FFFFFF; }
     #main-navbar.navbar-default .navbar-nav .dropdown-menu > li > a:hover { color: #E6E6E6; background-color: #FFFFFF; }
 }
@@ -417,7 +421,7 @@ Bootstrap override
 /*===========================================================================*/
 /* BOOTSTRAP CONTAINER EXTENSION */
 @media (min-width: 992px){
-    .container { width: 975px; }
+    .container { width: 1312px; }
 }
 
 
