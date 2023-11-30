@@ -3,8 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail import blocks
 from wagtail.blocks.struct_block import StructBlockValidationError
-
-
+from wagtail.images.blocks import ImageChooserBlock
 
 ALT_HELP_TEXT = """A short one-sentence literal description
                     of the %s is
@@ -133,6 +132,7 @@ class BaseFeatureBlock(blocks.StructBlock):
     """
     Base feature block.
     """
+    icon = ImageChooserBlock(required=False)
     heading = blocks.CharBlock(
         required=False,
         help_text="Text to display as feature heading",
