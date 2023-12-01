@@ -1,0 +1,38 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+{% image value.icon fill-55x55 as img %}
+<div class="base-feature--default {{ value.colour_palette }}">
+                <div class="basefeature-header">
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
+                    <div class="{% if value.colour_palette == 'base-feature--blue' %}base-feature--blue__heading{% else %}base-feature--green__heading{% endif %}">
+                        {{value.heading}}
+                    </div>
+
+                </div>
+    {% for card in value.main_feature %}
+        {% if card.block_type == 'rich_text' %}
+    <div class="base-feature--blue__text">
+                    {% include_block card %}
+    </div>
+        {% else %}
+    <div class="basefeature--green__links">
+            {% for block in card.value %}
+                <a href="{% if block.page %}{{ block.page.url }}{% else %}{{ block.url }}{% endif %}" class="basefeature--green-link">
+                    {% if block.title %}{{ block.title }}{% else %}{{ block.page }}{% endif %}</a>
+            {% endfor %}
+    </div>
+        {% endif %}
+    {% endfor %}
+        {% if value.button %}
+    <div class="basefeature-button">
+            {% for button in value.button %}
+                   {% if button.value.page %}
+                    <a href="{% pageurl button.value.page %}" class="basefeature-button__text">{{button.value.button_text}} </a>
+                {% elif button.value.url %}
+                    <a href="{{ button.value.url }}" class="basefeature-button__text">{{ button.value.button_text }} </a>
+                {% endif %}
+            {% endfor %}
+    </div>
+        {% endif %}
+
+</div>

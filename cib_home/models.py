@@ -1,16 +1,21 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
+
 from wagtail.core.fields import StreamField
 from wagtail.images import get_image_model_string
 
-from cib_utils.models import BasePage
+from wagtail.admin.panels import (
+    FieldPanel, TabbedInterface, ObjectList,
+)
+
+
+from cib_utils.models import HeroPage
 
 from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock
 
 IMAGE_MODEL = get_image_model_string()
 
 
-class HomePage(BasePage):
+class HomePage(HeroPage):
     max_count = 1
     template = "patterns/pages/home/home_page.html"
     favicon = models.ForeignKey(
@@ -31,6 +36,13 @@ class HomePage(BasePage):
         null=True,
         blank=True
     )
-    content_panels = BasePage.content_panels + [
+    content_panels = HeroPage.content_panels + [
         FieldPanel("body")
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Content'),
+        ObjectList(HeroPage.hero_panel, heading='Hero'),
+        ObjectList(HeroPage.promote_panels, heading='Promote'),
+        ObjectList(HeroPage.settings_panels, heading='Settings', classname="settings"),
+    ])

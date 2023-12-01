@@ -1,0 +1,15 @@
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+
+<div alt="{{page.alt_text}}" class="hero hero--background-image background-image{% if classes %} {{ classes }}{% endif %}">
+    <div class="row wrapper hero-container ">
+    {% for feature in page.hero_double_feature %}
+        <div class="hero__contents">{{ feature }}</div>
+    {% endfor %}
+
+    </div>
+    <div class="callout_feature--hero">
+        {% for callout in page.callout_feature %}
+            {{ callout }}
+        {% endfor %}
+    </div>
+</div>

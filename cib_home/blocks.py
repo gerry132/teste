@@ -35,7 +35,8 @@ class CallOutBlock(blocks.StructBlock):
                 ("button_text", blocks.CharBlock(required=True)),
                 ("left_border_color", ColorChooserBlock(required=True))
             ]
-        )
+        ),
+        max_num=3
     )
 
     class Meta:  # noqa
