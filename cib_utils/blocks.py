@@ -155,7 +155,7 @@ class BaseFeatureBlock(blocks.StructBlock):
     )
 
     colour_palette = blocks.ChoiceBlock(
-        choices=(          
+        choices=(
             ("base-feature--green", "Green and Black"),
             ("base-feature--blue", "Blue & White"),)
     )

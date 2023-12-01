@@ -18,9 +18,7 @@ from cib_utils.blocks import BaseFeatureBlock
 from cib_utils.cache import get_default_cache_control_decorator
 
 
-
 IMAGE_MODEL = get_image_model_string()
-
 
 ALT_HELP_TEXT = """A short one-sentence literal description
                     of the %s is
