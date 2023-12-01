@@ -464,6 +464,7 @@ textarea { resize: none; }
   margin-bottom: 60px;
 }
 /* End of general homepage container */
+
 /* call out cards*/
 
 .col-md-4-custom {
@@ -545,24 +546,6 @@ textarea { resize: none; }
 .home-links:focus {
   color: #0056b3;
 }
-
-/* .info-box a {
-  text-decoration: none;
-  position: absolute;
-  bottom: 40px;
-  text-decoration-line: none;
-  border-bottom: 1px solid #000;
-  color: #0056b3;
-}
-
-.info-box a .fa,
-.info-box a .fa-arrow-right {
-  color: inherit;
-}
-
-.info-box a:hover{
-  text-decoration: underline;
-} */
 
 @media (max-width: 1300px) {
   .home-container{
@@ -648,9 +631,6 @@ textarea { resize: none; }
   margin-left: 5px;
 }
 
-/* .info-box-1 a:hover {
-  text-decoration: underline;
-} */
 
 /* Media query for responsiveness */
 @media (max-width: 1100px) {
