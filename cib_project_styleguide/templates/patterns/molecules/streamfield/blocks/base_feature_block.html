@@ -11,11 +11,11 @@
                 </div>
     {% for card in value.main_feature %}
         {% if card.block_type == 'rich_text' %}
-    <div class="base-feature--blue__text">
+    <div style="padding-left: 55px;" class="base-feature--blue__text">
                     {% include_block card %}
     </div>
         {% else %}
-    <div class="basefeature--green__links">
+    <div style="padding-left: 55px;" class="basefeature--green__links">
             {% for block in card.value %}
                 <a href="{% if block.page %}{{ block.page.url }}{% else %}{{ block.url }}{% endif %}" class="basefeature--green-link">
                     {% if block.title %}{{ block.title }}{% else %}{{ block.page }}{% endif %}</a>
@@ -24,7 +24,7 @@
         {% endif %}
     {% endfor %}
         {% if value.button %}
-    <div class="basefeature-button">
+    <div style="padding-left: 55px;" class="basefeature-button">
             {% for button in value.button %}
                    {% if button.value.page %}
                     <a href="{% pageurl button.value.page %}" class="basefeature-button__text">{{button.value.button_text}} </a>
