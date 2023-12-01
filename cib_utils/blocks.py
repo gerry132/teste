@@ -94,8 +94,8 @@ class LinkButtonBlock(blocks.StructBlock):
             errors["url"] = ErrorList([message])
 
         # A URL must have title
-        if value["url"] and not value["heading"]:
-            errors["heading"] = ErrorList(["Please set a title for the URL"])
+        if value["url"] and not value["button_text"]:
+            errors["button_text"] = ErrorList(["Please set a title for the URL"])
 
         if errors:
             raise StructBlockValidationError(errors)

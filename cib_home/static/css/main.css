@@ -1,7 +1,6 @@
 html { height: 100%; margin: 0px; }
 body { font-family: 'Lato', sans-serif !important; font-size: 16px !important; height: 100%; margin: 0px; color: #000000 !important; }
 
-a, a:visited, a:active, a:active, a .glyphicon-new-window { color: #2C55A2; }
 a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 
 .g2g-sites-label { color: #565152; }
@@ -935,6 +934,11 @@ textarea { resize: none; }
     line-height: 25px; /* 131.579% */
 }
 
+.basefeature-button__text:hover {
+    color: #000;
+    text-decoration: none;
+}
+
 .base-feature--blue__heading {
     color: #FFF;
 
@@ -970,8 +974,14 @@ textarea { resize: none; }
     font-style: normal;
     font-weight: 700;
     line-height: 25px; /* 131.579% */
-    text-decoration-line: underline;
+    border-bottom: 1px solid #000;
     cursor: pointer;
+    align-self: self-start;
+}
+.basefeature--green-link:hover {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 3px solid #000;
 }
 
 .base-feature--default {
@@ -1018,4 +1028,6 @@ textarea { resize: none; }
 .hero-container {
   padding: 40px 63px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }

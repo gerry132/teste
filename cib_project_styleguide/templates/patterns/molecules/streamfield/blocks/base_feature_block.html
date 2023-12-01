@@ -28,8 +28,8 @@
             {% for button in value.button %}
                    {% if button.value.page %}
                     <a href="{% pageurl button.value.page %}" class="basefeature-button__text">{{button.value.button_text}} </a>
-                {% elif card.button_url %}
-                    <a href="{{ button.value.page.url }}" class="basefeature-button__text">{{ button.value.button_text }} </a>
+                {% elif button.value.url %}
+                    <a href="{{ button.value.url }}" class="basefeature-button__text">{{ button.value.button_text }} </a>
                 {% endif %}
             {% endfor %}
     </div>
