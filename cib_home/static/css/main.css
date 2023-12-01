@@ -876,7 +876,6 @@ textarea { resize: none; }
 
 .hero::before {
   content: '';
-  background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%);
   display: block;
   left: 0;
   position: absolute;
