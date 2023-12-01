@@ -690,7 +690,7 @@ textarea { resize: none; }
 /* Job Vacancies */
 
 .callout {
-  height: 282px;
+  height: 290px;
   width: 630px;
   max-width: 630px;
   position: relative;
@@ -703,6 +703,7 @@ textarea { resize: none; }
   margin-left: 10px;
   margin-right: 15px;
   margin-bottom: 40px;
+  padding-right: 280px;
 }
 
 .callout-right {
@@ -730,8 +731,9 @@ textarea { resize: none; }
 
 .callout p {
   color: #000000;
-  margin: 40px auto;
-  font-family: 'Lato';
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 19px;
   line-height: 25px;
