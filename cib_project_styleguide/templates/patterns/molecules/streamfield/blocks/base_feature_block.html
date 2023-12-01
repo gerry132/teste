@@ -24,7 +24,7 @@
         {% endif %}
     {% endfor %}
         {% if value.button %}
-    <div style="padding-left: 55px;" class="basefeature-button">
+    <div style="margin-left: 55px;" class="basefeature-button">
             {% for button in value.button %}
                    {% if button.value.page %}
                     <a href="{% pageurl button.value.page %}" class="basefeature-button__text">{{button.value.button_text}} </a>
