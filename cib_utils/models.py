@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
+from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.decorators import method_decorator
 from django.db import models
+from modelcluster.models import ClusterableModel
 
 from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
     FieldRowPanel,
-    HelpPanel, TabbedInterface, ObjectList,
+    HelpPanel, TabbedInterface, ObjectList, PublishingPanel,
 )
 
-from wagtail.fields import StreamField
-from wagtail.models import Page
+from wagtail.fields import StreamField, RichTextField
+from wagtail.models import Page, PreviewableMixin, DraftStateMixin, RevisionMixin
 from wagtail.images import get_image_model_string
+from wagtail.snippets.models import register_snippet
+from django.utils.translation import gettext_lazy as _
+from wagtail.search import index
+
 from cib_home.blocks import CallOutBlock
 from cib_utils.blocks import BaseFeatureBlock
 
 from cib_utils.cache import get_default_cache_control_decorator
-
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -48,15 +53,15 @@ class BasePage(Page):
     )
 
     settings_panels = ([
-                           MultiFieldPanel(
-                               [
-                                   FieldPanel('go_live_at', permission="access_admin"),
-                                   FieldPanel('expire_at', permission="access_admin"),
-                               ],
-                               "Scheduled publishing"
-                           ),
-                        ]
-                       )
+        MultiFieldPanel(
+            [
+                FieldPanel('go_live_at', permission="access_admin"),
+                FieldPanel('expire_at', permission="access_admin"),
+            ],
+            "Scheduled publishing"
+        ),
+    ]
+    )
 
 
 class HeroPage(BasePage):
@@ -114,3 +119,49 @@ class HeroPage(BasePage):
         ObjectList(BasePage.promote_panels, heading='Promote'),
         ObjectList(BasePage.settings_panels, heading='Settings', classname="settings"),
     ])
+
+
+@register_snippet
+class NewsletterSignUpCTASnippet(PreviewableMixin, DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel,
+                                 models.Model):
+    snippet_title = models.CharField(max_length=255)
+    icon = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    icon_alt = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Icon Alt text"),
+        help_text=_("The alt text shown for accessibility: https://axesslab.com/alt-texts/")
+    )
+    title = models.CharField(max_length=255)
+    body = RichTextField(features=["h3", "h4", "h5", "bold", "italic", "link", "document-link"],
+                         blank=True, null=True)
+    button_text = models.CharField(max_length=255)
+    url = models.URLField(blank=False)
+    _revisions = GenericRelation("wagtailcore.Revision", related_query_name="betasnippet")
+    panels = [
+        FieldPanel("snippet_title"),
+        FieldPanel("icon"),
+        FieldPanel("icon_alt"),
+        FieldPanel("title"),
+        FieldPanel("body"),
+        FieldPanel("button_text"),
+        FieldPanel("url"),
+        PublishingPanel(),
+    ]
+
+    search_fields = [
+        index.SearchField("snippet_title", partial_match=True),
+    ]
+
+    def get_preview_template(self, request, mode_name):
+        return "patterns/snippets/newslettersignupctasnippet.html"
+
+    @property
+    def revisions(self):
+        return self._revisions

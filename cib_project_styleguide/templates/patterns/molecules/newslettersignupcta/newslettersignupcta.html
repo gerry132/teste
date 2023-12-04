@@ -1,0 +1,12 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+<div class="newslettersignupcta">
+    {% image card.icon fill-96x96 alt=card.icon_alt class="newslettersignupcta__icon" %}
+    <div class="newslettersignupcta__total_body">
+        <div class="newslettersignupcta__title">{{ card.title }}</div>
+    <div class="newslettersignupcta__body"> {{ card.body|richtext }}</div>
+        </div>
+    <a href="{{ card.url }}" class="newslettersignupcta__button basefeature-button__text">{{ card.button_text }} </a>
+
+</div>
+

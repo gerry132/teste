@@ -6,7 +6,7 @@ from wagtail.images import get_image_model_string
 from wagtail.admin.panels import (
     FieldPanel, TabbedInterface, ObjectList,
 )
-
+from wagtail.snippets.blocks import SnippetChooserBlock
 
 from cib_utils.models import HeroPage
 
@@ -36,8 +36,16 @@ class HomePage(HeroPage):
         null=True,
         blank=True
     )
+    news_letter_signup_cta = StreamField(
+        [
+            ("newslettersignupcta_snippet", SnippetChooserBlock(target_model="utils.NewsletterSignUpCTASnippet"))
+        ],
+        null=True,
+        blank=False
+    )
     content_panels = HeroPage.content_panels + [
-        FieldPanel("body")
+        FieldPanel("body"),
+        FieldPanel("news_letter_signup_cta")
     ]
 
     edit_handler = TabbedInterface([
