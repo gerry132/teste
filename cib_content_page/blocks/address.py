@@ -4,7 +4,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 
 
 class AddressBlock(StructBlock):
-    address = SnippetChooserBlock("cib_core.Address")
+    address = SnippetChooserBlock("cib_content_page.Address")
 
     class Meta:
         template = 'patterns/blocks/address.html'

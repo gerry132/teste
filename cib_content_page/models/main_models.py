@@ -17,6 +17,8 @@ from ..blocks.custom_image import CustomImageBlock
 from ..blocks.address import AddressBlock
 from ..blocks.heading_block import HeadingBlock
 
+from modelcluster.contrib.taggit import ClusterTaggableManager
+
 from cib_utils.models import BasePage
 
 
@@ -36,8 +38,8 @@ class TaggedPage(ItemBase):
     tag = models.ForeignKey(
         PageTag, related_name="tagged_pages", on_delete=models.CASCADE
     )
-    base_content_object = ParentalKey(
-        to='BaseContentPage',
+    content_object = ParentalKey(
+        to='ContentPage',
         on_delete=models.CASCADE,
         related_name='tagged_items'
     )
@@ -46,6 +48,8 @@ class TaggedPage(ItemBase):
 class ContentPage(BasePage):
     """Page for all content page"""
     template = "patterns/pages/content_page.html"
+    parent_page_types = ["cib_home.HomePage"]
+    tags = ClusterTaggableManager(through='TaggedPage', blank=True)
 
     body = StreamField(
         [
