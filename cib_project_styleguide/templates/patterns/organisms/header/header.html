@@ -13,7 +13,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a {% if logo_url %}href="{{logo_url}}" {% else %}href="{% endif %}" class="navbar-brand">
-                {% image nav.site_settings.site_logo original class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
+                {% if nav.site_settings.site_logo %}
+                    {% image nav.site_settings.site_logo original class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
+                {% else %}
+                    {% include "patterns/atoms/image/default_logo.html" %}
+                {% endif %}
             </a>
         </div>
         <div class="collapse navbar-collapse" id="RebootMainMenu">
