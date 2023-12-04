@@ -1,1 +1,11 @@
-some thing
+{% extends "patterns/hero_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+    {% if page.title in page.general_pages %}
+        {% include "pages/general.html" with page=page %}
+    {% else %}
+        {% include "patterns/blocks/toc.html"  %}
+        {% include_block page.body %}
+    {% endif %}
+{% endblock %}
