@@ -1019,6 +1019,7 @@ textarea { resize: none; }
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 .newslettersignupcta__icon{
     width: 96px;
