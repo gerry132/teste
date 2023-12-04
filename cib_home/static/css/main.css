@@ -534,7 +534,7 @@ textarea { resize: none; }
   color: #0056b3;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1280px) {
   .home-container{
     height: auto;
     width: auto;
