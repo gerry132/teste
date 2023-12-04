@@ -120,7 +120,7 @@ class HeroPage(BasePage):
         FieldPanel('hero_double_feature'),
         FieldPanel('callout_feature')]
 
-    content_panels = Page.content_panels + [
+    content_panels = BasePage.content_panels + [
     ]
 
     edit_handler = TabbedInterface([
