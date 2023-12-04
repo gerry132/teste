@@ -1,0 +1,25 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+{% if self.image %}
+<div style="display: flex; justify-content: {{self.format}};">
+    <figure style="margin-left:0;text-align: center;">
+        {% if self.size == "200" %}
+
+            {% image self.image width-200 as img %}
+            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+        {% elif self.size == "400" %}
+
+            {% image self.image width-400 as img %}
+            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+        {% else %}
+            {% image self.image width-800 as img %}
+            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+        {% endif %}
+
+        {% if self.caption %}
+            <figcaption>{{self.caption}}</figcaption>
+        {% endif %}
+    </figure>
+</div>
+{% endif %}
+
