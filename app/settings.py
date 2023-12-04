@@ -98,6 +98,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "cib_project_styleguide.apps.ProjectStyleguideConfig",
     "wagtail.contrib.simple_translation",
+    "tinymce",
+    "wagtailtinymce",
 ]
 
 if DEBUG_TOOLBAR is True:

@@ -2,10 +2,8 @@
 {% load wagtailcore_tags wagtailimages_tags static %}
 
 {% block content %}
-    {% if page.title in page.general_pages %}
-        {% include "pages/general.html" with page=page %}
-    {% else %}
+    <div class="wrapper wrapper--small wrapper--padding">
         {% include "patterns/blocks/toc.html"  %}
         {% include_block page.body %}
-    {% endif %}
+    </div>
 {% endblock %}
