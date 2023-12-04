@@ -36,6 +36,16 @@ ALT_HELP_TEXT = """A short one-sentence literal description
 class BasePage(Page):
     show_in_menus_default = True
 
+    Public_facing_revision_description = RichTextField(
+        features=[], blank=True, null=True,
+        help_text="Put your comment for current changes",
+        verbose_name=_("Publication log")
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("Public_facing_revision_description"),
+    ]
+
     class Meta:
         abstract = True
 
