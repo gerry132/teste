@@ -7,4 +7,8 @@
 {% include "patterns/molecules/freeform-components/home_components.html" %}
 {% include_block page.secondary_call_to_action %}
     {% include_block page.top_story %}
+{% for block in page.newslettersignupcta %}
+     {% include "patterns/snippets/newslettersignupctasnippet.html" with object=block.value %}
+{% endfor %}
+
 {% endblock %}
