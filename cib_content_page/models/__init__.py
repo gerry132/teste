@@ -1,2 +1,2 @@
 from .address_model import Address  # noqa
-from .base import BasePage, BaseContentPage, PageTag, TaggedPage  # noqa
+from .main_models import ContentPage, PageTag, TaggedPage  # noqa

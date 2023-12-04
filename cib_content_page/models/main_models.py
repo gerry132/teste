@@ -43,7 +43,7 @@ class TaggedPage(ItemBase):
     )
 
 
-class BaseContentPage(BasePage):
+class ContentPage(BasePage):
     """Page for all content page"""
     template = "patterns/pages/content_page.html"
 
