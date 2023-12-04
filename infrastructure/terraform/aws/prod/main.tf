@@ -1,7 +1,7 @@
 terraform {
   required_version = ">=1.1"
   required_providers {
-    aws         = ">=4.0.0"
+    aws         = "4.65.0"
     random      = ">=3.1.0"
     template    = ">=2.2.0"
   }
@@ -9,8 +9,8 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket                      = "ireland-ie-prod-infrastructure"
-    key                         = "website/terraform.tfstate"
+    bucket                      = "prod-cib-infrastructure"
+    key                         = "prod/terraform.tfstate"
     region                      = "eu-west-1"
     encrypt                     = true
   }
@@ -25,20 +25,19 @@ locals {
   account_id                    = data.aws_caller_identity.current.account_id
   elb_account_arn               = data.aws_elb_service_account.elb.arn
   environment_name              = "prod"
-  app_aws_username              = "PROD_APP_USER"
-  project_domain                = "content.ireland.ie"
-  domain_ireland_ie             = "ireland.ie"
-  africa_day_domain             = "africaday.ie"
-  project_name                  = "ireland-ie"
-
+  app_aws_username              = "prod_APP_USER"
+  project_domain                = "contentprod.cib.testing.gov.ie"
+  domain_cib                    = "prod.cib.testing.gov.ie"
+  project_name                  = "cib"
   region                        = "eu-west-1"
   # DB
   db_instance_class             = "db.m6g.large"
+  db_engine_version             = "12.14"
   # CACHE
   cache_instance_class          = "cache.t3.medium"
   # ECS
   ecr_repository_name           = "${local.environment_name}-${local.project_name}"
-  autoscaling_max_capacity      = 6
+  autoscaling_max_capacity      = 2
   autoscaling_min_capacity      = 1
   autoscaling_target_value      = 60
   service_contrainer_port       = 8000
@@ -46,7 +45,7 @@ locals {
   task_memory                   = 2048  # min 2048
   # APP
   health_check_path             = "/health-check/"
-  SETTINGS_DEBUG                = 1
+  SETTINGS_DEBUG                = 0
   SETTINGS_DEBUG_TOOLBAR        = 0
   SETTINGS_USE_S3               = 1
   SETTINGS_USE_CACHE            = 1
@@ -58,72 +57,25 @@ locals {
     "139.162.239.108/32",
   ]
   non_gov_network_cird_blocks   = {
-    dfa_main = {
-      description = "DFA main IP address"
-      cidr_blocks = ["62.23.128.137/32"]
-    },
-    dfa_wifi = {
-      description = "DFA WiFi IP address"
-      cidr_blocks = ["80.169.58.154/32"]
-    },
-    reinaldo_dev = {
-      description = "Reinaldo Sanches - OGCIO"
-      cidr_blocks = ["172.105.95.186/32", "89.101.167.251/32"]
-    },
     gerry_dev = {
       description = "Gerry Mcbride - OGCIO"
-      cidr_blocks = ["52.49.120.79/32", "37.228.234.245/32"]
+      cidr_blocks = ["52.49.120.79/32", "37.228.234.5/32", "95.44.14.48/32"]
     },
     deekshana_dev = {
       description = "Deekshana - Sidero"
-      cidr_blocks  = ["80.233.36.28/32", "80.233.44.228/32"]
-    }
+      cidr_blocks  = ["80.233.62.40/32", "80.233.52.40/32", "80.233.58.40/32"]
+    },
+    sina_dev = {
+      description = "Sina - Sidero"
+      cidr_blocks  = ["81.141.157.14/32"]
+    },
+
   }
 }
 
 # -----------------------------------------------------------------------------
 # Values to fill after running terraform is ran, used for codebuild and secrets
 # -----------------------------------------------------------------------------
-
-#resource "aws_ssm_parameter" "OPENSEARCH_ENDPOINT" {
-#  name        = "${local.environment_name}_OPENSEARCH_ENDPOINT"
-#  description = "For use in Codebuild buildspec - ${local.environment_name}"
-#  type        = "SecureString"
-#  value       = "CHANGE-ME"
-
-#  lifecycle {
-#    ignore_changes = [
-#      value,
-#    ]
-#  }
-#}
-
-#resource "aws_ssm_parameter" "OPENSEARCH_KEY" {
-#  name        = "${local.environment_name}_OPENSEARCH_KEY"
-#  description = "For use in Codebuild buildspec - ${local.environment_name}"
-#  type        = "SecureString"
-#  value       = "CHANGE-ME"
-
-#  lifecycle {
-#    ignore_changes = [
-#      value,
-#    ]
-#  }
-#}
-
-#resource "aws_ssm_parameter" "OPENSEARCH_SECRET" {
-#  name        = "${local.environment_name}_OPENSEARCH_SECRET"
-#  description = "For use in Codebuild buildspec - ${local.environment_name}"
-#  type        = "SecureString"
-#  value       = "CHANGE-ME"
-
-#  lifecycle {
-#    ignore_changes = [
-#      value,
-#    ]
-#  }
-#}
-
 
 resource "aws_ssm_parameter" "DOCKER_IMAGE_URL" {
   name        = "${local.environment_name}_DOCKER_IMAGE_URL"
@@ -138,8 +90,34 @@ resource "aws_ssm_parameter" "DOCKER_IMAGE_URL" {
   }
 }
 
-resource "aws_ssm_parameter" "DEFAULT_FROM_EMAIL" {
-  name        = "${local.environment_name}_DEFAULT_FROM_EMAIL"
+resource "aws_ssm_parameter" "OPENSEARCH_ENDPOINT" {
+  name        = "${local.environment_name}_OPENSEARCH_ENDPOINT"
+  description = "For use in Codebuild buildspec - ${local.environment_name}"
+  type        = "SecureString"
+  value       = "CHANGE-ME"
+
+  lifecycle {
+    ignore_changes = [
+      value,
+    ]
+  }
+}
+
+resource "aws_ssm_parameter" "OPENSEARCH_KEY" {
+  name        = "${local.environment_name}_OPENSEARCH_KEY"
+  description = "For use in Codebuild buildspec - ${local.environment_name}"
+  type        = "SecureString"
+  value       = "CHANGE-ME"
+
+  lifecycle {
+    ignore_changes = [
+      value,
+    ]
+  }
+}
+
+resource "aws_ssm_parameter" "OPENSEARCH_SECRET" {
+  name        = "${local.environment_name}_OPENSEARCH_SECRET"
   description = "For use in Codebuild buildspec - ${local.environment_name}"
   type        = "SecureString"
   value       = "CHANGE-ME"
@@ -153,6 +131,19 @@ resource "aws_ssm_parameter" "DEFAULT_FROM_EMAIL" {
 
 resource "aws_ssm_parameter" "AWS_SECRET_ACCESS_KEY" {
   name        = "${local.environment_name}_AWS_SECRET_ACCESS_KEY"
+  description = "For use in Codebuild buildspec - ${local.environment_name}"
+  type        = "SecureString"
+  value       = "CHANGE-ME"
+
+  lifecycle {
+    ignore_changes = [
+      value,
+    ]
+  }
+}
+
+resource "aws_ssm_parameter" "DEFAULT_FROM_EMAIL" {
+  name        = "${local.environment_name}_DEFAULT_FROM_EMAIL"
   description = "For use in Codebuild buildspec - ${local.environment_name}"
   type        = "SecureString"
   value       = "CHANGE-ME"
@@ -403,15 +394,43 @@ resource "aws_s3_bucket" "logs" {
 resource "aws_s3_bucket_acl" "logs" {
   bucket = aws_s3_bucket.logs.id
   acl    = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership_logs]
 }
 
 resource "aws_s3_bucket" "lb_logs" {
   bucket  = "${local.environment_name}-${local.project_name}-lb-logs"
 }
 
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.private_lb_logs.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership_ecs" {
+  bucket = aws_s3_bucket.logs.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership_logs" {
+  bucket = aws_s3_bucket.lb_logs.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 resource "aws_s3_bucket_acl" "lb_logs" {
   bucket = aws_s3_bucket.lb_logs.id
   acl    = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership_logs]
 }
 
 resource "aws_s3_bucket" "private_lb_logs" {
@@ -421,7 +440,9 @@ resource "aws_s3_bucket" "private_lb_logs" {
 resource "aws_s3_bucket_acl" "private_lb_logs" {
   bucket = aws_s3_bucket.private_lb_logs.id
   acl    = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
+
 
 
 # Policies
@@ -509,6 +530,7 @@ resource "aws_s3_bucket_policy" "private_lb_logs" {
 # Loadbalancers
 # -----------------------------------------------------------------------------
 
+
 resource "aws_subnet" "front_lb" {
   vpc_id     = module.network.vpc_id
   cidr_block = "10.0.16.0/24"
@@ -516,6 +538,7 @@ resource "aws_subnet" "front_lb" {
     Name = "NLB"
   }
 }
+
 
 resource "aws_route_table" "nlb_route_table" {
   vpc_id = module.network.vpc_id
@@ -534,7 +557,6 @@ resource "aws_route_table_association" "nlb" {
   subnet_id      = aws_subnet.front_lb.id
   route_table_id = aws_route_table.nlb_route_table.id
 }
-
 
 resource "aws_eip" "nlb" {
   vpc = true
@@ -556,9 +578,10 @@ resource "aws_lb" "net_lb" {
   }
 
   tags = {
-    Environment = "uat"
+    Environment = "prod"
   }
 }
+
 
 resource "aws_lb" "default" {
   name                = "${local.environment_name}-${local.project_name}"
@@ -603,7 +626,7 @@ resource "aws_lb" "public_sites" {
 
 # All sites points to this
 resource "aws_lb_target_group" "front_lb_http" {
-  name            = "${local.environment_name}-${local.project_name}-nlb-http"
+  name            = "${local.environment_name}-${local.project_name}-front-network-lb-http"
   port            = 80
   protocol        = "TCP"
   target_type     = "alb"
@@ -617,7 +640,7 @@ resource "aws_lb_target_group_attachment" "flb_http" {
 }
 
 resource "aws_lb_target_group" "front_lb" {
-  name            = "${local.environment_name}-${local.project_name}-nlb"
+  name            = "${local.environment_name}-${local.project_name}-front-network-lb"
   port            = 443
   protocol        = "TCP"
   target_type     = "alb"
@@ -692,21 +715,31 @@ resource "aws_lb_target_group" "default_admin" {
 # SSL Certificates
 # -----------------------------------------------------------------------------
 
+#resource "aws_acm_certificate" "project" {
+#  domain_name                 = local.project_domain
+#  subject_alternative_names   = ["www.${local.project_domain}"]
+#  validation_method           = "DNS"
 
-resource "aws_acm_certificate" "project" {
-  domain_name                 = local.project_domain
-  validation_method           = "DNS"
+#  lifecycle {
+#    create_before_destroy   = true
+#  }
+#}
 
-  lifecycle {
-    create_before_destroy   = true
-  }
-}
+#resource "aws_acm_certificate" "ireland_ie_ssl" {
+#  domain_name                 = "ireland.testing.gov.ie"
+#  subject_alternative_names   = ["www.ireland.testing.gov.ie"]
+#  validation_method           = "DNS"
+
+ # lifecycle {
+  #  create_before_destroy   = true
+  #}
+#}
 
 
-resource "aws_acm_certificate" "ireland_ie_ssl" {
-  domain_name                 = "ireland.ie"
+resource "aws_acm_certificate" "cib_content" {
+  domain_name                 = "cib.testing.gov.ie"
   subject_alternative_names = [
-     "www.ireland.ie"
+     "www.cib.testing.gov.ie"
   ]
   validation_method           = "DNS"
 
@@ -715,17 +748,15 @@ resource "aws_acm_certificate" "ireland_ie_ssl" {
   }
 }
 
-resource "aws_acm_certificate" "africa_day" {
-    domain_name               = local.africa_day_domain
-    subject_alternative_names = [
-        "www.${local.africa_day_domain}"
-    ]
-    validation_method         = "DNS"
+resource "aws_acm_certificate" "cib_content_admin" {
+  domain_name                 = "content.cib.testing.gov.ie"
+  validation_method           = "DNS"
 
-    lifecycle {
-        create_before_destroy = true
-    }
+  lifecycle {
+    create_before_destroy   = true
+  }
 }
+
 
 # -----------------------------------------------------------------------------
 # Loadbalancer listeners and rules
@@ -777,7 +808,8 @@ resource "aws_lb_listener" "project_443" {
   load_balancer_arn     = aws_lb.default.arn
   port                  = 443
   protocol              = "HTTPS"
-  certificate_arn       = aws_acm_certificate.project.arn
+  ssl_policy            = "ELBSecurityPolicy-TLS-1-2-2017-01"
+  certificate_arn       = aws_acm_certificate.cib_content.arn
 
   default_action {
     type = "fixed-response"
@@ -788,29 +820,28 @@ resource "aws_lb_listener" "project_443" {
   }
 }
 
-# Public site listeners
-
 resource "aws_lb_listener" "public_sites_80" {
-  load_balancer_arn   = aws_lb.public_sites.arn
-  port                = 80
-  protocol            = "HTTP"
+   load_balancer_arn   = aws_lb.public_sites.arn
+   port                = 80
+   protocol            = "HTTP"
 
-  default_action {
-    type = "redirect"
+   default_action {
+     type = "redirect"
 
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
+     redirect {
+       port        = "443"
+       protocol    = "HTTPS"
+       status_code = "HTTP_301"
+     }
+   }
 }
 
 resource "aws_lb_listener" "public_sites_443" {
   load_balancer_arn     = aws_lb.public_sites.arn
   port                  = 443
   protocol              = "HTTPS"
-  certificate_arn       = aws_acm_certificate.ireland_ie_ssl.arn
+  ssl_policy            = "ELBSecurityPolicy-TLS-1-2-2017-01"
+  certificate_arn       = aws_acm_certificate.cib_content.arn
 
   default_action {
     type = "fixed-response"
@@ -823,7 +854,7 @@ resource "aws_lb_listener" "public_sites_443" {
 
 resource "aws_lb_listener_rule" "project_443" {
   listener_arn    = aws_lb_listener.project_443.arn
-  priority        = 1
+  priority        = 2
 
   action {
     type                = "forward"
@@ -841,7 +872,7 @@ resource "aws_lb_listener_rule" "project_443" {
 
 resource "aws_lb_listener_rule" "www_project_443" {
   listener_arn    = aws_lb_listener.project_443.arn
-  priority        = 2
+  priority        = 3
 
   action {
     type              = "redirect"
@@ -860,9 +891,9 @@ resource "aws_lb_listener_rule" "www_project_443" {
 
 # Public sites /admin redirects to admin site
 
-resource "aws_lb_listener_rule" "www_ireland_ie_443_admin_redirect" {
+resource "aws_lb_listener_rule" "www_cib_443_admin_redirect" {
   listener_arn    = aws_lb_listener.public_sites_443.arn
-  priority        = 3
+  priority        = 4
 
   action {
     type              = "redirect"
@@ -882,30 +913,32 @@ resource "aws_lb_listener_rule" "www_ireland_ie_443_admin_redirect" {
   }
 }
 
-# Public facing site rule
 
-resource "aws_lb_listener_rule" "ireland_ie_www_redirect" {
+resource "aws_lb_listener_rule" "cib_www_redirect" {
   listener_arn    = aws_lb_listener.public_sites_443.arn
   priority        = 5
 
   action {
     type              = "redirect"
     redirect {
-      host            = "www.${local.domain_ireland_ie}"
+      host            = "www.${local.domain_cib}"
       status_code     = "HTTP_302"
     }
   }
 
   condition {
     host_header {
-      values  = [local.domain_ireland_ie]
+      values  = [local.domain_cib]
     }
   }
 }
 
-resource "aws_lb_listener_rule" "ireland_ie_443" {
+#
+# Public facing site rule
+
+resource "aws_lb_listener_rule" "cib_443" {
   listener_arn    = aws_lb_listener.public_sites_443.arn
-  priority        = 6
+  priority        = 8
 
   action {
     type                = "forward"
@@ -914,53 +947,82 @@ resource "aws_lb_listener_rule" "ireland_ie_443" {
 
   condition {
     host_header {
-      values  = ["www.${local.domain_ireland_ie}", local.domain_ireland_ie]
+      values  = ["www.${local.domain_cib}", local.domain_cib]
     }
   }
 }
 
-resource "aws_lb_listener_rule" "africa_day" {
-    listener_arn = aws_lb_listener.public_sites_443.arn
-    priority = 9
-
-    action {
-        type = "redirect"
-        redirect {
-            host = "www.${local.domain_ireland_ie}"
-            path = "/africa-day"
-            status_code = "HTTP_301"
-        }
-    }
-    condition {
-        host_header {
-            values = [local.africa_day_domain, "www.${local.africa_day_domain}"]
-        }
-    }
-}
 # -----------------------------------------------------------------------------
 # Listener certificates
 # -----------------------------------------------------------------------------
 
-resource "aws_lb_listener_certificate" "ireland_ie_certificate" {
+resource "aws_lb_listener_certificate" "cib_certificate" {
   listener_arn    = aws_lb_listener.public_sites_443.arn
-  certificate_arn = aws_acm_certificate.ireland_ie_ssl.arn
+  certificate_arn = aws_acm_certificate.cib_content.arn
 }
 
-resource "aws_lb_listener_certificate" "admin_ireland_ie_certificate" {
+resource "aws_lb_listener_certificate" "admin_cib_certificate" {
   listener_arn    = aws_lb_listener.project_443.arn
-  certificate_arn = aws_acm_certificate.project.arn
+  certificate_arn = aws_acm_certificate.cib_content_admin.arn
 }
 
-resource "aws_lb_listener_certificate" "africa_day_certificate" {
-    listener_arn    = aws_lb_listener.public_sites_443.arn
-    certificate_arn = aws_acm_certificate.africa_day.arn
-}
 
 # -----------------------------------------------------------------------------
 # Database
 # -----------------------------------------------------------------------------
 
-# Random db password
+
+resource "aws_opensearch_domain" "opensearch" {
+  domain_name = local.environment_name
+  engine_version = "OpenSearch_2.7"
+
+  cluster_config {
+      instance_count = 3
+      instance_type = "t3.small.search"
+      zone_awareness_enabled = true
+      zone_awareness_config {
+        availability_zone_count = 3
+      }
+  }
+  ebs_options {
+      ebs_enabled = true
+      volume_size = 10
+  }
+
+  encrypt_at_rest {
+    enabled = true
+  }
+
+  node_to_node_encryption {
+    enabled = true
+  }
+
+  domain_endpoint_options {
+    enforce_https = true
+    tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
+  }
+  advanced_security_options {
+      enabled                        = true
+      master_user_options {
+        master_user_arn = aws_iam_user.opensearch.arn
+      }
+    }
+    access_policies = jsonencode(
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "AWS": "*"
+          },
+          "Action": "es:*",
+          "Resource": "*"
+        }
+      ]
+    })
+}
+
 
 resource "random_string" "random_db_password" {
   length           = 30
@@ -991,12 +1053,11 @@ data "aws_ssm_parameter" "random_db_password" {
 
 module "database" {
   source                = "github.com/ogcio/terraform-aws-db-instance-postgres-12-4"
-  db_name               = "${local.environment_name}_ireland_ie"
-  db_username           = "${local.environment_name}_ireland_ie_username"
+  db_name               = "${local.environment_name}_cib_ie"
+  db_username           = "${local.environment_name}_cib_username"
   db_password           = data.aws_ssm_parameter.random_db_password.value
   db_instance_class     = local.db_instance_class
-  db_engine_version     = "12.14"
-  create_snapshot       = false
+  db_engine_version     = local.db_engine_version
   name                  = "${local.environment_name}-db"
   subnets               = module.network.public_subnet_ids
   security_group_ids    = [aws_security_group.db.id]
@@ -1094,6 +1155,33 @@ resource "aws_iam_user_policy" "app_aws_user" {
 EOF
 }
 
+
+resource "aws_iam_user" "opensearch" {
+  name = "opensearch_${local.app_aws_username}"
+}
+
+resource "aws_iam_access_key" "opensearch" {
+  user = aws_iam_user.opensearch.name
+}
+
+resource "aws_iam_user_policy" "opensearch_aws_user" {
+  name = "opensearch-${local.project_name}-policy"
+  user = "opensearch_${local.app_aws_username}"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect":"Allow",
+       "Action":[
+          "es:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
 
 # -----------------------------------------------------------------------------
 # ECR
@@ -1242,21 +1330,18 @@ resource "aws_iam_user_policy_attachment" "smtp_user_attach" {
 # Task definition
 
 locals {
-  SETTINGS_ALLOWED_HOSTS            = "*"
+  SETTINGS_ALLOWED_HOSTS            = join(", ", ["*"])
   SETTINGS_AWS_ACCESS_KEY_ID        = aws_ssm_parameter.AWS_ACCESS_KEY_ID.value
   SETTINGS_AWS_SECRET_ACCESS_KEY    = aws_ssm_parameter.AWS_SECRET_ACCESS_KEY.value
-  #SETTINGS_OPENSEARCH_SECRET        = aws_ssm_parameter.OPENSEARCH_SECRET.value
-  #SETTINGS_OPENSEARCH_ENDPOINT      = aws_ssm_parameter.OPENSEARCH_ENDPOINT.value
-  #SETTINGS_OPENSEARCH_KEY           = aws_ssm_parameter.OPENSEARCH_KEY.value
-  SETTINGS_OPENSEARCH_SECRET        = "CHANGE"
-  SETTINGS_OPENSEARCH_ENDPOINT      = "CHANGE"
-  SETTINGS_OPENSEARCH_KEY           = "CHANGE"
+  SETTINGS_OPENSEARCH_SECRET        = aws_ssm_parameter.OPENSEARCH_SECRET.value
+  SETTINGS_OPENSEARCH_ENDPOINT      = aws_ssm_parameter.OPENSEARCH_ENDPOINT.value
+  SETTINGS_OPENSEARCH_KEY           = aws_ssm_parameter.OPENSEARCH_KEY.value
   SETTINGS_AWS_STATIC_BUCKET_NAME   = aws_s3_bucket.assets.id
-  SETTINGS_BASE_URL                 = "https://${local.project_domain}"
+  SETTINGS_BASE_URL                 = "http://www.${local.project_domain}"
   SETTINGS_CACHE_ADDRESS            = local.cache_address
   SETTINGS_DATABASE_URL             = local.db_master_url
   SETTINGS_SECRET_KEY               = data.aws_ssm_parameter.random_secret_key.value
-  SETTINGS_CORS_ALLOWED_ORIGINS     = "${local.SETTINGS_BASE_URL},https://www.${local.project_domain}"
+  SETTINGS_CORS_ALLOWED_ORIGINS     = local.SETTINGS_BASE_URL
   SETTINGS_CORS_ALLOW_ALL_ORIGINS   = 0
   SETTINGS_EMAIL_HOST               = "email.${local.region}.amazonaws.com"
   SETTINGS_DEFAULT_FROM_EMAIL       = aws_ssm_parameter.DEFAULT_FROM_EMAIL.value
@@ -1278,15 +1363,15 @@ data "template_file" "task_definition" {
     SETTINGS_AWS_ACCESS_KEY_ID          = local.SETTINGS_AWS_ACCESS_KEY_ID
     SETTINGS_AWS_SECRET_ACCESS_KEY      = local.SETTINGS_AWS_SECRET_ACCESS_KEY
     SETTINGS_AWS_STATIC_BUCKET_NAME     = local.SETTINGS_AWS_STATIC_BUCKET_NAME
-    SETTINGS_OPENSEARCH_KEY             = local.SETTINGS_OPENSEARCH_KEY
-    SETTINGS_OPENSEARCH_SECRET          = local.SETTINGS_OPENSEARCH_SECRET
-    SETTINGS_OPENSEARCH_ENDPOINT        = local.SETTINGS_OPENSEARCH_ENDPOINT
     SETTINGS_BASE_URL                   = local.SETTINGS_BASE_URL
     SETTINGS_CACHE_ADDRESS              = local.SETTINGS_CACHE_ADDRESS
     SETTINGS_DATABASE_URL               = local.SETTINGS_DATABASE_URL
     SETTINGS_DEBUG                      = local.SETTINGS_DEBUG
     SETTINGS_DEBUG_TOOLBAR              = local.SETTINGS_DEBUG_TOOLBAR
     SETTINGS_SECRET_KEY                 = local.SETTINGS_SECRET_KEY
+    SETTINGS_OPENSEARCH_KEY             = local.SETTINGS_OPENSEARCH_KEY
+    SETTINGS_OPENSEARCH_SECRET          = local.SETTINGS_OPENSEARCH_SECRET
+    SETTINGS_OPENSEARCH_ENDPOINT        = local.SETTINGS_OPENSEARCH_ENDPOINT
     SETTINGS_USE_CACHE                  = local.SETTINGS_USE_CACHE
     SETTINGS_USE_S3                     = local.SETTINGS_USE_S3
     SETTINGS_CORS_ALLOWED_ORIGINS       = local.SETTINGS_CORS_ALLOWED_ORIGINS
@@ -1363,3 +1448,4 @@ resource "aws_appautoscaling_policy" "cpu" {
     }
   }
 }
+
