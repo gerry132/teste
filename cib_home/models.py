@@ -36,7 +36,7 @@ class HomePage(HeroPage):
         null=True,
         blank=True
     )
-    newslettersignupcta = StreamField(
+    news_letter_signup_cta = StreamField(
         [
             ("newslettersignupcta_snippet", SnippetChooserBlock(target_model="utils.NewsletterSignUpCTASnippet"))
         ],
@@ -45,7 +45,7 @@ class HomePage(HeroPage):
     )
     content_panels = HeroPage.content_panels + [
         FieldPanel("body"),
-        FieldPanel("newslettersignupcta")
+        FieldPanel("news_letter_signup_cta")
     ]
 
     edit_handler = TabbedInterface([
