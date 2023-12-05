@@ -50,7 +50,7 @@ class Address(models.Model, index.Indexed):
         # setting a random hash as the unique_id
         if not self.unique_id:
             m = hashlib.md5(usedforsecurity=False)  # nosec
-            seed = str(random.randint(1, 10000000)).encode()
+            seed = str(random.randint(1, 10000000)).encode()  # nosec
             m.update(seed)
             self.unique_id = "a" + m.hexdigest()[:10]
         super(Address, self).save(*args, **kwargs)
