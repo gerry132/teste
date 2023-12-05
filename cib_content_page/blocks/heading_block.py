@@ -29,7 +29,7 @@ class HeadingBlock(StructBlock):
         """
         title = title
         title_bytes = title.encode()
-        sha1 = hashlib.sha1()
+        sha1 = hashlib.sha1()  # nosec
         sha1.update(title_bytes)
         hexacode = sha1.hexdigest()
         return hexacode[:6]
