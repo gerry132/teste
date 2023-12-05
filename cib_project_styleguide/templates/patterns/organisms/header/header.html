@@ -32,11 +32,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for link in nav.primarynav %}
-                        {% translated_page link.value.page as trans %}
                         {% if link.value.title %}
-                            <li><a class="index-a" href="{% pageurl trans %}">{{ trans.title }}</a></li>
+                            <li><a class="index-a" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
                         {% else %}
-                            <li><a class="index-a" href="{% pageurl trans %}">{{ trans }}</a></li>
+                            <li><a class="index-a" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
                         {% endif %}
                     {% endfor %}
                     </ul>
@@ -47,7 +46,7 @@
                         <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="index-a" href="">{{page.locale}}</a></li>
+                        <li><a class="index-a" href="{% if page %}{% pageurl page %}{% endif %}">{{page.locale}}</a></li>
                             {% if page.get_translations.live %}
                                 {% for trans in page.get_translations.live %}
                                     <li><a class="index-a" href="{% pageurl trans %}">{{trans.locale}}</a></li>
