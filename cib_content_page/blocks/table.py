@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-class TinyMCETableBlock(TinyMCEBlock):
+class TinyMCETableBlock(TinyMCEBlock): # noqa
     custom_mce_config = {
         "plugins": "table link",
         "menubar": "",
@@ -84,7 +84,7 @@ class TinyMCETableBlock(TinyMCEBlock):
 
         return segments
 
-    def sort_segment(self, segments)->list:
+    def sort_segment(self, segments) -> list:
         seg_dict = {}
         first_list = []
         for s in segments:

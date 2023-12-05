@@ -16,8 +16,6 @@ from django.utils.html import format_html
 
 from bs4 import BeautifulSoup
 
-from django.conf import settings
-
 from .models.main_models import PageTag, TaggedPage
 
 
@@ -45,7 +43,8 @@ class PageTagsModelAdmin(ModelAdmin):
     def page(self, obj):
         url = obj.content_object.url if obj.content_object else None
         if url:
-            return format_html('<a href="{}" target="_blank">{}</a>',url, obj.content_object.title)
+            return format_html('<a href="{}" target="_blank">{}</a>',
+                               url, obj.content_object.title)
         else:
             return "-"
 
