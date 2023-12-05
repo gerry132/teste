@@ -16,7 +16,7 @@ from wagtail.search.query import Fuzzy
 
 def search(request):
     root_page = Site.find_for_request(request).root_page.localized
-    search_query = request.GET.get("query", None)
+    search_query = request.GET.get("q", None)
     page = request.GET.get("page", 1)
 
     if search_query:
@@ -39,7 +39,7 @@ def search(request):
             search_results = (
                 Page.objects.live().public()
                     .descendant_of(root_page)
-                    .search(search_query, operator="and", partial_match=True)
+                    .search(search_query)
             )
     else:
         search_results = Page.objects.none()
@@ -57,9 +57,7 @@ def search(request):
         "patterns/pages/search/search.html",
         {"search_query": search_query, "search_results": search_results, "page": page},
     )
-    # Instruct FE cache to not cache when the search query is present.
-    # It's so hits get added to the database and results include newly
-    # added pages.
+
     if search_query:
         add_never_cache_headers(response)
     else:

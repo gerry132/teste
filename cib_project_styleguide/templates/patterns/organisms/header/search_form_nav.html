@@ -1,6 +1,6 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
 
-<form action="" method="GET" role="search">
+<form action="/search/" method="GET" role="search">
 
     <div class="input-group input-group-nav-custom" {% if instance.content.title == "Search results" %} style="width:90%;"
     {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
