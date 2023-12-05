@@ -1,9 +1,7 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
-<div class="container home-container ">
-    <div class="row custom-row">
+<div class="home-container ">
         {% for card in self.infocards %}
-         <div class="col-md-3 resp-md-3">
 
             {% image card.icon fill-60x60 as img %}
             <div class="info-box-1">
@@ -11,7 +9,7 @@
                     <img src="{{img.url}}" alt="{{img.text}} class="info-icon"">
                 </div>
                 <h3>{{card.title}}</h3>
-                <p>{{card.text}}</p>
+                {{card.text|richtext}}
 
                 {% if card.button_page %}
                     <a href="{% pageurl card.button_page %}" class="home-links">{{card.button_text}}  <i class="fa fa-arrow-right"></i></a>
@@ -20,8 +18,6 @@
                 {% endif %}
             </div>
 
-        </div>
       {% endfor %}
 
-    </div>
   </div>
