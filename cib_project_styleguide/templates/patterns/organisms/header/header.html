@@ -47,7 +47,7 @@
                         <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="index-a" href="{% pageurl page %}">{{page.locale}}</a></li>
+                        <li><a class="index-a" href="">{{page.locale}}</a></li>
                             {% if page.get_translations.live %}
                                 {% for trans in page.get_translations.live %}
                                     <li><a class="index-a" href="{% pageurl trans %}">{{trans.locale}}</a></li>
