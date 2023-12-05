@@ -5,7 +5,7 @@ from functools import lru_cache
 
 from cib_navigation.models import (
     PrimaryNavigation,
-    SiteSettings, FooterNavigation
+    FooterNavigation
 )
 
 register = template.Library()
