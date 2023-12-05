@@ -59,15 +59,16 @@ def get_nav_for_locale(cls, locale):
 def primarynav(context):
     request = context["request"]
     locale = Locale.objects.get(language_code=request.LANGUAGE_CODE)
-    site_settings = SiteSettings.for_request(request)
+
+    navigation = get_nav_for_locale(PrimaryNavigation, locale)
     nav = get_nav_for_locale(PrimaryNavigation, locale)
     navigation = nav['navigation']
+
     popular_links = nav['popular_links']
     return {
         "primarynav": navigation,
         "popular_links": popular_links,
-        "request": request,
-        "site_settings": site_settings
+        "request": request
     }
 
 
