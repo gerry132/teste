@@ -497,6 +497,10 @@ textarea { resize: none; }
 
 .info-box h3 {
   color: #000000;
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 25px;
 }
 
 .info-box p {
