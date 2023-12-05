@@ -1080,3 +1080,50 @@ textarea { resize: none; }
     min-width: 243px;
     min-height: 47px;
 }
+
+.pagination__list {
+  position: relative;
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+.pagination__link {
+  background-color: #fff;
+  font-weight: 700;
+  border-radius: 5px;
+  color: #004d46;
+  display: inline-block;
+  line-height: 30px;
+  height: 30px;
+  width: 30px;
+  margin: 0 5px;
+  position: relative;
+  text-align: center;
+  transition: background-color .25s ease-out;
+}
+
+.pagination {
+  position: relative;
+  text-align: center;
+}
+
+.pagination__icon {
+  margin-top: 7px;
+  height: 15px;
+  width: 15px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  transition: fill .25s ease-out;
+  fill: #fff;
+}
+
+.pagination__icon--next {
+  transform: rotate(-90deg);
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}

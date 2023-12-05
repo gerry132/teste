@@ -51,7 +51,9 @@ def search(request):
         search_results = paginator.page(1)
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
-
+    print('paginator')
+    print(paginator)
+    print('paginator')
     response = TemplateResponse(
         request,
         "patterns/pages/search/search.html",
