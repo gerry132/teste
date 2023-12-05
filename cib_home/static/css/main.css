@@ -693,7 +693,8 @@ textarea { resize: none; }
   margin-right: 10px;
   height: 55px;
   width: 55.15px;
-  opacity: 60%;
+  opacity: 100%;
+  color: #C8E6AA;
 }
 
 .callout h3 {
