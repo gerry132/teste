@@ -1,0 +1,14 @@
+{% load wagtailcore_tags %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailroutablepage_tags %}
+
+
+{% if section_headings %}
+    <ul class="anchorlinks">
+    {% for item in section_headings %}
+        <li>
+            <a href="#{{ item.1 }}">{{ item.0 }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}

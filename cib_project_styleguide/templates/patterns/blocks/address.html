@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+
+
+{% if  value.heading%}
+    <h1 class="topic base_wheretoapply_title">{{ value.heading }}</h1>
+{% endif %}
+{% include "shared/address.html" with obj=value.address %}

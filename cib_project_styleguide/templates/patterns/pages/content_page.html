@@ -1,0 +1,9 @@
+{% extends "patterns/hero_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+    <div class="wrapper wrapper--small wrapper--padding">
+        {% include "patterns/blocks/toc.html"  %}
+        {% include_block page.body %}
+    </div>
+{% endblock %}

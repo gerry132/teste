@@ -36,6 +36,16 @@ ALT_HELP_TEXT = """A short one-sentence literal description
 class BasePage(Page):
     show_in_menus_default = True
 
+    publication_log = RichTextField(
+        features=[], blank=True, null=True,
+        help_text="Put your comment for current changes",
+        verbose_name=_("publication_log")
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("publication_log"),
+    ]
+
     class Meta:
         abstract = True
 
@@ -110,7 +120,7 @@ class HeroPage(BasePage):
         FieldPanel('hero_double_feature'),
         FieldPanel('callout_feature')]
 
-    content_panels = Page.content_panels + [
+    content_panels = BasePage.content_panels + [
     ]
 
     edit_handler = TabbedInterface([

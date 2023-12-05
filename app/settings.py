@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "cib_home",
     "cib_pages",
     "cib_navigation",
+    "cib_content_page",
     #
     "wagtail_localize",
     "wagtail.locales",
@@ -97,6 +98,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "cib_project_styleguide.apps.ProjectStyleguideConfig",
     "wagtail.contrib.simple_translation",
+    "tinymce",
+    "wagtailtinymce",
 ]
 
 if DEBUG_TOOLBAR is True:
