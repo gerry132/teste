@@ -62,16 +62,6 @@ modeladmin_register(TagsModelAdmin)
 modeladmin_register(PageTagsModelAdmin)
 
 
-@hooks.register("insert_global_admin_css", order=100)
-def global_admin_css():
-    """Add /static/css/custom.css to the admin."""
-
-    return format_html(
-        '<link rel="stylesheet" href="{}">',
-        f"{settings.STATIC_URL}/custom-admin-portal.css"
-    )
-
-
 @hooks.register('register_reports_menu_item')
 def register_publication_log_report_menu_item():
     return MenuItem(
