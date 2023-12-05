@@ -8,7 +8,7 @@
                     <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
                     <h3>{{card.title}}</h3>
                 </div>
-                {{card.text}}
+                {{card.text|richtext}}
                 {% if card.button_page %}
                     <a href="{% pageurl card.button_page %}" class="home-links">{{ card.button_text }} <i class="fa fa-arrow-right"></i></a>
                 {% elif card.button_url %}

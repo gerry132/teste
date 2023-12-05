@@ -1,8 +1,7 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
-<div class="home-container ">
+<div style="margin-top: 40px;" class="home-container ">
         {% for card in self.infocards %}
-
             {% image card.icon fill-60x60 as img %}
             <div class="info-box-1">
                 <div class="icon-holder">
