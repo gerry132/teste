@@ -13,7 +13,12 @@ class TinyMCETableBlock(TinyMCEBlock): # noqa
     custom_mce_config = {
         "plugins": "table link",
         "menubar": "",
-        "toolbar": "bold italic link unlink | table tablecaption tablecolheader tablerowheader | tablecellprops tablemergecells tablesplitcells | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",
+        "toolbar": """bold italic link unlink |
+                        table tablecaption tablecolheader tablerowheader |
+                        tablecellprops tablemergecells tablesplitcells |
+                        tableinsertrowbefore tableinsertrowafter tabledeleterow |
+                        tableinsertcolbefore tableinsertcolafter tabledeletecol""",
+
         "table_appearance_options": False,
         "table_default_attributes": {},
         "table_default_styles": {"border-collapse": "collapse", "width": "100%"},
