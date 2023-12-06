@@ -1,7 +1,7 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
 {% if self.image %}
-<div style="display: flex; justify-content: {{self.format}};">
+<div class="content-custom-image" style="display: flex; justify-content: {{self.format}};">
     <figure style="margin-left:0;text-align: center;">
         {% if self.size == "200" %}
 
