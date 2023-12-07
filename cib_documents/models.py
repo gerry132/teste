@@ -98,10 +98,10 @@ class DocumentPage(BasePage):
         context = super().get_context(request, *args, **kwargs)
 
         all_year_tags = YearTag.objects.all()
-        # all_document_type_tags = DocumentTypeTag.objects.all()
+        all_document_type_tags = DocumentTypeTag.objects.all()
 
         context['all_year_tags'] = all_year_tags
-        # context['all_document_type_tags'] = all_document_type_tags
+        context['all_document_type_tags'] = all_document_type_tags
 
         selected_year = request.GET.get('year')
         selected_document_type = request.GET.get('document_type')
