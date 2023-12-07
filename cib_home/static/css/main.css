@@ -1161,5 +1161,32 @@ textarea { resize: none; }
   line-height: 25px;
   color: #000000;
 }
-
 /* End of Content Page */
+
+/*table styles */
+
+table {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: auto;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  border: 1px solid #908787;
+  padding: 8px;
+}
+
+thead {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+/*  End of the table styles */
