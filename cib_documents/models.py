@@ -73,12 +73,12 @@ class DocumentBlock(blocks.StructBlock):
         required=True,
     )
     year_tags = blocks.ChoiceBlock(
-        # choices=get_year_tag_choices(),
+        choices=get_year_tag_choices(),
         label='Year Tags',
         required=False,
     )
     publication_type_tags = blocks.ChoiceBlock(
-        # choices=get_document_type_tag_choices(),
+        choices=get_document_type_tag_choices(),
         label='Publication Type Tags',
         required=False,
     )
