@@ -10,12 +10,13 @@
                 </a>
             </li>
         {% endif %}
-
+        {% for p in paginator.page_range %}
         <li class="current" aria-current="page">
-            <a href="{% querystring_modify page=page %}" class="pagination__link pagination__link--active" aria-label="{% blocktrans %} Current Page, Page {{ paginator_page.number }} of {{ paginator_page.paginator.num_pages }} pages {% endblocktrans %}" aria-current="page">
-                {{ paginator_page.number }}
+            <a href="{% querystring_modify page=p %}" class="pagination__link pagination__link--active" aria-label="{% blocktrans %} Current Page, Page {{ paginator_page.number }} of {{ paginator_page.paginator.num_pages }} pages {% endblocktrans %}" aria-current="page">
+                {{ p }}
             </a>
         </li>
+        {% endfor %}
 
         {% if paginator_page.has_next %}
             <li>

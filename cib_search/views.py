@@ -52,12 +52,13 @@ def search(request):
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
     print('paginator')
-    print(paginator)
+    print(paginator.page_range)
     print('paginator')
+    page_range = paginator.get_elided_page_range(number=page)
     response = TemplateResponse(
         request,
         "patterns/pages/search/search.html",
-        {"search_query": search_query, "search_results": search_results, "page": page},
+        {"search_query": search_query, "search_results": search_results, "page_range": page_range "page": page, "paginator": paginator},
     )
 
     if search_query:
