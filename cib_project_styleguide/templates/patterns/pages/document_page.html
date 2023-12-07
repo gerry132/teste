@@ -1,0 +1,67 @@
+{% extends "patterns/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+<div class="wrapper wrapper--large wrapper--padding">
+    <h1>{{ page.title }}</h1>
+    <form id="filter-form" method="get" action="">
+        <div style="margin-bottom: 40px;" class="document-language-links">
+            <div>
+            <label class="document__filter-label newslettersignupcta__body" for="document_type">Filter by Document Type</label>
+            <select class="document__filter-select newslettersignupcta__body" id="document_type" name="document_type">
+                <option value="" {% if not selected_document_type %}selected{% endif %}>Document Type</option>
+                {% for tag in all_document_type_tags %}
+                    <option value="{{ tag.slug }}" {% if selected_document_type == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div>
+                <label class="document__filter-label newslettersignupcta__body" for="year">Filter by Year</label>
+                <select class="document__filter-select newslettersignupcta__body" id="year" name="year">
+                    <option value="" {% if not selected_year %}selected{% endif %}>Select Year</option>
+                    {% for tag in all_year_tags %}
+                        <option value="{{ tag.slug }}" {% if selected_year == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+    </form>
+
+        {% if documents %}
+            {% for document in documents %}
+                <div class="document-block">
+                    {% image document.image fill-220x311 alt=document.image_alt class="story__image" %}
+                    <div>
+                        <h2 class="document-heading">{{ document.title }}</h2>
+                        <div class="newslettersignupcta__body document-body">
+                            {{ document.description|richtext }}
+                        </div>
+                        <div class="document-language">
+                            <div style="text-align:unset;" class="basefeature-button__text">Available languages: </div>
+                            <div class="document-language-links">
+                            {% for link in document.language %}
+                                <a class="home-links" href="{{ link.document.url }}" target="_blank">{{ link.heading }}</a>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No documents found.</p>
+        {% endif %}
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Trigger form submission when dropdown values change
+            document.getElementById('year').addEventListener('change', function() {
+                document.getElementById('filter-form').submit();
+            });
+
+            document.getElementById('document_type').addEventListener('change', function() {
+                document.getElementById('filter-form').submit();
+            });
+        });
+    </script>
+{% endblock %}
