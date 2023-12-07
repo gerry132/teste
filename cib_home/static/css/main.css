@@ -677,7 +677,7 @@ textarea { resize: none; }
 
 .callout {
   position: relative;
-  padding: 40px 20px;
+  padding: 40px;
   border-radius: 4px;
   color: white;
 }
@@ -702,7 +702,7 @@ textarea { resize: none; }
   margin-top: 10px;
   margin-bottom: 10px;
   font-family: 'Lato';
-  font-weight: 400;
+  font-weight: 700;
   font-size: 32px;
   line-height: 35px;
 }

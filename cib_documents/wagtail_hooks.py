@@ -1,4 +1,3 @@
-from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 
 from cib_documents.models import YearTag, DocumentTypeTag
