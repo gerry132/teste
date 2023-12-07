@@ -51,12 +51,12 @@ class DocumentTypeTag(Tag):
         verbose_name_plural = "Publication Type Tags"
 
 
-# def get_year_tag_choices():
-#     return [(tag.slug, tag.name) for tag in YearTag.objects.all()]
-#
-#
-# def get_document_type_tag_choices():
-#     return [(tag.slug, tag.name) for tag in DocumentTypeTag.objects.all()]
+def get_year_tag_choices():
+    return [(tag.slug, tag.name) for tag in YearTag.objects.all()]
+
+
+def get_document_type_tag_choices():
+    return [(tag.slug, tag.name) for tag in DocumentTypeTag.objects.all()]
 
 
 class DocumentBlock(blocks.StructBlock):
