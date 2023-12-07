@@ -1,6 +1,6 @@
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 
-from cib_documents.models import YearTag, DocumentTypeTag
+from .models import YearTag, DocumentTypeTag
 
 
 class YearTagAdmin(ModelAdmin):

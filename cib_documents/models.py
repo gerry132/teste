@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from taggit.models import TagBase
+from django.db import models
 from wagtail.documents.models import AbstractDocument
 from wagtail.documents.models import Document as WagtailDocument
 from wagtail.core.models import Page
@@ -9,7 +10,7 @@ from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from cib_utils.models import BasePage
 
 from cib_navigation.models import ALT_HELP_TEXT
@@ -29,12 +30,20 @@ class Tag(TagBase):
 
 
 class YearTag(Tag):
+    description = models.CharField(
+        verbose_name=pgettext_lazy("A tag description", "description"), max_length=255, default='', unique=False
+    )
+
     class Meta:
         verbose_name = "Year Tag"
         verbose_name_plural = "Year Tags"
 
 
 class DocumentTypeTag(Tag):
+    description = models.CharField(
+        verbose_name=pgettext_lazy("A tag description", "description"), max_length=255, default='', unique=False
+    )
+
     class Meta:
         verbose_name = "Publication Type Tag"
         verbose_name_plural = "Publication Type Tags"
