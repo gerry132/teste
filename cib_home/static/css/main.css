@@ -1233,3 +1233,58 @@ tbody tr:nth-child(even) {
         padding: 5px;
         color: var(--text-primary, #0B0C0C);
 }
+
+/* News Cards */
+.card {
+  box-sizing: border-box;
+  width: 300px;
+  height: 520px;
+  border: 1px solid #ccc;
+  background-color: #F5F5F5;
+  margin: 20px;
+  font-family: 'lato', sans-serif;
+  position: relative;
+}
+
+.card-image {
+  width: 300px;
+  height: 199px;
+}
+
+.card-content-box{
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 19px;
+  font-family: 'Lato';
+  font-weight: 700;
+  line-height: 24px;
+  color: #005F81;
+  margin-bottom: 20px;
+}
+
+.card-date {
+  font-size: 19px;
+  font-family: 'Lato';
+  font-weight: 700;
+  line-height: 25px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.card-content {
+  font-size: 16px;
+  font-family: 'Lato';
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.card a {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+/* End of the News Cards */
