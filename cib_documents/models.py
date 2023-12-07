@@ -55,8 +55,8 @@ def get_year_tag_choices():
     return [(tag.slug, tag.name) for tag in YearTag.objects.all()]
 
 
-#def get_document_type_tag_choices():
-#    return [(tag.slug, tag.name) for tag in DocumentTypeTag.objects.all()]
+def get_document_type_tag_choices():
+    return [(tag.slug, tag.name) for tag in DocumentTypeTag.objects.all()]
 
 
 class DocumentBlock(blocks.StructBlock):
@@ -78,7 +78,7 @@ class DocumentBlock(blocks.StructBlock):
         required=False,
     )
     publication_type_tags = blocks.ChoiceBlock(
-       # choices=get_document_type_tag_choices(),
+        # choices=get_document_type_tag_choices(),
         label='Publication Type Tags',
         required=False,
     )
@@ -98,10 +98,10 @@ class DocumentPage(BasePage):
         context = super().get_context(request, *args, **kwargs)
 
         all_year_tags = YearTag.objects.all()
-        #all_document_type_tags = DocumentTypeTag.objects.all()
+        # all_document_type_tags = DocumentTypeTag.objects.all()
 
         context['all_year_tags'] = all_year_tags
-        #context['all_document_type_tags'] = all_document_type_tags
+        # context['all_document_type_tags'] = all_document_type_tags
 
         selected_year = request.GET.get('year')
         selected_document_type = request.GET.get('document_type')
