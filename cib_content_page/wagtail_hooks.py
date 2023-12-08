@@ -124,15 +124,7 @@ def update_publication_log(request, page, **kwargs):
 @hooks.register('after_publish_page')
 def after_publish_page_update_translations(request, page):
     """Update translations when original page is saved."""
-    print(11111111111)
-    print(11111111111)
-    print(11111111111)
-    print(11111111111)
-    print(11111111111)
-    print(11111111111)
-    print(11111111111)
     if hasattr(page, "translation_key"):
-        print('aaaaa')
         # Update translation source (this stores synched fields, e.g. tags and coordinates)
         TranslationSource.update_or_create_from_instance(page)
 
