@@ -66,6 +66,15 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
     z-index: 1;
 }
 
+@media (max-width: 1380px) {
+  .navbar-header {
+    padding-left: 80px;
+  }
+  #RebootMainMenu {
+    padding-right: 80px;
+  }
+}
+
 @media (min-width: 992px) {
   .navbar-menu--items__lang {
       border-left: 1px solid #0094C9;
@@ -356,7 +365,7 @@ Bootstrap override
 /* BOOTSTRAP NAVBAR EXTENSION */
 #main-navbar .navbar-collapse { border-width: 0px;}
 #main-navbar {height: 90px; padding: 5px 0px; background-color: #FFFFFF; border-radius: 0px; border-width: 0px; margin-bottom: 0px; }
-#main-navbar ul.dropdown-menu { border-radius: 0px; width: 213px; z-index: 1001;}
+#main-navbar ul.dropdown-menu { border-radius: 0px; min-width: 213px; z-index: 1001;}
 #main-navbar.navbar-default .navbar-nav > li > a,
 #main-navbar.navbar-default .navbar-nav > li > a:hover { color: #000000; background-color: #FFFFFF; font-size: 18px; line-height: 44px !important;}
 .navbar-right {
