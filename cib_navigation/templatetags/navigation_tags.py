@@ -5,7 +5,8 @@ from functools import lru_cache
 
 from cib_navigation.models import (
     PrimaryNavigation,
-    FooterNavigation
+    FooterNavigation,
+    SiteSettings
 )
 
 register = template.Library()
@@ -58,6 +59,7 @@ def get_nav_for_locale(cls, locale):
 @register.simple_tag(takes_context=True)
 def primarynav(context):
     request = context["request"]
+    site_settings = SiteSettings.for_request(request)
     locale = Locale.objects.get(language_code=request.LANGUAGE_CODE)
 
     navigation = get_nav_for_locale(PrimaryNavigation, locale)
@@ -68,7 +70,8 @@ def primarynav(context):
     return {
         "primarynav": navigation,
         "popular_links": popular_links,
-        "request": request
+        "request": request,
+        "site_settings": site_settings
     }
 
 
