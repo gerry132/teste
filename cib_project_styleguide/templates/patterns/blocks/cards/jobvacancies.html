@@ -10,9 +10,9 @@
                 </div>
                 {{card.text|richtext}}
                 {% if card.button_page %}
-                    <a href="{% pageurl card.button_page %}" class="govie-footer__link">{{card.button_text}}  <i class="fas fa-arrow-right"></i></a>
+                    <a style="align-self: flex-start; margin-top: auto;" href="{% pageurl card.button_page %}" class="govie-footer__link">{{card.button_text}}  <i class="fas fa-arrow-right"></i></a>
                 {% elif card.button_url %}
-                    <a href="{{ card.button_url }}" class="govie-footer__link">{{ card.button_text }}  <i class="fas fa-arrow-right"></i></a>
+                    <a style="align-self: flex-start; margin-top: auto;" href="{{ card.button_url }}" class="govie-footer__link">{{ card.button_text }}  <i class="fas fa-arrow-right"></i></a>
                 {% endif %}
 
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <h3>Latest News</h3>
                 <p>CIB Welcome President Michael D Higgins and Sabina Higgins at the National Ploughing Championships.</p>
-                <a href="#" class="govie-footer__link">Read More <i class="fas fa-arrow-right"></i></a>
+                <a style="align-self: flex-start; margin-top: auto;" href="#" class="govie-footer__link">Read More <i class="fas fa-arrow-right"></i></a>
             </div>
     {% endfor %}
   </div>
