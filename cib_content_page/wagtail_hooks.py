@@ -4,9 +4,6 @@ from wagtail.log_actions import LogFormatter
 from wagtail.log_actions import log
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.admin.panels import FieldPanel
-from wagtail.models import Page
-
-from wagtail_localize.models import Translation, TranslationSource
 
 from django.urls import path, reverse
 from django.utils.translation import gettext_lazy as _
