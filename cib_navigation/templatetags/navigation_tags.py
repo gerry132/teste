@@ -65,7 +65,6 @@ def primarynav(context):
     navigation = get_nav_for_locale(PrimaryNavigation, locale)
     nav = get_nav_for_locale(PrimaryNavigation, locale)
     navigation = nav['navigation']
-    
 
     popular_links = nav['popular_links']
     return {
