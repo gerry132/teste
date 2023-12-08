@@ -119,24 +119,3 @@ def update_publication_log(request, page, **kwargs):
 
     except RuntimeError:
         print("Revision already saved.")
-
-
-@hooks.register('after_publish_page')
-def after_publish_page_update_translations(request, page):
-    """Update translations when original page is saved."""
-    if hasattr(page, "translation_key"):
-        # Update translation source (this stores synched fields, e.g. tags and coordinates)
-        TranslationSource.update_or_create_from_instance(page)
-
-        translated_pages = Page.objects.filter(
-            translation_key=page.translation_key).exclude(id=page.id)
-        print(translated_pages)
-        for translated_page in translated_pages:
-            # Update each translation with the new synched field values
-            translation = Translation.objects.filter(
-                source__object_id=page.translation_key,
-                target_locale_id=translated_page.locale_id,
-                enabled=True,
-            ).first()
-            if translation:
-                translation.save_target(request.user)
