@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     "cib_content_page",
     #
     "wagtail_localize",
-    "wagtail.locales",
+    "wagtail_localize.locales",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
@@ -322,22 +322,8 @@ if "DEFAULT_FROM_EMAIL" in os.environ:
 # Wagtail settings
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ("ar", "Arabic"),
-    ("zh-hans", "Chinese"),
     ("en", "English"),
-    ("fr", "French"),
-    ("de", "German"),
-    ("hi", "Hindi"),
-    ("hu", "Hungarian"),
     ("ga", "Irish"),
-    ("it", "Italian"),
-    ("ja", "Japanese"),
-    ("ko", "korean"),
-    ("pl", "Polish"),
-    ("pt", "Portuguese"),
-    ("ru", "Russian"),
-    ("es", "Spanish"),
-    ("vi", "Vietnamese"),
 ]
 
 LOCALE_PATHS = [
