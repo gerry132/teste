@@ -12,7 +12,7 @@ from wagtail.admin.panels import (
 )
 
 from wagtail.fields import StreamField, RichTextField
-from wagtail.models import Page, PreviewableMixin, DraftStateMixin, RevisionMixin
+from wagtail.models import Page, PreviewableMixin, DraftStateMixin, RevisionMixin, TranslatableMixin
 from wagtail.images import get_image_model_string
 from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
@@ -133,8 +133,8 @@ class HeroPage(BasePage):
 
 @register_snippet
 class NewsletterSignUpCTASnippet(PreviewableMixin, DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel,
-                                 models.Model):
-    snippet_title = models.CharField(max_length=255)
+                                 TranslatableMixin, models.Model):
+    snippet_title = models.CharField(max_length=255, blank=True)
     icon = models.ForeignKey(
         IMAGE_MODEL,
         null=True,
@@ -148,11 +148,11 @@ class NewsletterSignUpCTASnippet(PreviewableMixin, DraftStateMixin, RevisionMixi
         verbose_name=_("Icon Alt text"),
         help_text=_("The alt text shown for accessibility: https://axesslab.com/alt-texts/")
     )
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True)
     body = RichTextField(features=["h3", "h4", "h5", "bold", "italic", "link", "document-link"],
                          blank=True, null=True)
-    button_text = models.CharField(max_length=255)
-    url = models.URLField(blank=False)
+    button_text = models.CharField(max_length=255, blank=True)
+    url = models.URLField(blank=True)
     _revisions = GenericRelation("wagtailcore.Revision", related_query_name="betasnippet")
     panels = [
         FieldPanel("snippet_title"),
@@ -175,3 +175,6 @@ class NewsletterSignUpCTASnippet(PreviewableMixin, DraftStateMixin, RevisionMixi
     @property
     def revisions(self):
         return self._revisions
+
+    class Meta:
+        unique_together = ("translation_key", "locale")

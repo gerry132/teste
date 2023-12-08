@@ -21,8 +21,23 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
   max-width: 790px;
   margin: 0 auto;
 }
+@media (max-width: 342px) {
+.wrapper--logo{
+  padding: 0px;
+}
+}
+@media (min-width: 343px) {
+.wrapper--logo{
+    padding: 0 20px;
+}
+}
+.wrapper--logo{
+  max-width: 1290px;
+  margin: 0 auto;
+}
 .wrapper--large {
-  max-width: 1280px;
+  padding: 0 20px;
+  max-width: 1290px;
   margin: 0 auto;
 }
 
@@ -458,11 +473,26 @@ textarea { resize: none; }
 
 /* General homepage container */
 .home-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
+.info-box-1 {
+  flex: 20%;
+}
+
+@media screen and (max-width: 1024px) {
+  .info-box-1 {
+    flex: 45%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home-container {
+    flex-direction: column;
+  }
+}
 /* End of general homepage container */
 
 /* call out cards*/
@@ -477,14 +507,19 @@ textarea { resize: none; }
   height: 100%;
 }
 .info-box {
-  height: 100%;
+display: flex;
+ flex-flow: column nowrap;
   z-index: 1;
   position: relative;
   background-color: #FFFFFF;
+  flex: 30%;
 }
-
+@media (max-width: 1024px){
 .info-box {
-  height: 100%;
+  flex: 45%;
+}
+}
+.info-box {
   padding: 40px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -525,14 +560,15 @@ textarea { resize: none; }
 }
 .home-links {
   text-decoration: none;
-  position: absolute;
-  bottom: 40px;
   border-bottom: 1px solid #0056b3;
   color: #0056b3;
   font-family: Lato, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-decoration-line: none;
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 19px;
 }
 
 .home-links:hover {
@@ -584,8 +620,9 @@ textarea { resize: none; }
   padding: 40px;
   text-align: center;
   position: relative;
-  height: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  display: flex;
+ flex-flow: column nowrap;
 }
 
 .icon-holder {
@@ -625,11 +662,10 @@ textarea { resize: none; }
 
 .info-box-1 a {
   color: #0056b3;
-    left: 50%;
-    transform: translateX(-50%);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-self: center;
 }
 
 .info-box-1 a .fa,
@@ -685,17 +721,32 @@ textarea { resize: none; }
 /* Job Vacancies */
 
 .callout {
+  width: 100%;
   position: relative;
   padding: 40px;
   border-radius: 4px;
   color: white;
+  margin-bottom: 40px;
+}
+@media (min-width: 1024px){
+.callout-left {
+  flex: 45%;
+}
+
+.callout-right {
+  flex: 45%;
+}
 }
 .callout-left {
   border-radius: 10px;
+  display: flex;
+ flex-flow: column nowrap;
 }
 
 .callout-right {
   border-radius: 10px;
+  display: flex;
+ flex-flow: column nowrap;
 }
 
 .callout .info-icon {
@@ -743,10 +794,6 @@ textarea { resize: none; }
 
 @media (max-width: 900px) {
 
-  .callout {
-    height: auto;
-    width: auto;
-  }
   .callout-left {
     border-radius: 10px;
   }
@@ -1017,21 +1064,17 @@ textarea { resize: none; }
 }
 
 .hero-container {
-  padding: 40px 63px;
-  margin: 0 auto;
+  padding-top: 40px;
   position: relative;
   z-index: 1;
   overflow: visible;
 }
 
-@media (max-width: 767px){
-  .hero-container {
-    padding: 35px 20px;
-  }
+.newslettersignupcta--background{
+    background: #E9E9E9;
 }
 
 .newslettersignupcta{
-    background: #E9E9E9;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -1047,7 +1090,8 @@ textarea { resize: none; }
     margin-right: 100px;
 }
 .newslettersignupcta{
-    padding: 80px 100px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 .newslettersignupcta__body{
     padding-top: 20px;
@@ -1058,7 +1102,8 @@ textarea { resize: none; }
     text-align:center;
 }
 .newslettersignupcta {
-    padding: 52px;
+    padding-top: 52px;
+    padding-bottom: 52px;
     gap: 30px;
     flex-wrap: wrap;
 }
