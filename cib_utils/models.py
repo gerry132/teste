@@ -12,8 +12,7 @@ from wagtail.admin.panels import (
 )
 
 from wagtail.fields import StreamField, RichTextField
-from wagtail.models import Page, PreviewableMixin, DraftStateMixin, RevisionMixin, TranslatableMixin, \
-    BootstrapTranslatableMixin
+from wagtail.models import Page, PreviewableMixin, DraftStateMixin, RevisionMixin, TranslatableMixin
 from wagtail.images import get_image_model_string
 from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
