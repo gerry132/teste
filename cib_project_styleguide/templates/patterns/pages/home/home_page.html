@@ -7,8 +7,10 @@
 {% include "patterns/molecules/freeform-components/home_components.html" %}
 {% include_block page.secondary_call_to_action %}
     {% include_block page.top_story %}
+{% if page.news_letter_signup_cta %}
 {% for block in page.news_letter_signup_cta %}
      {% include "patterns/snippets/newslettersignupctasnippet.html" with object=block.value %}
 {% endfor %}
+{% endif %}
 
 {% endblock %}

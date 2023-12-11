@@ -1,6 +1,8 @@
 {% load wagtailcore_tags wagtailimages_tags static %}
+<div style="margin-top:80px;">
 {% for block in page.body %}
-        <div style="{% if forloop.first %}margin-top:40px;{% endif %}" class="wrapper wrapper--large wrapper--padding">
+        <div class="wrapper wrapper--large wrapper--padding">
             {% include_block block %}
         </div>
 {% endfor %}
+    </div>
