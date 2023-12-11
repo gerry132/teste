@@ -1,0 +1,32 @@
+{% extends "patterns/hero_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+
+
+    <div class="col-sm-6 col-md-4">
+        <div class="card">
+            {% image sample_image fill-300x200 as img%}
+
+            <img src="{{ img.url }}" width="{{ img.width }}"
+            height="{{ img.height }}" alt="{{ img.alt }}" class="card-image">
+            <div class="card-content-box">
+                <div class="card-date">24th April 2023</div>
+                <div class="card-title">CIB Welcome President Michael D Higgins and Sabina Higgins at the National Ploughing Championships, extra text for testing overflow</div>
+                <div class="card-content">The Citizens Information Board (CIB) was delighted to welcome President Michael D Higgins and Sabina Higgins at, extra text for testing overflow</div>
+                <a href="" class="home-links">Read More</a>
+            </div>
+          </div>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+{% endblock %}
+
