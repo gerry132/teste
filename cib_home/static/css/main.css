@@ -1262,6 +1262,10 @@ tbody tr:nth-child(even) {
   line-height: 24px;
   color: #005F81;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-date {
@@ -1280,7 +1284,12 @@ tbody tr:nth-child(even) {
   line-height: 20px;
   color: #000000;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
 .card a {
   position: absolute;
   bottom: 20px;
