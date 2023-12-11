@@ -1294,6 +1294,10 @@ tbody tr:nth-child(even) {
   position: absolute;
   bottom: 20px;
   left: 20px;
+  font-size: 16px;
+  font-family: 'Lato';
+  font-weight: 400;
+  line-height: 20px;
 }
 
 /* End of the News Cards */
