@@ -1070,6 +1070,7 @@ display: flex;
   overflow: visible;
   display: flex;
   flex-wrap: wrap;
+  row-gap: 40px;
 }
 
 .newslettersignupcta--background{
