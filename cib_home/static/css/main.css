@@ -81,14 +81,6 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
     z-index: 1;
 }
 
-@media (max-width: 1380px) and (min-width: 500px) {
-  .navbar-header {
-    padding-left: 80px;
-  }
-  #RebootMainMenu {
-    padding-right: 80px;
-  }
-}
 
 @media (min-width: 992px) {
   .navbar-menu--items__lang {
@@ -525,7 +517,6 @@ display: flex;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-left: 7px solid transparent;
-  margin-top: 40px;
 }
 
 .info-header {
@@ -678,11 +669,6 @@ display: flex;
 
 /* Media query for responsiveness */
 @media (max-width: 1100px) {
-
-  .info-box-1 {
-    width: auto;
-    position: relative;
-  }
 
   .resp-md-3 {
     margin-bottom: 20px;
@@ -853,19 +839,19 @@ display: flex;
   gap: 20px 32px;
 }
 
-.card {
+.board_member_card {
     display: block;
     overflow: hidden;
     max-width: 300px;
 }
 
-    .card__image-container {
+    .board_member_card__image-container {
         height: 200px;
         overflow: hidden;
         position: relative;
 
     }
-    .card__image {
+    .board_member_card__image {
         position: relative;
         object-fit: cover;
         width: 100%;
@@ -873,11 +859,11 @@ display: flex;
         border-radius: 5px 5px 0px 0px;
     }
 
-    .card__content {
+    .board_member_card__content {
         padding: 20px;
     }
 
-    .card__title {
+    .board_member_card__title {
          color: var(--CIB_Dark_blue, #005F81);
         font-family: 'Lato', sans-serif !important;
         font-size: 24px;
@@ -886,7 +872,7 @@ display: flex;
         line-height: 25px;
         margin-top: 0;
     }
-    .card__summary {
+    .board_member_card__summary {
         overflow-wrap: break-word;
         word-wrap: break-word;
         color: #000;
@@ -930,6 +916,12 @@ display: flex;
 }
 
 }
+@media screen and (max-width: 1024px){
+    .hero__contents{
+        width: 100%;
+        }
+}
+
 /* default wrapper override */
 .wrapper--hero {
   max-width: 100% !important;
@@ -940,11 +932,15 @@ display: flex;
     gap: 20px;
     align-items: center;
 }
-
+.base-feature--blue__button{
+    background: var(--CIB_Green, #8AC640);
+}
+.base-feature--green__button{
+    background: var(--CIB_Blue, #005F81);
+}
 .basefeature-button {
     align-self: flex-start;
     border-radius: 4px;
-    background: var(--CIB_Green, #8AC640);
     box-shadow: 0px -1px 0px 0px #002D18 inset;
     padding: 16px;
 }
@@ -1022,7 +1018,6 @@ display: flex;
 .basefeature--green-link:focus {
   color: #000;
 }
-
 .base-feature--default {
   width: 100%;
   min-height: 358px;
@@ -1032,8 +1027,9 @@ display: flex;
   font-weight: 400;
   font-size: 19px;
   line-height: 25px;
-  padding: 20px;
+  padding: 40px;
   gap: 40px;
+  height: 100%;
 }
 
 .base-feature--blue {
@@ -1041,7 +1037,7 @@ display: flex;
   display: flex;
   color: #FFFFFF;
   flex-direction: column;
-
+  justify-content: space-between;
 }
 
 .base-feature--blue__text {
@@ -1069,6 +1065,8 @@ display: flex;
   position: relative;
   z-index: 1;
   overflow: visible;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .newslettersignupcta--background{

@@ -59,12 +59,9 @@ def get_document_type_tag_choices():
     return [(tag.slug, tag.name) for tag in DocumentTypeTag.objects.all()]
 
 
-class DocumentBlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=False)
-    image_alt = blocks.CharBlock(required=True, help_text=_(ALT_IMAGE))
-    title = blocks.CharBlock(required=True)
-    description = blocks.RichTextBlock(required=True)
-    language = blocks.ListBlock(
+class LanguagesBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True, label='Language Title')
+    languages = blocks.ListBlock(
         blocks.StructBlock([
             ('heading', blocks.CharBlock(required=True)),
             ('document', DocumentChooserBlock(required=True)),
@@ -72,6 +69,14 @@ class DocumentBlock(blocks.StructBlock):
         label='Languages',
         required=True,
     )
+
+
+class DocumentBlock(blocks.StructBlock):
+    image = ImageChooserBlock(required=False)
+    image_alt = blocks.CharBlock(required=True, help_text=_(ALT_IMAGE))
+    title = blocks.CharBlock(required=True)
+    description = blocks.RichTextBlock(required=True)
+    language = LanguagesBlock(label='Languages', required=True)
     year_tags = blocks.ChoiceBlock(
         choices=get_year_tag_choices,
         label='Year Tags',
