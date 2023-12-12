@@ -1,0 +1,9 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+{% if self.image_file %}
+    <div style="display: flex; justify-content: left;">
+        {% image self.image_file width-400 as img %}
+        <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+    </div>
+{% endif %}
+
