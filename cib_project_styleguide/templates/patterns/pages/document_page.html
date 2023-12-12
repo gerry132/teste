@@ -38,9 +38,9 @@
                             {{ document.description|richtext }}
                         </div>
                         <div class="document-language">
-                            <div style="text-align:unset;" class="basefeature-button__text">Available languages: </div>
+                            <div style="text-align:unset;" class="basefeature-button__text">{{ document.language.title }}</div>
                             <div class="document-language-links">
-                            {% for link in document.language %}
+                            {% for link in document.language.languages %}
                                 <a class="home-links" href="{{ link.document.url }}" target="_blank">{{ link.heading }}</a>
                             {% endfor %}
                             </div>

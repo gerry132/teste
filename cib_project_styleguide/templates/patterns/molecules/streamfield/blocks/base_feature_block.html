@@ -24,7 +24,7 @@
         {% endif %}
     {% endfor %}
         {% if value.button %}
-    <div class="basefeature-button">
+    <div class="{% if value.colour_palette == 'base-feature--blue' %}base-feature--blue__button{% else %}base-feature--green__button{% endif %} basefeature-button">
             {% for button in value.button %}
                    {% if button.value.page %}
                     <a href="{% pageurl button.value.page %}" class="basefeature-button__text">{{button.value.button_text}} </a>

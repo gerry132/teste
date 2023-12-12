@@ -105,7 +105,7 @@ class HeroPage(BasePage):
             ("callout_cards", CallOutBlock())
         ],
         blank=True,
-        max_num=3
+        max_num=1
     )
 
     class Meta:

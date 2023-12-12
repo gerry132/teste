@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags i18n %}
 
 <div alt="{{page.alt_text}}" class="hero hero--background-image background-image{% if classes %} {{ classes }}{% endif %}">
-    <div class="row wrapper--large hero-container ">
+    <div class="wrapper--large hero-container ">
     {% for feature in page.hero_double_feature %}
         <div class="hero__contents">{{ feature }}</div>
     {% endfor %}
