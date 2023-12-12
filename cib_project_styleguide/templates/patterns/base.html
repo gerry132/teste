@@ -59,6 +59,10 @@
             {% endblock %}
 
         <main class="wrapper wrapper--main main" id="main-content">
+            {% block breadcrumbs %}
+                {% include "patterns/organisms/breadcrumbs.html" %}
+            {% endblock %}
+
             {% block content %}
                 {{ pattern_library_rendered_pattern }}
             {% endblock %}

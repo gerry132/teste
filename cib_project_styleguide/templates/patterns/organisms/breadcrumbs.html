@@ -1,0 +1,19 @@
+{% load static wagtailcore_tags wagtailimages_tags navigation_tags i18n class_name%}
+
+{% get_current_language as language_code %}
+
+<nav aria-label="breadcrumb">
+
+    {% if page.breadcrumbs and page|classname != "HomePage" %}
+      <ol class="breadcrumb">
+          {% for item in page.breadcrumbs %}
+            {% if forloop.last %}
+              {{ item.title }}
+            {% else %}
+            <li class="breadcrumb-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
+              <span class="breadcrumbSeparator">&gt;</span>
+            {% endif %}
+          {% endfor %}
+      </ol>
+    {% endif %}
+</nav>

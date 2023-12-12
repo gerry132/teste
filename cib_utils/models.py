@@ -2,6 +2,8 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.decorators import method_decorator
 from django.db import models
+from django.utils.functional import cached_property
+
 from modelcluster.models import ClusterableModel
 
 from wagtail.admin.panels import (
@@ -72,6 +74,20 @@ class BasePage(Page):
         ),
     ]
     )
+
+    @cached_property
+    def breadcrumbs(self):
+        items = []
+        # use the request set in get_context() where available, allowing cached
+        # site root data to be used for url generation
+        request = getattr(self, "request", None)
+        for ancestor in self.get_ancestors().filter(depth__gt=1).specific(defer=True):
+            items.append({
+                "url": ancestor.get_url(request),
+                "title": ancestor.title,
+                })
+        items.append({"url": self.get_url(request), "title": self.title})
+        return items
 
 
 class HeroPage(BasePage):
