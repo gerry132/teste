@@ -1,32 +1,19 @@
-{% load i18n %}
-{% if is_search %}
-    <div class="breadcrumbs">
-          <strong>{% trans "You are here:" %}</strong>
-          {% for item in search_breadcrumbs %}
-            {% if forloop.last %}
-                {% ifequal LANGUAGE_CODE "ga" %}
-                    {{ 'Torthaí Cuardaigh' }}
-                {% else %}
-                    {{ item }}
-                {% endifequal %}
-            {% else %}
-              <a href="/{{LANGUAGE_CODE}}/">{{ item }}</a>
-              <span class="breadcrumbSeparator">&gt;</span>
-            {% endif %}
-          {% endfor %}
-      </div>
-{% else %}
-    {% if page.breadcrumbs and not page.is_homepage %}
-      <div class="breadcrumbs">
-          <strong>{% trans "You are here:" %}</strong>
+{% load static wagtailcore_tags wagtailimages_tags navigation_tags i18n class_name%}
+
+{% get_current_language as language_code %}
+
+<nav aria-label="breadcrumb">
+
+    {% if page.breadcrumbs and page|classname != "HomePage" %}
+      <ol class="breadcrumb">
           {% for item in page.breadcrumbs %}
             {% if forloop.last %}
               {{ item.title }}
             {% else %}
-              <a href="{{ item.url }}">{{ item.title }}</a>
+            <li class="breadcrumb-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
               <span class="breadcrumbSeparator">&gt;</span>
             {% endif %}
           {% endfor %}
-      </div>
+      </ol>
     {% endif %}
-{% endif %}
+</nav>
