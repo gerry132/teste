@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "cib_navigation",
     "cib_content_page",
     "cib_news_page",
+    "cib_news_content_page",
     #
     "wagtail_localize",
     "wagtail_localize.locales",
