@@ -1417,3 +1417,22 @@ tbody tr:nth-child(even) {
 }
 
 /* End of the News Cards */
+
+/* Breadcrumbs */
+.breadcrumbs {
+	margin-bottom: 40px;
+	margin-top: 5px;
+	font-size: 90%;
+	line-height: 120%;
+}
+
+.breadcrumbs a {
+	outline: 3px solid transparent;
+	text-decoration: underline;
+	color: #005b9e;
+}
+
+.breadcrumbs a:hover, .breadcrumbs a:focus {
+	outline: 3px solid #C27E00;
+}
+/* End of Breadcrumbs */

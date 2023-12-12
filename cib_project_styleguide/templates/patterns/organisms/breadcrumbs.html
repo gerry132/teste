@@ -1,0 +1,32 @@
+{% load i18n %}
+{% if is_search %}
+    <div class="breadcrumbs">
+          <strong>{% trans "You are here:" %}</strong>
+          {% for item in search_breadcrumbs %}
+            {% if forloop.last %}
+                {% ifequal LANGUAGE_CODE "ga" %}
+                    {{ 'Torthaí Cuardaigh' }}
+                {% else %}
+                    {{ item }}
+                {% endifequal %}
+            {% else %}
+              <a href="/{{LANGUAGE_CODE}}/">{{ item }}</a>
+              <span class="breadcrumbSeparator">&gt;</span>
+            {% endif %}
+          {% endfor %}
+      </div>
+{% else %}
+    {% if page.breadcrumbs and not page.is_homepage %}
+      <div class="breadcrumbs">
+          <strong>{% trans "You are here:" %}</strong>
+          {% for item in page.breadcrumbs %}
+            {% if forloop.last %}
+              {{ item.title }}
+            {% else %}
+              <a href="{{ item.url }}">{{ item.title }}</a>
+              <span class="breadcrumbSeparator">&gt;</span>
+            {% endif %}
+          {% endfor %}
+      </div>
+    {% endif %}
+{% endif %}

@@ -17,6 +17,10 @@
     {% include "patterns/organisms/header/header.html" with page=page %}
 {% endblock header %}
 
+{% block breadcrumbs %}
+    {% include "patterns/organisms/page_breadcrumbs.html" %}
+{% endblock %}
+
 {% block footer %}
     {% include "patterns/organisms/footer/footer.html" with page=page %}
 {% endblock footer %}

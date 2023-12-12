@@ -107,4 +107,5 @@ class ContentPage(BasePage):
         context.update(
             section_headings=self.get_section_headings(),
         )
+        context['is_homepage'] = False
         return context
