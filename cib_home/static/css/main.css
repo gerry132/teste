@@ -1334,8 +1334,9 @@ tbody tr:nth-child(even) {
 }
 
 .card-image {
-  width: 300px;
+  width: 100%;
   height: 199px;
+  border-radius: 5px 5px 0 0;
 }
 
 .card-content-box{
@@ -1393,7 +1394,21 @@ tbody tr:nth-child(even) {
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
-  color: #005F81;
+  color: #005F81 ;
+  border-bottom: 1px solid #005F81 ;
+}
+.card .home-links:hover {
+  text-decoration-line: none;
+  border-bottom: 3px solid #005F81 ;
+}
+.card .home-links:link,
+.card .home-links:visited {
+  color: #005F81 ;
+}
+
+.card .home-links:active,
+.card .home-links:focus {
+  color: #005F81 ;
 }
 
 .card-tags {
