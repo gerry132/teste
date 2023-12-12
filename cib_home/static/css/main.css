@@ -467,7 +467,10 @@ textarea { resize: none; }
 .home-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  column-gap: 20px;
+}
+.callout__flex{
+    row-gap: 40px;
 }
 
 .info-box-1 {
@@ -883,7 +886,7 @@ display: flex;
         line-height: 25px;
         margin-top: 10px;
     }
-@media (min-width: 560px) {
+@media (min-width: 1025px) {
 .hero {
   position: relative;
   background-position: center;
@@ -892,7 +895,7 @@ display: flex;
   width: 100%;
 }
 }
-@media (max-width: 560px) {
+@media (max-width: 1025px) {
 .hero {
   background-repeat: no-repeat;
   width: 100%;
