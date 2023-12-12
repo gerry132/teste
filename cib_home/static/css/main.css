@@ -1322,8 +1322,9 @@ tbody tr:nth-child(even) {
 .card {
   box-sizing: border-box;
   width: 300px;
-  height: 520px;
+  height: 580px;
   border: 1px solid #ccc;
+  border-radius: 5px;
   background-color: #F5F5F5;
   margin: 20px;
   font-family: 'lato', sans-serif;
@@ -1336,7 +1337,15 @@ tbody tr:nth-child(even) {
 }
 
 .card-content-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
+  height: 100%;
+}
+
+.card-text-content {
+  flex-grow: 1;
 }
 
 .card-title {
@@ -1374,10 +1383,33 @@ tbody tr:nth-child(even) {
   overflow: hidden;
 }
 
-.card a {
+.card .home-links {
   position: absolute;
-  bottom: 20px;
+  bottom: 70px;
   left: 20px;
+  font-size: 16px;
+  font-family: 'Lato';
+  font-weight: 400;
+  line-height: 20px;
+  color: #005F81;
+}
+
+.card-tags {
+  text-align: center;
+  padding: 10px 0;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #EEEFEF;
+  color: #333;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 15px;
+  text-decoration: none;
   font-size: 16px;
   font-family: 'Lato';
   font-weight: 400;
