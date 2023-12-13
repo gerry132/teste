@@ -63,7 +63,6 @@ class NewsContentPage(ContentPage):
             ],
             heading="Tags"
         ),
-        FieldPanel("body"),
 
     ]
 
