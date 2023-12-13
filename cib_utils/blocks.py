@@ -133,6 +133,12 @@ class BaseFeatureBlock(blocks.StructBlock):
     Base feature block.
     """
     icon = ImageChooserBlock(required=False)
+    icon_alt = blocks.CharBlock(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Icon Alt text"),
+        help_text=_("The alt text shown for accessibility: https://axesslab.com/alt-texts/")
+    )
     heading = blocks.CharBlock(
         required=False,
         help_text="Text to display as feature heading",
