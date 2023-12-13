@@ -1426,8 +1426,13 @@ tbody tr:nth-child(even) {
   border-radius: 0;
   width: 100%;
   height: 40px;
-  padding-left:120px;
+  padding-left:100px;
+  padding-top: 4px;
 
+}
+
+.breadcrumbSeparator{
+  font-size: 19px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -1446,11 +1451,22 @@ tbody tr:nth-child(even) {
   line-height: 20px;
 }
 
+.chevron{
+  margin-top: 20px;
+}
 
-@media (max-width: 992px) {
+@media (max-width: 997px) {
   .breadcrumb {
-    padding-left:40px;
+    padding-left:110px;
   }
 }
+@media (max-width: 500px) {
+  .breadcrumb {
+    padding-left:30px;
+    height: 60px;
+  }
+}
+
+
 
 /* End of Breadcrumbs */
