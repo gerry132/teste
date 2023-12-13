@@ -3,7 +3,7 @@
 {% image value.icon fill-55x55 as img %}
 <div class="base-feature--default {{ value.colour_palette }}">
                 <div class="basefeature-header">
-                    <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{value.icon_alt}}"></div>
                     <div class="{% if value.colour_palette == 'base-feature--blue' %}base-feature--blue__heading{% else %}base-feature--green__heading{% endif %}">
                         {{value.heading}}
                     </div>
@@ -18,7 +18,7 @@
     <div class="basefeature--green__links">
             {% for block in card.value %}
                 <a href="{% if block.page %}{{ block.page.url }}{% else %}{{ block.url }}{% endif %}" class="basefeature--green-link">
-                    {% if block.title %}{{ block.title }}{% else %}{{ block.page }}{% endif %}</a>
+                    <span>{% if block.title %}{{ block.title }}{% else %}{{ block.page }}{% endif %}</span></a>
             {% endfor %}
     </div>
         {% endif %}
