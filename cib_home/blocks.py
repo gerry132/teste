@@ -2,6 +2,7 @@ from django import forms
 from django.forms import widgets
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from django.utils.translation import gettext_lazy as _
 
 from cib_navigation.models import ALT_HELP_TEXT
 
@@ -27,6 +28,8 @@ class CallOutBlock(blocks.StructBlock):
             [
                 ("icon", ImageChooserBlock(required=False,
                                            help_text="The Icon size should be 55x55 pixels")),
+                ("icon_alt", blocks.CharBlock(required=True, help_text=_("The alt text shown for accessibility: "
+                                                                         "https://axesslab.com/alt-texts/"))),
                 ("title", blocks.CharBlock(required=True)),
                 ("text", blocks.RichTextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
@@ -51,6 +54,8 @@ class InfoPanelBlock(blocks.StructBlock):
             [
                 ("icon", ImageChooserBlock(required=False,
                                            help_text="The Icon size should be 60x60 pixels")),
+                ("icon_alt", blocks.CharBlock(required=True, help_text=_("The alt text shown for accessibility: "
+                                                                         "https://axesslab.com/alt-texts/"))),
                 ("title", blocks.CharBlock(required=True)),
                 ("text", blocks.RichTextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
@@ -73,6 +78,8 @@ class JobsVacanciesBlock(blocks.StructBlock):
             [
                 ("icon", ImageChooserBlock(required=False,
                                            help_text="The Icon size should be 60x60 pixels")),
+                ("icon_alt", blocks.CharBlock(required=True, help_text=_("The alt text shown for accessibility: "
+                                                                         "https://axesslab.com/alt-texts/"))),
                 ("title", blocks.CharBlock(required=True)),
                 ("text", blocks.RichTextBlock(required=True)),
                 ("button_page", blocks.PageChooserBlock(required=False,
