@@ -5,7 +5,7 @@
             {% image card.icon fill-60x60 as img %}
             <div class="info-box-1">
                 <div class="icon-holder">
-                    <img src="{{img.url}}" alt="{{img.text}} class="info-icon"">
+                    <img src="{{img.url}}" alt="{{card.icon_alt}}" class="info-icon">
                 </div>
                 <h3>{{card.title}}</h3>
                 {{card.text|richtext}}
