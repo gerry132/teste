@@ -10,10 +10,10 @@
         {% elif self.size == "400" %}
 
             {% image self.image width-400 as img %}
-            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+            <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
         {% else %}
             {% image self.image width-800 as img %}
-            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+            <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
         {% endif %}
 
         {% if self.caption %}

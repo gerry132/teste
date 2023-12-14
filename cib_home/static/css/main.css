@@ -1174,6 +1174,12 @@ display: flex;
   right: 35px;
 
 }
+
+.content-page-body{
+  margin-bottom: 40px;
+
+}
+
 .content-page-header{
   margin: 40px 0;
   font-family: Lato;
@@ -1286,6 +1292,21 @@ display: flex;
   font-size: 16px;
   line-height: 20px;
   color: #0B0C0C;
+}
+
+.custom-image{
+  max-width: 100%;
+}
+
+@media (max-width: 992px) {
+  .content-page-body{
+    margin: 40px 20px;
+  }
+  .content-image,
+  .content-custom-image {
+    margin: 40px 20px !important;
+    width: 90% !important;
+  }
 }
 
 /* End of Content Page */
