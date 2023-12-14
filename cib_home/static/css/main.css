@@ -1525,3 +1525,16 @@ tbody tr:nth-child(even) {
 
 
 /* End of Breadcrumbs */
+
+/* News Content Page */
+
+.timedate {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25px;
+  color: #000000;
+  margin-bottom: 40px;
+}
+/* End of News Content Page */

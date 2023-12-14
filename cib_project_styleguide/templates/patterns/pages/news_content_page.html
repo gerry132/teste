@@ -10,9 +10,20 @@
             {{ page.title }}
         </div>
 
+        <p class="timedate">
+            {{ page.last_published_date|date:"j F Y" }}
+            {{ page.last_published_custom|date:"j F Y" }}
+        </p>
+
+        {%if page.banner_image and page.show_on_page%}
+            <div class="content-image">
+                {% include_block page.banner_image %}
+            </div>
+        {% endif %}
         {% include "patterns/blocks/toc.html"  %}
 
         {% for block in page.body %}
+
 
             {% if block.block_type == 'image' %}
                 {% image block.value width-640 as himg%}
