@@ -1477,6 +1477,11 @@ tbody tr:nth-child(even) {
 
 /* Breadcrumbs */
 
+.breadcrumb-nav{
+    background-color: #F5F5F5;
+    padding: 10px 0;
+}
+
 .breadcrumb {
 
   border-radius: 0;
