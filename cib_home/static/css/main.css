@@ -1272,6 +1272,22 @@ display: flex;
   line-height: 25px;
   color: #000000;
 }
+
+.base_wheretoapply_title{
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.sharedaddress{
+  margin: 40px 0;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0B0C0C;
+}
+
 /* End of Content Page */
 
 /*table styles */

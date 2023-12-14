@@ -3,15 +3,14 @@
 {% load address_lang_tag %}
 
 {% if  value.heading%}
-    <h1 class="topic base_wheretoapply_title">{{ value.heading }}</h1>
+    <div class="topic base_wheretoapply_title">{{ value.heading }}</div>
 {% endif %}
-{% comment %} {% include "/patterns/blocks/address.html" with obj=value.address %} {% endcomment %}
 
 {% with obj=value.address %}
 
     {% if LANGUAGE_CODE == "ga" %}
         <div class="sharedaddress">
-            <h3>{{ obj.orgname_ga }}</h3>
+            <div class="topic base_wheretoapply_title">{{ obj.orgname_ga }}</div>
 
             {% if obj.dept_ga %}
             <div class='field_dept address_field'>{{ obj.dept_ga }}</div>
@@ -56,10 +55,10 @@
         </div>
     {% else %}
         <div class="sharedaddress">
-            <h3>{{ obj.orgname }}</h3>
+            <div class="base_wheretoapply_title">{{ obj.orgname }}</div>
 
             {% if obj.dept %}
-            <div class='field_dept address_field'>{{ obj.dept }}</div>
+            {{ obj.dept }}
             {% endif %}
 
             {% if obj.address %}
