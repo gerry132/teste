@@ -1524,13 +1524,13 @@ tbody tr:nth-child(even) {
   border-radius: 0;
   width: 100%;
   max-width: 1290px;
- padding: 0 20px;
- margin: 0 auto;
+  padding: 0 20px;
+  margin: 0 auto;
 
 }
 
 .breadcrumbSeparator{
-  font-size: 19px;
+  margin: auto 5px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -1552,6 +1552,16 @@ tbody tr:nth-child(even) {
 .chevron{
   margin-top: 20px;
 }
+
+@media (max-width: 999px) {
+  .breadcrumb {
+    padding-left: 30px;
+  }
+
+@media (max-width: 343px) {
+  .breadcrumb {
+    padding-left:20px;
+  }
 
 /* End of Breadcrumbs */
 
