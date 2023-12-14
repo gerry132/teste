@@ -44,6 +44,15 @@ class BasePage(Page):
         verbose_name=_("publication_log")
     )
 
+    last_published_custom = models.DateField(
+        verbose_name=_("last publish date (custom)"),
+        help_text=_(
+            "Can be used to override the Wagtail-managed 'last published at' datetime, making content appear older (or newer) than it really is."  # noqa
+        ),
+        blank=True,
+        null=True,
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("publication_log"),
     ]
@@ -72,6 +81,7 @@ class BasePage(Page):
             ],
             "Scheduled publishing"
         ),
+        FieldPanel('last_published_custom'),
     ]
     )
 
