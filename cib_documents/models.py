@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 from taggit.models import TagBase
 from django.db import models
+from wagtail.admin.panels import FieldPanel
 from wagtail.documents.models import AbstractDocument
 from wagtail.documents.models import Document as WagtailDocument
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import StreamFieldPanel
 
 from wagtail.core import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
+
+from cib_utils.blocks import SelectComponentBlock
 from cib_utils.models import BasePage
 
 from cib_navigation.models import ALT_HELP_TEXT
@@ -91,12 +93,20 @@ class DocumentBlock(blocks.StructBlock):
 
 class DocumentPage(BasePage):
     template = "patterns/pages/document_page.html"
+    publication_select_component = StreamField([
+        ('publication_select_component', SelectComponentBlock()),
+    ], blank=False, max_num=1)
+    year_select_component = StreamField([
+        ('year_select_component', SelectComponentBlock()),
+    ], blank=False, max_num=1)
     body = StreamField([
         ('document', DocumentBlock()),
     ], blank=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('publication_select_component'),
+        FieldPanel('year_select_component'),
+        FieldPanel('body'),
     ]
 
     def get_context(self, request, *args, **kwargs):
