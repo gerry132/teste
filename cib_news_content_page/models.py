@@ -26,13 +26,13 @@ class NewsTag(TagBase):
 
 class TaggedNews(ItemBase):
     tag = models.ForeignKey(
-        NewsTag, related_name="tagged_blogs", on_delete=models.CASCADE,
+        NewsTag, related_name="tagged_news", on_delete=models.CASCADE,
         help_text="news tags"
     )
     content_object = ParentalKey(
         to='NewsContentPage',
         on_delete=models.CASCADE,
-        related_name='tagged_items'
+        related_name='tagged_news_items'
     )
 
 
@@ -52,14 +52,14 @@ class NewsContentPage(ContentPage):
 
     show_on_page = models.BooleanField(blank=False, null=True)
 
-    whatsnew_tags = ParentalManyToManyField("NewsTag", blank=True)
+    news_tags = ParentalManyToManyField("NewsTag", blank=True)
 
     content_panels = ContentPage.content_panels + [
         FieldPanel("banner_image"),
         FieldPanel("show_on_page", widget=forms.CheckboxInput),
         MultiFieldPanel(
             [
-                FieldPanel("whatsnew_tags", widget=forms.CheckboxSelectMultiple)
+                FieldPanel("news_tags", widget=forms.CheckboxSelectMultiple)
             ],
             heading="Tags"
         ),
@@ -69,4 +69,4 @@ class NewsContentPage(ContentPage):
     @property
     def current_tag(self):
         return NewsTag.objects.filter(
-                whatsnewcontentpage__id=self.id).first()
+                NewsContentPage__id=self.id).first()
