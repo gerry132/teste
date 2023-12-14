@@ -6,49 +6,51 @@
 {% block content %}
 
     <div class="wrapper wrapper--small wrapper--padding ">
-        <div class="content-page-header">
-            {{ page.title }}
-        </div>
+        <div class="content-page-body">
 
-        <p class="timedate">
-            {{ page.last_published_custom|date:"j F Y" }}
-        </p>
-
-        {%if page.banner_image and page.show_on_page%}
-            <div class="content-image">
-                {% include_block page.banner_image %}
+            <div class="content-page-header">
+                {{ page.title }}
             </div>
-        {% endif %}
-        {% include "patterns/blocks/toc.html"  %}
 
-        {% for block in page.body %}
+            <p class="timedate">
+                {{ page.last_published_custom|date:"j F Y" }}
+            </p>
 
 
-            {% if block.block_type == 'image' %}
-                {% image block.value width-640 as himg%}
-                <img src="{{ himg.url }}" width="{{ himg.width }}"
-                height="{{ himg.height }}" alt="{{ himg.alt }}" class="content-image" >
-            {% elif block.block_type == 'video'%}
-                <div class="block-{{ block.block_type }}-{{ block.value.float }} block-{{ block.value.size }}">
-                    {% include_block block %}
+                {%if page.banner_image and page.show_on_page%}
+                    <div class="content-image">
+                        {% include_block page.banner_image %}
+                    </div>
+                {% endif %}
+                {% include "patterns/blocks/toc.html"  %}
 
-                </div>
-            {% elif block.block_type == 'embed_html_widget'%}
-                <div class="content-custom-image">
-                    {{block.value|safe}}
-                </div>
-            {% elif block.block_type == 'custom_image'%}
-                {% include_block block %}
-            {% elif block.block_type == 'rich_text'%}
-                <div class="content_richtext">
-                    {% include_block block %}
-                </div>
-            {% else %}
-                <section class="block-{{ block.block_type }}">
-                    {% include_block block %}
-                </section>
-            {% endif %}
-        {% endfor %}
+                {% for block in page.body %}
+                    {% if block.block_type == 'image' %}
+                        {% image block.value width-640 as himg%}
+                        <img src="{{ himg.url }}" width="{{ himg.width }}"
+                        height="{{ himg.height }}" alt="{{ himg.alt }}" class="content-image" >
+                    {% elif block.block_type == 'video'%}
+                        <div class="block-{{ block.block_type }}-{{ block.value.float }} block-{{ block.value.size }}">
+                            {% include_block block %}
+
+                        </div>
+                    {% elif block.block_type == 'embed_html_widget'%}
+                        <div class="content-custom-image">
+                            {{block.value|safe}}
+                        </div>
+                    {% elif block.block_type == 'custom_image'%}
+                        {% include_block block %}
+                    {% elif block.block_type == 'rich_text'%}
+                        <div class="content_richtext">
+                            {% include_block block %}
+                        </div>
+                    {% else %}
+                        <section class="block-{{ block.block_type }}">
+                            {% include_block block %}
+                        </section>
+                    {% endif %}
+                {% endfor %}
+        </div>
     </div>
 
 
