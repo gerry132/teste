@@ -7,22 +7,28 @@
     <form id="filter-form" method="get" action="">
         <div style="margin-bottom: 40px;" class="document-language-links">
             <div>
-            <label class="document__filter-label newslettersignupcta__body" for="document_type">Filter by Document Type</label>
-            <select class="document__filter-select newslettersignupcta__body" id="document_type" name="document_type">
-                <option value="" {% if not selected_document_type %}selected{% endif %}>Document Type</option>
-                {% for tag in all_document_type_tags %}
-                    <option value="{{ tag.slug }}" {% if selected_document_type == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                {% for publication_filter in page.publication_select_component %}
+                    <label class="document__filter-label newslettersignupcta__body" for="document_type">{{ publication_filter.value.select_title }}</label>
+                    <div class="document__filter-hint">{{ publication_filter.value.select_hint_text }}</div>
+                    <select class="document__filter-select newslettersignupcta__body" id="document_type" name="document_type">
+                        <option value="" {% if not selected_document_type %}selected{% endif %}>{{ publication_filter.value.select_default_option_value }}</option>
+                        {% for tag in all_document_type_tags %}
+                            <option value="{{ tag.slug }}" {% if selected_document_type == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
                 {% endfor %}
-            </select>
             </div>
             <div>
-                <label class="document__filter-label newslettersignupcta__body" for="year">Filter by Year</label>
+                {% for year_filter in page.year_select_component %}
+                <label class="document__filter-label newslettersignupcta__body" for="year">{{ year_filter.value.select_title }}</label>
+                <div class="document__filter-hint">{{ year_filter.value.select_hint_text }}</div>
                 <select class="document__filter-select newslettersignupcta__body" id="year" name="year">
-                    <option value="" {% if not selected_year %}selected{% endif %}>Select Year</option>
+                    <option value="" {% if not selected_year %}selected{% endif %}>{{ year_filter.value.select_default_option_value }}</option>
                     {% for tag in all_year_tags %}
                         <option value="{{ tag.slug }}" {% if selected_year == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
                     {% endfor %}
                 </select>
+                {% endfor %}
             </div>
         </div>
 
