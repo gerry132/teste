@@ -1477,13 +1477,18 @@ tbody tr:nth-child(even) {
 
 /* Breadcrumbs */
 
+.breadcrumb-nav{
+    background-color: #F5F5F5;
+    padding: 10px 0;
+}
+
 .breadcrumb {
 
-  background-color: #F5F5F5;
   border-radius: 0;
   width: 100%;
-  padding-left:100px;
-  padding-top: 4px;
+  max-width: 1290px;
+ padding: 0 20px;
+ margin: 0 auto;
 
 }
 
@@ -1510,18 +1515,5 @@ tbody tr:nth-child(even) {
 .chevron{
   margin-top: 20px;
 }
-
-@media (max-width: 997px) {
-  .breadcrumb {
-    padding-left:110px;
-  }
-}
-@media (max-width: 500px) {
-  .breadcrumb {
-    padding-left:30px;
-  }
-}
-
-
 
 /* End of Breadcrumbs */
