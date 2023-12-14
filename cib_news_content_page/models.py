@@ -5,8 +5,6 @@ from cib_content_page.blocks.custom_image import AltImageBlock
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
-from modelcluster.contrib.taggit import ClusterTaggableManager
-
 from taggit.models import TagBase, ItemBase
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
