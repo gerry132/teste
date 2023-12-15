@@ -14,6 +14,7 @@ from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 from cib_utils.blocks import SelectComponentBlock
 from cib_utils.models import BasePage
+from django.utils.translation import get_language
 
 from cib_navigation.models import ALT_HELP_TEXT
 
@@ -43,6 +44,7 @@ class YearTag(Tag):
 
 
 class DocumentTypeTag(Tag):
+    locale = models.CharField(max_length=10, default='en')  # Default to English
     description = models.CharField(
         verbose_name=pgettext_lazy("A tag description", "description"), max_length=255, default='', unique=False
     )
@@ -112,8 +114,11 @@ class DocumentPage(BasePage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
+        current_language = get_language()
+
+        # Filter YearTags and DocumentTypeTags based on the current language
         all_year_tags = YearTag.objects.all()
-        all_document_type_tags = DocumentTypeTag.objects.all()
+        all_document_type_tags = DocumentTypeTag.objects.filter(locale=current_language)
 
         context['all_year_tags'] = all_year_tags
         context['all_document_type_tags'] = all_document_type_tags
