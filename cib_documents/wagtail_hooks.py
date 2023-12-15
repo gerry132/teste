@@ -1,7 +1,6 @@
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 
 from .models import YearTag, DocumentTypeTag
-from django.utils.translation import get_language
 
 
 class YearTagAdmin(ModelAdmin):
