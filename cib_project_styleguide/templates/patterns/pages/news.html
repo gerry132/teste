@@ -20,7 +20,7 @@
               </div>
               <div class="card-content-box">
                 <div class="card-text-content">
-                  <div class="card-date">{{ child.last_published_date|date:"j F Y" }}</div>
+                  <div class="card-date">{{ child.last_published_custom|date:"j F Y" }}</div>
                   <div class="card-title">{{child.title}}</div>
                   {% for lead in child.lead_fields %}
                     {% if lead.block_type == 'lead_text' %}
@@ -28,10 +28,14 @@
                     {% endif %}
                   {% endfor %}
                 </div>
-                <a href="" class="home-links">Read More</a>
+                <a href="{% pageurl child %}" class="home-links">Read More</a>
                 <div class="card-tags">
-                  <a href="#" class="tag">Tag 1</a>
-                  <a href="#" class="tag">Tag 2</a>
+                  {% if child.current_tags %}
+                    {% for tag in child.current_tags %}
+                      <a href="#" class="tag">{{tag.name}}</a>
+
+                    {% endfor %}
+                  {% endif %}
                 </div>
               </div>
             </div>

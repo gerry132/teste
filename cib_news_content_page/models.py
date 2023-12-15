@@ -68,6 +68,6 @@ class NewsContentPage(ContentPage):
     ]
 
     @property
-    def current_tag(self):
+    def current_tags(self):
         return NewsTag.objects.filter(
-                NewsContentPage__id=self.id).first()
+                newscontentpage__id=self.id)
