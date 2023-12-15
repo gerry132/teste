@@ -1,28 +1,39 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
+{% load util_tags %}
 
 <div class="home-container">
-    {% for card in self.cards %}
-    {% image card.icon fill-55x55 as img %}
-            <div class="callout callout-left" style="background-color: {{card.Job_vacancies_Background_color}};">
+    {% image value.job_vacancies.icon fill-55x55 as img %}
+            <div class="callout callout-left" style="background-color: {{value.job_vacancies.vacancies_background_color}};">
                 <div class="info-header">
-                    <div class="info-icon"><img src="{{img.url}}" alt="{{card.icon_alt}}"></div>
-                    <h3>{{card.title}}</h3>
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{value.job_vacancies.icon_alt}}"></div>
+                    <h3 class="job_vancancy_block_title"> {{ value.job_vacancies.vacancy_title }}</h3>
                 </div>
-                {{card.text|richtext}}
-                {% if card.button_page %}
-                    <a style="align-self: flex-start; margin-top: auto;" href="{% pageurl card.button_page %}" class="govie-footer__link">{{card.button_text}}  <i class="fas fa-arrow-right"></i></a>
-                {% elif card.button_url %}
-                    <a style="align-self: flex-start; margin-top: auto;" href="{{ card.button_url }}" class="govie-footer__link">{{ card.button_text }}  <i class="fas fa-arrow-right"></i></a>
+                <div class="job_vancancy_title">
+                    {{ value.job_vacancies.vacancy_text }}
+                </div>
+                {% if value.job_vacancies.vacancy_button_page %}
+                    <a style="align-self: flex-start; " href="{% pageurl value.job_vacancies.vacancy_button_page %}" class="govie-footer__link">{{value.job_vacancies.vacancies_button_text}}  <i class="fas fa-arrow-right"></i></a>
+                {% elif value.job_vacancies.vacancy_button_url %}
+                    <a style="align-self: flex-start; " href="{{ value.job_vacancies.vacancy_button_url }}" class="govie-footer__link">{{ value.job_vacancies.vacancies_button_text }}  <i class="fas fa-arrow-right"></i></a>
                 {% endif %}
 
             </div>
-            <div class="callout callout-right" style="background-color: {{card.news_Background_color}};">
-                <div class="callout-icon">
-
+        <div class="callout callout-right" style="background-color: {{value.news_card.news_Background_color}};">
+                <div class="info-header">
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{value.news_card.icon_alt}}"></div>
+                    <h3 class="latest_news__block_title"> {{ value.news_card.block_title }}</h3>
                 </div>
-                <h3>Latest News</h3>
-                <p>CIB Welcome President Michael D Higgins and Sabina Higgins at the National Ploughing Championships.</p>
-                <a style="align-self: flex-start; margin-top: auto;" href="#" class="govie-footer__link">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-    {% endfor %}
+             {% if latest_news %}
+                {% for news_page in latest_news %}
+                    <div style="margin-left: 2px; border-left: 3px solid #FFF; padding-left: 20px;">
+                        <div class="latest_news__title"> {{ news_page.title }}</div>
+                        <div class="latest_news__richtext">
+                            {{ news_page.body|get_first_richtext|richtext }}
+                        </div>
+                    </div>
+                    <a style="align-self: flex-start; " href="{{ news_page.url }}" class="latest_news__button">{{ value.news_card.news_button_text }}  <i class="fas fa-arrow-right"></i></a>
+                {% endfor %}
+            {% endif %}
   </div>
+</div>
+
