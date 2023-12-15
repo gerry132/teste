@@ -7,24 +7,36 @@
 
 
     <div class="col-sm-6 col-md-4">
-        <div class="card">
-            {% image sample_image fill-300x200 as img%}
+      {% if child_with_tags %}
+        {% for child in child_with_tags %}
+          <div class="card">
 
-            <img src="{{ img.url }}" width="{{ img.width }}"
-            height="{{ img.height }}" alt="{{ img.alt }}" class="card-image">
-            <div class="card-content-box">
-              <div class="card-text-content">
-                <div class="card-date">24th April 2023</div>
-                <div class="card-title">CIB Welcome President Michael D Higgins and Sabina Higgins at the National Ploughing Championships, extra text for testing overflow</div>
-                <div class="card-content">The Citizens Information Board (CIB) was delighted to welcome President Michael D Higgins and Sabina Higgins at, extra text for testing overflow</div>
+              <div class="card-image">
+                {% for lead in child.lead_fields %}
+                  {% if lead.block_type == 'banner_image' %}
+                    {{lead}}
+                  {% endif %}
+                {% endfor %}
               </div>
-              <a href="" class="home-links">Read More</a>
-              <div class="card-tags">
-                <a href="#" class="tag">Tag 1</a>
-                <a href="#" class="tag">Tag 2</a>
+              <div class="card-content-box">
+                <div class="card-text-content">
+                  <div class="card-date">{{ child.last_published_date|date:"j F Y" }}</div>
+                  <div class="card-title">{{child.title}}</div>
+                  {% for lead in child.lead_fields %}
+                    {% if lead.block_type == 'lead_text' %}
+                      <div class="card-content">{{lead}}</div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <a href="" class="home-links">Read More</a>
+                <div class="card-tags">
+                  <a href="#" class="tag">Tag 1</a>
+                  <a href="#" class="tag">Tag 2</a>
+                </div>
               </div>
             </div>
-          </div>
+        {% endfor %}
+      {% endif %}
     </div>
 
 
