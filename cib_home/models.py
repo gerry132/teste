@@ -12,7 +12,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from cib_news_content_page.models import NewsContentPage
 from cib_utils.models import HeroPage
 
-from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock, JobsVacanciesAndLatestNewsBlock
+from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesAndLatestNewsBlock
 
 IMAGE_MODEL = get_image_model_string()
 
