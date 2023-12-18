@@ -49,7 +49,7 @@
                 <div class="card-image">
                   {% for lead in child.lead_fields %}
                     {% if lead.block_type == 'banner_image' %}
-                      {{lead}}
+                      <div class="card-content">{{lead}}</div>
                     {% endif %}
                   {% endfor %}
                 </div>

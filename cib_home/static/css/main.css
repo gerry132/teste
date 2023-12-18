@@ -1392,11 +1392,6 @@ tbody tr:nth-child(even) {
     margin-bottom: 10px;
 }
 /* News Cards */
-.custom-news-card{
-  padding-left: 17.5px !important;
-  padding-right: 17.5pxpx !important;
-  margin-right: 0;
-}
 
 .custom-card-row{
   padding-right: 15px;
@@ -1520,7 +1515,7 @@ tbody tr:nth-child(even) {
 }
 
 .custom-news-card {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .custom-news-card label {
