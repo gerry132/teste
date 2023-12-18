@@ -46,7 +46,10 @@ class NewsContentPage(ContentPage):
             ("lead_text", blocks.RichTextBlock(required=True, features=[
                 "h2", "h3", "h4", "bold", "italic", "link", "document-link"
             ]))
-        ], max_num=2),
+        ], block_counts={
+            'banner_image': {'max_num': 1, 'min_num': 0},
+            'lead_text': {'max_num': 1, 'min_num': 1},
+        },),
         use_json_field=True,
         null=True,
         blank=False)

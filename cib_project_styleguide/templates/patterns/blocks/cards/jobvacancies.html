@@ -18,9 +18,10 @@
                 {% endif %}
 
             </div>
+        {% image value.news_card.icon fill-55x55 as img_news %}
         <div class="callout callout-right" style="background-color: {{value.news_card.news_Background_color}};">
                 <div class="info-header">
-                    <div class="info-icon"><img src="{{img.url}}" alt="{{value.news_card.icon_alt}}"></div>
+                    <div class="info-icon"><img src="{{img_news.url}}" alt="{{value.news_card.icon_alt}}"></div>
                     <h3 class="latest_news__block_title"> {{ value.news_card.block_title }}</h3>
                 </div>
              {% if latest_news %}
@@ -28,7 +29,11 @@
                     <div style="margin-left: 2px; border-left: 3px solid #FFF; padding-left: 20px;">
                         <div class="latest_news__title"> {{ news_page.title }}</div>
                         <div class="latest_news__richtext">
-                            {{ news_page.body|get_first_richtext|richtext }}
+                            {% for lead_text in news_page.lead_fields %}
+                            {% if lead_text.block_type == "lead_text" %}
+                                {{ lead_text }}
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <a style="align-self: flex-start; " href="{{ news_page.url }}" class="latest_news__button">{{ value.news_card.news_button_text }}  <i class="fas fa-arrow-right"></i></a>
