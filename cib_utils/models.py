@@ -125,7 +125,7 @@ class HeroPage(BasePage):
         min_num=2,
         max_num=2
     )
-
+    summary = models.CharField(blank=True, max_length=255, null=True)
     callout_feature = StreamField(
         [
             ("callout_cards", CallOutBlock())
