@@ -47,7 +47,6 @@
                     {% trans 'No results found.' %}
                 {% endif %}
             </div>
-            {{search_results}}
             {% include "patterns/molecules/pagination/pagination.html" with paginator_page=search_results %}
         </div>
     </div>

@@ -4,26 +4,44 @@
 <nav aria-label="{% trans 'Pagination' %}" class="pagination">
     <ul class="pagination__list">
         {% if paginator_page.has_previous %}
-            <li>
-                <a href="{% querystring_modify page=paginator_page.previous_page_number %}" class="previous pagination__link"  rel="prev" aria-label="{% trans 'Go to previous page' %}">
-                    {% include "patterns/atoms/icons/icon.html" with name="arrow" classname="pagination__icon pagination__icon--prev" %}
-                </a>
-            </li>
-        {% endif %}
-        {% for p in paginator.page_range %}
-        <li class="current" aria-current="page">
-            <a href="{% querystring_modify page=p %}" class="pagination__link pagination__link--active" aria-label="{% blocktrans %} Current Page, Page {{ paginator_page.number }} of {{ paginator_page.paginator.num_pages }} pages {% endblocktrans %}" aria-current="page">
-                {{ p }}
+        <li class="search__results">
+            <a class="list--contain" href="{% querystring_modify page=paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
+                <img class="img-arrows" src="{% static 'img/Icon_Pagination-Previous.png' %}">
             </a>
         </li>
-        {% endfor %}
-
-        {% if paginator_page.has_next %}
-            <li>
-                <a href="{% querystring_modify page=paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
-                    {% include "patterns/atoms/icons/icon.html" with name="arrow" classname="pagination__icon pagination__icon--next" %}
-                </a>
-            </li>
+        <li class="search__results non--image--search">
+            <a class="list--contain" href="{% querystring_modify page=paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
+                <span class="next-prev">Previous</span>
+            </a>
+        </li>
+        
         {% endif %}
+        {% if paginator_page.number|add:'-4' > 1 %}
+          <li class="search__results non--image--search"><a href="page=1" class="list--contain">1</a></li>
+          <li class="search__results"><a class="list--contain" href="{% querystring_modify %} &page={{ data.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+        {% for i in paginator_page.paginator.page_range %}
+          {% if paginator_page.number == i %}
+              <li class="active search__results"><span class="list--contain">{{ i }}</span></li>
+          {% elif i > paginator_page.number|add:'-3' and i < paginator_page.number|add:'3' %}
+              <li class="search__results non--image--search"><a class="list--contain" href="{% querystring_modify %}&page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if paginator_page.paginator.num_pages > paginator_page.number|add:'4' %}
+          <li class="search__results"><a class="list--contain" href="{% querystring_modify %} &page={{ paginator_page.number|add:'5' }}">&hellip;</a></li>
+          <li class="search__results non--image--search"><a class="list--contain" href="{% querystring_modify %} &page={{ paginator_page.paginator.count }}">{{ paginator_page.paginator.count }}</a></li>
+        {% endif %}
+        {% if paginator_page.has_next %}
+        <li class="search__results non--image--search">
+            <a class="list--contain" href="{% querystring_modify page=paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
+                <span class="next-prev">Next</span>    
+            </a>
+        </li>
+        <li class="search__results">
+            <a class="list--contain" href="{% querystring_modify page=paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
+                <img class="img-arrows" src="{% static 'img/Icon_Pagination-Next.png' %}">    
+            </a>
+        </li>
+    {% endif %}
     </ul>
 </nav>{% endif %}

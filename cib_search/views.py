@@ -58,7 +58,7 @@ def search(request):
     response = TemplateResponse(
         request,
         "patterns/pages/search/search.html",
-        {"search_query": search_query, "search_results": search_results, "page_range": page_range "page": page, "paginator": paginator},
+        {"search_query": search_query, "search_results": search_results, "page": page},
     )
 
     if search_query:

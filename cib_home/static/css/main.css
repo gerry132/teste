@@ -1105,6 +1105,21 @@ textarea { resize: none; }
 .pagination {
   position: relative;
   text-align: center;
+  width: 100%;
+}
+
+.pagination__list {
+  position: relative;
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+.img-arrows {
+  padding-bottom: 5px;
+}
+
+.next-prev {
+  font-weight: 700;
 }
 
 .pagination__icon {
@@ -1127,3 +1142,43 @@ textarea { resize: none; }
 svg:not(:root) {
   overflow: hidden;
 }
+
+.pagination__list {
+  list-style-type: none;
+  position: relative;
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+.non--image--search {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.search__results {
+  margin-left: 10px;
+  /* Desktop/Paragraph/Body */
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 25px;
+  /* identical to box height, or 132% */
+
+  color: #005F81;
+  height: 51px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+}
+
+.list--contain {
+  padding-top: 14px
+}
+
+.active {
+  background-color: #005F81;
+  color: white;
+} 
+
