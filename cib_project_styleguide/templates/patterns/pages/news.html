@@ -6,65 +6,80 @@
 
 
 <div class="container">
-  <div>
-    <form>
-      <!-- Filter by Document Type -->
-      <label class="document__filter-label newslettersignupcta__body" for="tagSelect">Filter by document type</label>
-      <select class="document__filter-select" id="tagSelect" name="news_tags" onchange="updateFilters()">
-        <option value="">Select Tag</option>
-        {% for tag in all_tags %}
-          <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
-        {% endfor %}
-      </select>
+  <div class="wrapper wrapper--large wrapper--padding">
+    <div class="content-page-header">
+      {{ page.title }}
+    </div>
+      <form>
+        <div class="row custom-card-row" style="margin-bottom: 40px;">
+          <!-- Filter by Document Type -->
+          <div class="col-sm-6 col-md-3 custom-news-card">
+            <label class="" for="tagSelect">Filter by document type</label>
+            <select class="" id="tagSelect" name="news_tags" onchange="updateFilters()">
+              <option value="">Select Tag</option>
+              {% for tag in all_tags %}
+                <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
 
-      <!-- Filter by Year -->
-      <label class="document__filter-label newslettersignupcta__body" for="yearSelect">Filter by year</label>
-      <select class="document__filter-select" id="yearSelect" name="news_year" onchange="updateFilters()">
-        <option value="">Select Year</option>
-        {% for year in page.years %}
-          <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
-        {% endfor %}
-      </select>
-    </form>
-  </div>
+          <!-- Filter by Year -->
+          <div class="col-sm-6 col-md-4 custom-news-card">
+            <label class="" for="yearSelect">Filter by year</label>
+            <select class="" id="yearSelect" name="news_year" onchange="updateFilters()">
+              <option value="">Select Year</option>
+              {% for year in page.years %}
+                <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </form>
+  </div >
 
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      {% if child_with_tags %}
-        {% for child in child_with_tags %}
-          <div class="card">
 
-              <div class="card-image">
-                {% for lead in child.lead_fields %}
-                  {% if lead.block_type == 'banner_image' %}
-                    {{lead}}
-                  {% endif %}
-                {% endfor %}
-              </div>
-              <div class="card-content-box">
-                <div class="card-text-content">
-                  <div class="card-date">{{ child.last_published_custom|date:"j F Y" }}</div>
-                  <div class="card-title">{{child.title}}</div>
+    {% if child_with_tags %}
+      {% for child in child_with_tags|slice:":4" %}
+
+          {% if forloop.counter0|divisibleby:4 %}
+          <div class="row">
+          {% endif %}
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="card">
+                <div class="card-image">
                   {% for lead in child.lead_fields %}
-                    {% if lead.block_type == 'lead_text' %}
-                      <div class="card-content">{{lead}}</div>
+                    {% if lead.block_type == 'banner_image' %}
+                      {{lead}}
                     {% endif %}
                   {% endfor %}
                 </div>
-                <a href="{% pageurl child %}" class="home-links">Read More</a>
-                <div class="card-tags">
-                  {% if child.current_tags %}
-                    {% for tag in child.current_tags %}
-                      <a href="#" class="tag">{{tag.name}}</a>
-
+                <div class="card-content-box">
+                  <div class="card-text-content">
+                    <div class="card-date">{{ child.last_published_custom|date:"j F Y" }}</div>
+                    <div class="card-title">{{child.title}}</div>
+                    {% for lead in child.lead_fields %}
+                      {% if lead.block_type == 'lead_text' %}
+                        <div class="card-content">{{lead}}</div>
+                      {% endif %}
                     {% endfor %}
-                  {% endif %}
+                  </div>
+                  <a href="{% pageurl child %}" class="home-links">Read More</a>
+                  <div class="card-tags">
+                    {% if child.current_tags %}
+                      {% for tag in child.current_tags %}
+                        <a href="#" class="tag">{{tag.name}}</a>
+
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  </div>
                 </div>
-              </div>
             </div>
-        {% endfor %}
-      {% endif %}
-    </div>
+        {% if forloop.counter|divisibleby:4 or forloop.last %}
+          </div> <!-- Close the row -->
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 
