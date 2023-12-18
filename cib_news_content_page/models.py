@@ -38,12 +38,15 @@ class NewsContentPage(ContentPage):
     template = "patterns/pages/news_content_page.html"
     parent_page_types = ["cib_news_page.News"]
 
-    banner_image = StreamField(blocks.StreamBlock(
+    lead_fields = StreamField(blocks.StreamBlock(
         [
             ("banner_image", AltImageBlock(
-                help_text="The optimal size is 400x267 pixels or a 3:2 aspect ratio."
-            ))
-        ], max_num=1),
+                help_text="The optimal size is 300x200 pixels or a 3:2 aspect ratio."
+            )),
+            ("lead_text", blocks.RichTextBlock(required=True, features=[
+                "h2", "h3", "h4", "bold", "italic", "link", "document-link"
+            ]))
+        ], max_num=2),
         use_json_field=True,
         null=True,
         blank=False)
@@ -53,7 +56,7 @@ class NewsContentPage(ContentPage):
     news_tags = ParentalManyToManyField("NewsTag", blank=True)
 
     content_panels = ContentPage.content_panels + [
-        FieldPanel("banner_image"),
+        FieldPanel("lead_fields"),
         FieldPanel("show_on_page", widget=forms.CheckboxInput),
         MultiFieldPanel(
             [
@@ -65,6 +68,6 @@ class NewsContentPage(ContentPage):
     ]
 
     @property
-    def current_tag(self):
+    def current_tags(self):
         return NewsTag.objects.filter(
-                NewsContentPage__id=self.id).first()
+                newscontentpage__id=self.id)
