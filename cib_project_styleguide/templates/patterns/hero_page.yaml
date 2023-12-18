@@ -1,7 +1,6 @@
 context:
   page:
     title: This is Ireland
-    summary: M .
     link_page: #
     link_text: Find out more
     video: True
