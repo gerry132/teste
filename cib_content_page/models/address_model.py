@@ -49,7 +49,7 @@ class Address(models.Model, index.Indexed):
     def save(self, *args: list, **kwargs: dict) -> None:
         # setting a random hash as the unique_id
         if not self.unique_id:
-            m = hashlib.md5(usedforsecurity=False)  # nosec
+            m = hashlib.md5()  # nosec
             seed = str(random.randint(1, 10000000)).encode()  # nosec
             m.update(seed)
             self.unique_id = "a" + m.hexdigest()[:10]

@@ -1,9 +1,47 @@
 {% extends "patterns/hero_page.html" %}
 {% load wagtailcore_tags wagtailimages_tags static %}
 
+
+
 {% block content %}
-    <div class="wrapper wrapper--small wrapper--padding">
-        {% include "patterns/blocks/toc.html"  %}
-        {% include_block page.body %}
+
+    <div class="wrapper wrapper--small wrapper--padding ">
+        <div class="content-page-body">
+            <div class="content-page-header">
+                {{ page.title }}
+            </div>
+
+            {% include "patterns/blocks/toc.html"  %}
+
+            {% for block in page.body %}
+
+                {% if block.block_type == 'image' %}
+                    {% image block.value width-640 as himg%}
+                    <img src="{{ himg.url }}" width="{{ himg.width }}"
+                    height="{{ himg.height }}" alt="{{ himg.alt }}" class="content-image" >
+                {% elif block.block_type == 'video'%}
+                    <div class="block-{{ block.block_type }}-{{ block.value.float }} block-{{ block.value.size }}">
+                        {% include_block block %}
+
+                    </div>
+                {% elif block.block_type == 'embed_html_widget'%}
+                    <div class="content-custom-image">
+                        {{block.value|safe}}
+                    </div>
+                {% elif block.block_type == 'custom_image'%}
+                    {% include_block block %}
+                {% elif block.block_type == 'rich_text'%}
+                    <div class="content_richtext">
+                        {% include_block block %}
+                    </div>
+                {% else %}
+                    <section class="block-{{ block.block_type }}">
+                        {% include_block block %}
+                    </section>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+
+
 {% endblock %}

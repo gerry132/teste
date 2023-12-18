@@ -4,6 +4,22 @@ from wagtail.core.blocks import CharBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
+class AltImageBlock(blocks.StructBlock):
+    """Custom class to set Alt of the image"""
+    help_text = ''
+
+    def __init__(self, help_text=None, local_blocks=None, **kwargs):
+        super().__init__(local_blocks, **kwargs)
+        AltImageBlock.help_text = help_text
+
+    image_file = ImageChooserBlock(label=_("Image"), help_text=help_text)
+    alt_text = CharBlock(required=False, label=_("Alt"))
+
+    class Meta:
+        template = 'patterns/blocks/alt_image.html'
+        icon = 'image'
+
+
 class CustomImageBlock(blocks.StructBlock):
     """Custom image for whats new content pages"""
     help_text = ''

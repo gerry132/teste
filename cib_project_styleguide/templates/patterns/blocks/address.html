@@ -1,7 +1,105 @@
 {% load wagtailcore_tags %}
-
+{% load i18n %}
+{% load address_lang_tag %}
 
 {% if  value.heading%}
-    <h1 class="topic base_wheretoapply_title">{{ value.heading }}</h1>
+    <div class="topic base_wheretoapply_title">{{ value.heading }}</div>
 {% endif %}
-{% include "shared/address.html" with obj=value.address %}
+
+{% with obj=value.address %}
+
+    {% if LANGUAGE_CODE == "ga" %}
+        <div class="sharedaddress">
+            <div class="topic base_wheretoapply_title">{{ obj.orgname_ga }}</div>
+
+            {% if obj.dept_ga %}
+            <div class='field_dept address_field'>{{ obj.dept_ga }}</div>
+            {% endif %}
+
+            {% if obj.address_ga %}
+            <p>{{ obj.address_ga|linebreaksbr }}</p>
+            {% endif %}
+
+            {% if obj.opening_ga %}
+            <div><b>{% trans "Opening Hours" %}:</b> {{ obj.opening_ga }}</div>
+            {% endif %}
+
+            {% if obj.phone %}
+            <div><b>{% trans "Tel" %}:</b> {{ obj.phone }}</div>
+            {% endif %}
+
+            {% if obj.locall %}
+            <div><b>{% trans "Locall" %}:</b> {{ obj.locall }}</div>
+            {% endif %}
+
+            {% if obj.fax %}
+            <div><b>{% trans "Fax" %}:</b> {{ obj.fax }}</div>
+            {% endif %}
+
+            {% if obj.homepage %}
+            <div><b>{% trans "Homepage" %}:</b> <a href="{{ obj.homepage }}">{{ obj.homepage }}</a></div>
+            {% endif %}
+
+            {% if obj.homepage2 %}
+            <div><b>{% trans "Homepage" %}:</b> <a href='{{ obj.homepage2 }}'>{{ obj.homepage2 }}</a></div>
+            {% endif %}
+
+            {% if obj.contact_form %}
+            <div><b>{% trans "Contact Form" %}:</b> <a href="{{ obj.contact_form }}">{{ obj.contact_form }}</a></div>
+            {% endif %}
+
+            {% if obj.email %}
+            <div><b>{% trans "Email" %}:</b> <a href="mailto:{{ obj.email }}">{{ obj.email }}</a></div>
+            {% endif %}
+
+        </div>
+    {% else %}
+        <div class="sharedaddress">
+            <div class="base_wheretoapply_title">{{ obj.orgname }}</div>
+
+            {% if obj.dept %}
+            {{ obj.dept }}
+            {% endif %}
+
+            {% if obj.address %}
+            <p>{{ obj.address|linebreaksbr }}</p>
+            {% endif %}
+
+            {% if obj.opening %}
+            <div><b>{% trans "Opening Hours" %}:</b> {{ obj.opening }}</div>
+            {% endif %}
+
+            {% if obj.phone %}
+            <div><b>{% trans "Tel" %}:</b> {{ obj.phone }}</div>
+            {% endif %}
+
+            {% if obj.locall %}
+            <div><b>{% trans "Locall" %}:</b> {{ obj.locall }}</div>
+            {% endif %}
+
+            {% if obj.fax %}
+            <div><b>{% trans "Fax" %}:</b> {{ obj.fax }}</div>
+            {% endif %}
+
+            {% if obj.homepage %}
+            <div><b>{% trans "Homepage" %}:</b> <a href="{{ obj.homepage }}">{{ obj.homepage }}</a></div>
+            {% endif %}
+
+            {% if obj.homepage2 %}
+            <div><b>{% trans "Homepage" %}:</b> <a href='{{ obj.homepage2 }}'>{{ obj.homepage2 }}</a></div>
+            {% endif %}
+
+            {% if obj.contact_form %}
+            <div><b>{% trans "Contact Form" %}:</b> <a href="{{ obj.contact_form }}">{{ obj.contact_form }}</a></div>
+            {% endif %}
+
+            {% if obj.email %}
+            <div><b>{% trans "Email" %}:</b> <a href="mailto:{{ obj.email }}">{{ obj.email }}</a></div>
+            {% endif %}
+
+        </div>
+    {% endif %}
+
+{% endwith %}
+
+

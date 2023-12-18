@@ -17,6 +17,7 @@ class BaseBlockLinkContext(blocks.StructBlock):
     """
     Base block to get link context.
     """
+
     def get_context(self, value, parent_context=None):
         """
         Get context helper
@@ -123,6 +124,7 @@ class RichTextBlock(blocks.RichTextBlock):
     """
     Wrapper class for richtext.
     """
+
     class Meta:
         label = "Rich-Text"
         template = "patterns/molecules/streamfield/blocks/paragraph_block.html"
@@ -133,6 +135,12 @@ class BaseFeatureBlock(blocks.StructBlock):
     Base feature block.
     """
     icon = ImageChooserBlock(required=False)
+    icon_alt = blocks.CharBlock(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Icon Alt text"),
+        help_text=_("The alt text shown for accessibility: https://axesslab.com/alt-texts/")
+    )
     heading = blocks.CharBlock(
         required=False,
         help_text="Text to display as feature heading",
@@ -145,7 +153,7 @@ class BaseFeatureBlock(blocks.StructBlock):
             ("links_list", blocks.ListBlock(
                 LinkBlockWithURL(max=5),
             )
-            ),
+             ),
         ]
     )
     button = blocks.StreamBlock(
@@ -163,3 +171,12 @@ class BaseFeatureBlock(blocks.StructBlock):
     class Meta:
         label = "Standard Feature Block"
         template = "patterns/molecules/streamfield/blocks/base_feature_block.html"
+
+
+class SelectComponentBlock(blocks.StructBlock):
+    select_title = blocks.CharBlock(max_length=50)
+    select_hint_text = blocks.CharBlock(max_length=50, required=False)
+    select_default_option_value = blocks.CharBlock(max_length=50)
+
+    class Meta:
+        label = "Select Component Block"

@@ -2,23 +2,23 @@
 <div class="wrapper--large">
 <div class="board_member_card_flex">
     {% for card in value.boardmemberscards %}
-    <div class="card">
-        <div class="card__image-container">
+    <div class="board_member_card">
+        <div class="board_member_card__image-container">
              {% if card.image %}
                 {% if card.image_alt %}
-                    {% image card.image fill-300x200 alt=card.image_alt class="card__image" %}
+                    {% image card.image fill-300x200 alt=card.image_alt class="board_member_card__image" %}
                 {% else %}
-                    {% image card.image fill-300x200 alt=card.image.alt_default class="card__image" %}
+                    {% image card.image fill-300x200 alt=card.image.alt_default class="board_member_card__image" %}
                 {% endif %}
             {% endif %}
         </div>
 
-        <div class="card__content">
-            <h3 class="card__title">
+        <div class="board_member_card__content">
+            <h3 class="board_member_card__title">
                 {{ card.title }}
             </h3>
 
-            <div class="card__summary">
+            <div class="board_member_card__summary">
                 {{ card.description }}
             </div>
         </div>

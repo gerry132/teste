@@ -1,0 +1,51 @@
+{% load wagtailcore_tags %}
+
+<div class="topic base_wheretoapply">
+
+    {% load i18n %}
+
+    <div class="sharedaddress">
+        <h3>{{ value.orgname }}</h3>
+
+        {% if value.dept %}
+            <div class='field_dept address_field'>{{ value.dept }}</div>
+        {% endif %}
+
+        {% if value.address %}
+            <p>{{ value.address|linebreaksbr }}</p>
+        {% endif %}
+
+        {% if value.opening %}
+            <div><b>{% trans "Opening Hours" %}:</b> {{ value.opening }}</div>
+        {% endif %}
+
+        {% if value.phone %}
+            <div><b>{% trans "Tel" %}:</b> {{ value.phone }}</div>
+        {% endif %}
+
+        {% if value.locall %}
+            <div><b>{% trans "Locall" %}:</b> {{ value.locall }}</div>
+        {% endif %}
+
+        {% if value.fax %}
+            <div><b>{% trans "Fax" %}:</b> {{ value.fax }}</div>
+        {% endif %}
+
+        {% if value.homepage %}
+            <div><b>{% trans "Homepage" %}:</b> <a href="{{ value.homepage }}">{{ value.homepage }}</a></div>
+        {% endif %}
+
+        {% if value.homepage2 %}
+            <div><b>{% trans "Homepage" %}:</b> <a href='{{ value.homepage2 }}'>{{ value.homepage2 }}</a></div>
+        {% endif %}
+
+        {% if value.contact_form %}
+            <div><b>{% trans "Contact Form" %}:</b> <a href="{{ value.contact_form }}">{{ value.contact_form }}</a></div>
+        {% endif %}
+
+        {% if value.email %}
+            <div><b>{% trans "Email" %}:</b> <a href="mailto:{{ value.email }}">{{ value.email }}</a></div>
+        {% endif %}
+
+    </div>
+</div>

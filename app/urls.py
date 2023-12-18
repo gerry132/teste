@@ -30,6 +30,7 @@ api_router.register_endpoint('pages', PagesAPIEndpoint)
 urlpatterns = [
     path('', include('health_check.urls')),
     path('django-admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('admin/', include(wagtailadmin_urls)),
     path("search/", search_views.search, name="search"),
     path('sitemap.xml', sitemap),
@@ -49,6 +50,7 @@ urlpatterns += static(
 urlpatterns += i18n_patterns(
     # set up set language redirect view
     path('i18n/', include('django.conf.urls.i18n')),
+    path('tinymce/', include('tinymce.urls')),
     path('', include(wagtail_urls)),
     path('i18n/set_language_wagtail', set_language_wagtail, name="set_language_wagtail"),
     prefix_default_language=PREFIX_DEFAULT_LANGUAGE,

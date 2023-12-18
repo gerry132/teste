@@ -1,11 +1,11 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
-<div class="home-container">
+<div class="home-container callout__flex">
         {% for card in self.calloutcards %}
             {% image card.icon fill-55x55 as img %}
                 <div class="info-box" style="border-left-color: {{card.left_border_color}};">
                 <div class="info-header">
-                    <div class="info-icon"><img src="{{img.url}}" alt="{{img.text}}"></div>
+                    <div class="info-icon"><img src="{{img.url}}" alt="{{card.icon_alt}}"></div>
                     <h3>{{card.title}}</h3>
                 </div>
                 {{card.text|richtext}}

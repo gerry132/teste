@@ -2,15 +2,17 @@ from django.db import models
 
 from wagtail.core.fields import StreamField
 from wagtail.images import get_image_model_string
+from functools import cached_property
 
 from wagtail.admin.panels import (
     FieldPanel, TabbedInterface, ObjectList,
 )
 from wagtail.snippets.blocks import SnippetChooserBlock
 
+from cib_news_content_page.models import NewsContentPage
 from cib_utils.models import HeroPage
 
-from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesBlock
+from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesAndLatestNewsBlock
 
 IMAGE_MODEL = get_image_model_string()
 
@@ -30,8 +32,11 @@ class HomePage(HeroPage):
         [
             ("CalloutCards", CallOutBlock()),
             ("InfoPanelCards", InfoPanelBlock()),
-            ("JobVacanciesAndNewsCard", JobsVacanciesBlock()),
+            ("JobVacanciesAndNewsCard", JobsVacanciesAndLatestNewsBlock()),
         ],
+        block_counts={
+            'JobVacanciesAndNewsCard': {'max_num': 1, 'min_num': 0},
+        },
         use_json_field=True,
         null=True,
         blank=True
@@ -47,6 +52,17 @@ class HomePage(HeroPage):
         FieldPanel("body"),
         FieldPanel("news_letter_signup_cta")
     ]
+
+    @cached_property
+    def latest_news(self):
+        return (
+            NewsContentPage.objects
+            .filter(locale=self.locale)
+            .public()
+            .live()
+            .order_by("-last_published_custom")[:1]
+            .specific()
+        )
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Content'),

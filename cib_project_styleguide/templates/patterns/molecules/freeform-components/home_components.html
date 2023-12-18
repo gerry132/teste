@@ -1,6 +1,14 @@
 {% load wagtailcore_tags wagtailimages_tags static %}
+<div style="margin-top:80px;">
 {% for block in page.body %}
-        <div class="wrapper wrapper--large--padding wrapper--padding">
+    {% if block.block_type == 'JobVacanciesAndNewsCard' %}
+            <div class="wrapper wrapper--large wrapper--padding">
+                {% include_block block with latest_news=page.latest_news %}
+            </div>
+        {% else %}
+        <div class="wrapper wrapper--large wrapper--padding">
             {% include_block block %}
         </div>
+    {% endif %}
 {% endfor %}
+    </div>

@@ -1,11 +1,15 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
+from typing import Sequence, Tuple
+
 from wagtail.admin.panels import FieldPanel
 
 from wagtail import blocks
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.blocks.stream_block import StreamValue
+from wagtail.blocks.struct_block import StructValue
 
 from taggit.models import TagBase, ItemBase
 
@@ -70,3 +74,37 @@ class ContentPage(BasePage):
     content_panels = BasePage.content_panels + [
         FieldPanel("body"),
     ]
+
+    promote_panels = BasePage.promote_panels + [
+        FieldPanel("tags"),
+    ]
+
+    def get_section_headings(self) -> Sequence[Tuple[str]]:
+        """
+        Return a list of tuples in the format (menu_text, anchor_id).
+        Used to generate the in-page nav at the top of pages.
+        """
+        section_headings = []
+        for block in getattr(self, "body", []):
+            if isinstance(block.value, StructValue)\
+             and "anchor_id" in block.value:
+                section_headings.append(
+                    (block.value["title"], block.value["anchor_id"])
+                )
+                for val in block.value.values():
+                    if isinstance(val, StreamValue):
+                        for sub_val in val:
+                            if isinstance(sub_val.value, StructValue):
+                                section_headings.append(
+                                    (
+                                        sub_val.value["text"],
+                                        sub_val.value["anchor_id"])
+                                )
+        return section_headings
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context.update(
+            section_headings=self.get_section_headings(),
+        )
+        return context
