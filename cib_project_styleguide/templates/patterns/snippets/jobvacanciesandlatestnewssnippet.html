@@ -1,0 +1,3 @@
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% include_block object.body with latest_news=object.latest_news %}

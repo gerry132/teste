@@ -20,7 +20,7 @@ from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
 from wagtail.search import index
 
-from cib_home.blocks import CallOutBlock
+from cib_home.blocks import CallOutBlock, JobsVacanciesAndLatestNewsBlock
 from cib_utils.blocks import BaseFeatureBlock
 
 from cib_utils.cache import get_default_cache_control_decorator
@@ -47,7 +47,8 @@ class BasePage(Page):
     last_published_custom = models.DateField(
         verbose_name=_("last publish date (custom)"),
         help_text=_(
-            "Can be used to override the Wagtail-managed 'last published at' datetime, making content appear older (or newer) than it really is."  # noqa
+            "Can be used to override the Wagtail-managed 'last published at' datetime, making content appear older (or newer) than it really is."
+            # noqa
         ),
         blank=True,
         null=True,
@@ -95,7 +96,7 @@ class BasePage(Page):
             items.append({
                 "url": ancestor.get_url(request),
                 "title": ancestor.title,
-                })
+            })
         items.append({"url": self.get_url(request), "title": self.title})
         return items
 
@@ -197,6 +198,52 @@ class NewsletterSignUpCTASnippet(PreviewableMixin, DraftStateMixin, RevisionMixi
 
     def get_preview_template(self, request, mode_name):
         return "patterns/snippets/newslettersignupctasnippet.html"
+
+    @property
+    def revisions(self):
+        return self._revisions
+
+    class Meta:
+        unique_together = ("translation_key", "locale")
+
+
+@register_snippet
+class JobsVacanciesAndLatestNewsSnippet(PreviewableMixin, DraftStateMixin, RevisionMixin, index.Indexed,
+                                        ClusterableModel,
+                                        TranslatableMixin, models.Model):
+    snippet_title = models.CharField(max_length=255, blank=True)
+    body = StreamField(
+        [
+            ("content", JobsVacanciesAndLatestNewsBlock())
+        ],
+        blank=True,
+        max_num=1
+    )
+    _revisions = GenericRelation("wagtailcore.Revision", related_query_name="betasnippet")
+    panels = [
+        FieldPanel("snippet_title"),
+        FieldPanel("body"),
+        PublishingPanel(),
+    ]
+
+    search_fields = [
+        index.SearchField("snippet_title", partial_match=True),
+    ]
+
+    def get_preview_template(self, request, mode_name):
+        return "patterns/snippets/jobvacanciesandlatestnewssnippet.html"
+
+    @cached_property
+    def latest_news(self):
+        from cib_news_content_page.models import NewsContentPage
+        return (
+            NewsContentPage.objects
+            .filter(locale=self.locale)
+            .public()
+            .live()
+            .order_by("-last_published_custom")[:1]
+            .specific()
+        )
 
     @property
     def revisions(self):

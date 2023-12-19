@@ -1,0 +1,73 @@
+{% extends "patterns/hero_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+
+
+{% block content %}
+
+    <div class="wrapper wrapper--small wrapper--padding ">
+        <div class="content-page-body">
+
+
+            {% image page.organisation_logo original class="job_organisation_logo" alt=page.organisation_logo_alt %}
+            <div class="job__title">
+                {{ page.job_title }}
+            </div>
+            <div class="job__organisation basefeature-button__text">{{ page.organisation }}</div>
+            <div class="job__address base-feature--blue__text">{{ page.address|richtext }}</div>
+            <div class="newslettersignupcta__body">{{ page.job_description|richtext }}</div>
+
+            <div class="job__closing_date">
+                {{ page.closing_date_title }}: {{ page.expire_at|date:"d/m/Y" }}
+            </div>
+            <div class="jobs-document">
+                {% for document in page.job_forms %}
+                    <a href="{{ document.value.url }}" download="{{ document.value.heading }}" class="basefeature-button__text {% cycle 'even' 'odd' %}">{{ document.value.heading }}</a>
+                {% endfor %}
+            </div>
+            <div class="jobs__email">
+            {{ page.contact_email|richtext }}
+            </div>
+
+
+                {%if page.banner_image and page.show_on_page%}
+                    <div class="content-image">
+                        {% include_block page.banner_image %}
+                    </div>
+                {% endif %}
+                {% include "patterns/blocks/toc.html"  %}
+
+                {% for block in page.body %}
+                    {% if block.block_type == 'image' %}
+                        {% image block.value width-640 as himg%}
+                        <img src="{{ himg.url }}" width="{{ himg.width }}"
+                        height="{{ himg.height }}" alt="{{ himg.alt }}" class="content-image" >
+                    {% elif block.block_type == 'video'%}
+                        <div class="block-{{ block.block_type }}-{{ block.value.float }} block-{{ block.value.size }}">
+                            {% include_block block %}
+
+                        </div>
+                    {% elif block.block_type == 'embed_html_widget'%}
+                        <div class="content-custom-image">
+                            {{block.value|safe}}
+                        </div>
+                    {% elif block.block_type == 'custom_image'%}
+                        {% include_block block %}
+                    {% elif block.block_type == 'rich_text'%}
+                        <div class="content_richtext">
+                            {% include_block block %}
+                        </div>
+                    {% else %}
+                        <section class="block-{{ block.block_type }}">
+                            {% include_block block %}
+                        </section>
+                    {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+    <div class="wrapper wrapper--large wrapper--padding">
+        {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+    </div>
+
+
+{% endblock %}

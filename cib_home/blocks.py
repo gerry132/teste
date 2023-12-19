@@ -5,6 +5,7 @@ from wagtail.blocks.struct_block import StructBlockValidationError
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _
+from wagtail.snippets.models import register_snippet
 
 from cib_navigation.models import ALT_HELP_TEXT
 

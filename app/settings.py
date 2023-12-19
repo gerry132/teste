@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "cib_search",
     "cib_utils",
     "cib_home",
+    "cib_jobs",
     "cib_pages",
     "cib_navigation",
     "cib_content_page",
