@@ -102,3 +102,10 @@ def footernav(context):
         "footernav": footer_navigation,
         "request": request,
     }
+
+
+@register.simple_tag
+def is_trans_page(page):
+    if isinstance(page, int):
+        return False
+    return True
