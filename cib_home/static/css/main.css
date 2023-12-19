@@ -1265,7 +1265,7 @@ display: flex;
 
 .content_richtext{
   font-family: Lato;
-  font-size: 19px;
+  font-size: 19px !important;
   font-style: normal;
   font-weight: 400;
   line-height: 25px;

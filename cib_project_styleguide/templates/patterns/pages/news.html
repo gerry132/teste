@@ -68,7 +68,6 @@
                     {% if child.current_tags %}
                       {% for tag in child.current_tags|slice:":2" %}
                         <a href="?news_tags={{tag.slug}}" class="tag">{{tag.name}}</a>
-
                       {% endfor %}
                     {% endif %}
                   </div>
