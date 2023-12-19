@@ -1572,20 +1572,27 @@ tbody tr:nth-child(even) {
   margin: auto 5px;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
-  color: #6c757d;
+.breadcrumb-item .home-links {
+  color: #2C55A2;
+  border-bottom: 1px solid #2C55A2 ;
   font-size: 16px;
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
 }
 
-.breadcrumb-item a {
-  color: #2C55A2;
-  font-size: 16px;
-  font-family: 'Lato';
-  font-weight: 400;
-  line-height: 20px;
+.breadcrumb-item .home-links:hover {
+  text-decoration-line: none;
+  border-bottom: 3px solid #2C55A2 ;
+}
+.breadcrumb-item .home-links:link,
+.breadcrumb-item .home-links:visited {
+  color: #2C55A2 ;
+}
+
+.breadcrumb-item .home-links:active,
+.breadcrumb-item .home-links:focus {
+  color: #2C55A2 ;
 }
 
 .chevron{
@@ -1609,7 +1616,6 @@ tbody tr:nth-child(even) {
 
 .timedate {
   font-family: 'Lato';
-  font-style: normal;
   font-weight: 700;
   font-size: 19px;
   line-height: 25px;
