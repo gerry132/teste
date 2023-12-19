@@ -1538,7 +1538,7 @@ tbody tr:nth-child(even) {
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
-  max-width: 125px;
+  max-width: 115px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
