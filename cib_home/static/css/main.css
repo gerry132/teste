@@ -1392,6 +1392,11 @@ tbody tr:nth-child(even) {
     margin-bottom: 10px;
 }
 /* News Cards */
+
+.custom-card-row{
+  padding-right: 15px;
+}
+
 .card {
   box-sizing: border-box;
   width: 300px;
@@ -1504,6 +1509,41 @@ tbody tr:nth-child(even) {
   font-weight: 400;
   line-height: 20px;
 }
+
+.custom-card-row {
+  margin-bottom: 40px;
+}
+
+.custom-news-card {
+  margin-right: 20px;
+}
+
+.custom-news-card label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 25px;
+  color: #0B0C0C;
+}
+
+.custom-news-card select {
+  min-width: 311px;
+  padding: 5px;
+  color: var(--text-primary, #0B0C0C);
+  border: 2px solid var(--border-input, #0B0C0C);
+  background: var(--surface-background, #FFF);
+}
+
+@media (max-width: 767px) {
+  .custom-news-card {
+    margin-right: 0;
+  }
+}
+
+
 
 /* End of the News Cards */
 
@@ -1747,5 +1787,5 @@ svg:not(:root) {
 .active {
   background-color: #005F81;
   color: white;
-} 
+}
 
