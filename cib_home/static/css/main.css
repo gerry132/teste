@@ -1579,9 +1579,13 @@ tbody tr:nth-child(even) {
   }
   .custom-card-row{
     margin-top: 0px;
-    margin-bottom: 0px !important;
+    margin-bottom: 10px !important;
   }
 
+  .card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 
