@@ -47,7 +47,8 @@ class BasePage(Page):
     last_published_custom = models.DateField(
         verbose_name=_("last publish date (custom)"),
         help_text=_(
-            "Can be used to override the Wagtail-managed 'last published at' datetime, making content appear older (or newer) than it really is."
+            "Can be used to override the Wagtail-managed 'last published at' datetime, making content appear older ("
+            "or newer) than it really is."
             # noqa
         ),
         blank=True,
