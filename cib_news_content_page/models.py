@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import pgettext_lazy
 
 from cib_content_page.models import ContentPage
 from cib_content_page.blocks.custom_image import AltImageBlock
@@ -17,7 +18,14 @@ from django import forms
 class NewsTag(TagBase):
     free_tagging = False
 
+    locale = models.CharField(max_length=10, default='en', null=True, blank=True)
+    description = models.CharField(
+        verbose_name=pgettext_lazy("A tag description", "description"),
+        max_length=255, default='', unique=False, null=True, blank=True
+    )
+
     class Meta:
+        abstract = False
         verbose_name = "news tag"
         verbose_name_plural = "news tags"
 

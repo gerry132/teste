@@ -29,8 +29,10 @@ from cib_utils.models import BasePage
 class PageTag(TagBase):
     free_tagging = False
 
+    locale = models.CharField(max_length=10, default='en', null=True, blank=True)
     description = models.CharField(
-        verbose_name=pgettext_lazy("A tag description", "description"), max_length=255, default='', unique=False
+        verbose_name=pgettext_lazy("A tag description", "description"),
+        max_length=255, default='', unique=False, null=True, blank=True
     )
 
     class Meta:
