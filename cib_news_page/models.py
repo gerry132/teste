@@ -4,6 +4,8 @@ from django.utils.functional import cached_property
 from django.db.models.functions import TruncYear
 from django.db.models import Count
 from django.utils.translation import get_language
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.conf import settings
 
 from cib_utils.models import BasePage
 from cib_news_content_page.models import NewsContentPage, NewsTag
@@ -50,6 +52,18 @@ class News(BasePage):
             return childs
         return childs
 
+    def paginate(self, request):
+        paginator = Paginator(self.childs(request.GET), settings.DEFAULT_PER_NEWS_PAGE)
+        page = request.GET.get("page")
+
+        try:
+            childs = paginator.page(page)
+        except PageNotAnInteger:
+            childs = paginator.page(1)
+        except EmptyPage:
+            childs = paginator.page(paginator.num_pages)
+        return childs
+
     def get_tages(self):
         current_lang = get_language()
         all_tags = NewsTag.objects.all()
@@ -64,7 +78,7 @@ class News(BasePage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["child_with_tags"] = self.childs(request.GET)
+        context["child_with_tags"] = self.paginate(request)
         context['all_tags'] = self.get_tages()
         context['selected_year'] = request.GET.get('news_year')
         context['selected_tag'] = request.GET.get('news_tags')
