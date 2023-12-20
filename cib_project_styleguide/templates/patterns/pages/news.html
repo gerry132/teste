@@ -78,9 +78,14 @@
           </div>
         {% endif %}
       {% endfor %}
+
+      {% include "patterns/molecules/pagination/pagination.html" with paginator_page=child_with_tags %}
+
     {% endif %}
   </div>
 </div>
+
+
 
 <script>
   function updateFilters() {
