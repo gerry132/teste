@@ -2,22 +2,20 @@
 
 {% get_current_language as language_code %}
 
-<nav aria-label="breadcrumb" class="breadcrumb-nav">
+{% if page.breadcrumbs and page|classname != "HomePage" %}
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+          <ol class="breadcrumb">
+              {% for item in page.breadcrumbs %}
+                {% if forloop.last %}
+                  {{ item.title }}
+                {% else %}
+                <li class="breadcrumb-item"><a href="{{ item.url }}" class="home-links">{{ item.title }}</a></li>
 
-    {% if page.breadcrumbs and page|classname != "HomePage" %}
-      <ol class="breadcrumb">
-          {% for item in page.breadcrumbs %}
-            {% if forloop.last %}
-              {{ item.title }}
-            {% else %}
-            <li class="breadcrumb-item"><a href="{{ item.url }}" class="home-links">{{ item.title }}</a></li>
-
-            <svg class="breadcrumbSeparator" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 11L6 6L1 1" stroke="#505A5F"/>
-              </svg>
-            {% endif %}
-          {% endfor %}
-      </ol>
-    {% endif %}
-
-</nav>
+                <svg class="breadcrumbSeparator" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 11L6 6L1 1" stroke="#505A5F"/>
+                  </svg>
+                {% endif %}
+              {% endfor %}
+          </ol>
+    </nav>
+{% endif %}

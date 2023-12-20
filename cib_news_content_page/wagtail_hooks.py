@@ -4,7 +4,11 @@ from .models import NewsTag
 
 
 class TagsModelAdmin(ModelAdmin):
-    NewsTag.panels = [FieldPanel("name"), FieldPanel("slug")]
+    NewsTag.panels = [
+        FieldPanel("name"),
+        FieldPanel("slug"),
+        FieldPanel("description"),
+        FieldPanel("locale")]
     add_to_settings_menu = True
     model = NewsTag
     menu_label = "News Tags"

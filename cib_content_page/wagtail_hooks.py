@@ -20,7 +20,12 @@ from .models.main_models import PageTag, TaggedPage
 
 
 class TagsModelAdmin(ModelAdmin):
-    PageTag.panels = [FieldPanel("name"), FieldPanel("description")]
+    PageTag.panels = [
+        FieldPanel("name"),
+        FieldPanel("slug"),
+        FieldPanel("description"),
+        FieldPanel("locale")
+        ]
     model = PageTag
     add_to_settings_menu = True
     menu_label = "Add Page Tags"

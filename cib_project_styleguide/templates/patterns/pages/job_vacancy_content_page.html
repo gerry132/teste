@@ -8,13 +8,26 @@
     <div class="wrapper wrapper--small wrapper--padding ">
         <div class="content-page-body">
 
-            <div class="content-page-header">
-                {{ page.title }}
-            </div>
 
-            <p class="timedate">
-                {{ page.last_published_custom|date:"j F Y" }}
-            </p>
+            {% image page.organisation_logo original class="job_organisation_logo" alt=page.organisation_logo_alt %}
+            <div class="job__title">
+                {{ page.job_title }}
+            </div>
+            <div class="job__organisation basefeature-button__text">{{ page.organisation }}</div>
+            <div class="job__address base-feature--blue__text">{{ page.address|richtext }}</div>
+            <div class="newslettersignupcta__body">{{ page.job_description|richtext }}</div>
+
+            <div class="job__closing_date">
+                {{ page.closing_date_title }}: {{ page.expire_at|date:"d/m/Y" }}
+            </div>
+            <div class="jobs-document">
+                {% for document in page.job_forms %}
+                    <a href="{{ document.value.url }}" download="{{ document.value.heading }}" class="basefeature-button__text {% cycle 'even' 'odd' %}">{{ document.value.heading }}</a>
+                {% endfor %}
+            </div>
+            <div class="jobs__email">
+            {{ page.contact_email|richtext }}
+            </div>
 
 
                 {%if page.banner_image and page.show_on_page%}
@@ -40,7 +53,7 @@
                         </div>
                     {% elif block.block_type == 'custom_image'%}
                         {% include_block block %}
-                    {% elif block.block_type == 'richtext'%}
+                    {% elif block.block_type == 'rich_text'%}
                         <div class="content_richtext">
                             {% include_block block %}
                         </div>
@@ -51,6 +64,9 @@
                     {% endif %}
                 {% endfor %}
         </div>
+    </div>
+    <div class="wrapper wrapper--large wrapper--padding">
+        {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
     </div>
 
 

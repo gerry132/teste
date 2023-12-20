@@ -18,7 +18,7 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 
 
 .wrapper--small {
-  max-width: 790px;
+  max-width: 920px;
   margin: 0 auto;
 }
 @media (max-width: 342px) {
@@ -713,7 +713,7 @@ display: flex;
 .callout {
   width: 100%;
   position: relative;
-  padding: 40px;
+  padding: 30px 30px 40px 40px;
   border-radius: 4px;
   color: white;
   margin-bottom: 40px;
@@ -1265,7 +1265,7 @@ display: flex;
 
 .content_richtext{
   font-family: Lato;
-  font-size: 19px;
+  font-size: 19px !important;
   font-style: normal;
   font-weight: 400;
   line-height: 25px;
@@ -1291,17 +1291,47 @@ display: flex;
   max-width: 100%;
 }
 
+
+
 @media (max-width: 992px) {
   .content-page-body{
     margin: 40px 20px;
   }
+
   .content-image,
   .content-custom-image {
     margin: 40px 20px !important;
     width: 90% !important;
   }
+  .content-page-header{
+    margin: 20px 0;
+  }
+}
+/* News Content Page */
+
+.timedate {
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25px;
+  color: #000000;
+  margin-bottom: 40px;
 }
 
+@media (max-width: 768px) {
+  .timedate {
+    margin-bottom: 20px;
+  }
+  .content-page-body{
+    margin: 20px 20px;
+  }
+  .content-image,
+  .content-custom-image {
+    margin: 20px 20px !important;
+    width: 90% !important;
+  }
+}
+/* End of News Content Page */
 /* End of Content Page */
 
 /*table styles */
@@ -1331,7 +1361,12 @@ tbody tr:nth-child(even) {
   background-color: #ffffff;
 }
 /*  End of the table styles */
-
+@media only screen and (max-width: 549px) {
+.document-block {
+        flex-wrap: wrap;
+        max-width: 270px;
+}
+}
 .document-block {
     border-radius: 5px;
     background: #F5F5F5;
@@ -1339,7 +1374,7 @@ tbody tr:nth-child(even) {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .document-heading {
@@ -1395,8 +1430,8 @@ tbody tr:nth-child(even) {
 
 .custom-card-row{
   padding-right: 15px;
+  margin-bottom: 40px;
 }
-
 .card {
   box-sizing: border-box;
   width: 300px;
@@ -1508,10 +1543,10 @@ tbody tr:nth-child(even) {
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
-}
-
-.custom-card-row {
-  margin-bottom: 40px;
+  max-width: 115px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-news-card {
@@ -1530,6 +1565,7 @@ tbody tr:nth-child(even) {
 }
 
 .custom-news-card select {
+  -webkit-appearance: none;
   min-width: 311px;
   padding: 5px;
   color: var(--text-primary, #0B0C0C);
@@ -1540,6 +1576,16 @@ tbody tr:nth-child(even) {
 @media (max-width: 767px) {
   .custom-news-card {
     margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .custom-card-row{
+    margin-top: 0px;
+    margin-bottom: 10px !important;
+  }
+
+  .card {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -1568,20 +1614,27 @@ tbody tr:nth-child(even) {
   margin: auto 5px;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
-  color: #6c757d;
+.breadcrumb-item .home-links {
+  color: #2C55A2;
+  border-bottom: 1px solid #2C55A2 ;
   font-size: 16px;
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
 }
 
-.breadcrumb-item a {
-  color: #2C55A2;
-  font-size: 16px;
-  font-family: 'Lato';
-  font-weight: 400;
-  line-height: 20px;
+.breadcrumb-item .home-links:hover {
+  text-decoration-line: none;
+  border-bottom: 3px solid #2C55A2 ;
+}
+.breadcrumb-item .home-links:link,
+.breadcrumb-item .home-links:visited {
+  color: #2C55A2 ;
+}
+
+.breadcrumb-item .home-links:active,
+.breadcrumb-item .home-links:focus {
+  color: #2C55A2 ;
 }
 
 .chevron{
@@ -1601,18 +1654,6 @@ tbody tr:nth-child(even) {
 }
 /* End of Breadcrumbs */
 
-/* News Content Page */
-
-.timedate {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 19px;
-  line-height: 25px;
-  color: #000000;
-  margin-bottom: 40px;
-}
-/* End of News Content Page */
 
 .latest_news__block_title {
     color: #FFF;
@@ -1685,7 +1726,9 @@ tbody tr:nth-child(even) {
 
 .latest_news__button:active,
 .latest_news__button:focus {
-  color: #FFF;
+  color: #000;
+  text-decoration-line: none;
+  border-bottom: 3px solid #000;
 }
 
 .pagination__list {
@@ -1789,3 +1832,105 @@ svg:not(:root) {
   color: white;
 }
 
+.jobs-document{
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+}
+.jobs-document a.even {
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--CIB_Green, #8AC640);
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+    color: #000;
+}
+
+.jobs-document a.odd {
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--Other-Light-Grey, #F3F2F1);
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+}
+.jobs-document a.even:hover {
+    border-radius: 4px;
+    background: #4F791B;
+
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+    color: #FFF;
+    text-decoration: none;
+}
+.jobs-document a.even:focus {
+    border-radius: 4px;
+    border: 3px solid var(--Other-Yellow, #FD0);
+    background: #4F791B;
+    color: #FFF;
+    text-decoration: none;
+}
+.jobs-document a.odd:hover {
+    border-radius: 4px;
+    background: var(--Other-Grey, #B1B4B6);
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+    text-decoration: none;
+}
+.jobs-document a.odd:focus {
+    border-radius: 4px;
+    border: 3px solid var(--Other-Yellow, #FD0);
+    background: var(--Other-Grey, #B1B4B6);#
+    text-decoration: none;
+}
+
+.jobs-document a.even:active, .jobs-document a.odd:active {
+    border-radius: 4px;
+    border: 2px solid var(--Border-Input, #0B0C0C);
+    background: var(--Focus-Default, #FD0);
+    box-shadow: 0px -1px 0px 0px #000 inset;
+    text-decoration: none;
+    color: #000;
+
+}
+.job_organisation_logo{
+    max-width: 100%;
+    height: auto;
+    margin: 40px 0 20px;
+    border-radius: 6px 6px 0px 0px;
+    border: 1px solid var(--Gov-UI-Light, #BDBDBD);
+    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
+.job__title {
+    color: var(--CIB_Dark_blue, #005F81);
+    /* Desktop/Heading/Large */
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+    padding-bottom: 20px;
+}
+.job__organisation {
+    text-align: unset;
+    padding-bottom: 20px;
+}
+.job__address p{
+    color: var(--CIB_Dark_blue, #005F81);
+    margin: 0;
+}
+.job__closing_date {
+    padding: 20px 0;
+    color: var(--CIB_Dark_blue, #005F81);
+    /* Desktop/Paragraph/Body • Bold */
+    font-family: Lato;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+.jobs__email {
+    color: var(--CIB_Dark_blue, #005F81);
+    /* Desktop/Link/Body */
+    font-family: Lato;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 131.579% */
+    text-decoration-line: underline;
+}
