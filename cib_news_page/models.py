@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.functional import cached_property
 from django.db.models.functions import TruncYear
 from django.db.models import Count
+from django.utils.translation import get_language
 
 from cib_utils.models import BasePage
 from cib_news_content_page.models import NewsContentPage, NewsTag
@@ -11,7 +12,7 @@ from cib_news_content_page.models import NewsContentPage, NewsTag
 class News(BasePage):
     "Main whats new page"
     template = "patterns/pages/news.html"
-    # parent_page_types = ["cib_home.HomePage"]
+    parent_page_types = ["cib_home.HomePage"]
 
     @cached_property
     def all_news_page(self):
@@ -49,6 +50,14 @@ class News(BasePage):
             return childs
         return childs
 
+    def get_tages(self):
+        current_lang = get_language()
+        all_tags = NewsTag.objects.all()
+        exist_lang = all_tags.values_list('locale', flat=True).distinct()
+        if current_lang in exist_lang:
+            return all_tags.filter(locale=current_lang)
+        return
+
     class Meta:
         verbose_name = _("news page")
         verbose_name_plural = _("news pages")
@@ -56,7 +65,7 @@ class News(BasePage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["child_with_tags"] = self.childs(request.GET)
-        context['all_tags'] = NewsTag.objects.all()
+        context['all_tags'] = self.get_tages()
         context['selected_year'] = request.GET.get('news_year')
         context['selected_tag'] = request.GET.get('news_tags')
         return context
