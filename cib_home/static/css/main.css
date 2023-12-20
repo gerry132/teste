@@ -1565,6 +1565,7 @@ tbody tr:nth-child(even) {
 }
 
 .custom-news-card select {
+  -webkit-appearance: none;
   min-width: 311px;
   padding: 5px;
   color: var(--text-primary, #0B0C0C);
