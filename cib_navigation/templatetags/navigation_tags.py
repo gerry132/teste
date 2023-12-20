@@ -106,6 +106,6 @@ def footernav(context):
 
 @register.simple_tag
 def is_trans_page(page):
-    if isinstance(page, int):
+    if isinstance(page, int) or isinstance(page, str):
         return False
     return True
