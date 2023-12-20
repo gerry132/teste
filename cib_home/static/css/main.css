@@ -18,7 +18,7 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 
 
 .wrapper--small {
-  max-width: 920px;
+  max-width: 790px;
   margin: 0 auto;
 }
 @media (max-width: 342px) {
@@ -713,7 +713,7 @@ display: flex;
 .callout {
   width: 100%;
   position: relative;
-  padding: 30px 30px 40px 40px;
+  padding: 40px;
   border-radius: 4px;
   color: white;
   margin-bottom: 40px;
@@ -1174,7 +1174,7 @@ display: flex;
 }
 
 .content-page-header{
-  margin: 40px 0;
+  margin: 40px 0 20px;
   font-family: Lato;
   font-size: 36px;
   font-style: normal;
@@ -1364,7 +1364,7 @@ tbody tr:nth-child(even) {
 @media only screen and (max-width: 549px) {
 .document-block {
         flex-wrap: wrap;
-        max-width: 270px;
+        justify-content: center
 }
 }
 .document-block {
@@ -1406,11 +1406,20 @@ tbody tr:nth-child(even) {
         padding-top: 0;
 }
 .document__filter-select{
+        appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
         min-width: 270px;
         padding: 5px;
         color: var(--text-primary, #0B0C0C);
         border: 2px solid var(--border-input, #0B0C0C);
-        background: var(--surface-background, #FFF);
+        background: url('../img/Icon_ Select.png') no-repeat 96% center; /* Replace 'path-to-custom-arrow-icon.png' with your custom arrow icon */
+        position: relative;
+}
+document__filter::-ms-expand {
+    display: block;
+    border: none;
+    padding: 8px; /* Adjust the padding to align with the custom arrow */
 }
 .document__filter-select option{
     min-width: 270px;
@@ -1861,7 +1870,7 @@ svg:not(:root) {
 }
 .jobs-document a.even:focus {
     border-radius: 4px;
-    border: 3px solid var(--Other-Yellow, #FD0);
+    outline: 3px solid var(--Other-Yellow, #FD0);
     background: #4F791B;
     color: #FFF;
     text-decoration: none;
@@ -1874,14 +1883,14 @@ svg:not(:root) {
 }
 .jobs-document a.odd:focus {
     border-radius: 4px;
-    border: 3px solid var(--Other-Yellow, #FD0);
-    background: var(--Other-Grey, #B1B4B6);#
+    outline: 3px solid var(--Other-Yellow, #FD0);
+    background: var(--Other-Grey, #B1B4B6);
     text-decoration: none;
 }
 
 .jobs-document a.even:active, .jobs-document a.odd:active {
     border-radius: 4px;
-    border: 2px solid var(--Border-Input, #0B0C0C);
+    outline: 2px solid var(--Border-Input, #0B0C0C);
     background: var(--Focus-Default, #FD0);
     box-shadow: 0px -1px 0px 0px #000 inset;
     text-decoration: none;
@@ -1893,8 +1902,6 @@ svg:not(:root) {
     height: auto;
     margin: 40px 0 20px;
     border-radius: 6px 6px 0px 0px;
-    border: 1px solid var(--Gov-UI-Light, #BDBDBD);
-    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 .job__title {
     color: var(--CIB_Dark_blue, #005F81);
@@ -1933,4 +1940,99 @@ svg:not(:root) {
     font-weight: 400;
     line-height: 25px; /* 131.579% */
     text-decoration-line: underline;
+}
+.job-cards {
+    display: grid;
+    gap: 20px;
+    padding: 40px 0;
+}
+@media screen and (min-width: 1025px) {
+.job-cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+}
+@media screen and (min-width: 560px) and (max-width: 1024px) {
+  .job-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.job-card{
+    border-radius: 5px;
+    background: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+
+    /* Panel Drop Shadow */
+    box-shadow: 0px 0px 0px 1px rgba(217, 217, 217, 0.80), 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+}
+.job_card__organisation_logo {
+    width: 100%;
+    height: auto;
+}
+.job_card__content{
+    padding: 20px 20px 0;
+}
+.job_card__title {
+    color: #000;
+
+    /* Desktop/Paragraph/Body Large • Bold */
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 133.333% */
+}
+.job_card__address {
+    color: var(--CIB_Dark_blue, #005F81);
+    /* Desktop/Link/Body */
+    font-family: Lato;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 131.579% */
+}
+.job_card__address p{
+    margin: 0;
+}
+.job_card__address p br {
+  content: "";
+}
+
+.job_card__address p br:after {
+  content: " ";
+}
+.jobs-card__button {
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--CIB_Green, #8AC640);
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+    text-decoration: none;
+    color: #000;
+    margin: auto 20px 20px;
+    text-align: center;
+}
+
+.jobs-card__button:hover {
+    border-radius: 4px;
+    background: #4F791B;
+
+    box-shadow: 0px -1px 0px 0px #002D18 inset;
+    color: #FFF;
+    text-decoration: none;
+}
+.jobs-card__button:focus {
+    border-radius: 4px;
+    outline: 3px solid var(--Other-Yellow, #FD0);
+    background: #4F791B;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.jobs-card__button:active {
+    border-radius: 4px;
+    outline: 2px solid var(--Border-Input, #0B0C0C);
+    background: var(--Focus-Default, #FD0);
+    box-shadow: 0px -1px 0px 0px #000 inset;
+    text-decoration: none;
+    color: #000;
 }
