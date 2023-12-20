@@ -104,6 +104,7 @@ def querystring_modify(
     present at all.
     """
     querydict = get_base_querydict(context, base)
+
     for key, value in kwargs.items():
 
         if isinstance(value, Model):
@@ -143,6 +144,17 @@ def querystring_modify(
                 querydict.setlist(key, list(value))
 
     clean_querydict(querydict, remove_blanks, remove_utm)
+
+    return f"?{querydict.urlencode()}"
+
+
+
+
+@register.simple_tag(takes_context=True)
+def update_query_params(context, new_value, base=None):
+    querydict = get_base_querydict(context, base)
+
+    querydict['page'] = new_value
 
     return f"?{querydict.urlencode()}"
 
