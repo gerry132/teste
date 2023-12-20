@@ -49,6 +49,7 @@ class TaggedJobVacancies(ItemBase):
 
 class JobVacancyContentPage(ContentPage):
     template = "patterns/pages/job_vacancy_content_page.html"
+    parent_page_types = ["JobVacanciesPage"]
 
     organisation_logo = models.ForeignKey(
         IMAGE_MODEL,
@@ -145,6 +146,9 @@ class JobVacancyContentPage(ContentPage):
 
 class JobVacanciesPage(BasePage):
     template = "patterns/pages/job_vacancy_page.html"
+    subpage_types = [
+        'JobVacancyContentPage',
+    ]
     description = models.TextField(blank=True)
     company_select_component = StreamField([
         ('publication_select_component', SelectComponentBlock()),

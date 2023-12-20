@@ -18,7 +18,7 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 
 
 .wrapper--small {
-  max-width: 790px;
+  max-width: 920px;
   margin: 0 auto;
 }
 @media (max-width: 342px) {
@@ -713,7 +713,7 @@ display: flex;
 .callout {
   width: 100%;
   position: relative;
-  padding: 40px;
+  padding: 30px 30px 40px 40px;
   border-radius: 4px;
   color: white;
   margin-bottom: 40px;
