@@ -2,7 +2,7 @@
 
 {% if self.image_file %}
     <div style="display: flex; justify-content: left;">
-        {% image self.image_file fill-300x200 as img %}
+        {% image self.image_file width-300 as img %}
         <img src="{{img.url}}" alt="{{ self.alt_text}}" >
     </div>
 {% endif %}
