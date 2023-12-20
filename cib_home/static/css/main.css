@@ -1413,7 +1413,7 @@ tbody tr:nth-child(even) {
         padding: 5px;
         color: var(--text-primary, #0B0C0C);
         border: 2px solid var(--border-input, #0B0C0C);
-        background: url('../img/Icon_ Select.png') no-repeat 96% center; /* Replace 'path-to-custom-arrow-icon.png' with your custom arrow icon */
+        background: url('../img/Icon_Select.svg') no-repeat 96% center; /* Replace 'path-to-custom-arrow-icon.png' with your custom arrow icon */
         position: relative;
 }
 document__filter::-ms-expand {

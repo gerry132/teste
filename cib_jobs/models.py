@@ -176,7 +176,7 @@ class JobVacanciesPage(BasePage):
             .filter(locale=self.locale)
             .public()
             .live()
-            .order_by("expire_at")
+            .order_by("-first_published_at")
             .specific()
         )
 
