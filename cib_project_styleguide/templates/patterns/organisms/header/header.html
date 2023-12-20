@@ -47,7 +47,8 @@
                         <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
                     </a>
                     <ul class="dropdown-menu">
-                        {% if not is_trans_page %}
+                        {% is_trans_page page as trans_page %}
+                        {% if not trans_page %}
                             <li><a class="index-a" href="/en/">English</a></li>
                             <li><a class="index-a" href="/ga/">Irish</a></li>
                         {% else %}
