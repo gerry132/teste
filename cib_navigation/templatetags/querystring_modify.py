@@ -148,8 +148,6 @@ def querystring_modify(
     return f"?{querydict.urlencode()}"
 
 
-
-
 @register.simple_tag(takes_context=True)
 def update_query_params(context, new_value, base=None):
     querydict = get_base_querydict(context, base)
