@@ -9,12 +9,28 @@ from django.conf import settings
 
 from cib_utils.models import BasePage
 from cib_news_content_page.models import NewsContentPage, NewsTag
+from cib_utils.blocks import SelectComponentBlock
+
+from wagtail.core.fields import StreamField
+from wagtail.admin.panels import FieldPanel
 
 
 class News(BasePage):
     "Main whats new page"
     template = "patterns/pages/news.html"
     parent_page_types = ["cib_home.HomePage"]
+
+    news_tag_select_component = StreamField([
+        ('news_tag_select_component', SelectComponentBlock()),
+    ], blank=False, null=True, max_num=1)
+    year_select_component = StreamField([
+        ('year_select_component', SelectComponentBlock()),
+    ], blank=False, null=True, max_num=1)
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('news_tag_select_component'),
+        FieldPanel('year_select_component'),
+    ]
 
     @cached_property
     def all_news_page(self):
