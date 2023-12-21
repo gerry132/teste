@@ -25,9 +25,9 @@
               <div class="document__filter-hint">{{ publication_filter.value.select_hint_text }}</div>
               <select id="tagSelect" name="news_tags" onchange="updateFilters()">
 
-                <option value="">
+                <option value="">{% if news_filter.value.select_default_option_value %}
                   {{ news_filter.value.select_default_option_value }}
-                  </option>
+                  {% else %}Select Tag{% endif %}</option>
 
                 {% for tag in all_tags %}
                   <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
@@ -38,13 +38,22 @@
 
           <!-- Filter by Year -->
           <div class="col-sm-6 col-md-4 custom-news-card">
-            <label  for="yearSelect">Filter by year</label>
-            <select id="yearSelect" name="news_year" onchange="updateFilters()">
-              <option value="">Select Year</option>
-              {% for year in page.years %}
-                <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+            {% for year_filter in page.year_select_component %}
+
+              <label  for="yearSelect">{% if  year_filter.value.select_title  %}{{ year_filter.value.select_title }}
+                {% else %}Filter by year{% endif %}</label>
+
+                <div class="document__filter-hint">{{ year_filter.value.select_hint_text }}</div>
+
+              <select id="yearSelect" name="news_year" onchange="updateFilters()">
+
+                <option value="">{% if year_filter.value.select_default_option_value %}{{ year_filter.value.select_default_option_value }}
+                  {% else %}Select Year{% endif %}</option>
               {% endfor %}
-            </select>
+                {% for year in page.years %}
+                  <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
           </div>
         </div>
       </form>
