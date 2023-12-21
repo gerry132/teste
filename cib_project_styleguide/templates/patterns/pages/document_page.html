@@ -8,7 +8,7 @@
         <div style="margin-bottom: 40px;" class="document-language-links">
             <div>
                 {% for publication_filter in page.publication_select_component %}
-                    <label class="" for="document_type">{{ publication_filter.value.select_title }}</label>
+                    <label class="document__filter-label newslettersignupcta__body" for="document_type">{{ publication_filter.value.select_title }}</label>
                     <div class="document__filter-hint">{{ publication_filter.value.select_hint_text }}</div>
                     <select class="document__filter-select newslettersignupcta__body" id="document_type" name="document_type">
                         <option value="" {% if not selected_document_type %}selected{% endif %}>{{ publication_filter.value.select_default_option_value }}</option>

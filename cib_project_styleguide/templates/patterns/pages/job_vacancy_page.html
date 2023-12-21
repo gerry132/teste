@@ -1,0 +1,65 @@
+{% extends "patterns/hero_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
+
+
+
+{% block content %}
+
+    <div class="wrapper wrapper--large ">
+        <div class="content-page-header">{{ page.title }}</div>
+        {% if page.description %}
+        <div style="padding: 0 0 20px;" class="newslettersignupcta__body"> {{ page.description }}</div>
+        {% endif %}
+        <form id="filter-form" method="get" action="">
+                {% for company_filter in page.company_select_component %}
+                    <label class="document__filter-label newslettersignupcta__body" for="company_type">{{ company_filter.value.select_title }}</label>
+                    <div class="document__filter-hint">{{ company_filter.value.select_hint_text }}</div>
+                    <select class="document__filter-select newslettersignupcta__body" id="company_type" name="company_type">
+                        <option value="" {% if not selected_company_type %}selected{% endif %}>{{ company_filter.value.select_default_option_value }}</option>
+                        {% for tag in all_company_type_tags %}
+                            <option value="{{ tag.slug }}" {% if selected_company_type == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+                {% endfor %}
+    </form>
+    <div class="job-cards">
+
+{% for job in jobs %}
+        <div class="job-card">
+            {% image job.organisation_logo original class="job_card__organisation_logo" alt=job.organisation_logo_alt %}
+            <div class="job_card__content">
+                <div class="job_card__title">
+                    {{ job.job_title }}
+                </div>
+                <div class="job__closing_date">{{ job.organisation }}</div>
+                <div class="job_card__address">{{ job.address|richtext }}</div>
+                <div class="newslettersignupcta__body">{{ job.job_index_lead_summary }}</div>
+
+                <div class="job__closing_date">
+                    {{ job.closing_date_title }} {{ job.expire_at|date:"d/m/Y" }}
+                </div>
+            </div>
+            <a href="{% pageurl job %}" class="jobs-card__button basefeature-button__text">{% trans 'Job details' %}</a>
+        </div>
+        {% endfor %}
+
+    </div>
+    </div>
+    {% if page.jobvacancy_latestnews_snippet %}
+        <div class="wrapper wrapper--large wrapper--padding">
+            {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+        </div>
+    {% endif %}
+    {% if page.news_letter_signup_cta %}
+                {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
+    {% endif %}
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Trigger form submission when dropdown values change
+            document.getElementById('company_type').addEventListener('change', function() {
+                document.getElementById('filter-form').submit();
+            });
+        });
+    </script>
+{% endblock %}
