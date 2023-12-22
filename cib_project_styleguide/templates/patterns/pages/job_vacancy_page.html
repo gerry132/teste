@@ -26,7 +26,9 @@
 
 {% for job in jobs %}
         <div class="job-card">
-            {% image job.organisation_logo original class="job_card__organisation_logo" alt=job.organisation_logo_alt %}
+            <div style="height: 190px; overflow: hidden;">
+            {% image job.organisation_logo width-400 height-190 class="job_card__organisation_logo" alt=job.organisation_logo_alt %}
+                </div>
             <div class="job_card__content">
                 <div class="job_card__title">
                     {{ job.job_title }}
