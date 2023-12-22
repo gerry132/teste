@@ -4,15 +4,13 @@
 {% block content %}
 
 
-
 <div class="container">
   <div class="wrapper wrapper--large wrapper--padding">
     <div class="content-page-header news-title">
       {{ page.title }}
     </div>
-    {% for publication_filter in page.publication_select_component %}
 
-    {% endfor %}
+
       <form>
         <div class="row custom-card-row">
           <!-- Filter by Document Type -->
@@ -58,17 +56,6 @@
         </div>
       </form>
 
-  {% comment %} <div class="row">
-    {% for child in child_with_tags %}
-      <div class="col-xs-12 col-sm-6 col-md-3 news-col">
-        <div class="card">
-          <p>Card content</p>
-        </div>
-      </div>
-    {% endfor %}
-
-  </div>
-</div> {% endcomment %}
 
 <div class="news-container">
     {% if child_with_tags %}

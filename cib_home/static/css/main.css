@@ -1291,6 +1291,9 @@ display: flex;
   max-width: 100%;
 }
 
+.news-title{
+  margin-bottom: 40px;
+}
 
 
 @media (max-width: 992px) {
@@ -1305,6 +1308,9 @@ display: flex;
   }
   .content-page-header{
     margin: 20px 0;
+  }
+  .news-title{
+    margin: 20px auto;
   }
 }
 /* News Content Page */
@@ -1331,7 +1337,7 @@ display: flex;
     width: 90% !important;
   }
   .news-title{
-    margin-bottom: 0;
+    margin: 20px auto;
   }
 }
 /* End of News Content Page */
@@ -1541,6 +1547,7 @@ document__filter::-ms-expand {
   left: 10px;
 }
 
+
 .tag {
   display: inline-block;
   background-color: #EEEFEF;
@@ -1553,11 +1560,12 @@ document__filter::-ms-expand {
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
-  max-width: 115px;
+  max-width: 7em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 .custom-news-card {
   margin-right: 20px;
@@ -1584,7 +1592,9 @@ document__filter::-ms-expand {
   padding: 5px;
   color: var(--text-primary, #0B0C0C);
   border: 2px solid var(--border-input, #0B0C0C);
-  background: var(--surface-background, #FFF);
+  background: var(--surface-background, #FFF) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAALCAYAAACd1bY6AAAA4WlDQ1BzUkdCAAAYlWNgYDzNAARMDgwMuXklRUHuTgoRkVEKDEggMbm4gAE3YGRg+HYNRDIwXNYNLGFjw6MWG+AsAloIpD8AsUg6mM3IAmInQdgSIHZ5SUEJkK0DYicXFIHYQBcz8BSFBDkD2T5AtkI6EjsJiZ2SWpwMZOcA2fEIv+XPZ2Cw+MLAwDwRIZY0jYFhezsDg8QdhJjKQgYG/lYGhm2XEWKf/cH+ZRQ7VJJaUQIS8dN3ZChILEoESzODAjQtjYHh03IGBt5IBgbhCwwMXNEQd4ABazEwoEkMJ0IAAGcZNnwoCV2gAAAACXBIWXMAABJ0AAASdAHeZh94AAAAmUlEQVQokaXS4QnDIBAF4DuDoH0GbgRX6UR1tGyQUeIYQrHXP6WEkkZt38/j8Z2KRK94IDnnIg1GRKIHbu8BgIQQ9AJsI6CIRMzzhhDUA8kQEVlrF2LOzBzNNK09oIjEe60rqUZVzVrrcrildcKubk9pZOlpuQVxz3s8ar065+hzVkrJTewIZGPoDGpmf61fvs5X8G9oD/ZAT+WaavS46U/GAAAAAElFTkSuQmCC') no-repeat;
+  background-position: right 5px center;
+  background-size: 10px 6px;
 }
 .card {
   box-sizing: border-box;
@@ -1592,9 +1602,7 @@ document__filter::-ms-expand {
   min-height: 580px;
   border-radius: 5px;
   background-color: #F5F5F5;
-  margin: 20px auto;
-  margin-right: auto;
-  margin-left: 0;
+  margin: 0 auto 40px 0;
   font-family: 'lato', sans-serif;
   position: relative;
 
@@ -1603,7 +1611,7 @@ document__filter::-ms-expand {
 /* ++++++++++++++++ */
 @media (min-width: 1280px) {
   .custom-col {
-    width: 25%;
+    width: 24.75%;
     float: left;
   }
 
@@ -1614,7 +1622,7 @@ document__filter::-ms-expand {
   .custom-col {
     width: 33.3333%;
     float: left;
-    padding-left: 0;
+    padding-left: 15px;
   }
   .card{
     max-width: 300px;
@@ -1630,10 +1638,11 @@ document__filter::-ms-expand {
   .custom-col {
     width: 27%;
     float: left;
-    padding-left: 0;
+    padding-left: 15px;
   }
   .card{
     max-width: 300px;
+
   }
 
   .card-image{
@@ -1642,16 +1651,14 @@ document__filter::-ms-expand {
   }
 }
 
-@media (min-width: 450px) and (max-width: 992px) {
+@media(max-width: 992px) {
   .custom-col {
-    width: 100%;
+    width: 50%;
     float: left;
     padding-left: 15px;
   }
   .custom-news-card {
-    margin-right: 0;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 0 0 10px auto;
     padding-right: 0;
   }
   .custom-news-card select{
@@ -1664,41 +1671,8 @@ document__filter::-ms-expand {
   }
   .card{
     margin-top: 10px;
-    min-width: 100%;
-    min-height: 770px;
-  }
-
-  .card-image{
-    min-width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 450px) {
-  .custom-col {
-    width: 100%;
-    float: left;
-    padding-left: 15px;
-  }
-  .custom-news-card {
-    margin-right: 0;
     margin-bottom: 10px;
-    margin-top: 10px;
-    padding-right: 0;
-  }
-
-  .custom-news-card select{
-    min-width: 100%;
-  }
-
-  .custom-card-row{
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-
-  .card {
-    margin: 10px 0;
-    min-width: 100%;
+    min-width: 45%;
     min-height: 600px;
   }
 
@@ -1706,9 +1680,32 @@ document__filter::-ms-expand {
     min-width: 100%;
     height: auto;
   }
-
   .card-image img{
     min-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .custom-col {
+    width: 100%;
+    float: left;
+    padding-left: 15px;
+  }
+
+  .card {
+    margin: 10px 0;
+    min-width: 100%;
+    min-height: 720px;
+  }
+
+}
+@media (max-width: 500px) {
+
+  .card {
+    margin: 10px 0;
+    min-width: 100%;
+    min-height: 610px;
   }
 
 }
