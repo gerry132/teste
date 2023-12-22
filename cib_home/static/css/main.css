@@ -1594,6 +1594,7 @@ document__filter::-ms-expand {
   border: 2px solid var(--border-input, #0B0C0C);
   background: url('../img/Icon_Select.svg') no-repeat 96% center;
 }
+
 .card {
   box-sizing: border-box;
   min-width: 300px;
@@ -1707,8 +1708,6 @@ document__filter::-ms-expand {
   }
 
 }
-
-
 
 /* End of the News Cards */
 
