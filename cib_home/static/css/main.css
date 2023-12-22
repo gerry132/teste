@@ -1291,6 +1291,9 @@ display: flex;
   max-width: 100%;
 }
 
+.news-title{
+  margin-bottom: 40px;
+}
 
 
 @media (max-width: 992px) {
@@ -1305,6 +1308,9 @@ display: flex;
   }
   .content-page-header{
     margin: 20px 0;
+  }
+  .news-title{
+    margin: 20px auto;
   }
 }
 /* News Content Page */
@@ -1329,6 +1335,9 @@ display: flex;
   .content-custom-image {
     margin: 20px 20px !important;
     width: 90% !important;
+  }
+  .news-title{
+    margin: 20px auto;
   }
 }
 /* End of News Content Page */
@@ -1442,22 +1451,19 @@ document__filter::-ms-expand {
   padding-right: 15px;
   margin-bottom: 40px;
 }
-.card {
-  box-sizing: border-box;
-  width: 300px;
-  height: 580px;
-  border-radius: 5px;
-  background-color: #F5F5F5;
-  margin: 20px;
-  font-family: 'lato', sans-serif;
-  position: relative;
-}
 
 .card-image {
 
   width: 300px;
   height: 200px;
   border-radius: 5px 5px 0 0;
+  display: block;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -1541,6 +1547,7 @@ document__filter::-ms-expand {
   left: 10px;
 }
 
+
 .tag {
   display: inline-block;
   background-color: #EEEFEF;
@@ -1553,14 +1560,19 @@ document__filter::-ms-expand {
   font-family: 'Lato';
   font-weight: 400;
   line-height: 20px;
-  max-width: 115px;
+  max-width: 7em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+
 .custom-news-card {
   margin-right: 20px;
+}
+
+.custom-news-card:nth-child(1n) {
+  margin-bottom: 20px;
 }
 
 .custom-news-card label {
@@ -1580,26 +1592,122 @@ document__filter::-ms-expand {
   padding: 5px;
   color: var(--text-primary, #0B0C0C);
   border: 2px solid var(--border-input, #0B0C0C);
-  background: var(--surface-background, #FFF);
+  background: url('../img/Icon_Select.svg') no-repeat 96% center;
 }
 
-@media (max-width: 767px) {
-  .custom-news-card {
-    margin-right: 0;
-    margin-bottom: 10px;
+.card {
+  box-sizing: border-box;
+  min-width: 300px;
+  min-height: 580px;
+  border-radius: 5px;
+  background-color: #F5F5F5;
+  margin: 0 auto 40px 0;
+  font-family: 'lato', sans-serif;
+  position: relative;
+
+}
+
+/* ++++++++++++++++ */
+@media (min-width: 1280px) {
+  .custom-col {
+    width: 24.75%;
+    float: left;
   }
+
+}
+
+@media (min-width: 1144px) and (max-width: 1279px) {
+
+  .custom-col {
+    width: 33.3333%;
+    float: left;
+    padding-left: 15px;
+  }
+  .card{
+    max-width: 300px;
+  }
+
+  .card-image{
+    min-width: 100%;
+    height: auto;
+  }
+}
+@media (min-width: 992px) and (max-width: 1143px) {
+
+  .custom-col {
+    width: 27%;
+    float: left;
+    padding-left: 15px;
+  }
+  .card{
+    max-width: 300px;
+
+  }
+
+  .card-image{
+    min-width: 100%;
+    height: auto;
+  }
+}
+
+@media(max-width: 992px) {
+  .custom-col {
+    width: 50%;
+    float: left;
+    padding-left: 15px;
+  }
+  .custom-news-card {
+    margin: 0 0 10px auto;
+    padding-right: 0;
+  }
+  .custom-news-card select{
+    min-width: 100%;
+  }
+
   .custom-card-row{
     margin-top: 0px;
-    margin-bottom: 10px !important;
+    margin-bottom: 0px;
+  }
+  .card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 45%;
+    min-height: 600px;
+  }
+
+  .card-image{
+    min-width: 100%;
+    height: auto;
+  }
+  .card-image img{
+    min-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .custom-col {
+    width: 100%;
+    float: left;
+    padding-left: 15px;
   }
 
   .card {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
+    min-width: 100%;
+    min-height: 720px;
   }
+
 }
+@media (max-width: 500px) {
 
+  .card {
+    margin: 10px 0;
+    min-width: 100%;
+    min-height: 610px;
+  }
 
+}
 
 /* End of the News Cards */
 
@@ -1961,6 +2069,7 @@ svg:not(:root) {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    background: #F5F5F5;
 
     /* Panel Drop Shadow */
     box-shadow: 0px 0px 0px 1px rgba(217, 217, 217, 0.80), 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
@@ -1974,9 +2083,9 @@ svg:not(:root) {
 .job_card__organisation_logo_container{
     height: 190px;
     overflow: hidden;
+    background: #FFF;
 }
 .job_card__content{
-background: #F5F5F5;
     padding: 20px 20px 0;
 }
 .job_card__title {
