@@ -1,5 +1,5 @@
 {% extends "patterns/hero_page.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
 
 {% block content %}
 
@@ -81,7 +81,7 @@
                       {% endif %}
                     {% endfor %}
                 </div>
-                  <a href="{% pageurl child %}" class="home-links">Read More</a>
+                  <a href="{% pageurl child %}" class="home-links">{% trans 'Read More' %}</a>
                   <div class="card-tags">
                     {% if child.current_tags %}
                       {% for tag in child.current_tags|slice:":2" %}
