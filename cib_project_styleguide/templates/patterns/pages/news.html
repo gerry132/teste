@@ -20,7 +20,7 @@
                 {{ news_filter.value.select_title }}
                 {% else %}Filter by document type{% endif %}</label>
 
-              <div class="document__filter-hint">{{ publication_filter.value.select_hint_text }}</div>
+              <div class="document__filter-hint">{{ news_filter.value.select_hint_text }}</div>
               <select id="tagSelect" name="news_tags" onchange="updateFilters()">
 
                 <option value="">{% if news_filter.value.select_default_option_value %}
