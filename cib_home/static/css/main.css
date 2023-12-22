@@ -1592,9 +1592,7 @@ document__filter::-ms-expand {
   padding: 5px;
   color: var(--text-primary, #0B0C0C);
   border: 2px solid var(--border-input, #0B0C0C);
-  background: var(--surface-background, #FFF) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAALCAYAAACd1bY6AAAA4WlDQ1BzUkdCAAAYlWNgYDzNAARMDgwMuXklRUHuTgoRkVEKDEggMbm4gAE3YGRg+HYNRDIwXNYNLGFjw6MWG+AsAloIpD8AsUg6mM3IAmInQdgSIHZ5SUEJkK0DYicXFIHYQBcz8BSFBDkD2T5AtkI6EjsJiZ2SWpwMZOcA2fEIv+XPZ2Cw+MLAwDwRIZY0jYFhezsDg8QdhJjKQgYG/lYGhm2XEWKf/cH+ZRQ7VJJaUQIS8dN3ZChILEoESzODAjQtjYHh03IGBt5IBgbhCwwMXNEQd4ABazEwoEkMJ0IAAGcZNnwoCV2gAAAACXBIWXMAABJ0AAASdAHeZh94AAAAmUlEQVQokaXS4QnDIBAF4DuDoH0GbgRX6UR1tGyQUeIYQrHXP6WEkkZt38/j8Z2KRK94IDnnIg1GRKIHbu8BgIQQ9AJsI6CIRMzzhhDUA8kQEVlrF2LOzBzNNK09oIjEe60rqUZVzVrrcrildcKubk9pZOlpuQVxz3s8ar065+hzVkrJTewIZGPoDGpmf61fvs5X8G9oD/ZAT+WaavS46U/GAAAAAElFTkSuQmCC') no-repeat;
-  background-position: right 5px center;
-  background-size: 10px 6px;
+  background: url('../img/Icon_Select.svg') no-repeat 96% center;
 }
 .card {
   box-sizing: border-box;
