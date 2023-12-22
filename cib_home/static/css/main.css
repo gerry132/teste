@@ -2069,6 +2069,7 @@ svg:not(:root) {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    background: #F5F5F5;
 
     /* Panel Drop Shadow */
     box-shadow: 0px 0px 0px 1px rgba(217, 217, 217, 0.80), 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
@@ -2082,9 +2083,9 @@ svg:not(:root) {
 .job_card__organisation_logo_container{
     height: 190px;
     overflow: hidden;
+    background: #FFF;
 }
 .job_card__content{
-background: #F5F5F5;
     padding: 20px 20px 0;
 }
 .job_card__title {
