@@ -63,11 +63,11 @@ locals {
     },
     deekshana_dev = {
       description = "Deekshana - Sidero"
-      cidr_blocks  = ["80.233.60.195/32", "80.233.58.195/32", "80.233.62.195/32"]
+      cidr_blocks  = ["80.233.39.178/32", "80.233.41.178/32"]
     },
     sina_dev = {
       description = "Sina - Sidero"
-      cidr_blocks  = ["86.133.210.107/32"]
+      cidr_blocks  = ["86.133.16.156/32"]
     },
     OGCIO = {
       description = "OGCIO - Office"

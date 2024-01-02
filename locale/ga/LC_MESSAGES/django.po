@@ -1,0 +1,349 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-22 12:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : "
+"4);\n"
+
+#: cib_content_page/blocks/address.py:11
+msgid "Address"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:15
+#: cib_content_page/blocks/custom_image.py:31
+msgid "Image"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:16
+#: cib_content_page/blocks/custom_image.py:33
+msgid "Alt"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:32
+msgid "Caption"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:36
+msgid "200*132"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:36
+msgid "400*267"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:36
+msgid "800*534"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:38
+msgid "Size"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:42
+msgid "Left"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:43
+msgid "Centre"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:44
+msgid "Right"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:46
+msgid "Align"
+msgstr ""
+
+#: cib_content_page/blocks/heading_block.py:20
+msgid "Anchor ID (Optional)"
+msgstr ""
+
+#: cib_content_page/blocks/heading_block.py:21
+msgid ""
+"Anchor target must be a compatible slug format without spaces or special "
+"characters"
+msgstr ""
+
+#: cib_content_page/blocks/heading_block.py:39
+msgid "Heading"
+msgstr ""
+
+#: cib_content_page/blocks/heading_block.py:49
+#, python-brace-format
+msgid ""
+"                '{anchor_id}' is not a valid slug for the anchor "
+"target.                 '{slug}' is the suggested value for this."
+msgstr ""
+
+#: cib_content_page/models/main_models.py:34 cib_documents/models.py:37
+#: cib_documents/models.py:49 cib_jobs/models.py:29
+#: cib_news_content_page/models.py:23
+msgctxt "A tag description"
+msgid "description"
+msgstr ""
+
+#: cib_content_page/models/main_models.py:72
+msgid "body"
+msgstr ""
+
+#: cib_content_page/views.py:11
+msgid "action details"
+msgstr ""
+
+#: cib_content_page/wagtail_hooks.py:91
+msgid "Publication log entered"
+msgstr ""
+
+#: cib_content_page/wagtail_hooks.py:94
+#, python-brace-format
+msgid "Publication log: {log_entry.data}"
+msgstr ""
+
+#: cib_home/blocks.py:33 cib_home/blocks.py:59 cib_home/blocks.py:80
+#: cib_home/blocks.py:119 cib_jobs/models.py:65 cib_utils/blocks.py:142
+#: cib_utils/models.py:177
+msgid "The alt text shown for accessibility: https://axesslab.com/alt-texts/"
+msgstr ""
+
+#: cib_jobs/models.py:64
+msgid "Image Alt text"
+msgstr ""
+
+#: cib_navigation/blocks.py:10 cib_utils/blocks.py:57
+msgid "Leave blank to use the page's own title"
+msgstr ""
+
+#: cib_navigation/blocks.py:27
+msgid "Leave blank if no header required."
+msgstr ""
+
+#: cib_navigation/models.py:64 cib_navigation/models.py:173
+msgid "Logo Alt text"
+msgstr ""
+
+#: cib_navigation/models.py:93 cib_navigation/models.py:161
+msgid "Language"
+msgstr ""
+
+#: cib_navigation/models.py:99
+msgid "Links"
+msgstr ""
+
+#: cib_navigation/models.py:106
+msgid "Popular Links"
+msgstr ""
+
+#: cib_navigation/models.py:119 cib_navigation/models.py:141
+#: cib_navigation/models.py:142
+msgid "Primary Navigation"
+msgstr ""
+
+#: cib_navigation/models.py:191
+msgid "Columns"
+msgstr ""
+
+#: cib_navigation/models.py:196
+msgid "Single list of elements at the base of the page."
+msgstr ""
+
+#: cib_navigation/models.py:211 cib_navigation/models.py:233
+#: cib_navigation/models.py:234
+msgid "Footer Navigation"
+msgstr ""
+
+#: cib_news_page/models.py:92
+msgid "news page"
+msgstr ""
+
+#: cib_news_page/models.py:93
+msgid "news pages"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:24
+#: cib_project_styleguide/templates/patterns/blocks/address.html:69
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:19
+msgid "Opening Hours"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:28
+#: cib_project_styleguide/templates/patterns/blocks/address.html:73
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:23
+msgid "Tel"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:32
+#: cib_project_styleguide/templates/patterns/blocks/address.html:77
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:27
+msgid "Locall"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:36
+#: cib_project_styleguide/templates/patterns/blocks/address.html:81
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:31
+msgid "Fax"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:40
+#: cib_project_styleguide/templates/patterns/blocks/address.html:44
+#: cib_project_styleguide/templates/patterns/blocks/address.html:85
+#: cib_project_styleguide/templates/patterns/blocks/address.html:89
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:35
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:39
+msgid "Homepage"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:48
+#: cib_project_styleguide/templates/patterns/blocks/address.html:93
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:43
+msgid "Contact Form"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/blocks/address.html:52
+#: cib_project_styleguide/templates/patterns/blocks/address.html:97
+#: cib_project_styleguide/templates/patterns/molecules/address/address.html:47
+msgid "Email"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:50
+#: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:109
+#: cib_project_styleguide/templates/patterns/molecules/hero/hybrid_hero.html:45
+#: cib_project_styleguide/templates/patterns/molecules/hero/hybrid_hero.html:59
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:54
+#: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:113
+#: cib_project_styleguide/templates/patterns/molecules/hero/hybrid_hero.html:51
+#: cib_project_styleguide/templates/patterns/molecules/hero/hybrid_hero.html:66
+msgid "Toggle video playback"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:4
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:4
+msgid "Pagination"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:9
+msgid "Goto previous page"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:16
+msgid "Previous"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:26
+msgid "Goto next page"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:33
+msgid "Next"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:8
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:13
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:36
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:41
+msgid "Go to next page"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/defender/lockout.html:8
+msgid "Your account has been locked"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/defender/lockout.html:25
+msgid "Account locked: too many login attempts."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/defender/lockout.html:27
+msgid "Contact an admin to unlock your account."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/defender/lockout.html:29
+#, python-format
+msgid ""
+"Please try again in '%(cooloff_time_minutes|floatformat)s' "
+"minute'%(cooloff_time_minutes|pluralize)s'."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/errors/500.html:8
+msgid "Server error"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/errors/500.html:29
+msgid "Something went wrong"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/errors/500.html:30
+msgid ""
+"We&rsquo;re sorry! Our server is acting up right now. Please try again soon."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/errors/500.html:31
+msgid "Internal Server Error (500)"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/job_vacancy_page.html:42
+msgid "Job details"
+msgstr "Sonraí poist"
+
+#: cib_project_styleguide/templates/patterns/pages/news.html:84
+msgid "Read More"
+msgstr "Leigh Nios mo"
+
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:8
+msgid "Search results for"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:10
+msgid "Search"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:34
+msgid "Results"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:47
+msgid "No results found."
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/wagtail/password_required.html:5
+#: cib_project_styleguide/templates/patterns/pages/wagtail/password_required.html:10
+msgid "Password required"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/pages/wagtail/password_required.html:12
+msgid "Please enter the password to proceed."
+msgstr ""
+
+#: cib_utils/blocks.py:141 cib_utils/models.py:176
+msgid "Icon Alt text"
+msgstr ""
+
+#: cib_utils/models.py:44
+msgid "publication_log"
+msgstr ""
+
+#: cib_utils/models.py:48
+msgid "last publish date (custom)"
+msgstr ""
+
+#: cib_utils/models.py:50
+msgid ""
+"Can be used to override the Wagtail-managed 'last published at' datetime, "
+"making content appear older (or newer) than it really is."
+msgstr ""

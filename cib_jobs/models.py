@@ -4,6 +4,8 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.images import get_image_model_string
 
 from cib_content_page.models import ContentPage
+from django.utils.functional import cached_property
+from django.utils.translation import get_language
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
@@ -14,6 +16,7 @@ from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from django import forms
 from wagtail import blocks
 
+from cib_utils.blocks import SelectComponentBlock
 from cib_utils.models import BasePage
 
 IMAGE_MODEL = get_image_model_string()
@@ -28,8 +31,8 @@ class JobVacanciesTag(TagBase):
     )
 
     class Meta:
-        verbose_name = "job vacancy tag"
-        verbose_name_plural = "job vacancies tags"
+        verbose_name = "job company tag"
+        verbose_name_plural = "job company tags"
 
 
 class TaggedJobVacancies(ItemBase):
@@ -46,6 +49,7 @@ class TaggedJobVacancies(ItemBase):
 
 class JobVacancyContentPage(ContentPage):
     template = "patterns/pages/job_vacancy_content_page.html"
+    parent_page_types = ["JobVacanciesPage"]
 
     organisation_logo = models.ForeignKey(
         IMAGE_MODEL,
@@ -63,6 +67,12 @@ class JobVacancyContentPage(ContentPage):
     job_title = models.TextField(blank=True)
     organisation = models.TextField(blank=True)
     address = RichTextField(blank=True, null=True)
+    job_index_lead_summary = models.TextField(
+        max_length=300,
+        help_text="A brief 1-2 sentence job summary. This will appear on the job vacancy index page, not on the "
+                  "job posting itself.",
+        null=True
+    )
     job_description = RichTextField(blank=True, null=True)
     job_forms = StreamField([
         ('heading_with_document', blocks.StructBlock([
@@ -78,12 +88,12 @@ class JobVacancyContentPage(ContentPage):
         blank=True,
     )
     jobvacancy_latestnews_snippet = models.ForeignKey(
-          'utils.JobsVacanciesAndLatestNewsSnippet',
-          null=True,
-          blank=True,
-          on_delete=models.SET_NULL,
-          related_name='+'
-      )
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     job_vacancy_tags = ParentalManyToManyField("JobVacanciesTag", blank=True)
 
@@ -106,6 +116,7 @@ class JobVacancyContentPage(ContentPage):
                 FieldPanel('job_title'),
                 FieldPanel('organisation'),
                 FieldPanel('address'),
+                FieldPanel('job_index_lead_summary'),
                 FieldPanel('job_description'),
                 FieldPanel('job_forms'),
                 FieldPanel('contact_email'),
@@ -129,7 +140,72 @@ class JobVacancyContentPage(ContentPage):
 
     @property
     def current_tags(self):
-        current_locale = self.locale
         return JobVacanciesTag.objects.filter(
-            locale=current_locale,
             jobvacancycontentpage__id=self.id)
+
+
+class JobVacanciesPage(BasePage):
+    template = "patterns/pages/job_vacancy_page.html"
+    subpage_types = [
+        'JobVacancyContentPage',
+    ]
+    description = models.TextField(blank=True)
+    company_select_component = StreamField([
+        ('publication_select_component', SelectComponentBlock()),
+    ], blank=False, null=True, max_num=1)
+    jobvacancy_latestnews_snippet = models.ForeignKey(
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    news_letter_signup_cta = models.ForeignKey(
+        'utils.NewsletterSignUpCTASnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @cached_property
+    def related_jobs(self):
+        return (
+            JobVacancyContentPage.objects
+            .child_of(self)
+            .filter(locale=self.locale)
+            .public()
+            .live()
+            .order_by("-first_published_at")
+            .specific()
+        )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("company_select_component"),
+        FieldPanel("jobvacancy_latestnews_snippet"),
+        FieldPanel("news_letter_signup_cta"),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        current_language = get_language()
+
+        all_company_type_tags = JobVacanciesTag.objects.filter(locale=current_language)
+        context['all_company_type_tags'] = all_company_type_tags
+
+        selected_company_type = request.GET.get('company_type')
+
+        jobs = []
+
+        for job in self.related_jobs:
+            job_company_type_tags = job.current_tags.values_list('slug', flat=True)
+
+            if not selected_company_type or selected_company_type in job_company_type_tags:
+                jobs.append(job)
+
+        context['jobs'] = jobs
+        context['selected_company_type'] = selected_company_type
+
+        return context

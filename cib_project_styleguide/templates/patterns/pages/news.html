@@ -1,50 +1,68 @@
 {% extends "patterns/hero_page.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
 
 {% block content %}
 
 
-
 <div class="container">
   <div class="wrapper wrapper--large wrapper--padding">
-    <div class="content-page-header">
+    <div class="content-page-header news-title">
       {{ page.title }}
     </div>
+
+
       <form>
-        <div class="row custom-card-row" style="margin-bottom: 40px;">
+        <div class="row custom-card-row">
           <!-- Filter by Document Type -->
           <div class="col-sm-6 col-md-3 custom-news-card">
-            <label for="tagSelect">Filter by document type</label>
-            <select id="tagSelect" name="news_tags" onchange="updateFilters()">
-              <option value="">Select Tag</option>
-              {% for tag in all_tags %}
-                <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
-              {% endfor %}
-            </select>
+            {% for news_filter in page.news_tag_select_component %}
+              <label for="tagSelect">{% if news_filter.value.select_title %}
+                {{ news_filter.value.select_title }}
+                {% else %}Filter by document type{% endif %}</label>
+
+              <div class="document__filter-hint">{{ news_filter.value.select_hint_text }}</div>
+              <select id="tagSelect" name="news_tags" onchange="updateFilters()">
+
+                <option value="">{% if news_filter.value.select_default_option_value %}
+                  {{ news_filter.value.select_default_option_value }}
+                  {% else %}Select Tag{% endif %}</option>
+
+                {% for tag in all_tags %}
+                  <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+                {% endfor %}
+              </select>
+            {% endfor %}
           </div>
 
           <!-- Filter by Year -->
           <div class="col-sm-6 col-md-4 custom-news-card">
-            <label  for="yearSelect">Filter by year</label>
-            <select id="yearSelect" name="news_year" onchange="updateFilters()">
-              <option value="">Select Year</option>
-              {% for year in page.years %}
-                <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+            {% for year_filter in page.year_select_component %}
+
+              <label  for="yearSelect">{% if  year_filter.value.select_title  %}{{ year_filter.value.select_title }}
+                {% else %}Filter by year{% endif %}</label>
+
+                <div class="document__filter-hint">{{ year_filter.value.select_hint_text }}</div>
+
+              <select id="yearSelect" name="news_year" onchange="updateFilters()">
+
+                <option value="">{% if year_filter.value.select_default_option_value %}{{ year_filter.value.select_default_option_value }}
+                  {% else %}Select Year{% endif %}</option>
               {% endfor %}
-            </select>
+                {% for year in page.years %}
+                  <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
           </div>
         </div>
       </form>
-  </div >
 
 
+<div class="news-container">
     {% if child_with_tags %}
-      {% for child in child_with_tags %}
+      <div class="row flex-row">
+        {% for child in child_with_tags %}
 
-          {% if forloop.counter0|divisibleby:4 %}
-          <div class="row">
-          {% endif %}
-            <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3 custom-col">
               <div class="card">
                 <div class="card-image">
                   {% for lead in child.lead_fields %}
@@ -62,8 +80,8 @@
                         <div class="card-content">{{lead}}</div>
                       {% endif %}
                     {% endfor %}
-                  </div>
-                  <a href="{% pageurl child %}" class="home-links">Read More</a>
+                </div>
+                  <a href="{% pageurl child %}" class="home-links">{% trans 'Read More' %}</a>
                   <div class="card-tags">
                     {% if child.current_tags %}
                       {% for tag in child.current_tags|slice:":2" %}
@@ -71,16 +89,19 @@
                       {% endfor %}
                     {% endif %}
                   </div>
-                  </div>
                 </div>
+              </div>
             </div>
-        {% if forloop.counter|divisibleby:4 or forloop.last %}
-          </div>
-        {% endif %}
-      {% endfor %}
+        {% endfor %}
+      </div>
+      {% include "patterns/molecules/pagination/pagination.html" with paginator_page=child_with_tags %}
+
     {% endif %}
   </div>
 </div>
+
+
+
 
 <script>
   function updateFilters() {
@@ -105,6 +126,8 @@
 
     window.location.search = queryParams.toString();
   }
+
+
 </script>
 
 

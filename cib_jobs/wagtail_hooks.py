@@ -8,7 +8,7 @@ class TagsModelAdmin(ModelAdmin):
                               FieldPanel("locale")]
     add_to_settings_menu = True
     model = JobVacanciesTag
-    menu_label = "Job Vacancy Tags"
+    menu_label = "Job Company Tags"
     menu_icon = "tag"
     menu_order = 1000
     list_display = ['name', 'description', 'locale']
