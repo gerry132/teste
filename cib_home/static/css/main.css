@@ -2075,15 +2075,20 @@ svg:not(:root) {
     box-shadow: 0px 0px 0px 1px rgba(217, 217, 217, 0.80), 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
 }
 .job_card__organisation_logo {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     display: block;
     margin: 0 auto;
+    object-fit: contain;
 }
-.job_card__organisation_logo_container{
+
+.job_card__organisation_logo_container {
     height: 190px;
     overflow: hidden;
     background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .job_card__content{
     padding: 20px 20px 0;
