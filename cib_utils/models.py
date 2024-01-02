@@ -49,7 +49,8 @@ class BasePage(Page):
         null=True,
         help_text=_(
             "Summary text to appear under search results"
-    ))
+        )
+    )
 
     last_published_custom = models.DateField(
         verbose_name=_("last publish date (custom)"),
