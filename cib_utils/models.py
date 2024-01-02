@@ -44,6 +44,14 @@ class BasePage(Page):
         verbose_name=_("publication_log")
     )
 
+    summary = models.TextField(
+        blank=True,
+        null=True,
+        help_text=_(
+            "Summary text to appear under search results"
+        )
+    )
+
     last_published_custom = models.DateField(
         verbose_name=_("last publish date (custom)"),
         help_text=_(
@@ -57,6 +65,7 @@ class BasePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("publication_log"),
+        FieldPanel("summary"),
     ]
 
     class Meta:

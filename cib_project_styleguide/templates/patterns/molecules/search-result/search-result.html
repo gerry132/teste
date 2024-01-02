@@ -13,8 +13,8 @@
             {% firstof result.listing_title result.title %}
         </a>
 
-        {% if pick.summary or result.listing_summary or result.search_description %}
-            <p>{% firstof pick.summary result.listing_summary result.search_description %}</p>
+        {% if result.summary %}
+            <p class="summary--text" style="padding-top: 20px;">{{ result.summary }}</p>
         {% endif %}
     </div>
 </div>
