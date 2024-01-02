@@ -18,12 +18,7 @@
             <div class="newslettersignupcta__body">{{ page.job_description|richtext }}</div>
 
             <div class="job__closing_date">
-                {{ page.closing_date_title }}: {{ page.expire_at|date:"d/m/Y" }}
-            </div>
-            <div class="jobs-document">
-                {% for document in page.job_forms %}
-                    <a href="{{ document.value.url }}" download="{{ document.value.heading }}" class="basefeature-button__text {% cycle 'even' 'odd' %}">{{ document.value.heading }}</a>
-                {% endfor %}
+                {{ page.closing_date_title }} {{ page.expire_at|date:"d/m/Y" }}
             </div>
             <div class="jobs__email">
             {{ page.contact_email|richtext }}
@@ -63,6 +58,11 @@
                         </section>
                     {% endif %}
                 {% endfor %}
+            <div class="jobs-document">
+                {% for document in page.job_forms %}
+                    <a href="{{ document.value.document.url }}" download="{{ document.value.heading }}" class="basefeature-button__text {% cycle 'even' 'odd' %}">{{ document.value.heading }}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="wrapper wrapper--large wrapper--padding">
