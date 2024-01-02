@@ -28,20 +28,31 @@
             {% if search_results %}
 
             <div class="search-results">
-
-                {% with count=search_results.paginator.count %}
-                    <div class="search-results__count">
-                    {% trans 'Results' %} {{ search_results.start_index }}-{{ search_results.end_index }} of {{ count }} search results for <span class="search-results__query">{{ search_query }}</span>.
+                <div class="container-fluid" id="reboot-search-drawer-custom-nav">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                {% with count=search_results.paginator.num_pages %}
+                                    <div class="search-results__count border--bottom__div">
+                                        {% if count %}
+                                            {{count}} {% trans 'results' %}
+                                        {% else %}
+                                            0 {% trans 'results' %}
+                                        {% endif %}
+                                        
+                                    </div>
+                                {% endwith %}
+                                <ul class="ul--no-style">
+                                    {% for result in search_results %}
+                                        <li class="border--bottom__div">
+                                            {% include "patterns/molecules/search-result/search-result.html" with result=result.specific %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                {% endwith %}
-
-                <ul>
-                    {% for result in search_results %}
-                        <li>
-                            {% include "patterns/molecules/search-result/search-result.html" with result=result.specific %}
-                        </li>
-                    {% endfor %}
-                </ul>
+                </div>
 
                 {% elif search_query and not search_picks %}
                     {% trans 'No results found.' %}
