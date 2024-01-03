@@ -44,7 +44,7 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    site_logo = models.ForeignKey(
+    site_english_logo = models.ForeignKey(
         IMAGE_MODEL,
         null=True,
         blank=True,
@@ -58,8 +58,23 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    site_logo_alt = models.CharField(
+    site_english_logo_alt = models.CharField(
         max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_("Logo Alt text"),
+        help_text=_(ALT_IMAGE),
+    )
+    site_irish_logo = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    site_irish_logo_alt = models.CharField(
+        max_length=255,
+        null=True,
         blank=False,
         verbose_name=_("Logo Alt text"),
         help_text=_(ALT_IMAGE),
@@ -68,8 +83,10 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
     panels = [
         MultiFieldPanel([
             FieldPanel("favicon"),
-            FieldPanel("site_logo"),
-            FieldPanel("site_logo_alt"),
+            FieldPanel("site_english_logo"),
+            FieldPanel("site_english_logo_alt"),
+            FieldPanel("site_irish_logo"),
+            FieldPanel("site_irish_logo_alt"),
         ], heading="Site Logo"),
     ]
 
@@ -110,6 +127,8 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
 
     panels = [
         FieldPanel("title"),
+        FieldPanel("english_logo_file"),
+        FieldPanel("irish_logo_file"),
         MultiFieldPanel(
             [
                 FieldPanel("lang"),
