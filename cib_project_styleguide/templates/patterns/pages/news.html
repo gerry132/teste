@@ -4,101 +4,98 @@
 {% block content %}
 
 
-<div class="container">
-  <div class="wrapper wrapper--large wrapper--padding">
+  <div class="wrapper wrapper--large">
     <div class="content-page-header news-title">
       {{ page.title }}
     </div>
+    <form>
+      <div class="filter-container">
 
+        <div class="filters">
+            <div class="filter">
+              {% for news_filter in page.news_tag_select_component %}
+                <label for="tagSelect">{% if news_filter.value.select_title %}
+                  {{ news_filter.value.select_title }}
+                  {% else %}Filter by document type{% endif %}</label>
 
-      <form>
-        <div class="row custom-card-row">
-          <!-- Filter by Document Type -->
-          <div class="col-sm-6 col-md-3 custom-news-card">
-            {% for news_filter in page.news_tag_select_component %}
-              <label for="tagSelect">{% if news_filter.value.select_title %}
-                {{ news_filter.value.select_title }}
-                {% else %}Filter by document type{% endif %}</label>
+                <div class="document__filter-hint">{{ news_filter.value.select_hint_text }}</div>
+                <select id="tagSelect" name="news_tags" onchange="updateFilters()">
 
-              <div class="document__filter-hint">{{ news_filter.value.select_hint_text }}</div>
-              <select id="tagSelect" name="news_tags" onchange="updateFilters()">
+                  <option value="">{% if news_filter.value.select_default_option_value %}
+                    {{ news_filter.value.select_default_option_value }}
+                    {% else %}Select Tag{% endif %}</option>
 
-                <option value="">{% if news_filter.value.select_default_option_value %}
-                  {{ news_filter.value.select_default_option_value }}
-                  {% else %}Select Tag{% endif %}</option>
-
-                {% for tag in all_tags %}
-                  <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
-                {% endfor %}
-              </select>
-            {% endfor %}
-          </div>
-
-          <!-- Filter by Year -->
-          <div class="col-sm-6 col-md-4 custom-news-card">
-            {% for year_filter in page.year_select_component %}
-
-              <label  for="yearSelect">{% if  year_filter.value.select_title  %}{{ year_filter.value.select_title }}
-                {% else %}Filter by year{% endif %}</label>
-
-                <div class="document__filter-hint">{{ year_filter.value.select_hint_text }}</div>
-
-              <select id="yearSelect" name="news_year" onchange="updateFilters()">
-
-                <option value="">{% if year_filter.value.select_default_option_value %}{{ year_filter.value.select_default_option_value }}
-                  {% else %}Select Year{% endif %}</option>
-              {% endfor %}
-                {% for year in page.years %}
-                  <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
-                {% endfor %}
-              </select>
-          </div>
-        </div>
-      </form>
-
-
-<div class="news-container">
-    {% if child_with_tags %}
-      <div class="row flex-row">
-        {% for child in child_with_tags %}
-
-            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3 custom-col">
-              <div class="card">
-                <div class="card-image">
-                  {% for lead in child.lead_fields %}
-                    {% if lead.block_type == 'banner_image' %}
-                      {{lead}}
-                    {% endif %}
+                  {% for tag in all_tags %}
+                    <option value="{{ tag.slug }}" {% if selected_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
                   {% endfor %}
-                </div>
-                <div class="card-content-box">
-                  <div class="card-text-content">
-                    <div class="card-date">{{ child.last_published_custom|date:"j F Y" }}</div>
-                    <div class="card-title">{{child.title}}</div>
-                    {% for lead in child.lead_fields %}
-                      {% if lead.block_type == 'lead_text' %}
-                        <div class="card-content">{{lead}}</div>
-                      {% endif %}
-                    {% endfor %}
-                </div>
-                  <a href="{% pageurl child %}" class="home-links">{% trans 'Read More' %}</a>
-                  <div class="card-tags">
-                    {% if child.current_tags %}
-                      {% for tag in child.current_tags|slice:":2" %}
-                        <a href="?news_tags={{tag.slug}}" class="tag">{{tag.name}}</a>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
+                  </select>
+              {% endfor %}
+            </div>
+            <div class="filter">
+              {% for year_filter in page.year_select_component %}
+
+                <label  for="yearSelect">{% if  year_filter.value.select_title  %}{{ year_filter.value.select_title }}
+                  {% else %}Filter by year{% endif %}</label>
+
+                  <div class="document__filter-hint">{{ year_filter.value.select_hint_text }}</div>
+
+                <select id="yearSelect" name="news_year" onchange="updateFilters()">
+
+                  <option value="">{% if year_filter.value.select_default_option_value %}{{ year_filter.value.select_default_option_value }}
+                    {% else %}Select Year{% endif %}</option>
+
+                  {% for year in page.years %}
+                    <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
+                  {% endfor %}
+                </select>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+    </form>
+
+    </div>
+
+<div class="wrapper wrapper--large">
+    {% if child_with_tags %}
+      <div class="news-cards">
+        {% for child in child_with_tags %}
+          <div class="card">
+            <div class="card-image">
+              {% for lead in child.lead_fields %}
+                {% if lead.block_type == 'banner_image' %}
+                  {{lead}}
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="card-content-box">
+              <div class="card-text-content">
+                <div class="card-date">{{ child.last_published_custom|date:"j F Y" }}</div>
+                <div class="card-title">{{child.title}}</div>
+                {% for lead in child.lead_fields %}
+                  {% if lead.block_type == 'lead_text' %}
+                    <div class="card-content">{{lead}}</div>
+                  {% endif %}
+                {% endfor %}
+            </div>
+              <a href="{% pageurl child %}" class="home-links">{% trans 'Read More' %}</a>
+              <div class="card-tags">
+                {% if child.current_tags %}
+                  {% for tag in child.current_tags|slice:":2" %}
+                    <a href="?news_tags={{tag.slug}}" class="tag">{{tag.name}}</a>
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
+          </div>
+
         {% endfor %}
       </div>
       {% include "patterns/molecules/pagination/pagination.html" with paginator_page=child_with_tags %}
 
     {% endif %}
-  </div>
 </div>
+
 
 
 
