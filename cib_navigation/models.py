@@ -39,6 +39,7 @@ ALT_IMAGE = ALT_HELP_TEXT % 'image'
 @register_setting(icon="list-ul")
 class SiteSettings(BaseSiteSetting, ClusterableModel):
     # The settings here are currently unused.
+    pagination_count = models.IntegerField(default=10)
     favicon = models.ForeignKey(
         IMAGE_MODEL,
         null=True,
