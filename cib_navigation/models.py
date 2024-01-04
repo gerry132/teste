@@ -31,6 +31,8 @@ ALT_HELP_TEXT = """A short one-sentence literal description
                     required to make the page accessible to the
                     visually impaired. Details: https://axesslab.com/alt-texts/"""
 
+IMAGE_HELP_TEXT = """The image size should be 255x71 pixels"""
+
 ALT_IMAGE = ALT_HELP_TEXT % 'image'
 
 
@@ -50,6 +52,7 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
+        help_text=IMAGE_HELP_TEXT
     )
     mobile_logo = models.ForeignKey(
         IMAGE_MODEL,
@@ -71,6 +74,7 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
+        help_text=IMAGE_HELP_TEXT
     )
     site_irish_logo_alt = models.CharField(
         max_length=255,
