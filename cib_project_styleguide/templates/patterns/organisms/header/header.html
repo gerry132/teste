@@ -13,9 +13,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a {% if logo_url %}href="{{logo_url}}" {% else %}href="/{{ language_code }}/"{% endif %} class="navbar-brand">
-                
-                {% if nav.site_settings.site_logo %}
-                    {% image nav.site_settings.site_logo original class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_logo_alt %}
+
+                {% if nav.site_settings.site_english_logo and language_code == 'en' %}
+                    {% image nav.site_settings.site_english_logo width-255 height-71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_english_logo_alt %}
+                {% elif nav.site_settings.site_irish_logo and language_code == 'ga' %}
+                    {% image nav.site_settings.site_irish_logo width-255 height-71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_irish_logo_alt %}
                 {% else %}
                     {% include "patterns/atoms/image/default_logo.html" %}
                 {% endif %}
@@ -59,7 +61,7 @@
                                 {% endfor %}
                             {% endif %}
                         {% endif %}
-                    
+
                     </ul>
                     <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
                 </li>

@@ -31,6 +31,8 @@ ALT_HELP_TEXT = """A short one-sentence literal description
                     required to make the page accessible to the
                     visually impaired. Details: https://axesslab.com/alt-texts/"""
 
+IMAGE_HELP_TEXT = """The image size should be 255x71 pixels"""
+
 ALT_IMAGE = ALT_HELP_TEXT % 'image'
 
 
@@ -44,12 +46,13 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    site_logo = models.ForeignKey(
+    site_english_logo = models.ForeignKey(
         IMAGE_MODEL,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
+        help_text=IMAGE_HELP_TEXT
     )
     mobile_logo = models.ForeignKey(
         IMAGE_MODEL,
@@ -58,8 +61,24 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    site_logo_alt = models.CharField(
+    site_english_logo_alt = models.CharField(
         max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_("Logo Alt text"),
+        help_text=_(ALT_IMAGE),
+    )
+    site_irish_logo = models.ForeignKey(
+        IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text=IMAGE_HELP_TEXT
+    )
+    site_irish_logo_alt = models.CharField(
+        max_length=255,
+        null=True,
         blank=False,
         verbose_name=_("Logo Alt text"),
         help_text=_(ALT_IMAGE),
@@ -68,8 +87,10 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
     panels = [
         MultiFieldPanel([
             FieldPanel("favicon"),
-            FieldPanel("site_logo"),
-            FieldPanel("site_logo_alt"),
+            FieldPanel("site_english_logo"),
+            FieldPanel("site_english_logo_alt"),
+            FieldPanel("site_irish_logo"),
+            FieldPanel("site_irish_logo_alt"),
         ], heading="Site Logo"),
     ]
 
@@ -110,6 +131,8 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
 
     panels = [
         FieldPanel("title"),
+        FieldPanel("english_logo_file"),
+        FieldPanel("irish_logo_file"),
         MultiFieldPanel(
             [
                 FieldPanel("lang"),
