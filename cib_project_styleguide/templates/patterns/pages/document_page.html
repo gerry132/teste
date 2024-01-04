@@ -56,6 +56,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% include "patterns/molecules/pagination/pagination.html" with paginator_page=documents %}
         {% else %}
             <p>No documents found.</p>
         {% endif %}

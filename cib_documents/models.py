@@ -11,6 +11,8 @@ from wagtail.core import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.conf import settings
 
 from cib_utils.blocks import SelectComponentBlock
 from cib_utils.models import BasePage
@@ -111,6 +113,18 @@ class DocumentPage(BasePage):
         FieldPanel('body'),
     ]
 
+    def paginate(self, request, documents_list):
+        paginator = Paginator(documents_list, settings.DEFAULT_PER_DOCUMENT_PAGE)
+        page = request.GET.get("page")
+
+        try:
+            childs = paginator.page(page)
+        except PageNotAnInteger:
+            childs = paginator.page(1)
+        except EmptyPage:
+            childs = paginator.page(paginator.num_pages)
+        return childs
+
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
@@ -138,7 +152,7 @@ class DocumentPage(BasePage):
                 ):
                     documents.append(block.value)
 
-        context['documents'] = documents
+        context['documents'] = self.paginate(request, documents)
         context['selected_year'] = selected_year
         context['selected_document_type'] = selected_document_type
 

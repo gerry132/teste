@@ -413,6 +413,7 @@ else:
 # Default size of the pagination used on the front-end.
 DEFAULT_PER_PAGE = 10
 DEFAULT_PER_NEWS_PAGE = 12
+DEFAULT_PER_DOCUMENT_PAGE = 3
 
 # WAGTAIL_EXPERIMENTAL_FEATURES = ['slim-sidebar']
 
