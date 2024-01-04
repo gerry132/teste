@@ -1,0 +1,68 @@
+{% if current_page.depth == 3 %}
+  <ul>
+    <li><a href="{{ current_page.url }}">{{ current_page.title }}</a></li>
+    <ul>
+    {% for child_page in children_pages %}
+      <li><a href="{{ child_page.url }}">{{ child_page.title }}</a></li>
+    {% endfor %}
+      </ul>
+  </ul>
+{% endif %}
+
+{% if current_page.depth == 4 %}
+  <ul>
+    <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+      <ul>
+        {% for sibling_page in children_pages %}
+          {% if sibling_page.id == current_page.id %}
+            <li><a href="{{ current_page.url }}">{{ current_page.title }}</a>
+              {% if sub_child_pages %}
+                <ul>
+                  {% for sub_child_page in sub_child_pages %}
+                    <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% else %}
+            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+{% endif %}
+
+{% if current_page.depth == 5 %}
+  <ul>
+    {% for parent_page in parent_page %}
+      <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+        <ul>
+          {% for sibling_page in children_pages %}
+            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a>
+              {% if sibling_page.id == current_page.get_parent.id %}
+                {% if sub_child_pages %}
+                  <ul>
+                    {% for sub_child_page in sub_child_pages %}
+                      <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a>
+                        {% with grandchild_pages=sub_child_page.get_children %}
+                          {% if grandchild_pages %}
+                            <ul>
+                              {% for grandchild_page in grandchild_pages %}
+                                <li><a href="{{ grandchild_page.url }}">{{ grandchild_page.title }}</a></li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        {% endwith %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
