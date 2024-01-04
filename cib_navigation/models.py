@@ -132,8 +132,6 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
 
     panels = [
         FieldPanel("title"),
-        FieldPanel("english_logo_file"),
-        FieldPanel("irish_logo_file"),
         MultiFieldPanel(
             [
                 FieldPanel("lang"),
