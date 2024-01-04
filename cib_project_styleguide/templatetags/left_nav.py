@@ -32,5 +32,5 @@ def left_nav(context, current_page):
         'parent_page': parent_page,
         'children_pages': children_pages,
         'sub_child_pages': sub_child_pages,
-        'grandchild_pages': grandchild_pages if depth == 5 else None,
+        'grandchild_pages': grandchild_pages,
     }
