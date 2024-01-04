@@ -1,0 +1,68 @@
+
+{% if current_page.depth == 3 %}
+  <ul>
+    <li>{{ current_page.title }}</li>
+    <ul>
+    {% for child_page in children_pages %}
+      <li>{{ child_page.title }}</li>
+    {% endfor %}
+      </ul>
+  </ul>
+{% endif %}
+
+{% if current_page.depth == 4 %}
+  <ul>
+    <li>{{ parent_page.title }}
+      <ul>
+        {% for sibling_page in children_pages %}
+          {% if sibling_page.id == current_page.id %}
+            <li>{{ current_page.title }}
+              {% if sub_child_pages %}
+                <ul>
+                  {% for sub_child_page in sub_child_pages %}
+                    <li>{{ sub_child_page.title }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endif %}
+          <li>{{ sibling_page.title }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+{% endif %}
+
+{% if current_page.depth == 5 %}
+  <ul>
+    {% for parent_page in parent_page %}
+      <li>{{ parent_page.title }}
+        <ul>
+          {% for sibling_page in children_pages %}
+            <li>{{ sibling_page.title }}
+              {% if sibling_page.id == current_page.get_parent.id %}
+                {% if sub_child_pages %}
+                  <ul>
+                    {% for sub_child_page in sub_child_pages %}
+                      <li>{{ sub_child_page.title }}
+                        {% with grandchild_pages=sub_child_page.get_children %}
+                          {% if grandchild_pages %}
+                            <ul>
+                              {% for grandchild_page in grandchild_pages %}
+                                <li>{{ grandchild_page.title }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        {% endwith %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
