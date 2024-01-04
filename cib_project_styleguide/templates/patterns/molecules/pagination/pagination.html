@@ -14,10 +14,10 @@
                 <span class="next-prev">Previous</span>
             </a>
         </li>
-        
+
         {% endif %}
         {% if paginator_page.number|add:'-4' > 1 %}
-          <li class="search__results non--image--search"><a href="page=1" class="list--contain">1</a></li>
+          <li class="search__results non--image--search"><a href="?page=1" class="list--contain">1</a></li>
           <li class="search__results"><a class="list--contain" href="{% update_query_params  data.number|add:'-5' %}">&hellip;</a></li>
         {% endif %}
         {% for i in paginator_page.paginator.page_range %}
@@ -34,12 +34,12 @@
         {% if paginator_page.has_next %}
         <li class="search__results non--image--search">
             <a class="list--contain" href="{% update_query_params paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
-                <span class="next-prev">Next</span>    
+                <span class="next-prev">Next</span>
             </a>
         </li>
         <li class="search__results">
             <a class="list--contain" href="{% update_query_params paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
-                <img class="img-arrows" src="{% static 'img/Icon_Pagination-Next.png' %}">    
+                <img class="img-arrows" src="{% static 'img/Icon_Pagination-Next.png' %}">
             </a>
         </li>
     {% endif %}

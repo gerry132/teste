@@ -152,7 +152,7 @@ class DocumentPage(BasePage):
                 ):
                     documents.append(block.value)
 
-        context['documents'] = self.paginate(documents, request)
+        context['documents'] = self.paginate(request, documents)
         context['selected_year'] = selected_year
         context['selected_document_type'] = selected_document_type
 
