@@ -1,10 +1,9 @@
-
 {% if current_page.depth == 3 %}
   <ul>
-    <li>{{ current_page.title }}</li>
+    <li><a href="{{ current_page.url }}">{{ current_page.title }}</a></li>
     <ul>
     {% for child_page in children_pages %}
-      <li>{{ child_page.title }}</li>
+      <li><a href="{{ child_page.url }}">{{ child_page.title }}</a></li>
     {% endfor %}
       </ul>
   </ul>
@@ -12,23 +11,22 @@
 
 {% if current_page.depth == 4 %}
   <ul>
-    <li>{{ parent_page.title }}
+    <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
       <ul>
         {% for sibling_page in children_pages %}
           {% if sibling_page.id == current_page.id %}
-            <li>{{ current_page.title }}
+            <li><a href="{{ current_page.url }}">{{ current_page.title }}</a>
               {% if sub_child_pages %}
                 <ul>
                   {% for sub_child_page in sub_child_pages %}
-                    <li>{{ sub_child_page.title }}</li>
+                    <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %}
             </li>
           {% else %}
-            <li>{{ sibling_page.title }}</li>
+            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a></li>
           {% endif %}
-
         {% endfor %}
       </ul>
     </li>
@@ -38,20 +36,20 @@
 {% if current_page.depth == 5 %}
   <ul>
     {% for parent_page in parent_page %}
-      <li>{{ parent_page.title }}
+      <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
         <ul>
           {% for sibling_page in children_pages %}
-            <li>{{ sibling_page.title }}
+            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a>
               {% if sibling_page.id == current_page.get_parent.id %}
                 {% if sub_child_pages %}
                   <ul>
                     {% for sub_child_page in sub_child_pages %}
-                      <li>{{ sub_child_page.title }}
+                      <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a>
                         {% with grandchild_pages=sub_child_page.get_children %}
                           {% if grandchild_pages %}
                             <ul>
                               {% for grandchild_page in grandchild_pages %}
-                                <li>{{ grandchild_page.title }}</li>
+                                <li><a href="{{ grandchild_page.url }}">{{ grandchild_page.title }}</a></li>
                               {% endfor %}
                             </ul>
                           {% endif %}
