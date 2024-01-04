@@ -18,6 +18,8 @@
                     {% image nav.site_settings.site_english_logo fill-255x71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_english_logo_alt %}
                 {% elif nav.site_settings.site_irish_logo and language_code == 'ga' %}
                     {% image nav.site_settings.site_irish_logo fill-255x71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_irish_logo_alt %}
+                {% elif language_code == 'ga'%}
+                    {% include "patterns/atoms/image/default_irish_logo.html" %}
                 {% else %}
                     {% include "patterns/atoms/image/default_logo.html" %}
                 {% endif %}
