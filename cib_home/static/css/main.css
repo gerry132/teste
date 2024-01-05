@@ -1910,6 +1910,17 @@ svg:not(:root) {
   color: white;
 }
 
+@media screen and (max-width: 500px) {
+  .arrow--left {
+    margin-left: 0;
+  }
+
+  .pagination__list{
+    padding-left: 0;
+  }
+}
+
+
 .jobs-document{
     display: flex;
     gap: 20px;
