@@ -54,7 +54,6 @@ class TaggedPage(ItemBase):
 class ContentPage(BasePage):
     """Page for all content page"""
     template = "patterns/pages/content_page.html"
-    parent_page_types = ["cib_home.HomePage"]
     tags = ClusterTaggableManager(through='TaggedPage', blank=True)
     left_nav_title = models.TextField(
         blank=False,
