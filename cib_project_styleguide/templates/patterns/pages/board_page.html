@@ -3,10 +3,20 @@
 {% load left_nav %}
 
 {% block content %}
-{% left_nav page %}
-    {% for block in page.body%}
-        {% include_block block%}
-    {% endfor %}
-{% endblock %}
-
-
+<div class="wrapper wrapper--large wrapper--padding">
+    <div class="main-page-content">
+        <div class="left-nav">
+            {% left_nav page %}
+        </div>
+        <div class="page-body">
+            <h1 class="content-page-header">{{ page.title }}</h1>
+            <div class="newslettersignupcta__body" style="padding: 0 0 20px;">
+                {{ page.summary }}
+            </div>
+            {% for block in page.body%}
+                {% include_block block%}
+            {% endfor %}
+        {% endblock %}
+</div>
+    </div>
+</div>

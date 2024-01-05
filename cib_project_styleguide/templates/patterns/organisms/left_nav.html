@@ -1,31 +1,31 @@
 {% if current_page.depth == 3 %}
-  <ul>
-    <li><a href="{{ current_page.url }}">{{ current_page.title }}</a></li>
+  <ul class="left_nav--text">
+    <li class="left_nav--main"><a class="current" href="{{ current_page.url }}">{{ current_page.left_nav_title }}</a></li>
     <ul>
     {% for child_page in children_pages %}
-      <li><a href="{{ child_page.url }}">{{ child_page.title }}</a></li>
+      <li class="left_nav--child"><a href="{{ child_page.url }}">{{ child_page.left_nav_title }}</a></li>
     {% endfor %}
       </ul>
   </ul>
 {% endif %}
 
 {% if current_page.depth == 4 %}
-  <ul>
-    <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+  <ul class="left_nav--text">
+    <li> <div class="left_nav--main"><a href="{{ parent_page.url }}">{{ parent_page.left_nav_title }}</a></div>
       <ul>
         {% for sibling_page in children_pages %}
           {% if sibling_page.id == current_page.id %}
-            <li><a href="{{ current_page.url }}">{{ current_page.title }}</a>
+            <li class="left_nav--child"><a class="{% if sibling_page.id == current_page.id %}current{% endif %}" href="{{ current_page.url }}">{{ current_page.left_nav_title }}</a>
               {% if sub_child_pages %}
-                <ul>
+                <ul class="round-bullet">
                   {% for sub_child_page in sub_child_pages %}
-                    <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a></li>
+                    <li><a style="margin-left: 20px;" href="{{ sub_child_page.url }}">{{ sub_child_page.left_nav_title }}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %}
             </li>
           {% else %}
-            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a></li>
+            <li class="left_nav--child"><a class="{% if sibling_page.id == current_page.id %}current{% endif %}" href="{{ sibling_page.url }}">{{ sibling_page.left_nav_title }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
@@ -34,22 +34,22 @@
 {% endif %}
 
 {% if current_page.depth == 5 %}
-  <ul>
+  <ul class="left_nav--text">
     {% for parent_page in parent_page %}
-      <li><a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+    <li><div class="left_nav--main"><a href="{{ parent_page.url }}">{{ parent_page.left_nav_title }}</a></div>
         <ul>
           {% for sibling_page in children_pages %}
-            <li><a href="{{ sibling_page.url }}">{{ sibling_page.title }}</a>
+            <li class="left_nav--child"><a href="{{ sibling_page.url }}">{{ sibling_page.left_nav_title }}</a>
               {% if sibling_page.id == current_page.get_parent.id %}
                 {% if sub_child_pages %}
-                  <ul>
+                  <ul class="round-bullet">
                     {% for sub_child_page in sub_child_pages %}
-                      <li><a href="{{ sub_child_page.url }}">{{ sub_child_page.title }}</a>
+                      <li {% if sub_child_page.id == current_page.id %} class="selected" {% endif %}><a class="{% if sub_child_page.id == current_page.id %}current{% endif %}" style="margin-left: 20px;" href="{{ sub_child_page.url }}">{{ sub_child_page.left_nav_title }}</a>
                         {% with grandchild_pages=sub_child_page.get_children %}
                           {% if grandchild_pages %}
                             <ul>
                               {% for grandchild_page in grandchild_pages %}
-                                <li><a href="{{ grandchild_page.url }}">{{ grandchild_page.title }}</a></li>
+                                <li><a style="margin-left: 40px;" href="{{ grandchild_page.url }}">{{ grandchild_page.left_nav_title }}</a></li>
                               {% endfor %}
                             </ul>
                           {% endif %}

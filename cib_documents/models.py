@@ -97,6 +97,14 @@ class DocumentBlock(blocks.StructBlock):
 
 class DocumentPage(BasePage):
     template = "patterns/pages/document_page.html"
+    left_nav_title = models.TextField(
+        blank=False,
+        null=True
+    )
+    summary = models.TextField(
+        blank=True,
+        null=True
+    )
     publication_select_component = StreamField([
         ('publication_select_component', SelectComponentBlock()),
     ], blank=False, max_num=1)
@@ -108,6 +116,8 @@ class DocumentPage(BasePage):
     ], blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('left_nav_title'),
+        FieldPanel('summary'),
         FieldPanel('publication_select_component'),
         FieldPanel('year_select_component'),
         FieldPanel('body'),

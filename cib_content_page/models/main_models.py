@@ -56,7 +56,10 @@ class ContentPage(BasePage):
     template = "patterns/pages/content_page.html"
     parent_page_types = ["cib_home.HomePage"]
     tags = ClusterTaggableManager(through='TaggedPage', blank=True)
-
+    left_nav_title = models.TextField(
+        blank=False,
+        null=True
+    )
     body = StreamField(
         [
             ('image', ImageChooserBlock()),
@@ -74,6 +77,7 @@ class ContentPage(BasePage):
     )
 
     content_panels = BasePage.content_panels + [
+        FieldPanel("left_nav_title"),
         FieldPanel("body"),
     ]
 

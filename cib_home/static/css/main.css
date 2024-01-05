@@ -2169,3 +2169,109 @@ svg:not(:root) {
   font-size: 19px;
   line-height: 25px;
 }
+
+.left_nav--text a{
+    color: #000;
+
+    font-family: 'Lato', sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 500;
+    border-bottom: 1px solid #000;
+    line-height: 44px;
+}
+
+.left_nav--text a.current,
+.left_nav--text a.selected {
+    font-weight: 700;
+    text-decoration-line: none;
+    border-bottom: unset;
+}
+
+.left_nav--text a:hover {
+  text-decoration-line: none;
+  border-bottom: 3px solid #000;
+}
+.left_nav--text a:focus {
+  outline: none !important;
+  color: var(--govie-focus-text-colour);
+  background-color: var(--govie-focus-colour);
+  box-shadow: 0 -2px var(--govie-focus-colour);
+  text-decoration: none;
+}
+.left_nav--text a:link,
+.left_nav--text a:visited {
+  color: var(--govie-text-colour);
+}
+
+.left_nav--text a:active,
+.left_nav--text a:focus {
+  color: var(--govie-text-colour);
+}
+.left_nav--text{
+    padding: 0;
+}
+.left_nav--text ul{
+    list-style: none;
+    padding: 0;
+
+}
+.left_nav--text li{
+    list-style: none;
+}
+
+.left_nav--main {
+    border-left: 10px solid #0094C9;
+    padding-left: 20px;
+    background: #F5F5F5;
+    max-width: 370px;
+
+}
+.left_nav--child {
+    margin-left: 30px;
+    min-height: 44px;
+    line-height: 44px;
+}
+.round-bullet {
+      list-style: none;
+      padding: 0;
+    }
+
+.round-bullet > li {
+      position: relative;
+      padding-left: 20px;
+}
+
+.round-bullet > li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      background-color: #BDBDBD;
+      display: inline-block;
+}
+
+.round-bullet > li.selected::before {
+      background-color: #0094C9
+}
+
+.main-page-content {
+    display: flex;
+    gap: 20px;
+}
+.left-nav{
+    flex: 30%;
+    margin-top: 40px;
+}
+@media screen and (max-width: 768px) {
+    .main-page-content {
+    flex-wrap: wrap;
+}
+}
+.page-body{
+    flex: 70%;
+}

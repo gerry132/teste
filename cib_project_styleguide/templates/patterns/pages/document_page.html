@@ -3,10 +3,18 @@
 {% load left_nav %}
 
 {% block content %}
-{% left_nav page %}
+
 <div class="wrapper wrapper--large wrapper--padding">
-    <div class="content-page-header news-title">
+    <div class="main-page-content">
+        <div class="left-nav">
+            {% left_nav page %}
+        </div>
+        <div class="content-page-body">
+    <div class="content-page-header">
         {{ page.title }}
+    </div>
+    <div class="newslettersignupcta__body" style="padding: 0 0 20px;">
+        {{ page.summary }}
     </div>
     <form id="filter-form" method="get" action="">
         <div style="margin-bottom: 40px;" class="document-language-links">
@@ -62,6 +70,8 @@
         {% else %}
             <p>No documents found.</p>
         {% endif %}
+        </div>
+    </div>
 </div>
 <script>
         document.addEventListener('DOMContentLoaded', function () {
