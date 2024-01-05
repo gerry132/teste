@@ -1,14 +1,10 @@
 {% extends "patterns/hero_page.html" %}
 {% load wagtailcore_tags wagtailimages_tags static %}
-{% load left_nav %}
 
 {% block content %}
-{% left_nav page %}
 
     <div class="wrapper wrapper--small wrapper--padding ">
         <div class="content-page-body">
-
-
             {% image page.organisation_logo original class="job_organisation_logo" alt=page.organisation_logo_alt %}
             <div class="job__title">
                 {{ page.job_title }}

@@ -4,11 +4,19 @@
 
 
 {% block content %}
-{% left_nav page %}
+
+<div class="wrapper wrapper--large wrapper--padding">
+    <div class="main-page-content">
+        <div class="left-nav">
+            {% left_nav page %}
+        </div>
     <div class="wrapper wrapper--small wrapper--padding ">
         <div class="content-page-body">
             <div class="content-page-header">
                 {{ page.title }}
+            </div>
+            <div class="newslettersignupcta__body" style="padding: 0 0 20px;">
+                {{ page.summary }}
             </div>
 
             {% include "patterns/blocks/toc.html"  %}
@@ -42,6 +50,7 @@
             {% endfor %}
         </div>
     </div>
-
+    </div>
+</div>
 
 {% endblock %}
