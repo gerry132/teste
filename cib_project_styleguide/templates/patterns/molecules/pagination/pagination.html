@@ -4,14 +4,14 @@
 <nav aria-label="{% trans 'Pagination' %}" class="pagination">
     <ul class="pagination__list">
         {% if paginator_page.has_previous %}
-        <li class="search__results">
-            <a class="list--contain arrow--left" href="{% update_query_params paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
+        <li class="search__results arrow--left">
+            <a class="list--contain" href="{% update_query_params paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to previous page' %}">
                 <img class="img-arrows" src="{% static 'img/Icon_Pagination-Previous.png' %}">
             </a>
         </li>
-        <li class="search__results non--image--search">
-            <a class="list--contain" href="{% update_query_params paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
-                <span class="next-prev">Previous</span>
+        <li class="search__results non--image--search mobile-hidden">
+            <a class="list--contain" href="{% update_query_params paginator_page.previous_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to previous page' %}">
+                <span class="next-prev">{% trans 'Previous' %}</span>
             </a>
         </li>
 
@@ -23,7 +23,7 @@
         {% for i in paginator_page.paginator.page_range %}
           {% if paginator_page.number == i %}
               <li class="active search__results"><span class="list--contain">{{ i }}</span></li>
-          {% elif i > paginator_page.number|add:'-3' and i < paginator_page.number|add:'3' %}
+          {% elif i > paginator_page.number|add:'-2' and i < paginator_page.number|add:'2' %}
               <li class="search__results non--image--search"><a class="list--contain" href="{% update_query_params i %}">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
@@ -32,9 +32,9 @@
           <li class="search__results non--image--search"><a class="list--contain" href="{% update_query_params paginator_page.paginator.num_pages %}">{{ paginator_page.paginator.num_pages }}</a></li>
         {% endif %}
         {% if paginator_page.has_next %}
-        <li class="search__results non--image--search">
+        <li class="search__results non--image--search mobile-hidden">
             <a class="list--contain" href="{% update_query_params paginator_page.next_page_number %}" class="next pagination__link" rel="next" aria-label="{% trans 'Go to next page' %}">
-                <span class="next-prev">Next</span>
+                <span class="next-prev">{% trans 'Next' %}</span>
             </a>
         </li>
         <li class="search__results">
