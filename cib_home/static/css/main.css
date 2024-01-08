@@ -1263,6 +1263,21 @@ display: flex;
   height: auto;
 }
 
+.embed-custom-content {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+ .embed-custom-content iframe {
+  max-width: 100%;
+}
+
+
+
 .content-image,
 .content-custom-image {
   margin-top: 40px;
@@ -1344,6 +1359,9 @@ display: flex;
   }
   .news-title{
     margin: 20px auto;
+  }
+  .embed-custom-content {
+    margin-top: 20px;
   }
 }
 /* End of News Content Page */
