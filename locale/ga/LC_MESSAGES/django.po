@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 12:25+0000\n"
+"POT-Creation-Date: 2024-01-08 14:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,16 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: cib_content_page/blocks/custom_image.py:15
 #: cib_content_page/blocks/custom_image.py:31
 msgid "Image"
 msgstr ""
 
-#: cib_content_page/blocks/custom_image.py:16
-#: cib_content_page/blocks/custom_image.py:33
-msgid "Alt"
-msgstr ""
-
 #: cib_content_page/blocks/custom_image.py:32
 msgid "Caption"
+msgstr ""
+
+#: cib_content_page/blocks/custom_image.py:33
+msgid "Alt"
 msgstr ""
 
 #: cib_content_page/blocks/custom_image.py:36
@@ -90,14 +88,14 @@ msgid ""
 "target.                 '{slug}' is the suggested value for this."
 msgstr ""
 
-#: cib_content_page/models/main_models.py:34 cib_documents/models.py:37
-#: cib_documents/models.py:49 cib_jobs/models.py:29
+#: cib_content_page/models/main_models.py:34 cib_documents/models.py:39
+#: cib_documents/models.py:51 cib_jobs/models.py:29
 #: cib_news_content_page/models.py:23
 msgctxt "A tag description"
 msgid "description"
 msgstr ""
 
-#: cib_content_page/models/main_models.py:72
+#: cib_content_page/models/main_models.py:74
 msgid "body"
 msgstr ""
 
@@ -116,7 +114,7 @@ msgstr ""
 
 #: cib_home/blocks.py:33 cib_home/blocks.py:59 cib_home/blocks.py:80
 #: cib_home/blocks.py:119 cib_jobs/models.py:65 cib_utils/blocks.py:142
-#: cib_utils/models.py:177
+#: cib_utils/models.py:186
 msgid "The alt text shown for accessibility: https://axesslab.com/alt-texts/"
 msgstr ""
 
@@ -132,37 +130,38 @@ msgstr ""
 msgid "Leave blank if no header required."
 msgstr ""
 
-#: cib_navigation/models.py:64 cib_navigation/models.py:173
+#: cib_navigation/models.py:69 cib_navigation/models.py:84
+#: cib_navigation/models.py:195
 msgid "Logo Alt text"
 msgstr ""
 
-#: cib_navigation/models.py:93 cib_navigation/models.py:161
+#: cib_navigation/models.py:115 cib_navigation/models.py:183
 msgid "Language"
 msgstr ""
 
-#: cib_navigation/models.py:99
+#: cib_navigation/models.py:121
 msgid "Links"
 msgstr ""
 
-#: cib_navigation/models.py:106
+#: cib_navigation/models.py:128
 msgid "Popular Links"
 msgstr ""
 
-#: cib_navigation/models.py:119 cib_navigation/models.py:141
-#: cib_navigation/models.py:142
+#: cib_navigation/models.py:141 cib_navigation/models.py:163
+#: cib_navigation/models.py:164
 msgid "Primary Navigation"
 msgstr ""
 
-#: cib_navigation/models.py:191
+#: cib_navigation/models.py:213
 msgid "Columns"
 msgstr ""
 
-#: cib_navigation/models.py:196
+#: cib_navigation/models.py:218
 msgid "Single list of elements at the base of the page."
 msgstr ""
 
-#: cib_navigation/models.py:211 cib_navigation/models.py:233
-#: cib_navigation/models.py:234
+#: cib_navigation/models.py:233 cib_navigation/models.py:255
+#: cib_navigation/models.py:256
 msgid "Footer Navigation"
 msgstr ""
 
@@ -243,23 +242,28 @@ msgid "Goto previous page"
 msgstr ""
 
 #: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:16
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:14
 msgid "Previous"
-msgstr ""
+msgstr "Roimhe Seo"
 
 #: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:26
 msgid "Goto next page"
 msgstr ""
 
 #: cib_project_styleguide/templates/patterns/molecules/pagination/index-pagination.html:33
+#: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:37
 msgid "Next"
-msgstr ""
+msgstr "Ar aghaidh"
 
 #: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:8
 #: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:13
+msgid "Go to previous page"
+msgstr "Téigh go dtí an leathanach roimhe seo"
+
 #: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:36
 #: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:41
 msgid "Go to next page"
-msgstr ""
+msgstr "Téigh go dtí an chéad leathanach eile"
 
 #: cib_project_styleguide/templates/patterns/pages/defender/lockout.html:8
 msgid "Your account has been locked"
@@ -301,7 +305,7 @@ msgstr ""
 msgid "Job details"
 msgstr "Sonraí poist"
 
-#: cib_project_styleguide/templates/patterns/pages/news.html:84
+#: cib_project_styleguide/templates/patterns/pages/news.html:81
 msgid "Read More"
 msgstr "Leigh Nios mo"
 
@@ -313,11 +317,12 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: cib_project_styleguide/templates/patterns/pages/search/search.html:34
-msgid "Results"
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:38
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:40
+msgid "results"
 msgstr ""
 
-#: cib_project_styleguide/templates/patterns/pages/search/search.html:47
+#: cib_project_styleguide/templates/patterns/pages/search/search.html:58
 msgid "No results found."
 msgstr ""
 
@@ -330,7 +335,7 @@ msgstr ""
 msgid "Please enter the password to proceed."
 msgstr ""
 
-#: cib_utils/blocks.py:141 cib_utils/models.py:176
+#: cib_utils/blocks.py:141 cib_utils/models.py:185
 msgid "Icon Alt text"
 msgstr ""
 
@@ -338,11 +343,15 @@ msgstr ""
 msgid "publication_log"
 msgstr ""
 
-#: cib_utils/models.py:48
+#: cib_utils/models.py:51
+msgid "Summary text to appear under search results"
+msgstr ""
+
+#: cib_utils/models.py:56
 msgid "last publish date (custom)"
 msgstr ""
 
-#: cib_utils/models.py:50
+#: cib_utils/models.py:58
 msgid ""
 "Can be used to override the Wagtail-managed 'last published at' datetime, "
 "making content appear older (or newer) than it really is."
