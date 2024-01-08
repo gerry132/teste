@@ -2270,7 +2270,7 @@ svg:not(:root) {
     gap: 20px;
 }
 .left-nav{
-    flex: 30%;
+    flex: 1 0 30%;
     margin-top: 40px;
 }
 @media screen and (max-width: 768px) {
