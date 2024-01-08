@@ -1916,13 +1916,19 @@ svg:not(:root) {
   color: white;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .arrow--left {
+    margin-left: 0;
+  }
+  .search__results{
     margin-left: 0;
   }
 
   .pagination__list{
     padding-left: 0;
+  }
+  .mobile-hidden{
+    display: none;
   }
 }
 
