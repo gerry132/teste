@@ -6,24 +6,31 @@
 
     <div class="wrapper--logo">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#RebootMainMenu" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a {% if logo_url %}href="{{logo_url}}" {% else %}href="/{{ language_code }}/"{% endif %} class="navbar-brand">
 
                 {% if nav.site_settings.site_english_logo and language_code == 'en' %}
-                    {% image nav.site_settings.site_english_logo fill-255x71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_english_logo_alt %}
+                    {% image nav.site_settings.site_english_logo fill-220x68 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_english_logo_alt %}
                 {% elif nav.site_settings.site_irish_logo and language_code == 'ga' %}
-                    {% image nav.site_settings.site_irish_logo fill-255x71 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_irish_logo_alt %}
+                    {% image nav.site_settings.site_irish_logo fill-220x68 class="header__logo header__mobile" alt=custom_header_settings.site_settings.site_irish_logo_alt %}
                 {% elif language_code == 'ga'%}
                     {% include "patterns/atoms/image/default_irish_logo.html" %}
                 {% else %}
                     {% include "patterns/atoms/image/default_logo.html" %}
                 {% endif %}
             </a>
+            <div class="navbar-mobile-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#RebootMainMenu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="custom-search-icon custom-search-mobile" reboot-search-drawer-trigger-mobile="">
+                    <span class="pointer" role="button" aria-label="Toggle search menu" tabindex="0">
+                        <img src="{% static 'img/Icon_Search.png' %}" alt="Image: Search button" aria-hidden="true">
+                    </span>
+                </div>
+                </div>
         </div>
         <div class="collapse navbar-collapse" id="RebootMainMenu">
             <h2 class="sr-only" id="RebootSrMainMenuNav" style="color: #FFF;">
@@ -67,7 +74,7 @@
                     </ul>
                     <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
                 </li>
-                <li id="custom-search-icon" class="hidden-sm hidden-xs" reboot-search-drawer-trigger="">
+                <li class="custom-search-icon hidden-sm hidden-xs" reboot-search-drawer-trigger="">
                     <span class="pointer" role="button" aria-label="Toggle search menu" tabindex="0">
                         <img src="{% static 'img/Icon_Search.png' %}" alt="Image: Search button" aria-hidden="true">
                     </span>
