@@ -4,6 +4,7 @@ var _COLOR_GOLD = '#83764E';
 var _COLOR_LIGHT_GOLD = '#DAD3C0';
 function SearchDrawer(){
     this.trigger_selector = 'li[reboot-search-drawer-trigger]';
+    this.trigger_selector_mobile = '[reboot-search-drawer-trigger-mobile]';
     this.target_selector = '[reboot-search-drawer]';
     this.icon_cancel = "img/" + _ICON_CLOSE_DARK;
     this.icon_open = "img/" + _ICON_SEARCH_OPEN;
@@ -12,6 +13,7 @@ function SearchDrawer(){
     this.toggle_search_icon = function(){
         var self = this;
         var src = $(self.trigger_selector).find('img').attr('src');
+        var src_mobile = $(self.trigger_selector_mobile).find('img').attr('src');
         var background = self.label_closed_hex;
         if ($(self.target_selector).is(':visible') === true){
             src = self.icon_cancel;
@@ -21,10 +23,11 @@ function SearchDrawer(){
         };
         $(self.trigger_selector).find('img').attr('src', src);
         $(self.trigger_selector).css('background', background);
+         $(self.trigger_selector_mobile).find('img').attr('src', src);
+        $(self.trigger_selector_mobile).css('background', background);
     };
     this.toggle_input_focus = function(){
         var self = this;
-        console.log(1235435245432)
         if ($(self.target_selector).is(':visible') === true){
             $(self.target_selector).find('input').focus();
         } else {
@@ -43,6 +46,12 @@ function SearchDrawer(){
             self.control();
         });
         $(self.trigger_selector).keyup(function(event){
+            if (event.keyCode === 13) { self.control() };
+        });
+        $(self.trigger_selector_mobile).click(function(){
+            self.control();
+        });
+        $(self.trigger_selector_mobile).keyup(function(event){
             if (event.keyCode === 13) { self.control() };
         });
     };

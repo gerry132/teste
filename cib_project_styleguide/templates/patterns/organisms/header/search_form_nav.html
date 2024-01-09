@@ -4,7 +4,8 @@
 
     <div class="input-group input-group-nav-custom" {% if instance.content.title == "Search results" %} style="width:90%;"
     {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
-    <h3 class="search-nav-text margin-bottom-md">Search Citizens Information Board</h2>    
+    <h3 class="search-nav-text margin-bottom-md">Search Citizens Information Board</h2>
+        <div style="display: flex; flex-direction: row;">
     <input type="text" name="q" value="{{ request.GET.q }}" id="search-drop" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
         <span class="input-group-btn">
             <button style="
@@ -13,6 +14,7 @@
                 <img src="{% static '/img/Icon_Search.png' %}" alt="{{ aria_image|capfirst }}: {{ label_search_button|capfirst }}" />
             </button>
         </span>
+        </div>
 
     </div>
 </form>
