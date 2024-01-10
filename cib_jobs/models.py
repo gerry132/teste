@@ -64,6 +64,7 @@ class JobVacancyContentPage(ContentPage):
         verbose_name=_("Image Alt text"),
         help_text=_("The alt text shown for accessibility: https://axesslab.com/alt-texts/")
     )
+    show_on_page = models.BooleanField(blank=False, null=True)
     job_title = models.TextField(blank=True)
     organisation = models.TextField(blank=True)
     address = RichTextField(blank=True, null=True)
@@ -113,6 +114,7 @@ class JobVacancyContentPage(ContentPage):
             [
                 FieldPanel('organisation_logo'),
                 FieldPanel('organisation_logo_alt'),
+                FieldPanel("show_on_page", widget=forms.CheckboxInput),
                 FieldPanel('job_title'),
                 FieldPanel('organisation'),
                 FieldPanel('address'),

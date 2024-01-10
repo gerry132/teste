@@ -56,7 +56,7 @@ class ContentPage(BasePage):
     template = "patterns/pages/content_page.html"
     tags = ClusterTaggableManager(through='TaggedPage', blank=True)
     left_nav_title = models.TextField(
-        blank=False,
+        blank=True,
         null=True
     )
     body = StreamField(
