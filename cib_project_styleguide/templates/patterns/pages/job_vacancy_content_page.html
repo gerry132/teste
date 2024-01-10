@@ -4,8 +4,10 @@
 {% block content %}
 
     <div class="wrapper wrapper--small wrapper--padding ">
-        <div class="content-page-body">
-            {% image page.organisation_logo original class="job_organisation_logo" alt=page.organisation_logo_alt %}
+        <div class="content-page-body" style="{% if not page.show_on_page %}padding-top: 40px;{% endif %}">
+            {% if page.organisation_logo and page.show_on_page %}
+                {% image page.organisation_logo original class="job_organisation_logo" alt=page.organisation_logo_alt %}
+            {% endif %}
             <div class="job__title">
                 {{ page.job_title }}
             </div>

@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
@@ -23,7 +24,6 @@ from wagtail.images import get_image_model_string
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 IMAGE_MODEL = get_image_model_string()
-
 
 # TODO: make a const.py file
 ALT_HELP_TEXT = """A short one-sentence literal description
@@ -159,6 +159,10 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
     def __str__(self):
         return self.lang
 
+    def clean(self):
+        if PrimaryNavigation.objects.exclude(id=self.id).exists():
+            raise ValidationError('Only one instance of PrimaryNavigation snippet is allowed.')
+
     class Meta:
         verbose_name = _("Primary Navigation")
         verbose_name_plural = _("Primary Navigation")
@@ -199,9 +203,9 @@ class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.I
         [("two_colum_list", LinkColumnWithHeader()),
          ("single_colum_list", LinkColumnWithHeader()),
          ("single_column_address", blocks.StructBlock(
-                        [("heading", blocks.CharBlock()), ("address", blocks.RichTextBlock())],
-                        icon="link",
-                    ))],
+             [("heading", blocks.CharBlock()), ("address", blocks.RichTextBlock())],
+             icon="link",
+         ))],
         block_counts={
             'two_colum_list': {'max_num': 1},
             'single_colum_list': {'max_num': 1},
@@ -250,6 +254,10 @@ class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.I
 
     def __str__(self):
         return self.lang
+
+    def clean(self):
+        if FooterNavigation.objects.exclude(id=self.id).exists():
+            raise ValidationError('Only one instance of FooterNavigation snippet is allowed.')
 
     class Meta:
         verbose_name = _("Footer Navigation")
