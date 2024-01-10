@@ -160,8 +160,8 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
         return self.lang
 
     def clean(self):
-        if PrimaryNavigation.objects.exclude(id=self.id).exists():
-            raise ValidationError('Only one instance of PrimaryNavigation snippet is allowed.')
+        if PrimaryNavigation.objects.exclude(id=self.id).filter(lang=self.lang).exists():
+            raise ValidationError('Only one instance of PrimaryNavigation snippet is allowed for each language.')
 
     class Meta:
         verbose_name = _("Primary Navigation")
@@ -256,8 +256,8 @@ class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.I
         return self.lang
 
     def clean(self):
-        if FooterNavigation.objects.exclude(id=self.id).exists():
-            raise ValidationError('Only one instance of FooterNavigation snippet is allowed.')
+        if FooterNavigation.objects.exclude(id=self.id).filter(lang=self.lang).exists():
+            raise ValidationError('Only one instance of FooterNavigation snippet is allowed for each language.')
 
     class Meta:
         verbose_name = _("Footer Navigation")
