@@ -94,6 +94,11 @@ class DocumentBlock(blocks.StructBlock):
         required=False,
     )
 
+    class Meta:  # noqa
+        template = "patterns/blocks/document_block.html"
+        icon = "placeholder"
+        label = "Document Block"
+
 
 class DocumentPage(BasePage):
     template = "patterns/pages/document_page.html"
@@ -114,6 +119,20 @@ class DocumentPage(BasePage):
     body = StreamField([
         ('document', DocumentBlock()),
     ], blank=True)
+    jobvacancy_latestnews_snippet = models.ForeignKey(
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    news_letter_signup_cta = models.ForeignKey(
+        'utils.NewsletterSignUpCTASnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('left_nav_title'),
@@ -121,6 +140,8 @@ class DocumentPage(BasePage):
         FieldPanel('publication_select_component'),
         FieldPanel('year_select_component'),
         FieldPanel('body'),
+        FieldPanel("jobvacancy_latestnews_snippet"),
+        FieldPanel("news_letter_signup_cta")
     ]
 
     def paginate(self, request, documents_list):

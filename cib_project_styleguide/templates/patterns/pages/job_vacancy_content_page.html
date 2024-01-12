@@ -30,31 +30,8 @@
                 {% endif %}
                 {% include "patterns/blocks/toc.html"  %}
 
-                {% for block in page.body %}
-                    {% if block.block_type == 'image' %}
-                        {% image block.value width-640 as himg%}
-                        <img src="{{ himg.url }}" width="{{ himg.width }}"
-                        height="{{ himg.height }}" alt="{{ himg.alt }}" class="content-image" >
-                    {% elif block.block_type == 'video'%}
-                        <div class="block-{{ block.block_type }}-{{ block.value.float }} block-{{ block.value.size }}">
-                            {% include_block block %}
-
-                        </div>
-                    {% elif block.block_type == 'embed_html_widget'%}
-                        <div class="content-custom-image">
-                            {{block.value|safe}}
-                        </div>
-                    {% elif block.block_type == 'custom_image'%}
-                        {% include_block block %}
-                    {% elif block.block_type == 'rich_text'%}
-                        <div class="content_richtext">
-                            {% include_block block %}
-                        </div>
-                    {% else %}
-                        <section class="block-{{ block.block_type }}">
-                            {% include_block block %}
-                        </section>
-                    {% endif %}
+                {% for block in page.body%}
+                    {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
                 {% endfor %}
             <div class="jobs-document">
                 {% for document in page.job_forms %}
@@ -64,8 +41,11 @@
         </div>
     </div>
     <div class="wrapper wrapper--large wrapper--padding">
-        {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+        {% include_block page.jobvacancy_latest_news_snippet.body with latest_news=page.jobvacancy_latest_news_snippet.latest_news %}
     </div>
+{% if page.news_letter_signup_cta %}
+    {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
+{% endif %}
 
 
 {% endblock %}

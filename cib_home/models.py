@@ -7,8 +7,15 @@ from functools import cached_property
 from wagtail.admin.panels import (
     FieldPanel, TabbedInterface, ObjectList,
 )
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtail import blocks
 
+from cib_content_page.blocks.address import AddressBlock
+from cib_content_page.blocks.custom_image import CustomImageBlock
+from cib_content_page.blocks.heading_block import HeadingBlock
+from cib_content_page.blocks.table import TinyMCETableBlock
+from cib_content_page.blocks.video import VideoBlock
 from cib_news_content_page.models import NewsContentPage
 from cib_utils.models import HeroPage
 
@@ -32,24 +39,36 @@ class HomePage(HeroPage):
         [
             ("CalloutCards", CallOutBlock()),
             ("InfoPanelCards", InfoPanelBlock()),
-            ("JobVacanciesAndNewsCard", JobsVacanciesAndLatestNewsBlock()),
+            ('image', ImageChooserBlock()),
+            ('custom_image', CustomImageBlock()),
+            ('video', VideoBlock()),
+            ('embed_html_widget', blocks.TextBlock(required=False)),
+            ("richtext", blocks.RichTextBlock(required=False)),
+            ("table", TinyMCETableBlock()),
+            ("address", AddressBlock()),
+            ("heading", HeadingBlock()),
         ],
-        block_counts={
-            'JobVacanciesAndNewsCard': {'max_num': 1, 'min_num': 0},
-        },
         use_json_field=True,
         null=True,
         blank=True
+    )
+    jobvacancy_latestnews_snippet = models.ForeignKey(
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
     news_letter_signup_cta = StreamField(
         [
             ("newslettersignupcta_snippet", SnippetChooserBlock(target_model="utils.NewsletterSignUpCTASnippet"))
         ],
         null=True,
-        blank=False
+        blank=True
     )
     content_panels = HeroPage.content_panels + [
         FieldPanel("body"),
+        FieldPanel("jobvacancy_latestnews_snippet"),
         FieldPanel("news_letter_signup_cta")
     ]
 

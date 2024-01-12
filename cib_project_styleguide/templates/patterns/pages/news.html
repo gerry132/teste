@@ -95,6 +95,14 @@
 
     {% endif %}
 </div>
+{% if page.jobvacancy_latestnews_snippet %}
+                <div class="wrapper wrapper--large wrapper--padding">
+                    {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+                </div>
+{% endif %}
+{% if page.news_letter_signup_cta %}
+    {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
+{% endif %}
 
 
 
