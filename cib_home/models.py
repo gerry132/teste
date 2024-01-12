@@ -19,7 +19,7 @@ from cib_content_page.blocks.video import VideoBlock
 from cib_news_content_page.models import NewsContentPage
 from cib_utils.models import HeroPage
 
-from .blocks import CallOutBlock, InfoPanelBlock, JobsVacanciesAndLatestNewsBlock
+from .blocks import CallOutBlock, InfoPanelBlock
 
 IMAGE_MODEL = get_image_model_string()
 
