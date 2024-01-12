@@ -10,7 +10,7 @@ a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 .margin-top-md { margin-top: 30px; }
 
 .margin-bottom-lg { margin-bottom: 50px; }
-.margin-bottom-md { margin-bottom: 30px; }
+.margin-bottom-md { margin-bottom: 20px; }
 .margin-bottom-sm { margin-bottom: 15px; }
 .margin-bottom-xs { margin-bottom: 10px; }
 .margin-bottom-none { margin-bottom: 0px; }
@@ -471,7 +471,7 @@ Bootstrap override
 
 .input-group-nav-custom {
   background-color: #EEEFEF;
-  padding: 20px;
+  padding: 10px;
 }
 
 /*===========================================================================*/
@@ -834,7 +834,7 @@ display: flex;
   font-size: 18px;
   line-height: 20px;
   text-decoration: underline;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .index-a--popular {color: #000000 !important;}
@@ -905,7 +905,10 @@ display: flex;
 }
 }
 @media (max-width: 1024px) and (min-width: 375px) {
-.hero {
+  .search-nav-text {
+    margin-top: 10px;
+  }
+  .hero {
   position: relative;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2304,4 +2307,13 @@ svg:not(:root) {
 }
 .page-body{
     flex: 70%;
+}
+
+.search--heading {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+
+  color: #005F81;
 }

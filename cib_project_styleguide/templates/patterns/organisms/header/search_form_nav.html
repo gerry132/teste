@@ -2,8 +2,7 @@
 
 <form action="/search/" method="GET" role="search">
 
-    <div class="input-group input-group-nav-custom" {% if instance.content.title == "Search results" %} style="width:90%;"
-    {% elif 'orthaí an chuardaigh' in instance.content.title %} style="width:100%;" {% else %} style="width:{{ width }}%;" {% endif %}>
+    <div class="input-group input-group-nav-custom" style="width:100%;">
     <h3 class="search-nav-text margin-bottom-md">Search Citizens Information Board</h2>
         <div style="display: flex; flex-direction: row;">
     <input type="text" name="q" value="{{ request.GET.q }}" id="search-drop" class="form-control input-lg no-radius" aria-label="{{ label_search_input|capfirst }}" placeholder="{{ label_search_govie|capfirst }}">
@@ -19,13 +18,13 @@
     </div>
 </form>
 <div class="input-group input-group-nav-custom">
-    <h3 class="search-nav-text margin-bottom-md">Most Popular</h3>
+    <h3 class="search-nav-text margin-bottom-md" style="margin-top: 0px;">Most Popular</h3>
     <ul class="ul--no-style">
     {% for link in nav.popular_links %}
     {% if link.value.title %}
-        <li class="popular_links--search margin-bottom-sm"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
+        <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
     {% else %}
-        <li class="popular_links--search margin-bottom-sm"><a class="index-a--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
+        <li class="popular_links--search"><a class="index-a--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
     {% endif %}
     {% endfor %}
 </ul>
