@@ -1,0 +1,18 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+<div class="document-block">
+                    {% image value.image fill-220x311 alt=value.image_alt class="story__image" %}
+                    <div>
+                        <h2 class="document-heading">{{ value.title }}</h2>
+                        <div class="newslettersignupcta__body document-body">
+                            {{ value.description|richtext }}
+                        </div>
+                        <div class="document-language">
+                            <div style="text-align:unset;" class="basefeature-button__text">{{ value.language.title }}</div>
+                            <div class="document-language-links">
+                            {% for link in value.language.languages %}
+                                <a class="home-links" href="{{ link.document.url }}" target="_blank">{{ link.heading }}</a>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -88,13 +88,6 @@ class JobVacancyContentPage(ContentPage):
         max_length=255,
         blank=True,
     )
-    jobvacancy_latestnews_snippet = models.ForeignKey(
-        'utils.JobsVacanciesAndLatestNewsSnippet',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
 
     job_vacancy_tags = ParentalManyToManyField("JobVacanciesTag", blank=True)
 
@@ -126,7 +119,8 @@ class JobVacancyContentPage(ContentPage):
             heading="Job Details",
         ),
         FieldPanel("body"),
-        FieldPanel("jobvacancy_latestnews_snippet"),
+        FieldPanel("jobvacancy_latest_news_snippet"),
+        FieldPanel("news_letter_signup_cta"),
         MultiFieldPanel(
             [
                 FieldPanel("job_vacancy_tags", widget=forms.CheckboxSelectMultiple)

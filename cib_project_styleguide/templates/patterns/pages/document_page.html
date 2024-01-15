@@ -72,7 +72,13 @@
         {% endif %}
         </div>
     </div>
+    {% if page.jobvacancy_latestnews_snippet %}
+                    {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+    {% endif %}
 </div>
+{% if page.news_letter_signup_cta %}
+                {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
+    {% endif %}
 <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Trigger form submission when dropdown values change

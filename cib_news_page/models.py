@@ -6,6 +6,7 @@ from django.db.models import Count
 from django.utils.translation import get_language
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.conf import settings
+from django.db import models
 
 from cib_utils.models import BasePage
 from cib_news_content_page.models import NewsContentPage, NewsTag
@@ -26,10 +27,26 @@ class News(BasePage):
     year_select_component = StreamField([
         ('year_select_component', SelectComponentBlock()),
     ], blank=False, null=True, max_num=1)
+    jobvacancy_latestnews_snippet = models.ForeignKey(
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    news_letter_signup_cta = models.ForeignKey(
+        'utils.NewsletterSignUpCTASnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = BasePage.content_panels + [
         FieldPanel('news_tag_select_component'),
         FieldPanel('year_select_component'),
+        FieldPanel("jobvacancy_latestnews_snippet"),
+        FieldPanel("news_letter_signup_cta"),
     ]
 
     @cached_property

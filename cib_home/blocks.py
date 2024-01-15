@@ -6,6 +6,11 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _
 
+from cib_content_page.blocks.address import AddressBlock
+from cib_content_page.blocks.custom_image import CustomImageBlock
+from cib_content_page.blocks.heading_block import HeadingBlock
+from cib_content_page.blocks.table import TinyMCETableBlock
+from cib_content_page.blocks.video import VideoBlock
 from cib_navigation.models import ALT_HELP_TEXT
 
 ALT_IMAGE = ALT_HELP_TEXT % 'image'
@@ -137,3 +142,19 @@ class JobsVacanciesAndLatestNewsBlock(blocks.StructBlock):
         template = "patterns/blocks/cards/jobvacancies.html"
         icon = "placeholder"
         label = "Job Vacancies and Latest News"
+
+
+class StandardPageBodyBlock(blocks.StreamBlock):
+    image = ImageChooserBlock()
+    custom_image = CustomImageBlock()
+    video = VideoBlock()
+    embed_html_widget = blocks.TextBlock(required=False)
+    richtext = blocks.RichTextBlock(required=False)
+    table = TinyMCETableBlock()
+    address = AddressBlock()
+    heading = HeadingBlock()
+
+    class Meta:  # noqa
+        template = "patterns/molecules/streamfield/blocks/standard_page_body_block.html"
+        icon = "placeholder"
+        label = "Standard Page Body Block"

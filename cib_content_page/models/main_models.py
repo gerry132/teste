@@ -15,6 +15,7 @@ from taggit.models import TagBase, ItemBase
 
 from modelcluster.fields import ParentalKey
 
+from cib_documents.models import DocumentBlock
 from ..blocks.table import TinyMCETableBlock
 from ..blocks.video import VideoBlock
 from ..blocks.custom_image import CustomImageBlock
@@ -68,16 +69,33 @@ class ContentPage(BasePage):
             ("richtext", blocks.RichTextBlock(required=False)),
             ("table", TinyMCETableBlock()),
             ("address", AddressBlock()),
-            ("heading", HeadingBlock())
+            ("heading", HeadingBlock()),
+            ('document', DocumentBlock()),
         ],
         use_json_field=True,
         verbose_name=_("body"),
         blank=True,
     )
+    jobvacancy_latest_news_snippet = models.ForeignKey(
+        'utils.JobsVacanciesAndLatestNewsSnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    news_letter_signup_cta = models.ForeignKey(
+        'utils.NewsletterSignUpCTASnippet',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = BasePage.content_panels + [
         FieldPanel("left_nav_title"),
         FieldPanel("body"),
+        FieldPanel("jobvacancy_latest_news_snippet"),
+        FieldPanel("news_letter_signup_cta")
     ]
 
     promote_panels = BasePage.promote_panels + [

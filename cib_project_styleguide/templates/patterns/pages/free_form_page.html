@@ -3,10 +3,26 @@
 {% load left_nav %}
 
 {% block content %}
-{% left_nav page %}
-    {% for block in page.body%}
-        {% include_block block%}
-    {% endfor %}
+<div class="wrapper wrapper--large wrapper--padding">
+    <div class="main-page-content">
+        <div class="left-nav">
+            {% left_nav page %}
+        </div>
+        <div class="page-body">
+            {% for block in page.body%}
+                {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
+            {% endfor %}
+        </div>
+    </div>
+    {% if page.jobvacancy_latestnews_snippet %}
+                <div class="wrapper wrapper--large wrapper--padding">
+                    {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+                </div>
+{% endif %}
+</div>
+{% if page.news_letter_signup_cta %}
+    {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
+{% endif %}
 {% endblock %}
 
 
