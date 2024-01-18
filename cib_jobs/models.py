@@ -145,7 +145,7 @@ class JobVacanciesPage(BasePage):
     subpage_types = [
         'JobVacancyContentPage',
     ]
-    description = models.TextField(blank=True)
+    description = RichTextField(blank=True, null=True)
     company_select_component = StreamField([
         ('publication_select_component', SelectComponentBlock()),
     ], blank=False, null=True, max_num=1)

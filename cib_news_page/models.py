@@ -7,6 +7,7 @@ from django.utils.translation import get_language
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.conf import settings
 from django.db import models
+from wagtail.fields import RichTextField
 
 from cib_utils.models import BasePage
 from cib_news_content_page.models import NewsContentPage, NewsTag
@@ -20,6 +21,7 @@ class News(BasePage):
     "Main whats new page"
     template = "patterns/pages/news.html"
     parent_page_types = ["cib_home.HomePage"]
+    description = RichTextField(blank=True, null=True)
 
     news_tag_select_component = StreamField([
         ('news_tag_select_component', SelectComponentBlock()),
@@ -43,6 +45,7 @@ class News(BasePage):
     )
 
     content_panels = BasePage.content_panels + [
+        FieldPanel('description'),
         FieldPanel('news_tag_select_component'),
         FieldPanel('year_select_component'),
         FieldPanel("jobvacancy_latestnews_snippet"),
