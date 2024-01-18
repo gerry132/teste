@@ -27,7 +27,21 @@
                 {% for block in page.body%}
                     {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
                 {% endfor %}
+
+            {% if page.news_parent_page %}
+            <a href="{% pageurl page.news_parent_page %}" class="office__button">
+                    <img src="{% static '/img/icon_left_arrow.svg' %}" alt="left arrow">
+                    <span class="office__button--text">
+                        {% if page.back_button %}
+                            {{page.back_button}}
+                        {% else %}
+                            Back to News
+                        {% endif %}
+                    </span>
+                </a>
+            {% endif %}
         </div>
+
     </div>
 {% if page.jobvacancy_latest_news_snippet %}
                 <div class="wrapper wrapper--large wrapper--padding">

@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import pgettext_lazy
+from django import forms
+from django.apps import apps
 
 from cib_content_page.models import ContentPage
 from cib_content_page.blocks.custom_image import AltImageBlock
@@ -11,8 +13,6 @@ from taggit.models import TagBase, ItemBase
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
 from wagtail import blocks
-
-from django import forms
 
 
 class NewsTag(TagBase):
@@ -82,3 +82,8 @@ class NewsContentPage(ContentPage):
     def current_tags(self):
         return NewsTag.objects.filter(
                 newscontentpage__id=self.id)
+
+    @property
+    def news_parent_page(self):
+        NewsModel = apps.get_model('cib_news_page', 'News')
+        return self.get_ancestors().type(NewsModel).first()
