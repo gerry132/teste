@@ -6,7 +6,7 @@
     <div class="wrapper wrapper--large ">
         <div class="content-page-header">{{ page.title }}</div>
         {% if page.description %}
-        <div style="padding: 0 0 20px;" class="newslettersignupcta__body"> {{ page.description }}</div>
+        <div style="padding: 0 0 20px;" class="newslettersignupcta__body"> {{ page.description|richtext }}</div>
         {% endif %}
         <form id="filter-form" method="get" action="">
                 {% for company_filter in page.company_select_component %}

@@ -9,6 +9,7 @@ from wagtail.core.fields import StreamField
 
 from wagtail.core import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.fields import RichTextField
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -106,10 +107,7 @@ class DocumentPage(BasePage):
         blank=False,
         null=True
     )
-    summary = models.TextField(
-        blank=True,
-        null=True
-    )
+    description = RichTextField(blank=True, null=True)
     publication_select_component = StreamField([
         ('publication_select_component', SelectComponentBlock()),
     ], blank=False, max_num=1)
@@ -134,9 +132,9 @@ class DocumentPage(BasePage):
         related_name='+'
     )
 
-    content_panels = Page.content_panels + [
+    content_panels = BasePage.content_panels + [
         FieldPanel('left_nav_title'),
-        FieldPanel('summary'),
+        FieldPanel('description'),
         FieldPanel('publication_select_component'),
         FieldPanel('year_select_component'),
         FieldPanel('body'),
