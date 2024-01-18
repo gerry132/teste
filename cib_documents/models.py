@@ -4,7 +4,6 @@ from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.documents.models import AbstractDocument
 from wagtail.documents.models import Document as WagtailDocument
-from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 
 from wagtail.core import blocks
