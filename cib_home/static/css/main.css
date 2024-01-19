@@ -1410,6 +1410,16 @@ ul.content-anchorlinks li::before {
   color: #0B0C0C;
 }
 
+.sharedaddress p,
+.sharedaddress div {
+  margin-bottom: 10px;
+
+}
+
+.address_field{
+  font-weight: 700;
+}
+
 .custom-image{
   max-width: 100%;
 }
