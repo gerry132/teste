@@ -1,6 +1,7 @@
 {% extends "patterns/base_page.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static i18n navigation_tags util_tags %}
 {% load left_nav %}
+{% get_current_language as language_code %}
 
 {% block content %}
 
@@ -49,7 +50,14 @@
         {% if documents %}
             {% for document in documents %}
                 <div class="document-block">
-                    {% image document.image fill-220x311 alt=document.image_alt class="story__image" %}
+                        {% define_document_language request.LANGUAGE_CODE document.language.languages as document_language %}
+                        {% if document_language %}
+                            <a class="home-links" href="{{ document_language.document.url }}" target="_blank">
+                                {% image document.image fill-220x311 alt=document.image_alt class="story__image" %}
+                            </a>
+                        {% else %}
+                                {% image document.image fill-220x311 alt=document.image_alt class="story__image" %}
+                        {% endif %}
                     <div>
                         <h2 class="document-heading">{{ document.title }}</h2>
                         <div class="newslettersignupcta__body document-body">
