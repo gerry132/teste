@@ -30,6 +30,14 @@ class CustomImageBlock(blocks.StructBlock):
 
     image = ImageChooserBlock(label=_("Image"), help_text=help_text)
     caption = CharBlock(required=False, label=_("Caption"))
+    caption_align = blocks.ChoiceBlock(
+        required=False,
+        choices=[('left', _("Left")),
+                 ('center', _("Centre")),
+                 ('right', _("Right"))],
+        default='left',
+        label=_("Caption Align"),
+    )
     alt_text = CharBlock(required=False, label=_("Alt"))
     size = blocks.ChoiceBlock(
         required=False,

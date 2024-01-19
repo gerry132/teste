@@ -2,7 +2,7 @@
 
 {% if self.image %}
 <div class="content-custom-image" style="display: flex; justify-content: {{self.format}};">
-    <figure style="margin-left:0;text-align: center;">
+    <figure style="margin-left:0;text-align: {{self.caption_align}};">
         {% if self.size == "200" %}
 
             {% image self.image width-200 as img %}
