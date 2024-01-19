@@ -13,7 +13,7 @@
             <div class="topic base_wheretoapply_title">{{ obj.orgname_ga }}</div>
 
             {% if obj.dept_ga %}
-            <div class='field_dept address_field'>{{ obj.dept_ga }}</div>
+            <div class='address_field'>{{ obj.dept_ga }}</div>
             {% endif %}
 
             {% if obj.address_ga %}
@@ -58,7 +58,7 @@
             <div class="base_wheretoapply_title">{{ obj.orgname }}</div>
 
             {% if obj.dept %}
-            {{ obj.dept }}
+            <div class='address_field'>{{ obj.dept }}</div>
             {% endif %}
 
             {% if obj.address %}
