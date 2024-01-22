@@ -1278,7 +1278,7 @@ display: flex;
 }
 
 .content-page-header{
-  margin: 40px 0 20px;
+  margin: 40px 0 0;
   font-family: Lato;
   font-size: 36px;
   font-style: normal;
@@ -1297,7 +1297,7 @@ display: flex;
 }
 
 .content-anchorlinks{
-  margin: 10px 0;
+  margin: 10px 0 30px;
   font-family: Lato;
   font-size: 19px;
   font-weight: 400;
@@ -1445,7 +1445,8 @@ ul.content-anchorlinks li::before {
     width: 90% !important;
   }
   .content-page-header{
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
   .news-title{
     margin: 20px auto;
