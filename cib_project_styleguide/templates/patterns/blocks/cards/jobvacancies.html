@@ -19,14 +19,14 @@
 
             </div>
         {% image value.news_card.icon fill-55x55 as img_news %}
-        <div class="callout callout-right" style="background-color: {{value.news_card.news_Background_color}};">
+        <div class="callout callout-right" style="background-color: {{value.news_card.news_Background_color}}; align-items: flex-start;">
                 <div class="info-header">
                     <div class="info-icon"><img src="{{img_news.url}}" alt="{{value.news_card.icon_alt}}"></div>
                     <h3 class="latest_news__block_title"> {{ value.news_card.block_title }}</h3>
                 </div>
              {% if latest_news %}
                 {% for news_page in latest_news %}
-                    <div style="margin-left: 2px; border-left: 3px solid #FFF; padding-left: 20px;">
+                    <a class="latest_news_content" href="{{ news_page.url }}">
                         <div class="latest_news__title"> {{ news_page.title }}</div>
                         <div class="latest_news__richtext">
                             {% for lead_text in news_page.lead_fields %}
@@ -35,9 +35,11 @@
                             {% endif %}
                             {% endfor %}
                         </div>
-                    </div>
-                    <a style="align-self: flex-start; " href="{{ news_page.url }}" class="latest_news__button">{{ value.news_card.news_button_text }}  <i class="fas fa-arrow-right"></i></a>
+                    </a>
+                {% for news_landing_page in news_landing_page %}
+                    <a href="{{ news_landing_page.url }}" class="latest_news__button">{{ value.news_card.news_button_text }}  <i class="fas fa-arrow-right"></i></a>
                 {% endfor %}
+            {% endfor %}
             {% endif %}
   </div>
 </div>

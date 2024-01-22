@@ -255,6 +255,17 @@ class JobsVacanciesAndLatestNewsSnippet(PreviewableMixin, DraftStateMixin, Revis
             .specific()
         )
 
+    @cached_property
+    def news_landing_page(self):
+        from cib_news_page.models import News
+        return (
+            News.objects
+            .filter(locale=self.locale)
+            .public()
+            .live()
+            .specific()
+        )
+
     @property
     def revisions(self):
         return self._revisions

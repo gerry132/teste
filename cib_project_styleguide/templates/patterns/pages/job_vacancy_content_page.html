@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="wrapper wrapper--large wrapper--padding">
-        {% include_block page.jobvacancy_latest_news_snippet.body with latest_news=page.jobvacancy_latest_news_snippet.latest_news %}
+        {% include_block page.jobvacancy_latest_news_snippet.body with latest_news=page.jobvacancy_latest_news_snippet.latest_news news_landing_page=page.jobvacancy_latest_news_snippet.news_landing_page %}
     </div>
 {% if page.news_letter_signup_cta %}
     {% include "patterns/snippets/newslettersignupctasnippet.html" with object=page.news_letter_signup_cta %}
