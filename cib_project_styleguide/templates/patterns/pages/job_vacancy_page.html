@@ -47,7 +47,7 @@
     </div>
     {% if page.jobvacancy_latestnews_snippet %}
         <div class="wrapper wrapper--large wrapper--padding">
-            {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news %}
+            {% include_block page.jobvacancy_latestnews_snippet.body with latest_news=page.jobvacancy_latestnews_snippet.latest_news news_landing_page=page.jobvacancy_latestnews_snippet.news_landing_page %}
         </div>
     {% endif %}
     {% if page.news_letter_signup_cta %}
