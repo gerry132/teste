@@ -1221,7 +1221,11 @@ display: flex;
     font-size: 19px;
     font-style: normal;
     font-weight: 400;
-    line-height: 25px; /* 131.579% */
+    line-height: 25px;
+}
+
+.newslettersignupcta__body p{
+  margin-bottom: 0;
 }
 
 .newslettersignupcta__button {
