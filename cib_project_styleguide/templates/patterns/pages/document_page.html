@@ -10,7 +10,7 @@
         <div class="left-nav">
             {% left_nav page %}
         </div>
-        <div class="content-page-body">
+        <div>
     <div class="content-page-header">
         {{ page.title }}
     </div>
@@ -52,7 +52,7 @@
                 <div class="document-block">
                         {% define_document_language request.LANGUAGE_CODE document.language.languages as document_language %}
                         {% if document_language %}
-                            <a class="home-links" href="{{ document_language.document.url }}" target="_blank">
+                            <a class="home-links" style="margin-top:unset;" href="{{ document_language.document.url }}" target="_blank">
                                 {% image document.image fill-220x311 alt=document.image_alt class="story__image" %}
                             </a>
                         {% else %}
