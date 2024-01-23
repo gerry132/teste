@@ -1527,6 +1527,9 @@ tbody tr:nth-child(even) {
     gap: 20px;
     margin-bottom: 20px;
 }
+.document-content{
+    align-self: center;
+}
 
 .document-heading {
     color: #000;
@@ -1887,6 +1890,7 @@ grid-template-columns: repeat(4, 1fr);
 }
 
 .latest_news__title {
+    display: inline;
 
     /* Desktop/Paragraph/Body • Bold */
     font-family: Lato;
@@ -1897,6 +1901,7 @@ grid-template-columns: repeat(4, 1fr);
     border-bottom: 1px solid #FFF;
 }
 .latest_news__richtext p{
+    display: inline;
     /* Desktop/Paragraph/Body Small */
     padding-top: 10px;
     font-family: Lato;
