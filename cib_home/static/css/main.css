@@ -1894,10 +1894,11 @@ grid-template-columns: repeat(4, 1fr);
     font-style: normal;
     font-weight: 700;
     line-height: 25px; /* 131.579% */
-    padding-bottom: 10px;
+    border-bottom: 1px solid #FFF;
 }
 .latest_news__richtext p{
     /* Desktop/Paragraph/Body Small */
+    padding-top: 10px;
     font-family: Lato;
     font-size: 16px;
     font-style: normal;
@@ -1908,6 +1909,7 @@ grid-template-columns: repeat(4, 1fr);
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
+  border-bottom: 1px solid #FFF;
 }
 
 .latest_news_content {
@@ -1922,7 +1924,6 @@ grid-template-columns: repeat(4, 1fr);
   text-decoration-line: none;
   border-left: 4px solid #FFF;
 }
-
 
 .latest_news_content:active,
 .latest_news_content:focus {
@@ -1946,7 +1947,8 @@ grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid #FFF;
 }
 
-.latest_news__button:hover {
+.latest_news__button:hover, .latest_news_content:hover .latest_news__title,
+.latest_news_content:hover .latest_news__richtext p{
   text-decoration-line: none;
   border-bottom: 3px solid #FFF;
 }
@@ -1963,7 +1965,9 @@ grid-template-columns: repeat(4, 1fr);
 }
 
 .latest_news__button:active,
-.latest_news__button:focus {
+.latest_news__button:focus, .latest_news_content:active .latest_news__title,
+.latest_news_content:active .latest_news__richtext p, .latest_news_content:focus .latest_news__title,
+.latest_news_content:focus .latest_news__richtext p{
   color: #000;
   text-decoration-line: none;
   border-bottom: 3px solid #000;
