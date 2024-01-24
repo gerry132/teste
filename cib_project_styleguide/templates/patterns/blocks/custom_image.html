@@ -1,25 +1,32 @@
 {% load wagtailcore_tags  wagtailimages_tags %}
 
 {% if self.image %}
-<div class="content-custom-image" style="display: flex; justify-content: {{self.format}};">
-    <figure style="margin-left:0;text-align: {{self.caption_align}};">
-        {% if self.size == "200" %}
 
-            {% image self.image width-200 as img %}
-            <img src="{{img.url}}" alt="{{ self.alt_text}}" >
-        {% elif self.size == "400" %}
+    <div class="content-custom-image" style="display: flex; justify-content: {{self.format}};">
+        <figure style="margin-left:0;text-align: {{self.caption_align}};">
+            {% if self.size == "200" %}
 
-            {% image self.image width-400 as img %}
-            <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
-        {% else %}
-            {% image self.image width-800 as img %}
-            <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
-        {% endif %}
+                {% image self.image width-200 as img %}
+                <img src="{{img.url}}" alt="{{ self.alt_text}}" >
+            {% elif self.size == "400" %}
 
-        {% if self.caption %}
-            <figcaption>{{self.caption}}</figcaption>
-        {% endif %}
-    </figure>
-</div>
+                {% image self.image width-400 as img %}
+                <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
+            {% elif self.size == "800" %}
+                {% image self.image width-800 as img %}
+                <img src="{{img.url}}" alt="{{ self.alt_text}}" class="custom-image">
+            {% else %}
+                <div class="full-width-image">
+                    {% image self.image width-1600 as img %}
+                    <img src="{{img.url}}" alt="{{ self.alt_text}}">
+                </div>
+            {% endif %}
+
+            {% if self.caption %}
+                <figcaption>{{self.caption}}</figcaption>
+            {% endif %}
+        </figure>
+    </div>
+
 {% endif %}
 

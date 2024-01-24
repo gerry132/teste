@@ -41,7 +41,8 @@ class CustomImageBlock(blocks.StructBlock):
     alt_text = CharBlock(required=False, label=_("Alt"))
     size = blocks.ChoiceBlock(
         required=False,
-        choices=[('200', _("200*132")), ('400', _("400*267")), ('800', _("800*534"))],
+        choices=[('200', _("200*132")), ('400', _("400*267")),
+                 ('800', _("800*534")), ('FullWidth', _("Full Width"))],
         default='800',
         label=_("Size"),
     )

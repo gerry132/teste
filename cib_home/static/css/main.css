@@ -1463,6 +1463,11 @@ ul.content-anchorlinks li::before {
   margin-bottom: 40px;
 }
 
+.full-width-image img{
+    width: 100%;
+    height: auto;
+}
+
 @media (max-width: 768px) {
   .timedate {
     margin-bottom: 20px;
