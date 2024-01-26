@@ -1,6 +1,6 @@
 html { height: 100%; margin: 0px; }
-body { font-family: 'Lato', sans-serif !important; font-size: 16px !important; height: 100%; margin: 0px; color: #000000 !important; }
-
+body { font-family: 'Lato', sans-serif !important; font-size: 16px !important; display: flex; flex-direction: column; margin: 0px; color: #000000 !important; }
+main {flex-grow: 1;}
 a .glyphicon-new-window { margin-left: 2.5px; font-size: 14px; }
 
 .margin-none { margin: 0px; }
@@ -415,12 +415,14 @@ Bootstrap override
   background-color: #FFFFFF;
 }
 #main-navbar{
-  z-index: 2;
+  z-index: 1000;
   font-family: 'Lato';
   font-style: normal;
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
+  position: sticky;
+  top: 0;
 }
 
 #main-navbar .navbar-brand { padding: 0px; }
@@ -430,7 +432,7 @@ Bootstrap override
 #main-navbar [reboot-search-drawer-trigger] img {  height: 20px;
   width: 20px; }
 #main-navbar [reboot-search-drawer-trigger] span { padding: 24px 15px 14.5px 24px; display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: bold; }
-[reboot-search-drawer] { background-color: #EEEFEF !important; padding: 15px 0px; display: none; }
+[reboot-search-drawer] { background-color: #EEEFEF !important; padding: 15px 0px; display: none; margin:unset;}
 #main-navbar [reboot-search-drawer-trigger-mobile] { width: 69px; height: 90px; margin-top: -5px; margin-bottom: -5px; padding-top: 5px; padding-bottom: 5px; }
 #main-navbar [reboot-search-drawer-trigger-mobile] img {  height: 20px;
   width: 20px; }
