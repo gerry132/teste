@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags %}
+{% load static wagtailcore_tags wagtailimages_tags i18n navigation_tags i18n %}
 {% primarynav as nav %}
 {% get_current_language as language_code %}
 
@@ -40,33 +40,69 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown navbar-menu--items">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Menu
+                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> {% trans 'Menu' %}
                     </a>
-                    <ul class="dropdown-menu">
-                        {% for link in nav.primarynav %}
-                        {% if link.value.title %}
-                            <li><a class="index-a" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
-                        {% else %}
-                            <li><a class="index-a" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    </ul>
+                    <div class="dropdown-menu">
+                        <div class="wrapper wrapper--large wrapper--padding">
+                        <div class="govie-footer__section govie-grid-column-two-thirds">
+                            {% for link in nav.primarynav %}
+                                {% if link.block_type == 'heading'%}
+                                <h2 class="govie-footer__heading govie-heading-header">{{ link }}</h2>
+                                {% endif %}
+                            {% endfor %}
+                            <ul class="govie-footer__list govie-footer__list--columns-2">
+                            {% for link in nav.primarynav %}
+                                {% if link.block_type == 'link'%}
+                                {% if link.value.title %}
+                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
+                                {% else %}
+                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
+                                {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                    </div>
+                            {% if nav.popular_links %}
+                        <div class="govie-footer__section govie-grid-column-one-third">
+                            {% for link in nav.popular_links %}
+                                {% if link.block_type == 'heading'%}
+                                <h2 class="govie-footer__heading govie-heading-header">{{ link }}</h2>
+                                {% endif %}
+                            {% endfor %}
+                            <ul class="govie-footer__list ">
+                              {% for link in nav.popular_links %}
+                                {% if link.block_type == 'popular_link'%}
+                                {% if link.value.title %}
+                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
+                                {% else %}
+                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
+                                {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+
+                          </div>
+                            {% endif %}
+                    </div>
+                    </div>
                     <div class="col-sm-12 col-xs-12 hidden-lg hidden-md margin-bottom-sm"></div>
                 </li>
                 <li class="dropdown navbar-menu--items__lang">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> Language
+                        <span class="arrow--contain">{% include "patterns/atoms/icons/icon.html" with name="arrow" classname="mega_menu__icon" %}</span> {% trans 'Language' %}
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="top: 114%;">
                         {% is_trans_page page as trans_page %}
                         {% if not trans_page %}
                             <li><a class="index-a" href="/en/">English</a></li>
-                            <li><a class="index-a" href="/ga/">Irish</a></li>
+                            <li><a class="index-a" href="/ga/">Gaeilge</a></li>
                         {% else %}
-                        <li><a class="index-a" href="{% if page %}{% pageurl page %}{% endif %}">{{page.locale}}</a></li>
+                        {% get_language_info for LANGUAGE_CODE as current_lang %}
+                        <li><a class="index-a" href="{% if page %}{% pageurl page %}{% endif %}">{{current_lang.name_local}}</a></li>
                             {% if page.get_translations.live %}
                                 {% for trans in page.get_translations.live %}
-                                    <li><a class="index-a" href="{% pageurl trans %}">{{trans.locale}}</a></li>
+                                    {% get_language_info for trans.locale.language_code as lang %}
+                                    <li><a class="index-a" href="{% pageurl trans %}">{{ lang.name_local }}</a></li>
                                 {% endfor %}
                             {% endif %}
                         {% endif %}

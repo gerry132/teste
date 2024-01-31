@@ -89,6 +89,7 @@ class SiteSettings(BaseSiteSetting, ClusterableModel):
         MultiFieldPanel([
             FieldPanel("favicon"),
             FieldPanel("site_english_logo"),
+            FieldPanel("mobile_logo"),
             FieldPanel("site_english_logo_alt"),
             FieldPanel("site_irish_logo"),
             FieldPanel("site_irish_logo_alt"),
@@ -115,14 +116,22 @@ class PrimaryNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.
         verbose_name=_("Language"),
     )
     navigation = StreamField(
-        [("link", LinkBlockWithURL())],
+        [("heading", blocks.CharBlock(max_length=255, required=True)),
+         ("link", LinkBlockWithURL())],
+        block_counts={
+            'heading': {'max_num': 1, 'min_num': 1},
+        },
         blank=True,
         help_text="Main site navigation",
         verbose_name=_("Links"),
         use_json_field=True
     )
     popular_links = StreamField(
-        [("popular_link", LinkBlockWithURL())],
+        [("heading", blocks.CharBlock(max_length=255, required=True)),
+         ("popular_link", LinkBlockWithURL())],
+        block_counts={
+            'heading': {'max_num': 1, 'min_num': 1},
+        },
         blank=True,
         help_text="Popular links for search",
         verbose_name=_("Popular Links"),
