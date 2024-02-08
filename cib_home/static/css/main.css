@@ -1635,12 +1635,17 @@ tbody tr:nth-child(even) {
     padding-bottom: 10px;
     position: relative;
 }
-.document-body p {
+.first-p, .second-p {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+}
+.first-p {
+    -webkit-line-clamp: 4;
+}
+.second-p {
+    -webkit-line-clamp: 5;
 }
 .document-language-links {
     display: flex;
