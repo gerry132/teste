@@ -1447,3 +1447,163 @@ resource "aws_appautoscaling_policy" "cpu" {
   }
 }
 
+
+resource "aws_wafv2_web_acl" "project_waf" {
+  name  = "${local.project_name}-waf"
+  scope = "REGIONAL"
+
+  default_action {
+    allow {}
+  }
+
+  rule {
+    name     = "AWSRateBasedRuleDomesticDOS"
+    priority = 1
+
+    action {
+      captcha {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 600
+        aggregate_key_type = "IP"
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSRateBasedRuleDomesticDOS"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "AWS-AWSManagedRulesAmazonIpReputationList"
+    priority = 2
+    override_action {
+      none {
+      }
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesAmazonIpReputationList"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWS-AWSManagedRulesAmazonIpReputationList"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "AWS-AWSManagedRulesAnonymousIpList"
+    priority = 3
+    override_action {
+      none {
+      }
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesAnonymousIpList"
+        vendor_name = "AWS"
+
+        rule_action_override {
+          action_to_use {
+            allow {}
+          }
+
+          name = "HostingProviderIPList"
+        }
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWS-AWSManagedRulesAnonymousIpList"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "AWS-AWSManagedRulesKnownBadInputsRuleSet"
+    priority = 4
+    override_action {
+      none {
+      }
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesKnownBadInputsRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWS-AWSManagedRulesKnownBadInputsRuleSet"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "AWS-AWSManagedRulesUnixRuleSet"
+    priority = 5
+    override_action {
+      none {
+      }
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesUnixRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWS-AWSManagedRulesUnixRuleSet"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "AWS-AWSManagedRulesWindowsRuleSet"
+    priority = 6
+    override_action {
+      none {
+      }
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesWindowsRuleSet"
+        vendor_name = "AWS"
+        rule_action_override {
+          action_to_use {
+            allow {}
+          }
+
+          name = "WindowsShellCommands_BODY"
+        }
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWS-AWSManagedRulesWindowsRuleSet"
+      sampled_requests_enabled   = true
+    }
+  }
+  visibility_config {
+    cloudwatch_metrics_enabled = true
+    metric_name                = "${local.project_name}-waf-metrics"
+    sampled_requests_enabled   = true
+  }
+}
+
+resource "aws_wafv2_web_acl_association" "admin_association" {
+  resource_arn = aws_lb.default.arn
+  web_acl_arn  = aws_wafv2_web_acl.project_waf.arn
+}
+
+resource "aws_wafv2_web_acl_association" "public_association" {
+  resource_arn = aws_lb.public_sites.arn
+  web_acl_arn  = aws_wafv2_web_acl.project_waf.arn
+}
