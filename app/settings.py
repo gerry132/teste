@@ -29,14 +29,13 @@ DEBUG_TOOLBAR = os.environ.get("DEBUG_TOOLBAR", "0") in TRUE
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'os.environ["SECRET_KEY"]'
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 debug_on = os.environ.get("DEBUG")
 
 if debug_on == '0':
     DEBUG = True
 else:
-    DEBUG = True
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -82,6 +81,7 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail",
     "wagtailaccessibility",
+    "wagtailcache",
     "wagtailmedia",
     "wagtail.contrib.typed_table_block",
     "wagtail.api.v2",
@@ -122,6 +122,8 @@ MIDDLEWARE = [
     # Wagtail extra
     "django.middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtailcache.cache.UpdateCacheMiddleware",
+    "wagtailcache.cache.FetchFromCacheMiddleware",
     # "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
@@ -176,7 +178,6 @@ PATTERN_LIBRARY = {
     "PATTERN_BASE_TEMPLATE_NAME": "patterns/base.html",
     "BASE_TEMPLATE_NAMES": ["patterns/base_page.html"],
 }
-
 
 # In production, email is handled with Amazon SES
 if "EMAIL_BACKEND" in os.environ:
@@ -240,7 +241,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "cib_home")
 ]
-
 
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
@@ -369,7 +369,6 @@ WAGTAILIMAGES_IMAGE_MODEL = "cib_images.CustomImage"
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 WAGTAILDOCS_DOCUMENT_MODEL = "cib_documents.CustomDocument"
 
-
 if OPENSEARCH_KEY and OPENSEARCH_SECRET and OPENSEARCH_ENDPOINT != 'CHANGE':
     from elasticsearch import RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
@@ -403,7 +402,7 @@ if OPENSEARCH_KEY and OPENSEARCH_SECRET and OPENSEARCH_ENDPOINT != 'CHANGE':
                     },
                     "max_ngram_diff": "50",
                 }
-                }
+            }
 
         }
     }

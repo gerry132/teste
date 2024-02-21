@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.decorators import method_decorator
 from django.db import models
 from django.utils.functional import cached_property
+from wagtailcache.cache import WagtailCacheMixin
 
 from modelcluster.models import ClusterableModel
 
@@ -35,7 +36,7 @@ ALT_HELP_TEXT = """A short one-sentence literal description
 
 # Apply default cache headers on this page model's serve method.
 @method_decorator(get_default_cache_control_decorator(), name="serve")
-class BasePage(Page):
+class BasePage(WagtailCacheMixin, Page):
     show_in_menus_default = True
 
     publication_log = RichTextField(
