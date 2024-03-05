@@ -68,6 +68,10 @@ locals {
       description = "Sina - Sidero"
       cidr_blocks  = ["31.53.148.214/32"]
     },
+    jai_test = {
+      description = "Jai - OGCIO"
+      cidr_blocks  = ["137.191.233.222/32"]
+    },
     OGCIO = {
       description = "OGCIO - Office"
       cidr_blocks  = ["89.191.33.25/32"]
