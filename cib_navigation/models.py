@@ -23,6 +23,8 @@ from taggit.managers import TaggableManager
 from wagtail.images import get_image_model_string
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
+from .mixins import SocialMediaFieldsMixin
+
 IMAGE_MODEL = get_image_model_string()
 
 # TODO: make a const.py file
@@ -185,7 +187,7 @@ class FooterNavigationTag(TaggedItemBase):
 
 @register_snippet
 class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel,
-                       TranslatableMixin):
+                       TranslatableMixin, SocialMediaFieldsMixin):
     # Snippets model is used so the navigation can be localised with TranslatableMixin.
     tags = TaggableManager(through=FooterNavigationTag, blank=True)
     title = models.CharField(max_length=255, blank=True)
@@ -245,6 +247,12 @@ class FooterNavigation(PreviewableMixin, DraftStateMixin, RevisionMixin, index.I
             ],
             heading=_("Footer Navigation"),
         ),
+        FieldPanel("twitter_handle"),
+        FieldPanel("facebook_app_id"),
+        FieldPanel("youtube_user"),
+        FieldPanel("linkedin_profile"),
+        FieldPanel("instagram_user"),
+        FieldPanel("vimeo_user"),
         FieldPanel('tags'),
         PublishingPanel(),
     ]

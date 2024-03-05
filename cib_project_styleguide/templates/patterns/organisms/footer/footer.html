@@ -65,10 +65,47 @@
           </li>
           {% endfor %}
         </ul>
+        <div class="footer__social-links">
+          {% if nav.footernav.twitter_handle %}
+                    <a href="https://twitter.com/{{ nav.footernav.twitter_handle }}" class="footer__social-link" aria-label="{% trans 'Follow us on Twitter' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="twitter" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+
+          {% if nav.footernav.instagram_user %}
+                    <a href="https://instagram.com/{{ nav.footernav.instagram_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Instagram' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="instagram" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+
+          {% if nav.footernav.facebook_app_id %}
+                    <a href="https://www.facebook.com/{{ nav.footernav.facebook_app_id }}" class="footer__social-link" aria-label="{% trans 'Find us on Facebook' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="facebook" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+
+          {% if nav.footernav.vimeo_user %}
+                    <a href="https://vimeo.com/{{ nav.footernav.vimeo_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Weibo' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="vimeo" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+
+          {% if nav.footernav.youtube_user %}
+                    <a href="https://youtube.com/user/{{ nav.footernav.youtube_user }}" class="footer__social-link" aria-label="{% trans 'Find us on Youtube' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="youtube" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+
+          {% if nav.footernav.linkedin_profile %}
+                    <a href="{{ nav.footernav.linkedin_profile }}" class="footer__social-link" aria-label="{% trans 'Connect on Linkedin' %}">
+                        {% include "patterns/atoms/icons/icon.html" with name="linkedin" classname="footer__social-icon" %}
+                    </a>
+          {% endif %}
+            </div>
         </div>
       <div class="govie-footer__meta-item">
         <a class="govie-footer__copyright-logo" href="#">
-           {% image nav.footernav.logo fill-190x60 class="header__logo header__mobile" alt=nav.footernav.logo_alt %}
+           {% image nav.footernav.logo fill-274x95 class="header__logo header__mobile" alt=nav.footernav.logo_alt %}
         </a>
       </div>
     </div>
