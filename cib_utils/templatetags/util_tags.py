@@ -1,4 +1,8 @@
 from django import template
+from django.db.models import Count
+from django.db.models.functions import TruncYear
+
+from cib_news_content_page.models import NewsContentPage
 
 register = template.Library()
 
@@ -20,3 +24,16 @@ def define_document_language(language_code, val=None):
             return link
 
     return False
+
+
+@register.simple_tag
+def get_news_years():
+    try:
+        all_years = NewsContentPage.objects.annotate(
+            year=TruncYear('last_published_custom')
+        ).values('year').annotate(count=Count('id')).order_by('-year')
+
+        years = [year['year'].strftime('%Y') for year in all_years if year['year']]
+        return years
+    except:  # noqa
+        return []
