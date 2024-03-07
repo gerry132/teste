@@ -45,6 +45,10 @@
                 "value": "${SETTINGS_AWS_ACCESS_KEY_ID}"
             },
             {
+                "name": "AWS_S3_CUSTOM_DOMAIN", 
+                "value": "${assets_url}"
+            },
+            {
                 "name": "AWS_REGION",
                 "value": "${region}"
             },
