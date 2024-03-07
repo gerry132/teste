@@ -29,13 +29,14 @@ DEBUG_TOOLBAR = os.environ.get("DEBUG_TOOLBAR", "0") in TRUE
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'os.environ["SECRET_KEY"]'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 debug_on = os.environ.get("DEBUG")
 
 if debug_on == '0':
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -81,7 +82,6 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail",
     "wagtailaccessibility",
-    "wagtailcache",
     "wagtailmedia",
     "wagtail.contrib.typed_table_block",
     "wagtail.api.v2",
@@ -101,6 +101,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "cib_project_styleguide.apps.ProjectStyleguideConfig",
     "wagtail.contrib.simple_translation",
+    "wagtailcache",
     "tinymce",
     "wagtailtinymce",
 ]
@@ -179,6 +180,7 @@ PATTERN_LIBRARY = {
     "BASE_TEMPLATE_NAMES": ["patterns/base_page.html"],
 }
 
+
 # In production, email is handled with Amazon SES
 if "EMAIL_BACKEND" in os.environ:
     EMAIL_BACKEND = os.environ["EMAIL_BACKEND"]
@@ -241,6 +243,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "cib_home")
 ]
+
 
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
@@ -346,14 +349,30 @@ OPENSEARCH_SECRET = os.environ.get("OPENSEARCH_SECRET")
 OPENSEARCH_ENDPOINT = os.environ.get("OPENSEARCH_ENDPOINT")
 
 USE_S3 = eval(os.environ.get("USE_S3", "0")) in TRUE
+
 if USE_S3 is True:
     INSTALLED_APPS = INSTALLED_APPS + ["storages", "wagtail_storages"]
 
-    AWS_DEFAULT_ACL = "public-read"
-    AWS_QUERYSTRING_AUTH = False
-    AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STATIC_BUCKET_NAME"]
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # AWS_LOCATION = "static"
+
+    STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STATIC_BUCKET_NAME", "")
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
+    AWS_S3_REGION_NAME = "eu-west-1"
+
+
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
+    print(AWS_S3_CUSTOM_DOMAIN)
 
 WAGTAIL_SITE_NAME = "cib.ie"
 
@@ -368,6 +387,7 @@ WAGTAIL_MODERATION_ENABLED = False
 WAGTAILIMAGES_IMAGE_MODEL = "cib_images.CustomImage"
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 WAGTAILDOCS_DOCUMENT_MODEL = "cib_documents.CustomDocument"
+
 
 if OPENSEARCH_KEY and OPENSEARCH_SECRET and OPENSEARCH_ENDPOINT != 'CHANGE':
     from elasticsearch import RequestsHttpConnection
@@ -402,7 +422,7 @@ if OPENSEARCH_KEY and OPENSEARCH_SECRET and OPENSEARCH_ENDPOINT != 'CHANGE':
                     },
                     "max_ngram_diff": "50",
                 }
-            }
+                }
 
         }
     }
