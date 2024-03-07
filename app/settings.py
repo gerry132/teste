@@ -363,17 +363,6 @@ if USE_S3 is True:
     AWS_S3_REGION_NAME = "eu-west-1"
 
 
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-    print(AWS_S3_CUSTOM_DOMAIN)
-
 WAGTAIL_SITE_NAME = "cib.ie"
 
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:8000")
