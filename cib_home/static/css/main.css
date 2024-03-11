@@ -2744,9 +2744,12 @@ div#closebox a {
 
 /* ModernCSS Button */
 
-button.cookiejs-button {
+
+.cookiejs-button {
 	font-size: 16px;
 	margin: 0 10px 10px 0;
+	font-weight: 700;
+    line-height: 25px;
 }
 
 .cookiejs-banner-wrapper {
@@ -2759,10 +2762,19 @@ button.cookiejs-button {
 	background-color: rgba(0, 0, 0, 0.7);
 	position: fixed;
 	overflow: auto;
+	z-index: 10000;
 }
-
+.cookies-modal-content h2{
+    font-family: 'Lato', sans-serif !important;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.cookies-modal-input h3{
+    font-size: 1.17em;
+    font-weight: bold;
+}
 .cookies-modal-content {
-	font-family: 'lato_regular', 'Open Sans', Arial, sans-serif;
+	font-family: 'Lato', sans-serif !important;
 	background-color: #F6F6F2;
 	position: relative;
 	margin: auto;
@@ -2798,6 +2810,7 @@ input[type=checkbox] {
 	-o-transform: scale(1.5);
 	transform: scale(1.5);
 	padding: 10px;
+	margin: 3px 0 0 20px;
 }
 
 .tick {
@@ -2884,7 +2897,7 @@ input[type=checkbox] {
 }
 
 .cookiejs-footer-wrapper {
-	font-family: Arial, sans-serif !important;
+	font-family: 'Lato', sans-serif !important;
 	background-color: #005F81 !important;
 	padding: 20px 0 30px 0 !important;
 	width: 100% !important;
