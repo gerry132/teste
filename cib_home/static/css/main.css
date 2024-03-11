@@ -2744,9 +2744,12 @@ div#closebox a {
 
 /* ModernCSS Button */
 
-button.cookiejs-button {
+
+.cookiejs-button {
 	font-size: 16px;
 	margin: 0 10px 10px 0;
+	font-weight: 700;
+    line-height: 25px;
 }
 
 .cookiejs-banner-wrapper {
