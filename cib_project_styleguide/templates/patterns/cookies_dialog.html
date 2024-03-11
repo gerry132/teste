@@ -4,9 +4,8 @@
 
 <div id="cookies-banner" class="cookiejs-banner-wrapper" style="display: none;">
     <div class="cookiejs-banner">
-        <h2 class="cookiejs-banner-heading">{% trans 'Cookies on citizensinformationboard.ie' %}</h2>
-
         {% if LANGUAGE_CODE == "ga" %}
+        <h2 class="cookiejs-banner-heading">Fianáin ar citizensinformationboard.ie</h2>
         <p class="cookiejs-banner-text">
             Úsáidimid fianáin chun faisnéis a bhailiú faoin gcaoi a n-úsáideann tú citizensinformationboard.ie. Cuidíonn sé
             seo linn d’eispéireas a fheabhsú. Is féidir leat tuilleadh a fháil amach faoi na fianáin a úsáidimid inár
@@ -20,6 +19,7 @@
             <a href="#modal_cookies" data-modal-open>Mo shainroghanna fianán</a> ag bun gach leathanaigh.
         </p>
         {% else %}
+        <h2 class="cookiejs-banner-heading">Cookies on citizensinformationboard.ie</h2>
         <p class="cookiejs-banner-text">
             We use cookies to collect information about how you use citizensinformationboard.ie.
             This helps us to improve your experience. You can find out more about the cookies we use in our

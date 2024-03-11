@@ -235,7 +235,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Search Citizens Information Board"
 msgid "Cookies on citizensinformationboard.ie"
-msgstr "Cuardaigh an Bord um Fhaisnéis do Shaoránaigh"
+msgstr "Fianáin ar citizensinformationboard.ie"
 
 #: cib_project_styleguide/templates/patterns/cookies_dialog.html:36
 msgid "Accept all cookies"
@@ -243,11 +243,11 @@ msgstr "Glac le gach fianán"
 
 #: cib_project_styleguide/templates/patterns/cookies_dialog.html:39
 msgid "Manage my preferences"
-msgstr "Bainistigh mo chuid sainroghanna"
+msgstr "Bainistigh sainroghanna"
 
 #: cib_project_styleguide/templates/patterns/cookies_dialog.html:48
 msgid "Cookie preferences"
-msgstr "Roghanna fianán"
+msgstr "Bainistigh sainroghanna fianán"
 
 #: cib_project_styleguide/templates/patterns/cookies_dialog.html:80
 msgid "Allow analytics cookies"
@@ -263,11 +263,11 @@ msgstr "Dún"
 
 #: cib_project_styleguide/templates/patterns/cookies_footer.html:7
 msgid "Manage cookie preferences"
-msgstr "Bainistigh sainroghanna fianán"
+msgstr "Eagraigh fianán"
 
 #: cib_project_styleguide/templates/patterns/cookies_footer.html:12
 msgid "Manage preferences"
-msgstr "Bainistigh sainroghanna"
+msgstr "Do rogha fianán"
 
 #: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:50
 #: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:109
