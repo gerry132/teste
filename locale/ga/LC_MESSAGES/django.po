@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-30 16:33+0000\n"
+"POT-Creation-Date: 2024-03-08 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: cib_home/blocks.py:38 cib_home/blocks.py:64 cib_home/blocks.py:85
 #: cib_home/blocks.py:124 cib_jobs/models.py:65 cib_utils/blocks.py:142
-#: cib_utils/models.py:186
+#: cib_utils/models.py:187
 msgid "The alt text shown for accessibility: https://axesslab.com/alt-texts/"
 msgstr ""
 
@@ -142,39 +142,39 @@ msgstr ""
 msgid "Leave blank if no header required."
 msgstr ""
 
-#: cib_navigation/models.py:69 cib_navigation/models.py:84
-#: cib_navigation/models.py:208
+#: cib_navigation/models.py:71 cib_navigation/models.py:86
+#: cib_navigation/models.py:210
 msgid "Logo Alt text"
 msgstr ""
 
-#: cib_navigation/models.py:116 cib_navigation/models.py:196
+#: cib_navigation/models.py:118 cib_navigation/models.py:198
 #: cib_project_styleguide/templates/patterns/organisms/header/header.html:92
 msgid "Language"
 msgstr "Teanga"
 
-#: cib_navigation/models.py:126
+#: cib_navigation/models.py:128
 msgid "Links"
 msgstr ""
 
-#: cib_navigation/models.py:137
+#: cib_navigation/models.py:139
 msgid "Popular Links"
 msgstr ""
 
-#: cib_navigation/models.py:150 cib_navigation/models.py:176
-#: cib_navigation/models.py:177
+#: cib_navigation/models.py:152 cib_navigation/models.py:178
+#: cib_navigation/models.py:179
 msgid "Primary Navigation"
 msgstr ""
 
-#: cib_navigation/models.py:226
+#: cib_navigation/models.py:228
 msgid "Columns"
 msgstr ""
 
-#: cib_navigation/models.py:231
+#: cib_navigation/models.py:233
 msgid "Single list of elements at the base of the page."
 msgstr ""
 
-#: cib_navigation/models.py:246 cib_navigation/models.py:272
-#: cib_navigation/models.py:273
+#: cib_navigation/models.py:248 cib_navigation/models.py:280
+#: cib_navigation/models.py:281
 msgid "Footer Navigation"
 msgstr ""
 
@@ -231,6 +231,44 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:7
+#, fuzzy
+#| msgid "Search Citizens Information Board"
+msgid "Cookies on citizensinformationboard.ie"
+msgstr "Cuardaigh an Bord um Fhaisnéis do Shaoránaigh"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:36
+msgid "Accept all cookies"
+msgstr "Glac le gach fianán"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:39
+msgid "Manage my preferences"
+msgstr "Bainistigh mo chuid sainroghanna"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:48
+msgid "Cookie preferences"
+msgstr "Roghanna fianán"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:80
+msgid "Allow analytics cookies"
+msgstr "Ceadaigh fianáin anailísíochta"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:90
+msgid "Save preferences"
+msgstr "Sábháil sainroghanna"
+
+#: cib_project_styleguide/templates/patterns/cookies_dialog.html:93
+msgid "Close"
+msgstr "Dún"
+
+#: cib_project_styleguide/templates/patterns/cookies_footer.html:7
+msgid "Manage cookie preferences"
+msgstr "Bainistigh sainroghanna fianán"
+
+#: cib_project_styleguide/templates/patterns/cookies_footer.html:12
+msgid "Manage preferences"
+msgstr "Bainistigh sainroghanna"
+
 #: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:50
 #: cib_project_styleguide/templates/patterns/molecules/hero/half_hero.html:109
 #: cib_project_styleguide/templates/patterns/molecules/hero/hybrid_hero.html:45
@@ -277,6 +315,30 @@ msgstr "Téigh go dtí an leathanach roimhe seo"
 #: cib_project_styleguide/templates/patterns/molecules/pagination/pagination.html:45
 msgid "Go to next page"
 msgstr "Téigh go dtí an chéad leathanach eile"
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:70
+msgid "Follow us on Twitter"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:76
+msgid "Find us on Instagram"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:82
+msgid "Find us on Facebook"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:88
+msgid "Find us on Weibo"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:94
+msgid "Find us on Youtube"
+msgstr ""
+
+#: cib_project_styleguide/templates/patterns/organisms/footer/footer.html:100
+msgid "Connect on Linkedin"
+msgstr ""
 
 #: cib_project_styleguide/templates/patterns/organisms/header/header.html:43
 msgid "Menu"
@@ -356,23 +418,23 @@ msgstr ""
 msgid "Please enter the password to proceed."
 msgstr ""
 
-#: cib_utils/blocks.py:141 cib_utils/models.py:185
+#: cib_utils/blocks.py:141 cib_utils/models.py:186
 msgid "Icon Alt text"
 msgstr ""
 
-#: cib_utils/models.py:44
+#: cib_utils/models.py:45
 msgid "publication_log"
 msgstr ""
 
-#: cib_utils/models.py:51
+#: cib_utils/models.py:52
 msgid "Summary text to appear under search results"
 msgstr ""
 
-#: cib_utils/models.py:56
+#: cib_utils/models.py:57
 msgid "last publish date (custom)"
 msgstr ""
 
-#: cib_utils/models.py:58
+#: cib_utils/models.py:59
 msgid ""
 "Can be used to override the Wagtail-managed 'last published at' datetime, "
 "making content appear older (or newer) than it really is."
