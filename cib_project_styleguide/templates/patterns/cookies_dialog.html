@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<div id="cookies-banner" class="cookiejs-banner-wrapper" style="display: none;">
+    <div class="cookiejs-banner">
+        <h2 class="cookiejs-banner-heading">{% trans 'Cookies on citizensinformationboard.ie' %}</h2>
+
+        {% if LANGUAGE_CODE == "ga" %}
+        <p class="cookiejs-banner-text">
+            Úsáidimid fianáin chun faisnéis a bhailiú faoin gcaoi a n-úsáideann tú citizensinformationboard.ie. Cuidíonn sé
+            seo linn d’eispéireas a fheabhsú. Is féidir leat tuilleadh a fháil amach faoi na fianáin a úsáidimid inár
+            <a href="https://www.citizensinformationboard.ie/en/notices/cookies.html">bhfógra Fianán</a>.
+            Is féidir leat ár <a href="https://www.citizensinformationboard.ie/en/notices/privacy.html">mbeartas Príobháideachta</a>
+            a léamh freisin.
+
+            <br><br>
+            Is féidir leat glacadh le gach fianán nó is féidir leat na fianáin a roghnú le glacadh nó le diúltiú. Is
+            féidir leat do shainroghanna fianán a athrú ag am ar bith trí úsáid a bhaint as an nasc
+            <a href="#modal_cookies" data-modal-open>Mo shainroghanna fianán</a> ag bun gach leathanaigh.
+        </p>
+        {% else %}
+        <p class="cookiejs-banner-text">
+            We use cookies to collect information about how you use citizensinformationboard.ie.
+            This helps us to improve your experience. You can find out more about the cookies we use in our
+            <a href="https://www.citizensinformationboard.ie/en/notices/cookies.html">Cookie notice</a>. You can also read our
+            <a href="https://www.citizensinformationboard.ie/en/notices/privacy.html">Privacy policy</a>.
+            <br><br>
+            You can accept all cookies or you can chose which cookies to accept or reject. You can change your cookie
+            preferences at any time by using the <a href="#modal_cookies" data-modal-open>My cookie preferences</a> link
+            at the bottom of each page.
+        </p>
+        {% endif %}
+
+        <button type="button" class="newslettersignupcta__button cookiejs-button" id="accept-cookies-btn">
+            {% trans 'Accept all cookies' %}
+        </button>
+        <button type="button" class="newslettersignupcta__button cookiejs-button" data-modal-open="modal_cookies" disabled>
+            {% trans 'Manage my preferences' %}
+        </button>
+    </div>
+</div>
+
+<div class="cookies-modal" id="modal_cookies" data-modal data-modal-manual-close hidden>
+    <div class="cookies-modal-content" data-modal-document>
+        <div class="cookies-modal-header">
+
+            <h2>{% trans 'Cookie preferences' %}</h2>
+
+        </div>
+
+        <div class="cookies-modal-input">
+
+            {% if LANGUAGE_CODE == "ga" %}
+            <h3>Fianáin a úsaideann Anailísíocht Google</h3>
+            <p>Úsáidimid Anailísíocht Google chun an chaoi a n-úsáideann tú an láithreán gréasáin a thomhas ionas gur
+                féidir linn é a fheabhsú. Tá anailísíocht Google cumraithe againn chun do sheoladh IP a dhéanamh gan
+                ainm ionas nach n-aithneofar go pearsanta tú. Bailimid faisnéis faoi:</p>
+
+            <ul>
+                <li>Conas a shroich tú an láithreán</li>
+                <li>Na leathanaigh a dtugann tú cuairt orthu ar citizensinformationboard.ie, agus cá fhad a chaitheann tú ar
+                    gach leathanach
+                </li>
+                <li>Cad a chliceálann tú agus tú ag tabhairt cuairte ar an láithreán</li>
+            </ul>
+            {% else %}
+            <h3>Cookies used by Google Analytics</h3>
+            <p>We use Google Analytics to measure how you use the website so we can improve it. We have configured
+                Google Analytics to anonymise your IP address so that you are not personally identified. We gather
+                information on:</p>
+
+            <ul>
+                <li>How you got to the site</li>
+                <li>The pages you visit on citizensinformationboard.ie, and how long you spend on each page</li>
+                <li>What you click while you are visiting the site</li>
+            </ul>
+            {% endif %}
+
+            <label for="cookiecheck">{% trans 'Allow analytics cookies' %}</label>
+            <form action="#">
+                <input type="checkbox" id="cookiecheck" class="tick">
+            </form>
+
+        </div>
+
+
+        <div class="cookies-modal-footer">
+            <button type="button" class="newslettersignupcta__button cookiejs-button" data-modal-close-btn id="save-cookies-btn">
+                {% trans 'Save preferences' %}
+            </button>
+            <button type="button" class="newslettersignupcta__button cookiejs-button" data-modal-close-btn>
+                {% trans 'Close' %}
+            </button>
+        </div>
+
+    </div>
+</div>
