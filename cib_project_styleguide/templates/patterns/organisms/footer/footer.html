@@ -53,18 +53,6 @@
 {% if nav.footernav.links or nav.footernav.logo %}
     <div class="govie-footer__meta">
       <div class="govie-footer__meta-item govie-footer__meta-item--grow">
-
-        <ul class="govie-footer__inline-list">
-          {% for link in nav.footernav.links %}
-          <li class="govie-footer__inline-list-item">
-            {% if link.value.title %}
-                  <a class="govie-footer__link" href="{% if link.value.page %}{{ link.value.page.url }}{% else %}{{ link.value.url }}{% endif %}"> {{ link.value.title }} </a>
-                {% else %}
-                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.page.title }} </a>
-            {% endif %}
-          </li>
-          {% endfor %}
-        </ul>
         <div class="footer__social-links">
           {% if nav.footernav.twitter_handle %}
                     <a href="https://twitter.com/{{ nav.footernav.twitter_handle }}" class="footer__social-link" aria-label="{% trans 'Follow us on Twitter' %}">
@@ -102,6 +90,17 @@
                     </a>
           {% endif %}
             </div>
+        <ul class="govie-footer__inline-list">
+          {% for link in nav.footernav.links %}
+          <li class="govie-footer__inline-list-item">
+            {% if link.value.title %}
+                  <a class="govie-footer__link" href="{% if link.value.page %}{{ link.value.page.url }}{% else %}{{ link.value.url }}{% endif %}"> {{ link.value.title }} </a>
+                {% else %}
+                  <a class="govie-footer__link" href="{{ link.value.page.url }}"> {{ link.value.page.title }} </a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
         </div>
       <div class="govie-footer__meta-item">
         <a class="govie-footer__copyright-logo" href="#">
