@@ -2631,6 +2631,7 @@ svg:not(:root) {
     justify-content: flex-start;
     gap: 10px;
     flex-wrap: wrap;
+    padding-bottom: 20px;
 }
 
 .cookie-info {
