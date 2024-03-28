@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "health_check",
     "cib_board",
     "cib_documents",
+    "cib_form",
     "cib_images",
     "cib_users",
     "cib_search",

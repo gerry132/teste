@@ -1,0 +1,126 @@
+{% extends "patterns/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+{% load left_nav %}
+
+{% block content %}
+
+<div class="wrapper wrapper--large wrapper--padding">
+    <div class="main-page-content">
+        <div class="left-nav">
+            {% left_nav page %}
+        </div>
+
+    <div class="wrapper wrapper--small wrapper--padding ">
+        <div class="callback-page-body">
+            <div class="callback-page-header">
+                <div class="callback-page-title">
+                    {{ page.title }}
+                </div>
+                <div class="callback-page-intro">
+                    {{ self.intro|richtext }}
+                </div>
+                {% for block in page.body%}
+                    {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
+                {% endfor %}
+            </div>
+
+                <form action="{% pageurl page %}" method="POST">
+                {% csrf_token %}
+            <div class="callback-form">
+
+                <div class="form__single-row">
+                    {% for elem in form %}
+                        {% if elem.label == "Name" or elem.label == "Email" or elem.label == "Phone" %}
+
+                            <div class="form__single-row_select">
+                                <div class="form__single-row_select__label">
+                                    {{elem.label}}{% if elem.field.required is True %}<span style="color:red">*</span>{% endif %}<br>
+                                </div>
+                                <div class="one-line-form-fields">
+                                    {{elem}}
+                                    {% if elem.help_text %}
+                                        <div class="help-text">{{ elem.help_text }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                {% for elem in form %}
+
+                    {% if elem.label != "Name" and elem.label != "Email" and elem.label != "Phone" %}
+
+                        <div class="callback-form__general-fields">
+
+                            <div class="form__single-row_select__label">
+                                {{elem.label}}{% if elem.field.required is True %}<span style="color:red">*</span>{% endif %}<br>
+                            </div>
+                            {% if elem.field.widget.input_type == "radio" or elem.field.widget.input_type == "checkbox" %}
+                                {% if elem.help_text %}
+                                    <div class="hint-text">{{ elem.help_text }}</div>
+                                {% endif %}
+                                {{elem}}
+                            {% else %}
+                                {% if elem.widget_type == "date" %}
+                                    <div class="date-picker">
+                                        {{elem}}
+                                    </div>
+                                    {% if elem.help_text %}
+                                        <div class="help-text">{{ elem.help_text }}</div>
+                                    {% endif %}
+                                {% elif elem.widget_type == "datetime" %}
+                                    <div class="datetime-picker">
+                                        {{elem}}
+                                    </div>
+                                    {% if elem.help_text %}
+                                        <div class="help-text">{{ elem.help_text }}</div>
+                                    {% endif %}
+                                {% else %}
+                                        {{elem}}
+                                        {% if elem.help_text %}
+                                            <div class="help-text">{{ elem.help_text }}</div>
+                                        {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            <div class="callback-submit-button">
+                <button type="submit" class="newslettersignupcta__button basefeature-button__text ">
+                    Submit
+                </button>
+            </div>
+            </div>
+
+            </form>
+
+       </div>
+    {% for block in page.bottom_page_body%}
+        {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
+    {% endfor %}
+</div>
+    </div>
+</div>
+        {% if page.callout_three_column_snippet %}
+    <div class="wrapper wrapper--large wrapper--padding">
+    <hr>
+            {% include_block page.callout_three_column_snippet.calloutcards %}
+        </div>
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr(".date-picker", {
+            /* Flatpickr options here */
+        });
+        flatpickr(".datetime-picker", {
+            dateFormat: "Y-m-d H:i", // Date and time format
+            enableTime: true, // Enable time selection
+            /* Additional Flatpickr options for datetime picker */
+        });
+    });
+
+</script>
+
+{% endblock %}

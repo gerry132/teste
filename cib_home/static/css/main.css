@@ -2804,16 +2804,6 @@ div#closebox a {
 	font-weight: bold;
 }
 
-input[type=checkbox] {
-	-ms-transform: scale(1.5);
-	-moz-transform: scale(1.5);
-	-webkit-transform: scale(1.5);
-	-o-transform: scale(1.5);
-	transform: scale(1.5);
-	padding: 10px;
-	margin: 3px 0 0 20px;
-}
-
 .tick {
 	background-color: #5C5C8A;
 	margin: 3px 0 0 20px;
@@ -2968,4 +2958,328 @@ input[type=checkbox] {
 		height: 80px;
 	}
 
+}
+
+/* FORMS */
+.callback-page-body{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 27px;
+  margin-top: 40px;
+
+}
+.callback-page-header{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.callback-page-intro{
+  color: #000;
+
+  /* Desktop/Paragraph/Body */
+  font-family: Lato;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 131.579% */
+
+}
+
+.callback-submit-button{
+  display: flex;
+  width: 243px;
+  height: 47px;
+  padding: 8px 12px 7px 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.callback-page-title{
+    color: var(--CIB_Dark_blue, #005F81);
+
+    /* Desktop/Heading/Large */
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+}
+.callback-form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+#id_checkboxes, #id_radio {
+    list-style-type: none;
+}
+
+ul#id_checkboxes, ul#id_radio {
+    padding-inline-start: 0px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+#id_checkboxes li label, #id_radio li label {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+.form__single-row{
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  align-self: stretch;
+
+}
+
+.form__single-row_select{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+}
+.form__single-row label{
+  align-self: stretch;
+  color: var(--Text-Primary, #0B0C0C);
+  font-family: Lato;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 131.579% */
+}
+.form__single-row input[type="text"],input[type="email"]{
+  display: flex;
+  height: 40px;
+  padding: 8px 11px 7px 11px;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  border: 2px solid var(--Border-Input, #0B0C0C);
+  background: var(--Surface-Background, #FFF);
+}
+
+@media screen and (max-width: 768px) {
+  .form__single-row{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+    align-self: stretch;
+
+  }
+  .one-line-form-fields{
+    width: 100% !important;
+  }
+  .form__single-row_select{
+    width: 100% !important;
+  }
+  .form__single-row input[type="text"],input[type="email"]{
+    width: 100% !important;
+  }
+  .callback-submit-button{
+    margin-top: 70px;
+
+  }
+}
+.hint-text{
+    color: var(--Text-Secondary, #505A5F);
+
+    /* Desktop/Paragraph/Body */
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 131.579% */
+}
+.callback-form__general-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+.callback-form__general-fields-label{
+  color: var(--MABS_Dark_Purple, #343E99);
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+
+}
+
+.callback-form__general-fields select,textarea,input[type="text"],input[type="email"],input[type="number"],input[type="url"] {
+  display: flex;
+  width: 100% !important;
+  padding: 8px 11px 7px 11px;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  border: 2px solid var(--Border-Input, #0B0C0C);
+  background: var(--Surface-Background, #FFF);
+}
+
+ .date-picker, .datetime-picker {
+  width: 100% ;
+}
+button, input, select, textarea{
+  border: 2px solid var(--Other-Black, #0B0C0C);
+  background: var(--Background, #FFF);
+}
+
+.callback-form__general-fields_checkbox input[type="checkbox"] {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 10px 7px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--Other-Black, #0B0C0C);
+  background: var(--Background, #FFF);
+}
+.callback-form__general-fields_checkbox{
+  display: flex;
+  height: 45px;
+  align-items: flex-start;
+  gap: 15px;
+}
+.callback-form__general-fields_checkbox__text{
+  color: #000;
+
+  /* Desktop/Paragraph/Body */
+  font-family: Lato;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 131.579% */
+}
+
+/* Custom checkbox styling */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--Background, #FFF);
+    outline: none;
+    cursor: pointer;
+    position: relative; /* Position relative to contain the tick mark */
+    border: 2px solid var(--Other-Black, #0B0C0C);
+    margin-right: 5px;
+    margin-top: 0px;
+}
+input[type=checkbox]:focus, input[type=radio]:focus {
+    outline: 0px;
+    outline-offset: 0px;
+}
+input[type="checkbox"]:hover:not(:checked) {
+    outline: 0px;
+    border: 3px solid var(--Other-Black, #0B0C0C);
+    background: var(--Background, #FFF);
+    box-shadow: 0px 0px 0px 3px #FD0;
+}
+
+/* Styles for checkbox when focused and not checked */
+input[type="checkbox"]:focus:not(:checked) {
+    outline: 0px;
+    border: 3px solid var(--Other-Black, #0B0C0C);
+}
+/* Custom tick mark inside the checkbox */
+input[type="checkbox"]::after {
+    content: '';
+    display: none;
+    width: 5px; /* Adjust the size of the tick mark */
+    height: 12px; /* Adjust the size of the tick mark */
+    border-style: solid;
+    border-width: 0 3px 3px 0;
+    border-color: transparent var(--Other-Black, #0B0C0C) var(--Other-Black, #0B0C0C) transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg); /* Rotate the tick mark */
+}
+
+/* Custom checkbox when checked */
+input[type="checkbox"]:focus:checked {
+    border: 3px solid var(--Other-Black, #0B0C0C);
+    background: var(--Background, #FFF);
+    box-shadow: 0px 0px 0px 3px #FD0;
+}
+
+/* Show the tick mark when the checkbox is checked */
+input[type="checkbox"]:checked::after {
+    display: block;
+}
+
+/* Custom radio button styling */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--Background, #FFF);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid var(--Other-Black, #0B0C0C);
+    border-radius: 50%; /* Make it circular */
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+/* Remove default focus styles */
+input[type="radio"]:focus {
+    outline: 0px;
+    outline-offset: 0px;
+}
+
+/* Styles for radio button when hovered and not checked */
+input[type="radio"]:hover:not(:checked) {
+    outline: 0px;
+    border: 3px solid var(--Other-Black, #0B0C0C);
+    background: var(--Background, #FFF);
+    box-shadow: 0px 0px 0px 3px #FD0;
+}
+
+/* Styles for radio button when focused and not checked */
+input[type="radio"]:focus:not(:checked) {
+    outline: 0px;
+    border: 3px solid var(--Other-Black, #0B0C0C);
+}
+
+/* Custom dot inside the radio button */
+input[type="radio"]::after {
+    content: '';
+    display: none;
+    width: 10px; /* Adjust the size of the dot */
+    height: 10px; /* Adjust the size of the dot */
+    border-radius: 50%; /* Make it circular */
+    background-color: var(--Other-Black, #0B0C0C);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Custom radio button when checked */
+input[type="radio"]:focus:checked {
+    border: 3px solid var(--Other-Black, #0B0C0C);
+    background: var(--Background, #FFF);
+    box-shadow: 0px 0px 0px 3px #FD0;
+}
+
+/* Show the dot when the radio button is checked */
+input[type="radio"]:checked::after {
+    display: block;
 }
