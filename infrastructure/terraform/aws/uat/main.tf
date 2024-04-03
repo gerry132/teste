@@ -72,7 +72,7 @@ locals {
     },
     sina_dev = {
       description = "Sina - Sidero"
-      cidr_blocks  = ["31.53.148.214/32"]
+      cidr_blocks  = ["31.53.148.214/32", "65.21.24.138/32"]
     },
     OGCIO = {
       description = "OGCIO - Office"
