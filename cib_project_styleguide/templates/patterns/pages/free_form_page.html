@@ -5,9 +5,11 @@
 {% block content %}
 <div class="wrapper wrapper--large wrapper--padding">
     <div class="main-page-content">
-        <div class="left-nav">
-            {% left_nav page %}
-        </div>
+        {% if page.show_left_nav_title %}
+            <div class="left-nav">
+                {% left_nav page %}
+            </div>
+        {% endif %}
         <div class="page-body">
             {% for block in page.body%}
                 {% include "patterns/molecules/streamfield/blocks/standard_page_body_block.html" with block=block %}
