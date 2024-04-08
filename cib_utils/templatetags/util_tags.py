@@ -23,7 +23,7 @@ def define_document_language(language_code, val=None):
         elif language_code == 'ga' and link['heading'] == 'Gaeilge':
             return link
 
-    return False
+    return link
 
 
 @register.simple_tag
