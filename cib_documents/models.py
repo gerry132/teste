@@ -69,7 +69,12 @@ class LanguagesBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True, label='Language Title')
     languages = blocks.ListBlock(
         blocks.StructBlock([
-            ('heading', blocks.CharBlock(required=True)),
+            ('heading', blocks.ChoiceBlock(
+                required=True,
+                choices=[('English', _("English")), ('Gaeilge', _("Gaeilge"))],
+                default='English',
+                label=_("Heading"),
+                )),
             ('document', DocumentChooserBlock(required=True)),
         ]),
         label='Languages',
