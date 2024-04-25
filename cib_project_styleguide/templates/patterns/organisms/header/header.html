@@ -53,11 +53,17 @@
                             <ul class="govie-footer__list govie-footer__list--columns-2">
                             {% for link in nav.primarynav %}
                                 {% if link.block_type == 'link'%}
-                                {% if link.value.title %}
-                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
-                                {% else %}
-                                    <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
-                                {% endif %}
+                                    {% if link.value.title %}
+                                        {% if link.value.page %}
+                                            <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.title }}</a></li>
+                                        {% elif link.value.url %}
+                                            <li class="popular_links--search"><a class="index--popular" href="{{ link.value.url }}">{{ link.value.title }}</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if link.value.page %}
+                                            <li class="popular_links--search"><a class="index--popular" href="{% pageurl link.value.page %}">{{ link.value.page }}</a></li>
+                                        {% endif %}
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                             </ul>
