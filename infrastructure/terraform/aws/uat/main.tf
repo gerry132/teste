@@ -997,6 +997,18 @@ resource "aws_lb_listener_certificate" "admin_cib_certificate" {
 # -----------------------------------------------------------------------------
 
 
+resource "random_password" "password" {
+  length  = 32
+  special = true
+}
+
+resource "aws_ssm_parameter" "opensearch_master_user" {
+  name        = "MASTER_USER"
+  description = "opensearch_password"
+  type        = "SecureString"
+  value       = "${local.environment_name}-opensearch-user,${random_password.password.result}"
+}
+
 resource "aws_opensearch_domain" "opensearch" {
   domain_name = local.environment_name
   engine_version = "OpenSearch_2.7"
