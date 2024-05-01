@@ -27,9 +27,7 @@
 
             <div class="search-results">
                 <div class="container-fluid" id="reboot-search-drawer-custom-nav">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-10 col-sm-offset-1">
+                            <div class="wrapper wrapper--large wrapper--padding">
                                 {% with count=search_results.paginator.count %}
                                     <div class="search-results__count {% if count %} border--bottom__div {% endif %}">
                                         <h1 class="search--heading">Search Results</h1>
@@ -49,8 +47,6 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             {% include "patterns/molecules/pagination/pagination.html" with paginator_page=search_results %}

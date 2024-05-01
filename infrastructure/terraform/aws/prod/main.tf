@@ -71,7 +71,7 @@ locals {
     },
     sina_dev = {
       description = "Sina - Sidero"
-      cidr_blocks  = ["81.141.157.14/32"]
+      cidr_blocks  = ["148.251.150.109/32"]
     },
 
   }

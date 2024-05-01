@@ -1,0 +1,19 @@
+{% extends "patterns/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+{% load left_nav %}
+
+{% block content %}
+
+<div class="wrapper wrapper--large wrapper--padding">
+    <div class="main-page-content">
+        <div class="wrapper wrapper--small wrapper--padding ">
+                <div class="content-page-body">
+                    <div class="content-page-header">
+                        {{ self.thank_you_text|richtext }}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

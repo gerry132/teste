@@ -26,7 +26,7 @@ class FreeFormPage(BasePage):
         blank=False,
         null=True
     )
-
+    show_left_nav_title = models.BooleanField(default=True, verbose_name="Show left nav title")
     body = StreamField(
         [
             ("CalloutCards", CallOutBlock()),
@@ -62,6 +62,7 @@ class FreeFormPage(BasePage):
     )
     content_panels = BasePage.content_panels + [
         FieldPanel("left_nav_title"),
+        FieldPanel("show_left_nav_title"),
         FieldPanel("body"),
         FieldPanel("jobvacancy_latestnews_snippet"),
         FieldPanel("news_letter_signup_cta"),

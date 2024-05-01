@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<div class="cookiejs-footer-wrapper" style="display: block;">
+    <div class="cookiejs-footer"><h2 class="cookiejs-footer-heading">
+        {% trans 'Manage cookie preferences' %}
+    </h2>
+        <ul class="cookiejs-footer-ul" role="complementary" aria-labelledby="cookietitle">
+            <li class="cookiejs-footer-li">
+                <a class="newslettersignupcta__button cookiejs-button" href="#modal_cookies" data-modal-open>
+                    {% trans 'Manage preferences' %}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static '/cookie_scripts/aria.modal.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static '/cookie_scripts/cookies.js' %}"></script>
