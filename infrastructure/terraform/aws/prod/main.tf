@@ -213,6 +213,22 @@ module "network" {
 # Security groups
 # -----------------------------------------------------------------------------
 
+resource "aws_security_group" "opensearch" {
+
+  vpc_id  = module.network.vpc_id
+
+  ingress {
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
+}
+
+
 resource "aws_security_group" "lb" {
     name    = "${local.environment_name}-lb"
     vpc_id  = module.network.vpc_id
@@ -976,6 +992,18 @@ resource "aws_lb_listener_certificate" "admin_cib_certificate" {
 # -----------------------------------------------------------------------------
 
 
+resource "random_password" "password" {
+  length  = 32
+  special = true
+}
+
+resource "aws_ssm_parameter" "opensearch_master_user" {
+  name        = "MASTER_USER"
+  description = "opensearch_password"
+  type        = "SecureString"
+  value       = "${local.environment_name}-opensearch-user,${random_password.password.result}"
+}
+
 resource "aws_opensearch_domain" "opensearch" {
   domain_name = local.environment_name
   engine_version = "OpenSearch_2.7"
@@ -996,7 +1024,10 @@ resource "aws_opensearch_domain" "opensearch" {
   encrypt_at_rest {
     enabled = true
   }
-
+  vpc_options {
+    subnet_ids = module.network.private_subnet_ids
+    security_group_ids = [aws_security_group.opensearch.id]
+  }
   node_to_node_encryption {
     enabled = true
   }
@@ -1006,27 +1037,32 @@ resource "aws_opensearch_domain" "opensearch" {
     tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
   }
   advanced_security_options {
-      enabled                        = true
+      enabled                        = false
+      internal_user_database_enabled = true
       master_user_options {
-        master_user_arn = aws_iam_user.opensearch.arn
+          master_user_name     = "${local.environment_name}-opensearch-user"
+          master_user_password = random_password.password.result
       }
     }
     access_policies = jsonencode(
+      {
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": "*"
-          },
-          "Action": "es:*",
-          "Resource": "*"
-        }
-      ]
-    })
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          aws_iam_user.opensearch.arn
+        ]
+      },
+      "Action": [
+        "es:*"
+      ],
+    }
+  ]
 }
-
+)
+}
 
 resource "random_string" "random_db_password" {
   length           = 30
