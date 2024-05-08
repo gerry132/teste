@@ -1696,7 +1696,7 @@ resource "aws_cloudfront_response_headers_policy" "assets_cors" {
     }
 
     access_control_allow_origins {
-      items = [local.domain_cib, "content.${local.domain_cib}", "www.${local.domain_cib}"]
+      items = [local.domain_cib, local.project_domain, "www.${local.domain_cib}"]
     }
 
     origin_override = true
